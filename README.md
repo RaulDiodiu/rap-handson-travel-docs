@@ -2,7 +2,7 @@
 
 This repository offers solutions for the hands-on exercises available in the internal training on RAP provided by msg group.
 
-## Hands-On Prerequisites
+## Hands-On - Prerequisites
 
 * Minimum system prerequisite **SAP S/4HANA 2020**
 * User available on ABAP development system (backend / frontend)
