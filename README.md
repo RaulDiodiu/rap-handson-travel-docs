@@ -49,9 +49,38 @@ define view entity ZRAPH_I_RoomReservationWD
 }
 </pre>
 
+```abap
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'RAP HandsOn: Room Reservation (Basic)'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+
+@VDM.viewType: #BASIC
+
+define view entity ZRAPH_I_RoomReservationWD
+  as select from zraph_a_room_rsv
+{
+  key room_resvn_uuid       as RoomResvnUUID,
+      parent_uuid           as TravelUUID,
+      room_resvn_id         as RoomResvnID,
+      hotel_id              as HotelID,
+      begin_date            as BeginDate,
+      end_date              as EndDate,
+      room_type             as RoomType,
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      room_resvn_price      as RoomResvnPrice,
+      currency_code         as CurrencyCode,
+      local_last_changed_at as LocalLastChangedAt
+}
+```
 This is link to an image
 
-![Screenshot](/images/image1.png)
+![Screenshot](images/image1.png)
 #### Solution 2
 
 ### Chapter 2
