@@ -1,0 +1,1 @@
+# Readme file for Part 3 - Creating the Virtual Data Model (VDM) via ABAP CDS Views
