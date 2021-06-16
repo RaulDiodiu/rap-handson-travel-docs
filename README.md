@@ -13,7 +13,7 @@ This repository offers hands-on exercises on RAP provided by msg group.
 * SAP BTP destination to ABAP development system (frontend) which is enabled for usage in SAP Web IDE
   
 ### SAP Netweaver
-All created objects are implemented as local objects. The names to be used are listed within the corre-sponding chapters. For all objects, make sure, that you also provide the initials of your name as prefix. 
+All created objects are implemented as local objects. The names to be used are listed within the corresponding chapters. For all objects, make sure, that you also provide the initials of your name as prefix. 
 
 ## "The App"
 ### Goals and Motivation
