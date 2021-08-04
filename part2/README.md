@@ -27,8 +27,8 @@ define table z##_a_room_rsv {
 }
 ```
 Explanation:
-* Some data elements from the ABAP Flight Reference Scenario (namespace `/DMO/`) are used and on the other side some already existing data elements from `ZRAPH` namespace from the previous hands-on.
-* The table key consists of the `CLIENT` field and the `ROOM_RESVN_UUID` field which is a technical key (16 byte UUID).
+* Some data elements from the ABAP Flight Reference Scenario (namespace `/DMO/`) are used and on the other side some already existing data elements from `ZRAPH` namespace from the previous hands-on
+* The table key consists of the `CLIENT` field and the `ROOM_RESVN_UUID` field which is a technical key (16 byte UUID)
 * A human-readable room reservation identifier: `ROOM_RESVN_ID`
 * The field `CURRENCY_CODE` is specified as currency key for the amount field `ROOM_RESVN_PRICE`
-* `LOCAL_LAST_CHANGED_AT` is used as standard administrative field.
+* `LOCAL_LAST_CHANGED_AT` is used as standard administrative field
