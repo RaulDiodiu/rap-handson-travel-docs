@@ -25,7 +25,7 @@ The detailed view (Object Page) of the bookings should provide its data and allo
 ![alt](images/image1_4.png)
 
 ## Technical Setup
-We will use the following existing database tables for the travel, booking, booking supplement. You’ll find the relevant fields below. In addition to the existing database from the ABAP Flight Reference Scenario, we will create a new database table for storing the room reservations belonging to a specific travel.
+We will use the following existing database tables for the travel, booking, booking supplement. You’ll find the relevant fields below. In addition to the existing database from the ABAP Flight Reference Scenario, we will create a new database table for storing the room reservations belonging to a specific travel (see [part2](../part2/README.md)).
 - **/DMO/A_Travel_D** - General Travel Data (and some administrative information)
 - **/DMO/A_Booking_D** - Booked Flights for Travel instances
 - **/DMO/A_BkSuppl_D** - Booking Supplements for Booking instances
