@@ -7,7 +7,7 @@ This repository offers hands-on exercises on RAP provided by msg group.
 
 * Minimum system prerequisite **SAP S/4HANA 2020 FPS01**
 * User available on ABAP development system (backend / frontend)
-* Eclipse + installed ABAP Development Tools (ADT) ([Eclipse 2021-03](https://www.eclipse.org/downloads/) or above is recommended)
+* Eclipse + installed ABAP Development Tools (ADT) ([Eclipse 2021-06](https://www.eclipse.org/downloads/) or above is recommended)
 * Basic knowledge of ABAP & ABAP CDS Views 
 * User in SAP Business Technology Platform (SAP BTP) with access to SAP Web IDE
 * SAP BTP destination to ABAP development system (frontend) which is enabled for usage in SAP Web IDE
