@@ -1,0 +1,50 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'RAP HandsOn: Travel (Transactional)'
+define root view entity Z##_I_TravelWDTP
+  as select from Z##_I_TravelWD
+
+  composition [0..*] of Z##_I_BookingWDTP         as _Booking
+  composition [0..*] of Z##_I_RoomReservationWDTP as _RoomReservation
+
+
+  association [0..1] to /DMO/I_Agency               as _Agency       on $projection.AgencyID = _Agency.AgencyID
+  association [0..1] to /DMO/I_Customer             as _Customer     on $projection.CustomerID = _Customer.CustomerID
+  association [0..1] to I_Currency                  as _Currency     on $projection.CurrencyCode = _Currency.Currency
+
+{
+  key TravelUUID,
+      TravelID,
+      AgencyID,
+      CustomerID,
+      BeginDate,
+      EndDate,
+      BookingFee,
+      TotalPrice,
+      CurrencyCode,
+      Description,
+      OverallStatus,
+
+      //Administrative Fields
+      @Semantics.user.createdBy: true
+      LocalCreatedBy,
+      @Semantics.systemDateTime.createdAt: true
+      LocalCreatedAt,
+      @Semantics.user.lastChangedBy: true
+      LocalLastChangedBy,
+
+      //local ETag field --> OData ETag
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
+      LocalLastChangedAt,
+
+      //total ETag field
+      @Semantics.systemDateTime.lastChangedAt: true
+      LastChangedAt,
+
+      //Associations
+      _Booking,
+      _RoomReservation,
+
+      _Agency,
+      _Customer,
+      _Currency
+}

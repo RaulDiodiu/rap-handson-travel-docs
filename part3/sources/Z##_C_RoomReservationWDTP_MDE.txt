@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+
+@UI: { headerInfo: { typeName:       'Room Reservation',
+                     typeNamePlural: 'Room Reservations',
+                     title:          { type: #STANDARD,
+                                       label: 'Room Reservation',
+                                       value: 'RoomResvnID' },
+                     imageUrl: 'RoomImage' } }
+
+annotate entity Z##_C_RoomReservationWDTP with
+{
+
+  @UI.facet: [ { id:            'RoomReservation',
+                 purpose:       #STANDARD,
+                 type:          #IDENTIFICATION_REFERENCE,
+                 label:         'Room Reservation',
+                 position:      10 } ]
+  @UI.hidden: true
+  RoomResvnUUID;
+
+  @UI.hidden: true
+  TravelUUID;
+
+  @UI: { lineItem:       [ { position: 10, importance: #HIGH } ],
+         identification: [ { position: 10 } ] }
+  RoomResvnID;
+
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
+         identification: [ { position: 20 } ] }
+  HotelID;
+
+  @UI: { lineItem:       [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
+  BeginDate;
+
+  @UI: { lineItem:       [ { position: 40, importance: #HIGH } ],
+         identification: [ { position: 40 } ] }
+  EndDate;
+
+  @UI: { lineItem:       [ { position: 50, importance: #HIGH } ],
+         identification: [ { position: 50 } ] }
+  RoomType;
+
+  @UI.dataPoint.title: 'Room Type'
+  RoomTypeText;
+
+
+  @UI: { lineItem:       [ { position: 60, importance: #HIGH } ],
+         identification: [ { position: 60 } ] }
+  RoomResvnPrice;
+
+  @UI: { lineItem:       [ { position: 70, importance: #HIGH } ],
+         identification: [ { position: 70 } ] }
+  CurrencyCode;
+
+  @UI: { lineItem:       [ { position: 80, importance: #HIGH } ],
+         identification: [ { position: 80 } ],
+         dataPoint:        { title: 'Hotel' }  }
+  Hotel;
+
+  @UI: { lineItem:       [ { position: 90, importance: #HIGH } ],
+         identification: [ { position: 90 } ] }
+  City;
+
+  @UI.hidden: true
+  RoomImage;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+}

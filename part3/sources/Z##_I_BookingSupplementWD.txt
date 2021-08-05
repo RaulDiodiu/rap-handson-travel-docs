@@ -1,0 +1,25 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'RAP HandsOn: Booking Supplement (Basic)'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+
+@VDM.viewType: #BASIC
+
+define view entity Z##_I_BookingSupplementWD
+  as select from /dmo/a_bksuppl_d
+{
+  key booksuppl_uuid        as BookSupplUUID,
+      root_uuid             as TravelUUID,
+      parent_uuid           as BookingUUID,
+      booking_supplement_id as BookingSupplementID,
+      supplement_id         as SupplementID,
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      price                 as Price,
+      currency_code         as CurrencyCode,
+      local_last_changed_at as LocalLastChangedAt
+}

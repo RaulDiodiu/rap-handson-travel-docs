@@ -1,0 +1,29 @@
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'RAP HandsOn: Booking (Transactional)'
+define view entity Z##_I_BookingWDTP
+  as select from ZRAPH_I_BookingWD
+
+  association        to parent Z##_I_TravelWDTP     as _Travel     on  $projection.TravelUUID = _Travel.TravelUUID
+  composition [0..*] of Z##_I_BookingSupplementWDTP as _BookingSupplement
+
+{
+  key BookingUUID,
+      TravelUUID,
+      BookingID,
+      BookingDate,
+      CustomerID,
+      CarrierID,
+      ConnectionID,
+      FlightDate,
+      FlightPrice,
+      CurrencyCode,
+      BookingStatus,
+
+      //local ETag field --> OData ETag
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
+      LocalLastChangedAt,
+
+      //Associations
+      _Travel,
+      _BookingSupplement
+}

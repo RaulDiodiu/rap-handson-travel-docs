@@ -1,0 +1,48 @@
+@EndUserText.label: 'RAP HandsOn: Room Reservation Projection'
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+
+@Metadata.allowExtensions: true
+@Search.searchable: true
+
+define view entity Z##_C_RoomReservationWDTP
+  as projection on Z##_I_RoomReservationWDTP
+{
+  key RoomResvnUUID,
+
+      TravelUUID,
+
+      RoomResvnID,
+
+      @Search.defaultSearchElement: true
+      @Consumption.valueHelpDefinition: [ {entity: {name: 'ZRAPH_I_HOTEL', element: 'HotelID' } ,
+                     additionalBinding: [ { localElement: 'Hotel',  element: 'Name', usage: #RESULT },
+                                          { localElement: 'City', element: 'City', usage: #RESULT }] }]
+      HotelID,
+
+      BeginDate,
+
+      EndDate,
+
+      @Consumption.valueHelpDefinition: [{ entity: { name:    'ZRAPH_I_HotelRoomType',
+                                                     element: 'Value'  } }]
+      @ObjectModel.text.element: ['RoomTypeText']
+      @Search.defaultSearchElement: true
+      RoomType,
+      _HotelRoomType.Text as RoomTypeText,
+
+      RoomResvnPrice,
+
+      CurrencyCode,
+
+      Hotel,
+
+      City,
+
+      RoomImage,
+
+      LocalLastChangedAt,
+      /* Associations */
+      _Hotel,
+      _HotelRoomType,
+      _Travel : redirected to parent Z##_C_TravelWDTP
+}

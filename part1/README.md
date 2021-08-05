@@ -65,6 +65,8 @@ As you can see in the diagram below, those tables also have associations to othe
 ![alt](images/image1_5.png)
 
 With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful Application Programming Model were introduced. The app created within this hands-on will be based on the scenario managed/draft. In comparision with the unmanaged scenario, where the developer would have to implement the basic CUD operations, in the managed scenario the CUD operations will be provided out of the box by RAP framework. Draft-enabled business objects persist the state of the transactional buffer after every transaction on a designated draft database table. This allows the end user to stop and continue work processes at any point in time, even with inconsistent data. For more detailed information about the draft concept, see [Draft](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.001/en-US/a81081f76c904b878443bcdaf7a4eb10.html).
+## Next step
+[2. Creating the Database Table for Room Reservation ](../part2/README.md)
 
 
  

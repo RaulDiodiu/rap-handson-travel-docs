@@ -1,0 +1,29 @@
+@AbapCatalog.viewEnhancementCategory: [#NONE]
+@AccessControl.authorizationCheck: #NOT_REQUIRED
+@EndUserText.label: 'RAP HandsOn: Booking (Basic)'
+@Metadata.ignorePropagatedAnnotations: true
+@ObjectModel.usageType:{
+    serviceQuality: #X,
+    sizeCategory: #S,
+    dataClass: #MIXED
+}
+
+@VDM.viewType: #BASIC
+
+define view entity Z##_I_BookingWD
+  as select from /dmo/a_booking_d
+{
+  key booking_uuid          as BookingUUID,
+      parent_uuid           as TravelUUID,
+      booking_id            as BookingID,
+      booking_date          as BookingDate,
+      customer_id           as CustomerID,
+      carrier_id            as CarrierID,
+      connection_id         as ConnectionID,
+      flight_date           as FlightDate,
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      flight_price          as FlightPrice,
+      currency_code         as CurrencyCode,
+      booking_status        as BookingStatus,
+      local_last_changed_at as LocalLastChangedAt
+}
