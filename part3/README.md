@@ -67,10 +67,10 @@ Don’t forget to activate the new CDS views once they are finished and saved. N
 ![alt](images/image3_4.png)
 #### Solution
 
-- [DDLS_Z##_I_TravelWD](/sources/Z##_I_TravelWD.txt)
-- [DDLS_Z##_I_BookingWD](/sources/Z##_I_BookingWD.txt)
-- [DDLS_Z##_I_BookingSupplementWD](/sources/Z##_I_BookingSupplementWD.txt)
-- [DDLS_Z##_I_RoomReservationWD](/sources/Z##_I_RoomReservationWD.txt)
+- [DDLS_Z##_I_TravelWD](/part3/sources/Z##_I_TravelWD.txt)
+- [DDLS_Z##_I_BookingWD](/part3/sources/Z##_I_BookingWD.txt)
+- [DDLS_Z##_I_BookingSupplementWD](/part3/sources/Z##_I_BookingSupplementWD.txt)
+- [DDLS_Z##_I_RoomReservationWD](/part3/sources/Z##_I_RoomReservationWD.txt)
 
 ### Creation of transactional Interface Views
 As already discussed above, the created CDS Views are only selecting the data out of the database into a CDS entity. To actually take use of CDS’s advantages we will now add another layer to our Virtual Data Model by creating transactional CDS Views. 
