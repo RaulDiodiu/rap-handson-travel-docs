@@ -49,25 +49,25 @@ The behavior definition is created and defaulted based on the implementation typ
 
 <Solution to be added or picture !!>
 
-#### Adjust behavior of travel root entity.
-1. Add an alias to Travel entity, uncomment `alias <alias_name>` and add `Travel` as alias.
+#### Adjust behavior of `Travel` root entity.
+1. Add an alias to Travel entity, uncomment `alias <alias_name>`, add `Travel` as alias.
 2. Specify the database table name, uncomment `persistent table <db travel name>` and add the travel database here.
 3. Enable the lock handling for the Travel entity which is the root node of the composition, to do that uncomment the line `lock master`.  
-> In managed scenarios the lock is handled automatically by the RAP framework.  
-4. Etag handling for the travel entity ( optimistic lock). etag master statement and replace the `<field_name>` to LocalLastChangedAt in it.
+> **Remark** In managed scenarios the lock is handled automatically by the RAP framework.  
+4. Etag handling for the travel entity ( optimistic lock). etag master statement and replace the `<field_name>` to `LocalLastChangedAt` in it.
 ```abap
 etag master LocalLastChangedAt
 ```
-5. Generate UUID: we want to have automatically generated UUIDs (Travel UUIDs field) every time new instances are created.  
-To achieve this, specify the key field `TravelUUID` to be fully managed by the runtime and not editable from outside using the keywords `numbering:managed` and `readonly`.   
+5. Generate UUID: we want to have automatically generated UUIDs (Travel UUID field) every time new instances are created.  
+To achieve this, specify the key field `TravelUUID` to be fully managed by the runtime and not editable from outside using the keywords `numbering:managed` and `readonly`.     
 Add the new statement provided below after the statement `association _Booking { create; }`.
 ```abap
   field ( numbering : managed, readonly ) TravelUUID;
 ```
-6. Define a mapping between the persistency table fields and the CDS view fields for the travel entity.  
- Because we have provided aliases in the interface CDS views, we need to tell the framework how to map the element names in the CDS data model to the corresponding table fields.
+6. Define a mapping between the persistency table fields and the CDS view fields for the Travel entity.  
+> **Remark** Because we have provided aliases in the interface CDS views, we need to tell the framework how to map the element names in the CDS data model to the corresponding table fields.
 ```abap
-  mapping for /dmo/a_travel_d
+  mapping for <travel db name>
   {
     TravelUUID         = travel_uuid;
     TravelID           = travel_id;
@@ -87,7 +87,9 @@ Add the new statement provided below after the statement `association _Booking {
     LocalLastChangedAt = local_last_changed_at;
   }
 ```
-ADD A FINAL SCREEN SHOT WITH THE FILE + LINK TO THE SOLUTION TXT.
+![alt](images/image4_1.png)  
+
+LINK TO SOLUTION
 
 
 #### Adjust behavior of sub-entities.
@@ -105,7 +107,7 @@ For that, uncomment the etag master statement and replace the <field_name> to Lo
 ```abap
 etag master LocalLastChangedAt
 ```
-> Please note
+> **Remark**
 > Defining two ETag masters happens on purpose. The recommended approach is to have a local > etag for each entity. This is achieved by specifying an etag master on each node.
 
 5. In order to transactional enable the `_Travel` association explicitly add it in the list between the curly brackets. You can add it at the top.
@@ -113,20 +115,45 @@ etag master LocalLastChangedAt
   association _Travel; 
 ```
 
-6. In progress ~~~~  !!
-7. 
-8. 
+6. Generate UUID: we want to have automatically generated UUIDs (Booking UUID field) every time new instances are created.
+To achieve this, specify the key field `BookingUUID` to be fully managed by the runtime and not editable from outside using the keywords `numbering:managed` and `readonly`.  
+Add the new statement provided below after the statement association `_Booking { create; }`.
 
+7. Make `TravelUUID` field readonly `field( readonly ) TravelUUID`.
 
+8. Define a mapping between the persistency table fields and the CDS view fields for the Booking entity.  
+ Because we have provided aliases in the interface CDS views, we need to tell the framework how to map the element names in the CDS data model to the corresponding table fields.
+```abap
+  mapping for <booking db name>
+  {
+    TravelUUID         = travel_uuid;
+    TravelID           = travel_id;
+    AgencyID           = agency_id;
+    CustomerID         = customer_id;
+    BeginDate          = begin_date;
+    EndDate            = end_date;
+    BookingFee         = booking_fee;
+    TotalPrice         = total_price;
+    CurrencyCode       = currency_code;
+    Description        = description;
+    TravelStatus       = overall_status;
+    CreatedBy          = created_by;
+    CreatedAt          = created_at;
+    LastChangedBy      = last_changed_by;
+    LastChangedAt      = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+```
+
+> Repeat the steps from above for BookingSupplement and RoomReservation.
 
 #### Enable the draft.
 - Add the addition "with draft;" after the managed; keyword in the header section to enable draft handling for your business object.
 - Specify the draft table for the travel entity, where the draft travel data will be persisted.
-Add the following line 
+Add the following line under persistent table syntax and do not forget to replace the '####'.
 ```abap
 "draft table z##_d_travel_d"
-```
- under persistent table syntax and do not forget to replace the '####'.
+``` 
 
 <add screenshot>
 
@@ -143,7 +170,7 @@ Add necesary information to create the table, save and activate.
   ...
   association _Travel { with draft; }
 ```
-**Important Note**: As already mentioned, whenever you change the BO data model, you can again use the ADT Quick Fix (Ctrl+1) to generate again the draft table definition. This will update the table definition.
+**Remark**: As already mentioned, whenever you change the BO data model, you can again use the ADT Quick Fix (Ctrl+1) to generate again the draft table definition. This will update the table definition.
 
 - Specify a total etag field in the root entity of your BO. This is required to identify changes to active instances in cases where the durable lock has expired. The field LastChangedAt will be used for the purpose in the present scenario.
 ```abap
@@ -162,5 +189,9 @@ In order to execute the validations during prepare, you need to assign them to t
 ```
 
 add pic + solution !!!
+
+### Projecting the Behavior Definition
+
+
 
 ## Behavior Implementation
