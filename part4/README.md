@@ -47,8 +47,6 @@ To create the behavior definition you have to do the following:
 The behavior definition is created and defaulted based on the implementation type( e.g Managed).
 
 
-<Solution to be added or picture !!>
-
 #### Adjust behavior of `Travel` root entity.
 1. Add an alias to Travel entity, uncomment `alias <alias_name>`, add `Travel` as alias.
 2. Specify the database table name, uncomment `persistent table <db travel name>` and add the travel database here.
@@ -87,9 +85,7 @@ Add the new statement provided below after the statement `association _Booking {
     LocalLastChangedAt = local_last_changed_at;
   }
 ```
-![alt](images/image4_1.png)  
-
-LINK TO SOLUTION
+![alt](images/image4_1.jpg)
 
 
 #### Adjust behavior of sub-entities.
@@ -144,8 +140,13 @@ Add the new statement provided below after the statement association `_Booking {
     LocalLastChangedAt = local_last_changed_at;
   }
 ```
+![alt](images\image4_2.jpg)
 
-> Repeat the steps from above for BookingSupplement and RoomReservation.
+>Repeat the steps from above for BookingSupplement and RoomReservation.
+
+**Solution** 
+- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP.txt) without draft.
+
 
 #### Enable the draft.
 - Add the addition "with draft;" after the managed; keyword in the header section to enable draft handling for your business object.
@@ -154,30 +155,24 @@ Add the following line under persistent table syntax and do not forget to replac
 ```abap
 "draft table z##_d_travel_d"
 ``` 
-
-<add screenshot>
-
-- Specify a draft table for all remaining entities.
-
 - At the end we have to create the draft table z##_d_travel_d, to store the draft data for the travel entity.  
-The ADT Quick Fix feature can be used to generate the draft table.  
+**Remark**: The ADT Quick Fix feature can be used to generate the draft table.  
 For this, set the cursor on the table name, and press Ctrl+1 to star the Quick Fix dialog.  
-Add necesary information to create the table, save and activate.
-- Do the same for the remaining entities to create all draft tables.
-- Replace the association definition in the base behavior definition to solve the warnings indicating that the associations are implicitly draft enabled as this is a draft enabled business object.
+- Add necesary information to create the table, save and activate.  
+- **Do the same for the remaining entities to create all draft tables.**  
+ ( `z##_d_book_d`, `z##_d_bksup_d` , `z##_a_room_rsv` )
+- Replace the association definition in the base behavior definition to solve the warnings indicating that the associations are implicitly draft enabled as this is a draft enabled business object.  
 ```abap
-  association _Booking { create; with draft; }
-  ...
+  association _Booking { create; with draft; } ...
   association _Travel { with draft; }
 ```
+
 **Remark**: As already mentioned, whenever you change the BO data model, you can again use the ADT Quick Fix (Ctrl+1) to generate again the draft table definition. This will update the table definition.
 
 - Specify a total etag field in the root entity of your BO. This is required to identify changes to active instances in cases where the durable lock has expired. The field LastChangedAt will be used for the purpose in the present scenario.
 ```abap
-  lock master total etag LastChangedAt
+  total etag LastChangedAt
 ```
-add pic + solution !!
-
 - When a draft instance is going to be activated, the SAP Fiori elements UI calls the draft determine action prepare in the backend. This call takes place in a separate OData changeset to allow for saving the state messages even in case the activation fails due to failing validations.
 In order to execute the validations during prepare, you need to assign them to the draft determine action prepare trigger.
 ```abap
@@ -188,10 +183,90 @@ In order to execute the validations during prepare, you need to assign them to t
   }
 ```
 
-add pic + solution !!!
+!!!add aditional info about what happens if we don't add this part !!
+!!! posible errors 
+!!! add the solution with draft enabled
+
 
 ### Projecting the Behavior Definition
+As we’ve previously seen, you could define several CDS projection views for a single interface view (e.g. to create different apps for a single data model). For now, we have defined the behavior only for our four interface views for Travel, Booking, BookingSupplement and RoomReservation instances. But the CDS view which the generated OData service will be based on is the respective projection view, not the interface view. Therefore, we have to project the behavior definition to the projection view as well. Here, the BDL syntax simply directs allowed usages to the actual behavior definition, we cannot add behavior which isn’t existing there already. Also, we can define additional static field controls but not overwrite the existing ones from the interface view’s behavior definition.   
+Check the syntax below and create the behavior projec-tion `Z##_C_TravelWDTP` reusing everything we have defined before:
+
+```abap
+projection; 
+
+  define behavior for ProjectionView alias ProjectionViewAlias 
+    use etag 
+  { 
+    field ( read only ) ProjViewElem1;
+    field ( mandatory ) ProjViewElem2;
+  
+    use create; 
+    use update;
+    use delete;
+
+    use action|function ActionName [as ProjAction] [external ExtProjname];
+
+    use association _Assoc { create; }
+}
+```
+
+Create the behavior projection `Z##_C_TravelWDTP` for the projected composition model, by doing the following steps:
+- Right-click on the root CDS view ZC_RAP_TRAVEL_#### in the Project Explorer and choose New Behavior Definition.
+- The New Behavior Definition wizard is shown. The Name of the behavior definition has to be the identical name as the root CDS view. That’s the reason why the name can’t be changed.
+Adjust the proposed Description if you like, ensure that the Implementation Type is set to Projection and choose Next to continue.
+Project, Package and Root Entity have been assigned automatically.
+- Assign a a transport request and choose Finish.
+The behavior projection is created and defaulted based on the implementation type( e.g Projection).
+
+**Remark** projection is specified at the top since the proper implementation type is specified in the underlying behavior definition.
+All operations and associations defined in the underlying behavior definition at the creation time are automatically exposed in the projection using the keyword `use`.
+
+#### Adjust the BO Behavior Projection
+1. Add an alias
+2. Enable optimistic locking
+3. Enable draft
+4. Save and activate the behavior projection
+
+**Solution** 
+- [DDLS_Z##_C_TravelWDTP](/part4/sources/Z##_C_TravelWDTP.txt)
 
 
 
 ## Behavior Implementation
+For the implementation of the business object behavior the RESTful Programming model has introduced the concept of behavior pools. One Behavior Definition can be implemented with a single or more of such special ABAP classes (e.g. one separate class per instance). The actual implementation is then defined within local classes in this behavior pool with itself just serving as basically empty container with the following syntax:
+```abap
+CLASS class_name DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF MyRootBehavior.
+ENDCLASS.
+				
+CLASS class_name IMPLEMENTATION.
+ENDCLASS.
+```
+Nontheless, common or public aspects of the implementation may be defined in static methods if necessary (CLASS-DATA, CONSTANTS, TYPES). A common scenario is one behavior pool per business object node (in our case Travel, Booking, BookingSupplement and RoomReservation), but this is not mandatory. But it is a good practice to additionally define at least one separate auxiliary class for helper methods (like mapping of table fields to the corresponding CDS fields or message handling). 
+
+### Enhance the behavior definition
+- Open the base behavior definition `Z##_I_TravelWDTP`
+- Provide the behavior implementation for each entity in a separate ABAP class.
+For that, specify a behavior implementation class (aka behavior pool) using the statement `implementation in class…` for each entity.
+
+```abap
+ implementation in class zbp_##_i_travelwdtp unique
+```
+
+!! add link with the text after enhancing with implementation class !!!
+
+
+!! add mandatory, read only fields, validation , determinations 
+#### Enhance Travel
+
+#### Enhance Booking
+
+#### Enhance Booking Supplement
+
+#### Enhance Room Reservation
+
+
+
+
+### Creating Behavior Pool
+
