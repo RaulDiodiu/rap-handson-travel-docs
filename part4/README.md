@@ -89,17 +89,17 @@ First we will adjust the booking entity. The same aproach would be for each sub-
 1. Maintain the alias for Booking, uncomment  `alias <alias_name>` replace `<alias_name>` with Booking.
 2. Specify the database table as persistency by uncommenting the line `persistent table <db_name>` and add the correct database table name.
 3. Enable the lock handling for the Booking entity which is a child node in the composition model – Travel being the lock master as the root entity. For this reason, the booking entity is lock dependent and makes use of the `_Travel` association defined in the appropriate CDS view.
-For that, uncomment the statement `line lock dependent by` and replace the entry <association> with _Travel.
+For that, uncomment the statement `line lock dependent by` and replace the entry `<association>` with `_Travel`.
 ```abap
  lock dependent by _Travel
 ```
 4. Enable the so-called optimistic lock for the Booking entity.
-For that, uncomment the etag master statement and replace the <field_name> to LocalLastChangedAt in it.
+For that, uncomment the etag master statement and replace the `<field_name>` to LocalLastChangedAt in it.
 ```abap
 etag master LocalLastChangedAt
 ```
 > **Remark**
-> Defining two ETag masters happens on purpose. The recommended approach is to have a local > etag for each entity. This is achieved by specifying an etag master on each node.
+> Defining two ETag masters happens on purpose. The recommended approach is to have a local etag for each entity. This is achieved by specifying an etag master on each node.
 5. In order to transactional enable the `_Travel` association explicitly add it in the list between the curly brackets. You can add it at the top.
 ```abap
   association _Travel; 
@@ -187,7 +187,7 @@ use draft;
 ```
 
 Create the behavior projection `Z##_C_TravelWDTP` for the projected composition model, by doing the following steps:
-- Right-click on the root CDS view `ZC_RAP_TRAVEL_####` in the Project Explorer and choose New Behavior Definition.
+- Right-click on the root CDS view `Z##_C_TravelWDTP` in the Project Explorer and choose New Behavior Definition.
 - The New Behavior Definition wizard is shown. The Name of the behavior definition has to be the identical name as the root CDS view. That’s the reason why the name can’t be changed.
 Adjust the proposed Description if you like, ensure that the Implementation Type is set to Projection and choose Next to continue.
 Project, Package and Root Entity have been assigned automatically.
@@ -230,36 +230,55 @@ For that, specify a behavior implementation class (aka behavior pool) using the 
  implementation in class zbp_##_i_travelwdtp unique
 ```
 
-!! add link with the text after enhancing with implementation class !!!
+- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v3.txt) with draft.
 
 
 ### Creating Behavior Pool 
 
 #### Actions
+Actions are used to manifest business logic specific workflows in one operation. You can implement simple status changes or a complete creation workflow in one operation. For the UI, you can define action buttons that execute the action directly when the consumer chooses the button. For more detailed information, see [Actions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/83bad707a5a241a2ae93953d81d17a6b.html).
 
+1. Travel
+- Action `reCalcTotalPrice`: the action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
+Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).
 
 #### Determinations
 Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
-For more informations see [Developing Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
+For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
 
 1. Travel
 - Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.
-The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the 2 actions would be created later, therefore the field is read only for the external consumer.
+The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.
+- Determination `calculateTotalPrice`: The determination adds the prices of the travel (BookingFee), the booking (FlightPrice), booking supplement entity (Price) and room reservation (Price). 
+The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
 
-2. Determination `calculateTotalPrice`: 
+>**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
+
+2. Booking 
+- Determination `calculateTotalPrice`:  
+
+~~- Determination `setBookingNumber`~~  
+
+- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afgerwards. Therefore, set the field to readonly.
+
+3. Booking Supplement
+- Determination `calculateTotalPrice`
+4. Room Reservation
+- Determination `calculateTotalPrice`
+
 
 
 #### **Validations**.  
-Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done. For more informations see [Developing Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
+Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done. For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
 
 1. Travel Entity
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
-The validation should check if the customer field has a value and the value inserted is correct.  
+The validation should check if the customer field has a value and the value inserted is correct (exists in `/DMO/Customer` ).  
 Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
 
 - `validateAgency`: Define a validation on save with trigger operation `create` and trigger field `AgencyID`.    
-The validation should check if the agency field has a value and the value inserted is correct.    
-Since there must always be an agency assigned to a certain travel, define the field AgencyID as mandatory.
+The validation should check if the agency field has a value and the value inserted is correct (exists in `/DMO/Agency` ).    
+Since there must always be an agency assigned to a certain travel, define the field `AgencyID` as mandatory.
 
 - `validateDates`: Define a validation on save with trigger operation `create` and trigger fields `BeginDate` and `EndDate`.  
 The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
@@ -269,16 +288,29 @@ Since the travel dates are an essential part of the travel data, define the fiel
 
 2. Booking
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
-The validation should check if the customer field has a value and the value inserted is correct.  
+The validation should check if the customer field has a value and the value inserted is correct ( Exists in `/DMO/Customer` ).  
 Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
 
 3. Booking Supplement
-- `validateSupplement`
+- `validateSupplement`: Define a validation on save with trigger operation create and trigger field `SupplementID`.
+The Validation should check the the `SupplementID` field has an entry and check it against `/DMO/I_supplement`.
+Since there must always be a booking supplement instance always needs a supplement, define the field `SupplementID` as mandatory.
 
 
-
+---add solution txt file ---
 
 #### Feature Control.
 
+Feature control is used to make fields, actions and operations(CRUD): readonly or mandatory.
+You can implement feature control in a static or dynamic way. 
+- In a **static** case, you define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or ready-only. 
+- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field.  
+For more informations see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
+
+Dynamic feature control must be implemented in the behavior implementation in the method FOR FEATURES. You can use the quick fix on one of the dynamic feature control features in the behavior definition for the method declaration.
+
+1. Travel 
+- `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.
+- BookingFee: if the status of the travel instance is accepted make the field read-only.
 
 #### Virtual Elments ??? 
