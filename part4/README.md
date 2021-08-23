@@ -1,18 +1,21 @@
 # Readme file for Part 4 - Adding Transactional Behavior
 ## Behavior Definition
-First, we have to create a behavior definition using the Behavior Definition Language (BDL) referring to a CDS data model’s root entity. This behavior definition is also handling all child entities that are part of the composition tree. All supported transactional operations must be specified in a single behavior definition
+First, we have to create a behavior definition using the Behavior Definition Language (BDL) referring to a CDS data model’s root entity. This behavior definition is also handling all child entities that are part of the composition tree. All supported transactional operations must be specified in a single behavior definition.
+
 ### Introduction to BDL syntax
 
 ```abap
 /*Header of behavior definition */  
 [implementation] {unmanaged | managed | abstract};
+with draft;
 
 /* Definition of entity behavior */  
 define behavior for CDSEntity [alias AliasName]
 
 /* Entity properties */
 [implementation in class ClASS_NAME unique]  
-[persistent table DB_TABLE]  
+[persistent table DB_TABLE] 
+[draft table DB_TABLE_D] 
 [late numbering]  
 [etag (field)]  
 [lock {master | dependent (PropertyDependent = PropertyMaster)}]
@@ -32,9 +35,8 @@ define behavior for CDSEntity [alias AliasName]
                  [result [cardinality] {OutputParameterEntity | $self}]; 
       
 /* Associations */   
- association AssociationName [abbreviation AbbreviationName] {[create;]}
+ association AssociationName [abbreviation AbbreviationName] {[create; with draft;]}
 ```
-
 
 ### Implementing the behavior definition
 Now let’s start implementing the transactional behavior for our scenario: We’ll begin by creating a behavior definition using the Behavior Definition Language (BDL).
@@ -45,6 +47,15 @@ To create the behavior definition you have to do the following:
 - Make sure the implementation type is `Managed`, you can change the default description if you like then choose Next.
 - Assign a transport request and choose Finish.
 The behavior definition is created and defaulted based on the implementation type( e.g Managed).
+
+**Remark** When using the implementation type managed, for some features, you only need to define behavior characteristics and standard operations in the behavior definition. The RAP managed runtime framework provides a generic solution for
+`create` , `update`, `delete`, `create by association`, `lock handling`, `ETag handling`.  
+For a managed business object with draft, the following considerations are relevant.
+- The behavior of each entity is implemented in a separate behavior class pool. Hence, the implementation class must be created for each entity separately. For more information, see  [Best Practives for Modularization and Performance](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/eb24e3f641df4dd99975f6155dcc6dfb.html#loioeb24e3f641df4dd99975f6155dcc6dfb__best_practices_mod).
+- The managed implementation type requires the specification of lock master or lock dependent on each entity. For more information, see [Pessimistic Concurrency Control (Locking)](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/99d8162b8d7d4a83ae65320d2a03b8ab.html).
+- In managed business objects, it is best practice to define a local ETag master on each entity. With an ETag master on every entity, you ensure that the ETag check is done for every entity independently. For more information, see [Optimistic Concurrency Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/41d72e9f31964082a7e7189f832010c3.html).
+- The RAP managed runtime framework is able to automatically draw primary key values in UUID scenarios. You use this functionality by defining early managed numbering in the behavior definition. Setting the primary key field to read only defines strict internal numbering. An external BO consumer is not allowed to provide the primary key values in this case. For more detailed information, see [Automatically Drawing Primary Key Values in Managed BOs](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/82ce57d6d2014007944a667dcdb830bf.html).
+- If different names are used on the database table and in the CDS data model, you need to define the mapping for these fields. This is done via the mapping operator in the behavior definition. 
 
 
 #### Adjust behavior of `Travel` root entity.
@@ -67,26 +78,10 @@ Add the new statement provided below after the statement `association _Booking {
 ```abap
   mapping for <travel db name>
   {
-    TravelUUID         = travel_uuid;
-    TravelID           = travel_id;
-    AgencyID           = agency_id;
-    CustomerID         = customer_id;
-    BeginDate          = begin_date;
-    EndDate            = end_date;
-    BookingFee         = booking_fee;
-    TotalPrice         = total_price;
-    CurrencyCode       = currency_code;
-    Description        = description;
-    TravelStatus       = overall_status;
-    CreatedBy          = created_by;
-    CreatedAt          = created_at;
-    LastChangedBy      = last_changed_by;
-    LastChangedAt      = last_changed_at;
-    LocalLastChangedAt = local_last_changed_at;
+    <cds_field_name> = <db_field_name>
+    ...
   }
 ```
-![alt](images/image4_1.jpg)
-
 
 #### Adjust behavior of sub-entities.
 First we will adjust the booking entity. The same aproach would be for each sub-entities.
@@ -105,48 +100,27 @@ etag master LocalLastChangedAt
 ```
 > **Remark**
 > Defining two ETag masters happens on purpose. The recommended approach is to have a local > etag for each entity. This is achieved by specifying an etag master on each node.
-
 5. In order to transactional enable the `_Travel` association explicitly add it in the list between the curly brackets. You can add it at the top.
 ```abap
   association _Travel; 
 ```
-
 6. Generate UUID: we want to have automatically generated UUIDs (Booking UUID field) every time new instances are created.
 To achieve this, specify the key field `BookingUUID` to be fully managed by the runtime and not editable from outside using the keywords `numbering:managed` and `readonly`.  
 Add the new statement provided below after the statement association `_Booking { create; }`.
-
 7. Make `TravelUUID` field readonly `field( readonly ) TravelUUID`.
-
 8. Define a mapping between the persistency table fields and the CDS view fields for the Booking entity.  
  Because we have provided aliases in the interface CDS views, we need to tell the framework how to map the element names in the CDS data model to the corresponding table fields.
 ```abap
   mapping for <booking db name>
   {
-    TravelUUID         = travel_uuid;
-    TravelID           = travel_id;
-    AgencyID           = agency_id;
-    CustomerID         = customer_id;
-    BeginDate          = begin_date;
-    EndDate            = end_date;
-    BookingFee         = booking_fee;
-    TotalPrice         = total_price;
-    CurrencyCode       = currency_code;
-    Description        = description;
-    TravelStatus       = overall_status;
-    CreatedBy          = created_by;
-    CreatedAt          = created_at;
-    LastChangedBy      = last_changed_by;
-    LastChangedAt      = last_changed_at;
-    LocalLastChangedAt = local_last_changed_at;
+    <cds field name>         = <db_field_name>;
+    ...
   }
 ```
-![alt](images\image4_2.jpg)
-
 >Repeat the steps from above for BookingSupplement and RoomReservation.
 
 **Solution** 
 - [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP.txt) without draft.
-
 
 #### Enable the draft.
 - Add the addition "with draft;" after the managed; keyword in the header section to enable draft handling for your business object.
@@ -160,7 +134,7 @@ Add the following line under persistent table syntax and do not forget to replac
 For this, set the cursor on the table name, and press Ctrl+1 to star the Quick Fix dialog.  
 - Add necesary information to create the table, save and activate.  
 - **Do the same for the remaining entities to create all draft tables.**  
- ( `z##_d_book_d`, `z##_d_bksup_d` , `z##_a_room_rsv` )
+ ( `z##_d_book`, `z##_d_bksup` , `z##_d_room_rsv` )
 - Replace the association definition in the base behavior definition to solve the warnings indicating that the associations are implicitly draft enabled as this is a draft enabled business object.  
 ```abap
   association _Booking { create; with draft; } ...
@@ -177,15 +151,15 @@ For this, set the cursor on the table name, and press Ctrl+1 to star the Quick F
 In order to execute the validations during prepare, you need to assign them to the draft determine action prepare trigger.
 ```abap
   draft determine action Prepare  {
-    validation validateAgency;
-    validation validateCustomer;
-    validation validateDates;
+    validation <validation_name>;
   }
 ```
 
 !!!add aditional info about what happens if we don't add this part !!
 !!! posible errors 
 !!! add the solution with draft enabled
+
+- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v2.txt) with draft.
 
 
 ### Projecting the Behavior Definition
@@ -194,6 +168,7 @@ Check the syntax below and create the behavior projec-tion `Z##_C_TravelWDTP` re
 
 ```abap
 projection; 
+use draft;
 
   define behavior for ProjectionView alias ProjectionViewAlias 
     use etag 
@@ -207,12 +182,12 @@ projection;
 
     use action|function ActionName [as ProjAction] [external ExtProjname];
 
-    use association _Assoc { create; }
+    use association _Assoc { create; with draft }
 }
 ```
 
 Create the behavior projection `Z##_C_TravelWDTP` for the projected composition model, by doing the following steps:
-- Right-click on the root CDS view ZC_RAP_TRAVEL_#### in the Project Explorer and choose New Behavior Definition.
+- Right-click on the root CDS view `ZC_RAP_TRAVEL_####` in the Project Explorer and choose New Behavior Definition.
 - The New Behavior Definition wizard is shown. The Name of the behavior definition has to be the identical name as the root CDS view. That’s the reason why the name can’t be changed.
 Adjust the proposed Description if you like, ensure that the Implementation Type is set to Projection and choose Next to continue.
 Project, Package and Root Entity have been assigned automatically.
@@ -223,9 +198,9 @@ The behavior projection is created and defaulted based on the implementation typ
 All operations and associations defined in the underlying behavior definition at the creation time are automatically exposed in the projection using the keyword `use`.
 
 #### Adjust the BO Behavior Projection
-1. Add an alias
-2. Enable optimistic locking
-3. Enable draft
+1. Add an alias.
+2. Enable etag handling.
+3. Enable draft.
 4. Save and activate the behavior projection
 
 **Solution** 
@@ -234,6 +209,8 @@ All operations and associations defined in the underlying behavior definition at
 
 
 ## Behavior Implementation
+
+### Introduction
 For the implementation of the business object behavior the RESTful Programming model has introduced the concept of behavior pools. One Behavior Definition can be implemented with a single or more of such special ABAP classes (e.g. one separate class per instance). The actual implementation is then defined within local classes in this behavior pool with itself just serving as basically empty container with the following syntax:
 ```abap
 CLASS class_name DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF MyRootBehavior.
@@ -256,17 +233,52 @@ For that, specify a behavior implementation class (aka behavior pool) using the 
 !! add link with the text after enhancing with implementation class !!!
 
 
-!! add mandatory, read only fields, validation , determinations 
-#### Enhance Travel
+### Creating Behavior Pool 
 
-#### Enhance Booking
-
-#### Enhance Booking Supplement
-
-#### Enhance Room Reservation
+#### Actions
 
 
+#### Determinations
+Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
+For more informations see [Developing Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
+
+1. Travel
+- Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.
+The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the 2 actions would be created later, therefore the field is read only for the external consumer.
+
+2. Determination `calculateTotalPrice`: 
 
 
-### Creating Behavior Pool
+#### **Validations**.  
+Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done. For more informations see [Developing Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
 
+1. Travel Entity
+- `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
+The validation should check if the customer field has a value and the value inserted is correct.  
+Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
+
+- `validateAgency`: Define a validation on save with trigger operation `create` and trigger field `AgencyID`.    
+The validation should check if the agency field has a value and the value inserted is correct.    
+Since there must always be an agency assigned to a certain travel, define the field AgencyID as mandatory.
+
+- `validateDates`: Define a validation on save with trigger operation `create` and trigger fields `BeginDate` and `EndDate`.  
+The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
+Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.
+
+>**Hint** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
+
+2. Booking
+- `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
+The validation should check if the customer field has a value and the value inserted is correct.  
+Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
+
+3. Booking Supplement
+- `validateSupplement`
+
+
+
+
+#### Feature Control.
+
+
+#### Virtual Elments ??? 
