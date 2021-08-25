@@ -164,7 +164,7 @@ In order to execute the validations during prepare, you need to assign them to t
 
 ### Projecting the Behavior Definition
 As we’ve previously seen, you could define several CDS projection views for a single interface view (e.g. to create different apps for a single data model). For now, we have defined the behavior only for our four interface views for Travel, Booking, BookingSupplement and RoomReservation instances. But the CDS view which the generated OData service will be based on is the respective projection view, not the interface view. Therefore, we have to project the behavior definition to the projection view as well. Here, the BDL syntax simply directs allowed usages to the actual behavior definition, we cannot add behavior which isn’t existing there already. Also, we can define additional static field controls but not overwrite the existing ones from the interface view’s behavior definition.   
-Check the syntax below and create the behavior projec-tion `Z##_C_TravelWDTP` reusing everything we have defined before:
+Check the syntax below and create the behavior projection `Z##_C_TravelWDTP` reusing everything we have defined before:
 
 ```abap
 projection; 
@@ -230,6 +230,9 @@ For that, specify a behavior implementation class (aka behavior pool) using the 
  implementation in class zbp_##_i_travelwdtp unique
 ```
 
+>**Remark** The ADT `Quick Fix` feature can be used to generate the class, do this for each entity class.
+For this, set the cursor on the table name, and press `Ctrl+1` to start the Quick Fix dialog.
+
 - [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v3.txt) with draft.
 
 
@@ -259,7 +262,7 @@ The sum of these values is the total price of the travel. The determination is t
 
 ~~- Determination `setBookingNumber`~~  
 
-- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afgerwards. Therefore, set the field to readonly.
+- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to readonly.
 
 3. Booking Supplement
 - Determination `calculateTotalPrice`
@@ -284,7 +287,7 @@ Since there must always be an agency assigned to a certain travel, define the fi
 The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
 Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.
 
->**Hint** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
+>**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
 
 2. Booking
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
@@ -303,8 +306,9 @@ Since there must always be a booking supplement instance always needs a suppleme
 
 Feature control is used to make fields, actions and operations(CRUD): readonly or mandatory.
 You can implement feature control in a static or dynamic way. 
-- In a **static** case, you define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or ready-only. 
-- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field.  
+- In a **static** case, you define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or readonly. 
+- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field.
+
 For more informations see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
 
 Dynamic feature control must be implemented in the behavior implementation in the method FOR FEATURES. You can use the quick fix on one of the dynamic feature control features in the behavior definition for the method declaration.
@@ -316,7 +320,7 @@ Dynamic feature control must be implemented in the behavior implementation in th
 association _<assoc_name> { create (features : instance); }
 ```
 - Field Control: 
-  `BookingFee`: if the status of the travel instance is accepted make the field read-only.
+  `BookingFee`: if the status of the travel instance is accepted make the field readonly.
   
 
 2. Additional settings for all entities.  
@@ -329,3 +333,7 @@ association _<assoc_name> { create (features : instance); }
 
 
 #### Virtual Elments 
+
+1. Calculation
+
+2. Filtering and Sorting
