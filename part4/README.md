@@ -309,8 +309,23 @@ For more informations see [Feature Control](https://help.sap.com/viewer/fc4c71aa
 
 Dynamic feature control must be implemented in the behavior implementation in the method FOR FEATURES. You can use the quick fix on one of the dynamic feature control features in the behavior definition for the method declaration.
 
-1. Travel 
-- `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.
-- BookingFee: if the status of the travel instance is accepted make the field read-only.
+1. Travel.
+- Action control: `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.
+- Operation control:  You can only `create` new booking instance for a travel if the overall status is not rejected. The feature control condition must be implemented in the behavior class.
+```abap
+association _<assoc_name> { create (features : instance); }
+```
+- Field Control: 
+  `BookingFee`: if the status of the travel instance is accepted make the field read-only.
+  
 
-#### Virtual Elments ??? 
+2. Additional settings for all entities.  
+ All the uuid field should be put on readonly.  
+ All the ##ID fields should be mandatory.  
+ All the system fields should be readonly (for e.g LocalLastChangedBy ...).
+
+
+--final txt solution of travel behavior def--
+
+
+#### Virtual Elments 
