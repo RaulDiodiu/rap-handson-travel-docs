@@ -141,13 +141,13 @@ For this, set the cursor on the table name, and press Ctrl+1 to star the Quick F
   association _Travel { with draft; }
 ```
 
-**Remark**: As already mentioned, whenever you change the BO data model, you can again use the ADT Quick Fix (Ctrl+1) to generate again the draft table definition. This will update the table definition.
+**Remark**: As already mentioned, whenever you change the BO data model, you can again use the ADT `Quick Fix `(Ctrl+1) to generate again the draft table definition. This will update the table definition.
 
 - Specify a total etag field in the root entity of your BO. This is required to identify changes to active instances in cases where the durable lock has expired. The field LastChangedAt will be used for the purpose in the present scenario.
 ```abap
   total etag LastChangedAt
 ```
-- When a draft instance is going to be activated, the SAP Fiori elements UI calls the draft determine action prepare in the backend. This call takes place in a separate OData changeset to allow for saving the state messages even in case the activation fails due to failing validations.
+- When a draft instance is going to be activated, the SAP Fiori elements UI calls the draft determine action `prepare` in the backend. This call takes place in a separate OData changeset to allow for saving the state messages even in case the activation fails due to failing validations.
 In order to execute the validations during prepare, you need to assign them to the draft determine action prepare trigger.
 ```abap
   draft determine action Prepare  {
@@ -155,10 +155,7 @@ In order to execute the validations during prepare, you need to assign them to t
   }
 ```
 
-!!!add aditional info about what happens if we don't add this part !!
-!!! posible errors 
-!!! add the solution with draft enabled
-
+**Solution**
 - [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v2.txt) with draft.
 
 
@@ -230,9 +227,13 @@ For that, specify a behavior implementation class (aka behavior pool) using the 
  implementation in class zbp_##_i_travelwdtp unique
 ```
 
->**Remark** The ADT `Quick Fix` feature can be used to generate the class, do this for each entity class.
-For this, set the cursor on the table name, and press `Ctrl+1` to start the Quick Fix dialog.
+>**Remark** The ADT `Quick Fix` feature can be used to generate the class, do this for each entity class. For this, set the cursor on the table name, and press `Ctrl+1` to start the Quick Fix dialog.      
+Open the created class and click `Local Type` here we should have the local class, here we implement the logic for all validations, actions, determinations and feature control. Make sure the framework is generating `get_feature` method, otherwise we would have errors.  
+Every time we add a new action,determination or validation use the quick fix in behavior definition to adjust the class with new method.
 
+![alt](images/image4_1.png)
+
+**Solution**
 - [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v3.txt) with draft.
 
 
@@ -242,37 +243,78 @@ For this, set the cursor on the table name, and press `Ctrl+1` to start the Quic
 Actions are used to manifest business logic specific workflows in one operation. You can implement simple status changes or a complete creation workflow in one operation. For the UI, you can define action buttons that execute the action directly when the consumer chooses the button. For more detailed information, see [Actions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/83bad707a5a241a2ae93953d81d17a6b.html).
 
 1. Travel
+- Action `acceptTravel` and `rejectTravel`.
+The `acceptTravel` action set the status to Accepted(A), and `rejectTravel` to rejected(X).  
+Technically speaking, both actions are instance actions with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field the corresponding value.
+
+```abap
+define behavior for Z##_I_TravelWDTP alias Travel
+...
+{
+...
+  action <action_name> result [1] $self;
+...
+}
+```
+
 - Action `reCalcTotalPrice`: the action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
 Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).
+
+```abap
+define behavior for Z##_I_TravelWDTP alias Travel
+...
+{
+...
+  internal action ReCalcTotalPrice;
+...
+}
+```
+
 
 #### Determinations
 Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
 For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
 
+>**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
+
 1. Travel
+
 - Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.
 The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.
+
 - Determination `calculateTotalPrice`: The determination adds the prices of the travel (BookingFee), the booking (FlightPrice), booking supplement entity (Price) and room reservation (Price). 
 The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
 
->**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
+```abap
+define behavior for Z##_I_TravelWDTP alias Travel
+...
+{
+...
+  determination <doSomething> on modify { create; field <trigger_field_name> ; }
+...
+}
+```
 
-2. Booking 
+2. Booking
 - Determination `calculateTotalPrice`:  
-
-~~- Determination `setBookingNumber`~~  
-
-- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to readonly.
+- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to readonly.  
 
 3. Booking Supplement
-- Determination `calculateTotalPrice`
+- Determination `calculateTotalPrice`  
+
 4. Room Reservation
 - Determination `calculateTotalPrice`
 
 
-
 #### **Validations**.  
-Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done. For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
+Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done.   
+For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
+
+>**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
+
+>**Important** Make sure you add the validation to the section
+`draft determine action Prepare ` of root entity, otherwise even if the validation is done correctly the erorr message would not be shown.
+
 
 1. Travel Entity
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
@@ -287,7 +329,6 @@ Since there must always be an agency assigned to a certain travel, define the fi
 The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
 Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.
 
->**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
 
 2. Booking
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
@@ -299,8 +340,6 @@ Since there must always be a customer assigned to a certain travel, define the f
 The Validation should check the the `SupplementID` field has an entry and check it against `/DMO/I_supplement`.
 Since there must always be a booking supplement instance always needs a supplement, define the field `SupplementID` as mandatory.
 
-
----add solution txt file ---
 
 #### Feature Control.
 
@@ -331,9 +370,3 @@ association _<assoc_name> { create (features : instance); }
 
 --final txt solution of travel behavior def--
 
-
-#### Virtual Elments 
-
-1. Calculation
-
-2. Filtering and Sorting
