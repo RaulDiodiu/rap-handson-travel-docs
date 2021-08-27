@@ -1,0 +1,42 @@
+CLASS z##_key_date_travelwd DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES if_sadl_exit_calc_element_read.
+    INTERFACES if_sadl_exit_filter_transform.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS z##_key_date_travelwd IMPLEMENTATION.
+
+  METHOD if_sadl_exit_filter_transform~map_atom.
+
+*    IF iv_entity <> 'Z##_C_TRAVELWDTP'.
+*      RETURN.
+*    ENDIF.
+
+    CHECK iv_element = 'KEYDATE'.
+
+    DATA(lr_condition_factory) = cl_sadl_cond_prov_factory_pub=>create_basic_condition_factory( ).
+
+    DATA(lr_start_date_le_valid_on) = lr_condition_factory->condition( name = 'BEGINDATE'  operator = 'LE'  low = iv_value ).
+    DATA(lr_end_date_ge_valid_on)   = lr_condition_factory->condition( name = 'ENDDATE'    operator = 'GE'  low = iv_value ).
+
+    ro_condition = lr_start_date_le_valid_on->and( lr_end_date_ge_valid_on ).
+
+  ENDMETHOD.
+
+  METHOD if_sadl_exit_calc_element_read~calculate.
+
+  ENDMETHOD.
+
+  METHOD if_sadl_exit_calc_element_read~get_calculation_info.
+
+  ENDMETHOD.
+
+ENDCLASS.

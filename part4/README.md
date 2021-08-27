@@ -370,3 +370,5 @@ association _<assoc_name> { create (features : instance); }
 
 --final txt solution of travel behavior def--
 
+## Next step
+[5. Publishing the Business Service](../part5/README.md)

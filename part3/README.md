@@ -233,5 +233,85 @@ annotate view Z##_C_TravelWDTP with
   TravelID;
 }
 ```
+## Virtual elements (calculate, filter, sort)
+
+### Informations
+Are use you define additional CDS fields that are not persisted on the database,they are calculated during runtime using ABAP classes that implement the virtual element interface. 
+Virtual elements represent transient fields in business applications. They are defined at the level of CDS projection views as additional elements within the `SELECT` list. However, the calculation of their values is carried out by means of ABAP classes that implement the specific virtual element interface provided for this purpose. The ABAP implementation class is referenced by annotating the virtual element in the CDS projection view with 
+`@ObjectModel.virtualElementCalculatedBy: ABAP:<CLASS_NAME>`.  
+Like the `calculation` of virtual elements, `filtering` and `sorting` must be implemented manually in dedicated ABAP implementation classes.  
+ 
+> **Remark** Virtual elements have some rules/limitations like:   
+Aliases for virtual elements are not allowed 
+You can use virtual elements only in CDS projection views.  
+Virtual elements cannot be keys of the CDS projection view.  
+Virtual elements cannot be used together with the grouping or the aggregation function.  
+Data from virtual elements can only be retrieved via the query framework. In particular this means that the following options to retrieve data from CDS are not possible for virtual elements:
+>- ABAP SQL SELECT on CDS views return initial values for the virtual element,
+>- EML READ on BO entities is not possible as EML does not know virtual elements.
+
+```abap
+define view entity CDSProjView
+  as projection on CDSEntity
+{
+  key      elem_1          as Element1,
+
+           [@EndUserText.label: 'Element Label']
+           [@EndUserText.quickInfo: 'Quick Information']
+           @ObjectModel.virtualElementCalculatedBy: 'ABAP:ABAPClass'
+           @ObjectModel.filter.transformedBy: 'ABAP:ABAPClass'
+           @ObjectModel.sort.transformedBy: 'ABAP:ABAPClass'
+  virtual  ElemName : {DataElement | ABAPType } ,
+...
+}
+
+```
+For more informations see [Virtual Elements](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/df0ef4aac2d34fdd948b8a8883df3a1f.html).   
+
+### `virtualElementCalculatedBy` implementation
+We want to create a virtual element on the Travel list page ( `Z##_C_TravelWDTP` ).
+Virtual element `NextFlightInDays`: We want to calculate how many days are left before the flight or how many days have passed since the flight, so we compare the value of FLIGHTDATE with today's date to calculate the value for the virtual element.  
+
+**Steps to implement the logic**
+- Open the Travel projection view `Z##_C_TravelWDTP`, add the virtual element and annotations. 
+- Add the field to metadata extension and provide the ui annotations needed to display the field on list page.
+- Create the class you added in `@ObjectModel.virtualElementCalculatedBy:'ABAP:Z##_CL_DAYS_TO_FLIGHT_LISTWD'` 
+- Add the interface `IF_SADL_EXIT_CALC_ELEMENT_READ`.
+- Implement the two methods `get_calculation_info` and `calculate`.
+- [get_calculation_info](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_get_calulation_info) : Here we provide a list of elements that are required for the calculation, the cds key fields are filled by default. You can only add elemenets of the cds entity, help 
+- [calculate](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_calculate): Executes the value calculation for the virtual element.
+
+**Solution** [DDLS_Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD.txt).  
+
+
+### `virtualElementFilterBy` implementation
+We want to have a date field on the selection screen that would filter the list page, using the 2 fields `startDate` and `endDate`.
+
+**Steps to implement the logic**
+- Open the travel projection view `Z##_C_TravelWDTP`, add the virtual element and annotations.
+- Add the field to metadata extension and provide the ui annotations needed to display the field on list page.
+- Create the class you added in `@ObjectModel.filter.transformedBy:'ABAP:'ABAP:Z##_KEY_DATE_TRAVELWD'`.
+- Add the interface `IF_SADL_EXIT_FILTER_TRANSFORM`.
+- Implement the method [`map_atom`](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/9019018679ea491cb55ce7ef66fb6ae4.html).: This method transforms filter conditions specified for the annotated view element to filter criteria of other view elements.
+You can use [simple condition factory](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/b66836a9461544ceb145e607a4a39b70.html) for implementation.  
+
+> **Remark**
+There is a strange issue when implementing filtering or sorting, so in the case when we have an errors in binding or when navigating to the object page, please add the interface `IF_SADL_EXIT_CALC_ELEMENT_READ` and add the two methods with no implementation.
+
+**Solution** [DDLS_Z##_CL_Key_Date_TravelWD.txt](sources/Z##_CL_Key_Date_TravelWD.txt).  
+
+
+### `virtualElementSortedBy` implementation
+When using the sorting functionality on our virtual element we want to sort the list based on : `AgencyID`.
+
+**Steps to implement the logic**
+- Open the travel projection view `Z##_C_TravelWDTP`, add the virtual element and annotations.
+- Add the field to metadata extension and provide the ui annotations needed to display the field on list page.
+- Reuse class `Z##_CL_DAYS_TO_FLIGHT_LISTWD` for sorting.
+- Add the interface `IF_SADL_EXIT_SORT_TRANSFORM` to the class and implement the method `map_element`.
+
+**Solution** [DDLS_Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD_v2.txt).  
+
+
 ## Next step
-[4. Adding Transactional Behavior](../part4/README.md)
+[4. Adding Transactional Behavior](../part4/README.md).
