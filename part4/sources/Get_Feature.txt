@@ -1,0 +1,24 @@
+ READ ENTITIES OF Z##_I_TravelWDTP IN LOCAL MODE
+          ENTITY Travel
+            FIELDS ( OverallStatus )
+            WITH CORRESPONDING #( keys )
+          RESULT DATA(lt_travel)
+          FAILED failed.
+
+
+    result = VALUE #( FOR ls_travel IN lt_travel
+                          ( %tky                   = ls_travel-%tky
+
+                            %field-BookingFee      = COND #( WHEN ls_travel-OverallStatus = travel_status-accepted
+                                                             THEN if_abap_behv=>fc-f-read_only
+                                                             ELSE if_abap_behv=>fc-f-unrestricted )
+                            %action-acceptTravel   = COND #( WHEN ls_travel-OverallStatus = travel_status-accepted
+                                                             THEN if_abap_behv=>fc-o-disabled
+                                                             ELSE if_abap_behv=>fc-o-enabled )
+                            %action-rejectTravel   = COND #( WHEN ls_travel-OverallStatus = travel_status-rejected
+                                                             THEN if_abap_behv=>fc-o-disabled
+                                                             ELSE if_abap_behv=>fc-o-enabled )
+                            %assoc-_Booking        = COND #( WHEN ls_travel-OverallStatus = travel_status-rejected
+                                                            THEN if_abap_behv=>fc-o-disabled
+                                                            ELSE if_abap_behv=>fc-o-enabled )
+                          ) ).

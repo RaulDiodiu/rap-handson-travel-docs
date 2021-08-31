@@ -350,25 +350,28 @@ You can implement feature control in a static or dynamic way.
 
 For more informations see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
 
-Dynamic feature control must be implemented in the behavior implementation in the method FOR FEATURES. You can use the quick fix on one of the dynamic feature control features in the behavior definition for the method declaration.
 
-1. Travel.
+1. Travel Definition - define field, action, and operation control. 
 - Action control: `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.
+```abap
+action ( features : instance ) <action_name> result [...];
+```
 - Operation control:  You can only `create` new booking instance for a travel if the overall status is not rejected. The feature control condition must be implemented in the behavior class.
 ```abap
-association _<assoc_name> { create (features : instance); }
+association _<assoc_name> { create (features : instance); with draft }
 ```
 - Field Control: 
   `BookingFee`: if the status of the travel instance is accepted make the field readonly.
-  
+```abap
+ field ( features : instance ) `<field_name>`
+  ```
 
-2. Additional settings for all entities.  
- All the uuid field should be put on readonly.  
- All the ##ID fields should be mandatory.  
- All the system fields should be readonly (for e.g LocalLastChangedBy ...).
+2. Travel Implementation  
+Dynamic feature control must be implemented in the behavior implementation in the method `Get_features` method of class `zbp_##_i_travelwdtp`.
 
+**Solution**
+- [DDLS_Get_Feature](/part4/sources/Get_Feature.txt).
 
---final txt solution of travel behavior def--
 
 ## Next step
 [5. Publishing the Business Service](../part5/README.md)
