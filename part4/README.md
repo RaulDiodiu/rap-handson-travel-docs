@@ -259,7 +259,6 @@ define behavior for Z##_I_TravelWDTP alias Travel
 
 - Action `reCalcTotalPrice`: the action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
 Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).
-
 ```abap
 define behavior for Z##_I_TravelWDTP alias Travel
 ...
@@ -270,7 +269,6 @@ define behavior for Z##_I_TravelWDTP alias Travel
 }
 ```
 
-
 #### Determinations
 Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
 For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
@@ -279,13 +277,14 @@ For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa5
 
 1. Travel
 
-- Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.
-The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.
+- Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.  
+**Solution** [setInitialStatus](/part4/sources/SetInitialStatus.txt).
 
-- Determination `calculateTotalPrice`: The determination adds the prices of the travel (BookingFee), the booking (FlightPrice), booking supplement entity (Price) and room reservation (Price). 
+- Determination `calculateTotalPrice`: The determination adds the prices of the travel (`BookingFee`), the booking (`FlightPrice`), booking supplement entity (`Price`) and room reservation (`Price`). 
 The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
 
-- Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly. Optional: use the SNUM functionality to generate the unique ID.  
+- Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
+Optional: use the SNUM functionality to generate the unique ID, for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
 **Solution** [setTravelID](/part4/sources/SetTravelID.txt).
 
 
