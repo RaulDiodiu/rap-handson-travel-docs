@@ -285,6 +285,10 @@ The overall status of the travel is only changed by the actions `rejectTravel` a
 - Determination `calculateTotalPrice`: The determination adds the prices of the travel (BookingFee), the booking (FlightPrice), booking supplement entity (Price) and room reservation (Price). 
 The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
 
+- Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly. Optional: use the SNUM functionality to generate the unique ID.  
+**Solution** [setTravelID](/part4/sources/SetTravelID.txt).
+
+
 ```abap
 define behavior for Z##_I_TravelWDTP alias Travel
 ...
@@ -367,10 +371,8 @@ association _<assoc_name> { create (features : instance); with draft }
   ```
 
 2. Travel Implementation  
-Dynamic feature control must be implemented in the behavior implementation in the method `Get_features` method of class `zbp_##_i_travelwdtp`.
-
-**Solution**
-- [DDLS_Get_Feature](/part4/sources/Get_Feature.txt).
+Dynamic feature control must be implemented in the behavior implementation in the method `Get_features` method of class `zbp_##_i_travelwdtp`.  
+**Solution** [Get_Feature](/part4/sources/Get_Feature.txt).
 
 
 ## Next step
