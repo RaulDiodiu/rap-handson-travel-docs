@@ -281,7 +281,7 @@ Virtual element `NextFlightInDays`: We want to calculate how many days are left 
 - [get_calculation_info](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_get_calulation_info) : Here we provide a list of elements that are required for the calculation, the cds key fields are filled by default. You can only add elemenets of the cds entity, help 
 - [calculate](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_calculate): Executes the value calculation for the virtual element.
 
-**Solution** [DDLS_Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD.txt).  
+**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD.txt).  
 
 
 ### `virtualElementFilterBy` implementation
@@ -298,7 +298,7 @@ You can use [simple condition factory](https://help.sap.com/viewer/fc4c71aa50014
 > **Remark**
 There is a strange issue when implementing filtering or sorting, so in the case when we have an errors in binding or when navigating to the object page, please add the interface `IF_SADL_EXIT_CALC_ELEMENT_READ` and add the two methods with no implementation.
 
-**Solution** [DDLS_Z##_CL_Key_Date_TravelWD.txt](sources/Z##_CL_Key_Date_TravelWD.txt).  
+**Solution** [Z##_CL_Key_Date_TravelWD.txt](sources/Z##_CL_Key_Date_TravelWD.txt).  
 
 
 ### `virtualElementSortedBy` implementation
@@ -310,7 +310,7 @@ When using the sorting functionality on our virtual element we want to sort the 
 - Reuse class `Z##_CL_DAYS_TO_FLIGHT_LISTWD` for sorting.
 - Add the interface `IF_SADL_EXIT_SORT_TRANSFORM` to the class and implement the method `map_element`.
 
-**Solution** [DDLS_Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD_v2.txt).  
+**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD_v2.txt).  
 
 
 ## Next step
