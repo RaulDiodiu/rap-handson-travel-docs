@@ -1,0 +1,85 @@
+METHOD recalctotalprice.
+  TYPES: BEGIN OF ty_amount_per_currencycode,
+           amount        TYPE /dmo/total_price,
+           currency_code TYPE /dmo/currency_code,
+         END OF ty_amount_per_currencycode.
+
+  DATA: amount_per_currencycode TYPE STANDARD TABLE OF ty_amount_per_currencycode.
+
+  " Read all relevant travel instances.
+  READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+       ENTITY travel
+          FIELDS ( bookingfee currencycode )
+          WITH CORRESPONDING #( keys )
+       RESULT DATA(lt_travel)
+       FAILED failed.
+
+  DELETE lt_travel WHERE currencycode IS INITIAL.
+
+  LOOP AT lt_travel ASSIGNING FIELD-SYMBOL(<fs_travel>).
+    " Set the start for the calculation by adding the booking fee.
+    amount_per_currencycode = VALUE #( ( amount        = <fs_travel>-bookingfee
+                                         currency_code = <fs_travel>-currencycode ) ).
+
+    " Read all associated room reservation and add them to the total price.
+    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+      ENTITY travel BY \_roomreservation
+        FIELDS ( roomresvnprice currencycode )
+      WITH VALUE #( ( %key = <fs_travel>-%key ) )
+      RESULT DATA(lt_roomreservation).
+
+    LOOP AT lt_roomreservation INTO DATA(roomreservation) WHERE currencycode IS NOT INITIAL.
+      COLLECT VALUE ty_amount_per_currencycode( amount        = roomreservation-roomresvnprice
+                                                currency_code = roomreservation-currencycode ) INTO amount_per_currencycode.
+    ENDLOOP.
+
+    " Read all associated bookings and add them to the total price.
+    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+      ENTITY travel BY \_booking
+        FIELDS ( flightprice currencycode )
+      WITH VALUE #( ( %key = <fs_travel>-%key ) )
+      RESULT DATA(lt_booking).
+
+    LOOP AT lt_booking INTO DATA(booking) WHERE currencycode IS NOT INITIAL.
+      COLLECT VALUE ty_amount_per_currencycode( amount        = booking-flightprice
+                                                currency_code = booking-currencycode ) INTO amount_per_currencycode.
+    ENDLOOP.
+
+    " Read all associated booking supplements and add them to the total price.
+    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+      ENTITY booking BY \_bookingsupplement
+        FIELDS (  price currencycode )
+      WITH VALUE #( FOR rba_booking IN lt_booking ( %tky = rba_booking-%tky ) )
+      RESULT DATA(lt_bookingsupplement).
+
+    LOOP AT lt_bookingsupplement INTO DATA(bookingsupplement) WHERE currencycode IS NOT INITIAL.
+      COLLECT VALUE ty_amount_per_currencycode( amount        = bookingsupplement-price
+                                                  currency_code = bookingsupplement-currencycode ) INTO amount_per_currencycode.
+    ENDLOOP.
+
+    CLEAR <fs_travel>-totalprice.
+    LOOP AT amount_per_currencycode INTO DATA(single_amount_per_currencycode).
+      " If needed do a Currency Conversion
+      IF single_amount_per_currencycode-currency_code = <fs_travel>-currencycode.
+        <fs_travel>-totalprice += single_amount_per_currencycode-amount.
+      ELSE.
+        /dmo/cl_flight_amdp=>convert_currency(
+           EXPORTING
+             iv_amount                   =  single_amount_per_currencycode-amount
+             iv_currency_code_source     =  single_amount_per_currencycode-currency_code
+             iv_currency_code_target     =  <fs_travel>-currencycode
+             iv_exchange_rate_date       =  cl_abap_context_info=>get_system_date( )
+           IMPORTING
+             ev_amount                   = DATA(total_booking_price_per_curr)
+          ).
+        <fs_travel>-totalprice += total_booking_price_per_curr.
+      ENDIF.
+    ENDLOOP.
+  ENDLOOP.
+
+  " write back the modified total_price of travels
+  MODIFY ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+    ENTITY travel
+      UPDATE FIELDS ( totalprice )
+      WITH CORRESPONDING #( lt_travel ).
+ENDMETHOD.
