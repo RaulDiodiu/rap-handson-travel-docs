@@ -120,7 +120,7 @@ Add the new statement provided below after the statement association `_Booking {
 >Repeat the steps from above for BookingSupplement and RoomReservation.
 
 **Solution** 
-- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP.txt) without draft.
+- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP.txt) without draft.
 
 #### Enable the draft.
 - Add the addition "with draft;" after the managed; keyword in the header section to enable draft handling for your business object.
@@ -156,7 +156,7 @@ In order to execute the validations during prepare, you need to assign them to t
 ```
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP_v2.txt) with draft.
+- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_v2.txt) with draft.
 
 
 ### Projecting the Behavior Definition
@@ -201,7 +201,7 @@ All operations and associations defined in the underlying behavior definition at
 4. Save and activate the behavior projection
 
 **Solution** 
-- [DDLS_Z##_C_TravelWDTP](sources/Z##_C_TravelWDTP.txt)
+- [DDLS_Z##_C_TravelWDTP](sources/Z_C_TravelWDTP.txt)
 
 
 
@@ -234,7 +234,7 @@ Every time we add a new action,determination or validation use the quick fix in 
 ![alt](images/image4_1.png)
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP_v3.txt) with draft.
+- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt) with draft.
 
 
 ### Creating Behavior Pool 
@@ -295,9 +295,7 @@ The sum of these values is the total price of the travel. The determination is t
 
 - Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
 Optional: use the SNUM functionality to generate the unique ID, for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
-**Solution** [setTravelID](/part4/sources/SetTravelID.txt).
-part4\sources\SetTravelID.txt
-
+**Solution** [setTravelID](sources/SetTravelID.txt).
 
 ```abap
 define behavior for Z##_I_TravelWDTP alias Travel
