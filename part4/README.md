@@ -156,7 +156,7 @@ In order to execute the validations during prepare, you need to assign them to t
 ```
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v2.txt) with draft.
+- [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP_v2.txt) with draft.
 
 
 ### Projecting the Behavior Definition
@@ -201,7 +201,7 @@ All operations and associations defined in the underlying behavior definition at
 4. Save and activate the behavior projection
 
 **Solution** 
-- [DDLS_Z##_C_TravelWDTP](/part4/sources/Z##_C_TravelWDTP.txt)
+- [DDLS_Z##_C_TravelWDTP](sources/Z##_C_TravelWDTP.txt)
 
 
 
@@ -234,7 +234,7 @@ Every time we add a new action,determination or validation use the quick fix in 
 ![alt](images/image4_1.png)
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](/part4/sources/Z##_I_TravelWDTP_v3.txt) with draft.
+- [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP_v3.txt) with draft.
 
 
 ### Creating Behavior Pool 
@@ -288,7 +288,7 @@ For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa5
 1. Travel
 
 - Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.  
-**Solution** [setInitialStatus](/part4/sources/SetInitialStatus.txt).
+**Solution** [setInitialStatus](sources\SetInitialStatus.txt).
 
 - Determination `calculateTotalPrice`: The determination adds the prices of the travel (`BookingFee`), the booking (`FlightPrice`), booking supplement entity (`Price`) and room reservation (`Price`). 
 The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
@@ -296,6 +296,7 @@ The sum of these values is the total price of the travel. The determination is t
 - Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
 Optional: use the SNUM functionality to generate the unique ID, for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
 **Solution** [setTravelID](/part4/sources/SetTravelID.txt).
+part4\sources\SetTravelID.txt
 
 
 ```abap
@@ -381,7 +382,7 @@ association _<assoc_name> { create (features : instance); with draft }
 
 2. Travel Implementation  
 Dynamic feature control must be implemented in the behavior implementation in the method `Get_features` method of class `zbp_##_i_travelwdtp`.  
-**Solution** [Get_Feature](/part4/sources/Get_Feature.txt).
+**Solution** [Get_Feature](sources/Get_Feature.txt).
 
 
 ## Next step
