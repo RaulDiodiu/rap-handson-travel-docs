@@ -32,7 +32,7 @@ Explanation:
 
 #### Solution
 
-* [DBTAB_z##_a_room_rsv](sources/z##_a_room_rsv.txt)
+* [DBTAB_z##_a_room_rsv](sources/z_a_room_rsv.txt)
 
 ## Next step
 [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/README.md)

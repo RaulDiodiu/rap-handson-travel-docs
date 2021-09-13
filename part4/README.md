@@ -231,7 +231,7 @@ For that, specify a behavior implementation class (aka behavior pool) using the 
 Open the created class and click `Local Type` here we should have the local class, here we implement the logic for all validations, actions, determinations and feature control. Make sure the framework is generating `get_feature` method, otherwise we would have errors.  
 Every time we add a new action,determination or validation use the quick fix in behavior definition to adjust the class with new method.
 
-![alt](images/image4_1.png)
+![alt](images/Image4_1.png)
 
 **Solution**
 - [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt) with draft.
@@ -248,12 +248,12 @@ define behavior for Z##_I_TravelWDTP alias Travel
 {
 ...
   action <action_name> result [1] $self;
-  internal action ReCalcTotalPrice;
+  internal action <action_name>;
 ...
 }
 ```
 
-1. Travel  
+Travel  
 
 - Action `acceptTravel` and `rejectTravel`.
 The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to Rejected (X).  
@@ -284,10 +284,13 @@ For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa5
 
 1. Travel
 
-- Determination `setInitialStatus`: define a determination on modify with trigger operation `create`. When creating a new instance the travel status should be set on `open`.The overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we just created, therefore the field is read only for the external consumer.  
-**Solution** [setInitialStatus](sources\SetInitialStatus.txt).
+- Determination `setInitialStatus`: We want to set the initial status of newly created travel instances to 'Open'. To achieve this, we'll need to add a determination on modify with trigger operation `create` to the behavior definition.  
+After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
+To implement this action you have to create a new method in the travel behavior pool. Use the EML to `MODIFY` the travel instance and update the overall status accordingly.  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources\SetInitialStatus.txt).
 
-- Determination `calculateTotalPrice`: The determination adds the prices of the travel (`BookingFee`), the booking (`FlightPrice`), booking supplement entity (`Price`) and room reservation (`Price`). 
+- Determination `calculateTotalPrice`: The determination sums up all prices of the travel (`BookingFee`) and its associated bookings (`FlightPrice`), booking supplements (`Price`) and room reservations (`Price`). This sum will then be stored on the travel root entity.  
 The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
 
 - Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
