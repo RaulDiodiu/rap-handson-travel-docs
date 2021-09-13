@@ -132,7 +132,7 @@ Add the following line under persistent table syntax and do not forget to replac
 - At the end we have to create the draft table z##_d_travel_d, to store the draft data for the travel entity.  
 **Remark**: The ADT Quick Fix feature can be used to generate the draft table.  
 For this, set the cursor on the table name, and press Ctrl+1 to star the Quick Fix dialog.  
-- Add necesary information to create the table, save and activate.  
+- Add necessary information to create the table, save and activate.  
 - **Do the same for the remaining entities to create all draft tables.**  
  ( `z##_d_book`, `z##_d_bksup` , `z##_d_room_rsv` )
 - Replace the association definition in the base behavior definition to solve the warnings indicating that the associations are implicitly draft enabled as this is a draft enabled business object.  
@@ -270,7 +270,9 @@ Technically speaking, the action is an internal instance action. This action is 
 <br/><br/>
 For implementation you have to go to your Behavior Pool of the travel instance and add a new method. In the implementation you'll to define a type holding amount and currency. Define a table of this type which will be used to sum up the amounts of all instances. Next, read the fields bookingfee and currencycode of the travel entity for the provided `keys` via EML. Loop over those travel entities with a field symbol and insert an entry to your local amount table.
 <br/><br/>
-Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:<br/>`READ ENTITES OF [..]`<br/>`ENTITY TRAVEL BY \_booking`<br/>`FIELDS ( flightprice currencycode )`<br/>`WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`
+Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:<br/>`READ ENTITES OF [..]`<br/>`ENTITY TRAVEL BY \_booking`
+`FIELDS ( flightprice currencycode )`
+`WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`
 <br/><br/>
 Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.
 <br/><br/>
