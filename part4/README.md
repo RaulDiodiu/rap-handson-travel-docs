@@ -270,10 +270,7 @@ Technically speaking, the action is an internal instance action. This action is 
 <br/><br/>
 For implementation you have to go to your Behavior Pool of the travel instance and add a new method. In the implementation you'll to define a type holding amount and currency. Define a table of this type which will be used to sum up the amounts of all instances. Next, read the fields bookingfee and currencycode of the travel entity for the provided `keys` via EML. Loop over those travel entities with a field symbol and insert an entry to your local amount table.
 <br/><br/>
-Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:<br/>`READ ENTITES OF [..]`<br/>`ENTITY TRAVEL BY \_booking`
-`FIELDS ( flightprice currencycode )`
-`WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`
-<br/><br/>
+Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:   `READ ENTITES OF [..]`    `ENTITY TRAVEL BY \_booking`    `FIELDS ( flightprice currencycode )`   `WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`    
 Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.
 <br/><br/>
 Finally, we have all amounts relevant to a travel's total price. Now we'll have to loop over our local amount table and do a currency conversion in case there are currencies differing from the travel's own currency. If this is the case, use the method `/dmo/cl_flight_amdp=>convert_currency()` to convert the currency and some everything up into the field `totalprice` of the travel. Then you'll have to use EML to store the changes for this field.  
