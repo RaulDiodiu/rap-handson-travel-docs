@@ -257,26 +257,31 @@ define behavior for Z##_I_TravelWDTP alias Travel
 - Action `acceptTravel` and `rejectTravel`.
 The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to Rejected (X).  
 Technically speaking, both actions are instance actions with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field the corresponding value.
-<br/><br/>
-For implementation you have to go to your Behavior Pool of the travel instance and add the methods under Local Types using Quick Fix. In the method implementation you'll want to use the EML Update syntax to set the status to either accepted or rejected. Afterwards you'll have to return the modified instances to update them on the application.
-<br/><br/>
-**Solutions**<br/>
-[ZBP_##_I_TRAVELWDTP~AcceptTravel](sources\AcceptTravel.txt)<br/>
+  
+  For implementation you have to go to your Behavior Pool of the travel instance and add the methods under Local Types using Quick Fix. In the method implementation you'll want to use the EML Update syntax to set the status to either accepted or rejected. Afterwards you'll have to return the modified instances to update them on the application.
+  
+  **Solutions**  
+  [ZBP_##_I_TRAVELWDTP~AcceptTravel](sources\AcceptTravel.txt)<br/>
 [ZBP_##_I_TRAVELWDTP~RejectTravel](sources\RejectTravel.txt)
 
 
 - Action `reCalcTotalPrice`: This action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
 Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).
-<br/><br/>
-For implementation you have to go to your Behavior Pool of the travel instance and add a new method. In the implementation you'll to define a type holding amount and currency. Define a table of this type which will be used to sum up the amounts of all instances. Next, read the fields bookingfee and currencycode of the travel entity for the provided `keys` via EML. Loop over those travel entities with a field symbol and insert an entry to your local amount table.
-<br/><br/>
-Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:   `READ ENTITES OF [..]`    `ENTITY TRAVEL BY \_booking`    `FIELDS ( flightprice currencycode )`   `WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`    
-Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.
-<br/><br/>
-Finally, we have all amounts relevant to a travel's total price. Now we'll have to loop over our local amount table and do a currency conversion in case there are currencies differing from the travel's own currency. If this is the case, use the method `/dmo/cl_flight_amdp=>convert_currency()` to convert the currency and some everything up into the field `totalprice` of the travel. Then you'll have to use EML to store the changes for this field.  
-<br/>
-**Solution**<br/>
-[ZBP_##_I_TRAVELWDTP~ReCalcTotalPrice](sources\ReCalcTotalPrice.txt)
+  
+  For implementation you have to go to your Behavior Pool of the travel instance and add a new method. In the implementation you'll to define a type holding amount and currency. Define a table of this type which will be used to sum up the amounts of all instances. Next, read the fields bookingfee and currencycode of the travel entity for the provided `keys` via EML. Loop over those travel entities with a field symbol and insert an entry to your local amount table.
+  
+  Within this loop you'll next have to load the associated booking entities for this travel via EML using an child association:  
+`READ ENTITES OF [..]`  
+`ENTITY TRAVEL BY \_booking`  
+`FIELDS ( flightprice currencycode )`  
+`WITH VALUE #( ( %key = <fs_travel>-%key ) ) [..]`  
+  
+  Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.
+  
+  Finally, we have all amounts relevant to a travel's total price. Now we'll have to loop over our local amount table and do a currency conversion in case there are currencies differing from the travel's own currency. If this is the case, use the method `/dmo/cl_flight_amdp=>convert_currency()` to convert the currency and some everything up into the field `totalprice` of the travel. Then you'll have to use EML to store the changes for this field.  
+  
+  **Solution**  
+  [ZBP_##_I_TRAVELWDTP~ReCalcTotalPrice](sources\ReCalcTotalPrice.txt)
 
 #### Determinations
 Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
