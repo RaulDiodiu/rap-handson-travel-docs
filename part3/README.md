@@ -67,10 +67,10 @@ Don’t forget to activate the new CDS views once they are finished and saved. N
 ![alt](images/image3_4.png)
 #### Solution
 
-- [DDLS_Z##_I_TravelWD](/part3/sources/Z##_I_TravelWD.txt)
-- [DDLS_Z##_I_BookingWD](/part3/sources/Z##_I_BookingWD.txt)
-- [DDLS_Z##_I_BookingSupplementWD](/part3/sources/Z##_I_BookingSupplementWD.txt)
-- [DDLS_Z##_I_RoomReservationWD](/part3/sources/Z##_I_RoomReservationWD.txt)
+- [DDLS_Z##_I_TravelWD](sources/Z_I_TravelWD.txt)
+- [DDLS_Z##_I_BookingWD](sources/Z_I_BookingWD.txt)
+- [DDLS_Z##_I_BookingSupplementWD](sources/Z_I_BookingSupplementWD.txt)
+- [DDLS_Z##_I_RoomReservationWD](sources/Z_I_RoomReservationWD.txt)
 
 ### Creation of transactional Interface Views
 As already discussed above, the created CDS Views are only selecting the data out of the database into a CDS entity. To actually take use of CDS’s advantages we will now add another layer to our Virtual Data Model by creating transactional CDS Views. 
@@ -86,19 +86,19 @@ In the CDS Views all fields, which are available should be selected from the und
 
 #### Solution
 
-* [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP.txt)
-* [DDLS_Z##_I_BookingWDTP](sources/Z##_I_BookingWDTP.txt)
-* [DDLS_Z##_I_BookingSupplementWDTP](sources/Z##_I_BookingSupplementWDTP.txt)
-* [DDLS_Z##_I_RoomReservationWDTP](sources/Z##_I_RoomReservationWDTP.txt)
+* [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP.txt)
+* [DDLS_Z##_I_BookingWDTP](sources/Z_I_BookingWDTP.txt)
+* [DDLS_Z##_I_BookingSupplementWDTP](sources/Z_I_BookingSupplementWDTP.txt)
+* [DDLS_Z##_I_RoomReservationWDTP](sources/Z_I_RoomReservationWDTP.txt)
 
 As a next step, we want to create further connections to the existing master data for Customer, Carrier, Agency, Currency, Supplement, SupplementText, Hotel and HotelRoomType as shown before. Those won’t be transactional or CRUD enabled. They are only necessary to access additional information not stored within Travel, Booking, BookingSupplement or RoomReservation instances themselfes. The associations should be published in the CDS Views in order to access their fields when consuming the data. Here we won’t create our own CDS Views for sake of simplicity but will instead reuse the existing CDS views of the package /DMO/FLIGHT_REUSE provided by SAP and just refer to them. Please use the appropriate foreign key to add associations to the following CDS Views where possible: `/DMO/I_Agency`, `/DMO/I_Customer`,
 `/DMO/I_Carrier`, `/DMO/I_Connection`, `/DMO/Supplement`, `/DMO/I_SupplementText`, `ZRAPH_I_Hotel`, `ZRAPH_I_HotelRoomType`, `I_Currency`.
 #### Solution
 
-* [DDLS_Z##_I_TravelWDTP](sources/Z##_I_TravelWDTP_EXT1.txt)
-* [DDLS_Z##_I_BookingWDTP](sources/Z##_I_BookingWDTP_EXT1.txt)
-* [DDLS_Z##_I_BookingSupplementWDTP](sources/Z##_I_BookingSupplementWDTP_EXT1.txt)
-* [DDLS_Z##_I_RoomReservationWDTP](sources/Z##_I_RoomReservationWDTP_EXT1.txt)
+* [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_EXT1.txt)
+* [DDLS_Z##_I_BookingWDTP](sources/Z_I_BookingWDTP_EXT1.txt)
+* [DDLS_Z##_I_BookingSupplementWDTP](sources/Z_I_BookingSupplementWDTP_EXT1.txt)
+* [DDLS_Z##_I_RoomReservationWDTP](sources/Z_I_RoomReservationWDTP_EXT1.txt)
 
 Now after publishing the associations, the data preview functionality becomes more powerful. Once again, execute the data preview for the Travel CDS View. Mark one Travel instance by clicking on it and then press the small arrow at the top besides the name of the view. The system provides a list of all associations where you can drill into and see the data of all its associated items.
 
@@ -153,10 +153,10 @@ Now, `Z##_C_TravelWDTP` is completed. But it cannot be activated as it’s redir
 
 #### Solution
 
-* [DDLS_Z##_C_TravelWDTP](sources/Z##_C_TravelWDTP.txt)
-* [DDLS_Z##_C_BookingWDTP](sources/Z##_C_BookingWDTP.txt)
-* [DDLS_Z##_C_BookingSupplementWDTP](sources/Z##_C_BookingSupplementWDTP.txt)
-* [DDLS_Z##_C_RoomReservationWDTP](sources/Z##_C_RoomReservationWDTP.txt)
+* [DDLS_Z##_C_TravelWDTP](sources/Z_C_TravelWDTP.txt)
+* [DDLS_Z##_C_BookingWDTP](sources/Z_C_BookingWDTP.txt)
+* [DDLS_Z##_C_BookingSupplementWDTP](sources/Z_C_BookingSupplementWDTP.txt)
+* [DDLS_Z##_C_RoomReservationWDTP](sources/Z_C_RoomReservationWDTP.txt)
 
 ### Creation of Metadata Extensions
 As explained previously it is recommended to outsource UI annotations from projection views to metadata extensions in order to build a reusable hierarchy and a better-arranged consumption view. Therefore we’ll create one MDE for each of our projection views:
@@ -215,10 +215,10 @@ As mentioned before we have to define facets for information on every available 
 Now, create the metadata extension for all of our Travel, Booking and Booking Supplement projection views. Add UI annotations of the mentioned types for all relevant fields you want to show in the UI. You can explicitly hide `LastChangedAt` with the annotation `@UI.hidden: true`. For more information, see [UI Annotations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/201909.001/en-US/5587d47763184cc48f164648b53c1e4f.html). Also, please add the annotation `@UI.identification.criticality` for `FlightPrice`.
 #### Solution
 
-* [MDE_Z##_C_TravelWDTP](sources/Z##_C_TravelWDTP_MDE.txt)
-* [MDE_Z##_C_BookingWDTP](sources/Z##_C_BookingWDTP_MDE.txt)
-* [MDE_Z##_C_BookingSupplementWDTP](sources/Z##_C_BookingSupplementWDTP_MDE.txt)
-* [MDE_Z##_C_RoomReservationWDTP](sources/Z##_C_RoomReservationWDTP_MDE.txt)
+* [MDE_Z##_C_TravelWDTP](sources/Z_C_TravelWDTP_MDE.txt)
+* [MDE_Z##_C_BookingWDTP](sources/Z_C_BookingWDTP_MDE.txt)
+* [MDE_Z##_C_BookingSupplementWDTP](sources/Z_C_BookingSupplementWDTP_MDE.txt)
+* [MDE_Z##_C_RoomReservationWDTP](sources/Z_C_RoomReservationWDTP_MDE.txt)
 
 To better understand the concept of layering metadata extensions we‘ll create one additional MDE now where we’ll overwrite the label of an existing `@UI.lineItem` for demonstration reasons (see below). Don’t forget to again set position and importance as those annotations for lineItem would be deleted otherwise. Feel free to experiment with other additions or modifications but be sure to use `@Metadata.layer: #CUSTOMER` this time in order to overwrite the annotations we just created in the `#CORE` layer. 
 ```abap
@@ -281,7 +281,7 @@ Virtual element `NextFlightInDays`: We want to calculate how many days are left 
 - [get_calculation_info](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_get_calulation_info) : Here we provide a list of elements that are required for the calculation, the cds key fields are filled by default. You can only add elemenets of the cds entity, help 
 - [calculate](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/4430bddf68ee4258bf629759f0ff6ab5.html#loio4430bddf68ee4258bf629759f0ff6ab5__section_calculate): Executes the value calculation for the virtual element.
 
-**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD.txt).  
+**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z_CL_Days_To_Flight_ListWD.txt).  
 
 
 ### `virtualElementFilterBy` implementation
@@ -298,7 +298,7 @@ You can use [simple condition factory](https://help.sap.com/viewer/fc4c71aa50014
 > **Remark**
 There is a strange issue when implementing filtering or sorting, so in the case when we have an errors in binding or when navigating to the object page, please add the interface `IF_SADL_EXIT_CALC_ELEMENT_READ` and add the two methods with no implementation.
 
-**Solution** [Z##_CL_Key_Date_TravelWD.txt](sources/Z##_CL_Key_Date_TravelWD.txt).  
+**Solution** [Z##_CL_Key_Date_TravelWD.txt](sources/Z_CL_Key_Date_TravelWD.txt).  
 
 
 ### `virtualElementSortedBy` implementation
@@ -310,7 +310,7 @@ When using the sorting functionality on our virtual element we want to sort the 
 - Reuse class `Z##_CL_DAYS_TO_FLIGHT_LISTWD` for sorting.
 - Add the interface `IF_SADL_EXIT_SORT_TRANSFORM` to the class and implement the method `map_element`.
 
-**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z##_CL_Days_To_Flight_ListWD_v2.txt).  
+**Solution** [Z##_CL_Days_To_Flight_ListWD](sources/Z_CL_Days_To_Flight_ListWD_v2.txt).  
 
 
 ## Next step
