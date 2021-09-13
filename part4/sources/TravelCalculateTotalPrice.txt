@@ -1,0 +1,11 @@
+```abap
+METHOD calculatetotalprice.
+  MODIFY ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+    ENTITY travel
+      EXECUTE recalctotalprice
+      FROM CORRESPONDING #( keys )
+    REPORTED DATA(lt_reported).
+
+  reported = CORRESPONDING #( DEEP lt_reported ).
+ENDMETHOD.
+```

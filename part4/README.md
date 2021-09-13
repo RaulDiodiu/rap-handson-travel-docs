@@ -288,10 +288,13 @@ For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa5
 After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
 To implement this action you have to create a new method in the travel behavior pool. Use the EML to `MODIFY` the travel instance and update the overall status accordingly.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources\SetInitialStatus.txt).
+[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources\SetInitialStatus.txt)
 
-- Determination `calculateTotalPrice`: The determination sums up all prices of the travel (`BookingFee`) and its associated bookings (`FlightPrice`), booking supplements (`Price`) and room reservations (`Price`). This sum will then be stored on the travel root entity.  
-The sum of these values is the total price of the travel. The determination is triggered whenever one of the fields or the corresponding currency field is changed, and when a travel instance is created. Since the recalculation should be triggered whenever one of the mentioned fields is changed, the calculation of the total price is outsourced to an action. This action is triggered by a determination on each entity.
+- Determination `calculateTotalPrice`: Previously, we've already implemented the internal action `ReCalcTotalPrice`on the travel instance. In order to react on modifications of all associated entities, this action has to be called internally whenever a change happens.  
+For the travel instance itself this means we have to add a determination which reacts on changes to `BookingFee`and `CurrencyCode`.  
+In the implementation of this determination you simply have to call the travel's internal action.  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~calculateTotalPrice](sources\TravelCalculateTotalPrice.txt)
 
 - Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
 Optional: use the SNUM functionality to generate the unique ID, for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
