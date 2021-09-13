@@ -260,8 +260,8 @@ The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to
 Technically speaking, both actions are instance actions with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field the corresponding value.  
 For implementation you have to go to your Behavior Pool of the travel instance and add the methods under Local Types using Quick Fix. In the method implementation you'll want to use the EML Update syntax to set the status to either accepted or rejected. Afterwards you'll have to return the modified instances to update them on the application.  
 **Solutions**  
-[ZBP_##_I_TRAVELWDTP~AcceptTravel](sources\AcceptTravel.txt)  
-[ZBP_##_I_TRAVELWDTP~RejectTravel](sources\RejectTravel.txt)
+[ZBP_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)  
+[ZBP_##_I_TRAVELWDTP~RejectTravel](sources/RejectTravel.txt)
 
 - Action `reCalcTotalPrice`: This action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
 Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).  
@@ -274,32 +274,11 @@ Within this loop you'll next have to load the associated booking entities for th
 Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.  
 Finally, we have all amounts relevant to a travel's total price. Now we'll have to loop over our local amount table and do a currency conversion in case there are currencies differing from the travel's own currency. If this is the case, use the method `/dmo/cl_flight_amdp=>convert_currency()` to convert the currency and some everything up into the field `totalprice` of the travel. Then you'll have to use EML to store the changes for this field.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~ReCalcTotalPrice](sources\ReCalcTotalPrice.txt)
+[ZBP_##_I_TRAVELWDTP~ReCalcTotalPrice](sources/ReCalcTotalPrice.txt)
 
 #### Determinations
-Determinations are used to determine, derive or calculate the fields of the instance in used. The determination is called based on some triggers conditions, for example it can be create/update/delete or when a field is being changed.
-For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html).
-
->**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
-
-1. Travel
-
-- Determination `setInitialStatus`: We want to set the initial status of newly created travel instances to 'Open'. To achieve this, we'll need to add a determination on modify with trigger operation `create` to the behavior definition.  
-After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
-To implement this action you have to create a new method in the travel behavior pool. Use the EML to `MODIFY` the travel instance and update the overall status accordingly.  
-**Solution**  
-[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources\SetInitialStatus.txt)
-
-- Determination `calculateTotalPrice`: Previously, we've already implemented the internal action `ReCalcTotalPrice`on the travel instance. In order to react on modifications of all associated entities, this action has to be called internally whenever a change happens.  
-For the travel instance itself this means we have to add a determination which reacts on changes to `BookingFee`and `CurrencyCode`.  
-In the implementation of this determination you simply have to call the travel's internal action.  
-**Solution**  
-[ZBP_##_I_TRAVELWDTP~calculateTotalPrice](sources\TravelCalculateTotalPrice.txt)
-
-- Determination `setTravelID`: the determination needs to generate a new unique id for the `TravelID` field of Travel entity, it should be on modify with trigger operation `create`. The user should not be able to modify this id, therefore the field should be set to readonly.   
-Optional: use the SNUM functionality to generate the unique ID, for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
-**Solution** [setTravelID](sources/SetTravelID.txt).
-
+Determinations are used to determine, derive or calculate the fields of the instance in use. A determination is called based on some triggers conditions, for example it can be automatically executed when a create, update or delete of an instance is happening.
+For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html). You can see the behavior definition syntax below:  
 ```abap
 define behavior for Z##_I_TravelWDTP alias Travel
 ...
@@ -309,6 +288,29 @@ define behavior for Z##_I_TravelWDTP alias Travel
 ...
 }
 ```
+
+>**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
+
+1. Travel
+
+- Determination `setInitialStatus`: We want to set the initial status of newly created travel instances to 'Open'. To achieve this, we'll need to add a determination on modify with trigger operation `create` to the behavior definition.  
+After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
+To implement this action you have to create a new method in the travel behavior pool. Use the EML to `MODIFY` the travel instance and update the overall status accordingly.  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
+
+- Determination `calculateTotalPrice`: Previously, we've already implemented the internal action `ReCalcTotalPrice`on the travel instance. In order to react on modifications of all associated entities, this action has to be called internally whenever a change happens.  
+For the travel instance itself this means we have to add a determination which reacts on changes to `BookingFee`and `CurrencyCode`.  
+In the implementation of this determination you simply have to call the travel's internal action.  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~calculateTotalPrice](sources/TravelCalculateTotalPrice.txt)
+
+- Determination `setTravelID`: We want to automatically provide a TravelID for newly created instances without requiring the user to set one manually.  
+We need an additional determination generating a new unique id for the `TravelID` field of Travel entity. This determination it should be on modify with trigger operation `create`. The user should not be able to modify this id afterwards, therefore the field should be set to read-only.  
+For implementation we will go the way and simply read the highest currently used ID from the database and just use this ID increased by 1. In that case we'll first read the travels to be created with EML `READ` using the `keys`parameter from the RAP framework. Afterwards, loop over those entities, modify the `TravelID` accordingly and store the changes after the loop using EML's `MODIFY`.  
+In productive scenarios, you should never rely on this simple scenario. If several instances are created at the same time, it might happen that both will be assign the same ID which will obviously result in errors. For this course we'll ignore this problem but in productive scenarios we would use a number range object which is basically a counter returning unique numbers one after another - for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~setTravelID](sources/SetTravelID.txt).
 
 2. Booking
 - Determination `calculateTotalPrice`:  
