@@ -253,7 +253,8 @@ define behavior for Z##_I_TravelWDTP alias Travel
 }
 ```
 
-1. Travel
+1. Travel  
+
 - Action `acceptTravel` and `rejectTravel`.
 The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to Rejected (X).  
 Technically speaking, both actions are instance actions with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field the corresponding value.  
