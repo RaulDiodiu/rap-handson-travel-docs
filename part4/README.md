@@ -42,7 +42,7 @@ define behavior for CDSEntity [alias AliasName]
 Now let’s start implementing the transactional behavior for our scenario: We’ll begin by creating a behavior definition using the Behavior Definition Language (BDL).
 Behavior definitions are created only from the root cds view and define the behavior for all contains entities.
 To create the behavior definition you have to do the following:
-- Right-click on the CDS View of our root entity `Z##_I_TravelWDTP` in the Project Explorer and choose New Behavior Definition.  
+- Right-click on the CDS View of our root entity `ZRAPH_##_I_TravelWDTP` in the Project Explorer and choose New Behavior Definition.  
 - Project, Package and Root Entity have been assigned automatically. The name of the behavior definition has to be the same as the root CDS view, that's why it is readonly. 
 - Make sure the implementation type is `Managed`, you can change the default description if you like then choose Next.
 - Assign a transport request and choose Finish.
@@ -120,21 +120,19 @@ Add the new statement provided below after the statement association `_Booking {
 >Repeat the steps from above for BookingSupplement and RoomReservation.
 
 **Solution** 
-- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP.txt) without draft.
+- [ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP.txt) without draft.
 
 #### Enable the draft.
 - Add the addition "with draft;" after the managed; keyword in the header section to enable draft handling for your business object.
 - Specify the draft table for the travel entity, where the draft travel data will be persisted.
-Add the following line under persistent table syntax and do not forget to replace the '####'.
-```abap
-"draft table z##_d_travel_d"
-``` 
-- At the end we have to create the draft table z##_d_travel_d, to store the draft data for the travel entity.  
+Add the following line under persistent table syntax and do not forget to replace the '##'.  
+`draft table zraph_##__d_travel_d` 
+- At the end we have to create the draft table zraph_##_d_travel_d, to store the draft data for the travel entity.  
 **Remark**: The ADT Quick Fix feature can be used to generate the draft table.  
 For this, set the cursor on the table name, and press Ctrl+1 to star the Quick Fix dialog.  
 - Add necessary information to create the table, save and activate.  
 - **Do the same for the remaining entities to create all draft tables.**  
- ( `z##_d_book`, `z##_d_bksup` , `z##_d_room_rsv` )
+ ( `zraph_##_d_book`, `zraph_##_d_bksup` , `zraph_##_d_room_rsv` )
 - Replace the association definition in the base behavior definition to solve the warnings indicating that the associations are implicitly draft enabled as this is a draft enabled business object.  
 ```abap
   association _Booking { create; with draft; } ...
@@ -156,12 +154,12 @@ In order to execute the validations during prepare, you need to assign them to t
 ```
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_v2.txt) with draft.
+- [ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v2.txt) with draft.
 
 
 ### Projecting the Behavior Definition
 As we’ve previously seen, you could define several CDS projection views for a single interface view (e.g. to create different apps for a single data model). For now, we have defined the behavior only for our four interface views for Travel, Booking, BookingSupplement and RoomReservation instances. But the CDS view which the generated OData service will be based on is the respective projection view, not the interface view. Therefore, we have to project the behavior definition to the projection view as well. Here, the BDL syntax simply directs allowed usages to the actual behavior definition, we cannot add behavior which isn’t existing there already. Also, we can define additional static field controls but not overwrite the existing ones from the interface view’s behavior definition.   
-Check the syntax below and create the behavior projection `Z##_C_TravelWDTP` reusing everything we have defined before:
+Check the syntax below and create the behavior projection `ZRAPH_##_C_TravelWDTP` reusing everything we have defined before:
 
 ```abap
 projection; 
@@ -183,8 +181,8 @@ use draft;
 }
 ```
 
-Create the behavior projection `Z##_C_TravelWDTP` for the projected composition model, by doing the following steps:
-- Right-click on the root CDS view `Z##_C_TravelWDTP` in the Project Explorer and choose New Behavior Definition.
+Create the behavior projection `ZRAPH_##_C_TravelWDTP` for the projected composition model, by doing the following steps:
+- Right-click on the root CDS view `ZRAPH_##_C_TravelWDTP` in the Project Explorer and choose New Behavior Definition.
 - The New Behavior Definition wizard is shown. The Name of the behavior definition has to be the identical name as the root CDS view. That’s the reason why the name can’t be changed.
 Adjust the proposed Description if you like, ensure that the Implementation Type is set to Projection and choose Next to continue.
 Project, Package and Root Entity have been assigned automatically.
@@ -201,7 +199,7 @@ All operations and associations defined in the underlying behavior definition at
 4. Save and activate the behavior projection
 
 **Solution** 
-- [DDLS_Z##_C_TravelWDTP](sources/Z_C_TravelWDTP.txt)
+- [ZRAPH_##_C_TravelWDTP](sources/Z_C_TravelWDTP.txt)
 
 
 
@@ -219,13 +217,10 @@ ENDCLASS.
 Nontheless, common or public aspects of the implementation may be defined in static methods if necessary (CLASS-DATA, CONSTANTS, TYPES). A common scenario is one behavior pool per business object node (in our case Travel, Booking, BookingSupplement and RoomReservation), but this is not mandatory. But it is a good practice to additionally define at least one separate auxiliary class for helper methods (like mapping of table fields to the corresponding CDS fields or message handling). 
 
 ### Enhance the behavior definition
-- Open the base behavior definition `Z##_I_TravelWDTP`
+- Open the base behavior definition `ZRAPH_##_I_TravelWDTP`
 - Provide the behavior implementation for each entity in a separate ABAP class.
-For that, specify a behavior implementation class (aka behavior pool) using the statement `implementation in class…` for each entity.
-
-```abap
- implementation in class zbp_##_i_travelwdtp unique
-```
+For that, specify a behavior implementation class (aka behavior pool) using the statement `implementation in class…` for each entity.  
+`implementation in class zraph_##_bp_i_travelwdtp unique`
 
 >**Remark** The ADT `Quick Fix` feature can be used to generate the class, do this for each entity class. For this, set the cursor on the table name, and press `Ctrl+1` to start the Quick Fix dialog.      
 Open the created class and click `Local Type` here we should have the local class, here we implement the logic for all validations, actions, determinations and feature control. Make sure the framework is generating `get_feature` method, otherwise we would have errors.  
@@ -234,7 +229,7 @@ Every time we add a new action,determination or validation use the quick fix in 
 ![alt](images/Image4_1.png)
 
 **Solution**
-- [DDLS_Z##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt) with draft.
+- [ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt) with draft.
 
 
 ### Creating Behavior Pool 
@@ -243,7 +238,7 @@ Every time we add a new action,determination or validation use the quick fix in 
 Actions are used to manifest business logic specific workflows in one operation. You can implement simple status changes or a complete creation workflow in one operation. For the UI, you can define action buttons that execute the action directly when the consumer chooses the button. For more detailed information, see [Actions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/83bad707a5a241a2ae93953d81d17a6b.html).
 
 ```abap
-define behavior for Z##_I_TravelWDTP alias Travel
+define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ...
 {
 ...
@@ -260,8 +255,8 @@ The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to
 Technically speaking, both actions are instance actions with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field the corresponding value.  
 For implementation you have to go to your Behavior Pool of the travel instance and add the methods under Local Types using Quick Fix. In the method implementation you'll want to use the EML Update syntax to set the status to either accepted or rejected. Afterwards you'll have to return the modified instances to update them on the application.  
 **Solutions**  
-[ZBP_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)  
-[ZBP_##_I_TRAVELWDTP~RejectTravel](sources/RejectTravel.txt)
+[ZRAPH_##_BP_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)  
+[ZRAPH_##_BP_I_TRAVELWDTP~RejectTravel](sources/RejectTravel.txt)
 
 - Action `reCalcTotalPrice`: This action calculates the total price for one travel instance. It adds up the prices of all bookings, including their supplements, room reservations and the booking fee of the travel instance. If different currencies are used, the prices are converted to the currency of the travel instance.
 Technically speaking, the action is an internal instance action. This action is invoked by determinations that are triggered when one of the involved fields is changed: BookingFee (travel entity), FlightPrice (booking entity), Price (booking supplement entity) and Price (Room Reservation entity).  
@@ -274,13 +269,13 @@ Within this loop you'll next have to load the associated booking entities for th
 Now loop over the booking instances and store the flightprice and currency into the amount table. Within this booking loop you'll have to do the same logic for the child entity booking supplement. Afterwards, don't forget to load all room reservation prices for the respective entities as well.  
 Finally, we have all amounts relevant to a travel's total price. Now we'll have to loop over our local amount table and do a currency conversion in case there are currencies differing from the travel's own currency. If this is the case, use the method `/dmo/cl_flight_amdp=>convert_currency()` to convert the currency and some everything up into the field `totalprice` of the travel. Then you'll have to use EML to store the changes for this field.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~ReCalcTotalPrice](sources/ReCalcTotalPrice.txt)
+[ZRAPH_##_BP_I_TRAVELWDTP~ReCalcTotalPrice](sources/ReCalcTotalPrice.txt)
 
 #### Determinations
 Determinations are used to determine, derive or calculate the fields of the instance in use. A determination is called based on some triggers conditions, for example it can be automatically executed when a create, update or delete of an instance is happening.
 For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html). You can see the behavior definition syntax below:  
 ```abap
-define behavior for Z##_I_TravelWDTP alias Travel
+define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ...
 {
 ...
@@ -297,49 +292,49 @@ define behavior for Z##_I_TravelWDTP alias Travel
 After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
 To implement this action you have to create a new method in the travel behavior pool. Use the EML to `MODIFY` the travel instance and update the overall status accordingly.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
+[ZRAPH_##_BP_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
 
 - Determination `calculateTotalPrice`: Previously, we've already implemented the internal action `ReCalcTotalPrice`on the travel instance. In order to react on modifications of all associated entities, this action has to be called internally whenever a change happens.  
 For the travel instance itself this means we have to add a determination which reacts on changes to `BookingFee`and `CurrencyCode`.  
 In the implementation of this determination you simply have to call the travel's internal action.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~calculateTotalPrice](sources/TravelCalculateTotalPrice.txt)
+[ZRAPH_##_BP_I_TRAVELWDTP~calculateTotalPrice](sources/TravelCalculateTotalPrice.txt)
 
 - Determination `setTravelID`: We want to automatically provide a TravelID for newly created instances without requiring the user to set one manually.  
 We need an additional determination generating a new unique id for the `TravelID` field of Travel entity. This determination it should be on modify with trigger operation `create`. The user should not be able to modify this id afterwards, therefore the field should be set to read-only.  
 For implementation we will go the way and simply read the highest currently used ID from the database and just use this ID increased by 1. In that case we'll first read the travels to be created with EML `READ` using the `keys` parameter from the RAP framework. Afterwards, loop over those entities, modify the `TravelID` accordingly and store the changes after the loop using EML's `MODIFY`.  
 In productive scenarios, you should never rely on this simple scenario. If several instances are created at the same time, it might happen that both will be assign the same ID which will obviously result in errors. For this course we'll ignore this problem but in productive scenarios we would use a number range object which is basically a counter returning unique numbers one after another - for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~setTravelID](sources/SetTravelID.txt).
+[ZRAPH_##_BP_I_TRAVELWDTP~setTravelID](sources/SetTravelID.txt).
 
 **2. Booking**
 - Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the booking this means fields `Price`and `CurrencyCode`as trigger conditions.  
 For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY booking BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
 **Solution**  
-[ZBP_##_I_BOOKINGWDTP~calculateTotalPrice](sources/BookingCalculateTotalPrice.txt)
+[ZRAPH_##_BP_I_BOOKINGWDTP~calculateTotalPrice](sources/BookingCalculateTotalPrice.txt)
 - Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to read-only.  
 For implementation we want to set the current system date `sy-datum` as `BookingDate` of newly created booking instances. First, read the affected entites via the `keys` parameter, loop over the retrieved instances afterwards and set the date where it's not yet set. Finally, save the changes of this particular field via EML.  
 **Solution**  
-[ZBP_##_I_BOOKINGWDTP~setBookingDate](sources/SetBookingDate.txt)
+[ZRAPH_##_BP_I_BOOKINGWDTP~setBookingDate](sources/SetBookingDate.txt)
 
 **3. Booking Supplement**
 - Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the booking supplement this means fields `Price`and `CurrencyCode`as trigger conditions.  
 For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY bookingsupplement BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
 **Solution**  
-[ZBP_##_I_BOOKINGSUPPLWDTP~calculateTotalPrice](sources/BookingSupplCalculateTotalPrice.txt)  
+[ZRAPH_##_BP_I_BOOKINGSUPPLWDTP~calculateTotalPrice](sources/BookingSupplCalculateTotalPrice.txt)  
 
 **4. Room Reservation**
 - Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the room reservation this means fields `RoomResvnPrice`and `CurrencyCode`as trigger conditions.  
 For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY roomreservation BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
 **Solution**  
-[ZBP_##_I_ROOMRESERVATIONWDTP~calculateTotalPrice](sources/RoomReservationCalculateTotalPrice.txt)
+[ZRAPH_##_BP_I_ROOMRESERVATIONWDTP~calculateTotalPrice](sources/RoomReservationCalculateTotalPrice.txt)
 
 
 #### **Validations**.  
 Validations are used to verify if the values added by the user are consistent, in case the values are wrong an error is raised with a relevant message, in this case the save is not done.   
 For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html). You can see the behavior definition syntax below:  
 ```abap
-define behavior for Z##_I_TravelWDTP alias Travel
+define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ...
 {
 ...
@@ -354,14 +349,16 @@ define behavior for Z##_I_TravelWDTP alias Travel
 `draft determine action Prepare` of root entity, otherwise even if the validation is done correctly the error message would not be shown.
 
 
-1. Travel****
-- `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
-The validation should check if the customer field has a value and the value inserted is correct (exists in `/DMO/Customer` ).  
-Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
+**1. Travel**
+- `validateCustomer`: Our first validation will check whether the customer chosen for this travel is actually existing and valide. Therefore you have to define a validation on save with trigger operation `create` using the trigger field `CustomerID`. Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory in the behavior definition as well.  
+In the travel behavior pool you have to load the `CustomerID` field for the created travels using the parameter `keys` in EML. Next we want to join the retrieved travel instances with the master data table `/DMO/Customer` into a local table. Afterwards loop over the travels and check for every entry if the `CustomerID` has a value. If it has a value you have to check the validity of this (check if `line_exists( <local_table>[ customer_id = <current_travel>-customerid ])` results in `true`). If any of those two checks fails you have to add the instance to the `reported` table and provide a error message (check the solution only for this part).  
+**Solution**  
+[ZRAPH_##_BP_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
 
-- `validateAgency`: Define a validation on save with trigger operation `create` and trigger field `AgencyID`.    
-The validation should check if the agency field has a value and the value inserted is correct (exists in `/DMO/Agency` ).    
-Since there must always be an agency assigned to a certain travel, define the field `AgencyID` as mandatory.
+
+- `validateAgency`: Basically, this validation follows the same logic as the validation for customer ids. This time we have the trigger field `AgencyID` and will use the master data table `/DMO/Agency` instead. Don't forget to define the field `AgencyID` as mandatory in the behavior definition.
+**Solution**  
+[ZRAPH_##_BP_I_TRAVELWDTP~validateAgency](sources/TravelValidateAgency.txt)
 
 - `validateDates`: Define a validation on save with trigger operation `create` and trigger fields `BeginDate` and `EndDate`.  
 The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
@@ -369,7 +366,11 @@ Since the travel dates are an essential part of the travel data, define the fiel
 
 
 **2. Booking**
-- `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
+- `validateCustomer`: Basically, this validation follows the same logic as the validation for customer ids on the travel instance. This time we have to include the link to the travel instance as well. Therefore we'll additionally select the `LINK DATA` via the `_Travel` association in EML. You can see in the solution how those links have to be returned to the framework.
+**Solution**  
+[ZRAPH_##_BP_I_BOOKINGWDTP~validateCustomer](sources/BookingValidateCustomer.txt)
+
+Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
 The validation should check if the customer field has a value and the value inserted is correct ( Exists in `/DMO/Customer` ).  
 Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
 
@@ -401,7 +402,7 @@ For more information, see [Feature Control](https://help.sap.com/viewer/fc4c71aa
 **2. Travel Implementation**  
 Dynamic feature control must be implemented in the behavior implementation in the method `get_features` method of class `zbp_##_i_travelwdtp`.  
 **Solution**  
-[ZBP_##_I_TRAVELWDTP~get_features](sources/Get_Feature.txt).
+[ZRAPH_##_BP_I_TRAVELWDTP~get_features](sources/Get_Feature.txt).
 
 
 ## Next step
