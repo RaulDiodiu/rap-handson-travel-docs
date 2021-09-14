@@ -323,15 +323,30 @@ For implementation we want to set the current system date `sy-datum` as `Booking
 [ZBP_##_I_BOOKINGWDTP~setBookingDate](sources/SetBookingDate.txt)
 
 **3. Booking Supplement**
-- Determination `calculateTotalPrice`  
+- Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the booking supplement this means fields `Price`and `CurrencyCode`as trigger conditions.  
+For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY bookingsupplement BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
+**Solution**  
+[ZBP_##_I_BOOKINGSUPPLWDTP~calculateTotalPrice](sources/BookingSupplCalculateTotalPrice.txt)  
 
 **4. Room Reservation**
-- Determination `calculateTotalPrice`
+- Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the room reservation this means fields `RoomResvnPrice`and `CurrencyCode`as trigger conditions.  
+For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY roomreservation BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
+**Solution**  
+[ZBP_##_I_ROOMRESERVATIONWDTP~calculateTotalPrice](sources/RoomReservationCalculateTotalPrice.txt)
 
 
 #### **Validations**.  
 Validations are used to verify if the values added by the user are consistent, in case the values are wrong an error is raised with a relevant message, in this case the save is not done.   
-For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
+For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html). You can see the behavior definition syntax below:  
+```abap
+define behavior for Z##_I_TravelWDTP alias Travel
+...
+{
+...
+  validation <doSomething> on save { create; field <trigger_field_name> ; }
+...
+}
+```
 
 >**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
 
@@ -339,7 +354,7 @@ For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa5001
 `draft determine action Prepare` of root entity, otherwise even if the validation is done correctly the error message would not be shown.
 
 
-1. Travel Entity
+1. Travel****
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
 The validation should check if the customer field has a value and the value inserted is correct (exists in `/DMO/Customer` ).  
 Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
@@ -353,45 +368,40 @@ The validation should check if `BeginDate` and `Enddate` are not be initial, the
 Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.
 
 
-2. Booking
+**2. Booking**
 - `validateCustomer`: Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
 The validation should check if the customer field has a value and the value inserted is correct ( Exists in `/DMO/Customer` ).  
 Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
 
-3. Booking Supplement
+**3. Booking Supplement**
 - `validateSupplement`: Define a validation on save with trigger operation create and trigger field `SupplementID`.
 The Validation should check the the `SupplementID` field has an entry and check it against `/DMO/I_supplement`.
 Since there must always be a booking supplement instance always needs a supplement, define the field `SupplementID` as mandatory.
 
 
-#### Feature Control.
+#### Feature Control
 
-Feature control is used to make fields, actions and operations(CRUD): readonly or mandatory.
-You can implement feature control in a static or dynamic way. 
-- In a **static** case, you define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or readonly. 
-- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field.
+Feature control is used to make fields, actions and operations (CRUD): read-only, mandatory or configure in which scenarios what is allowed and what isn't.
+You can implement feature control in a static or dynamic way - we'll be using a mixture of both approaches. 
+- In a **static** case, you simply define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or readonly. 
+- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field. The available functionality is then set via a method depending on individual factors.
 
-For more informations see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
+For more information, see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
 
 
-1. Travel Definition - define field, action, and operation control. 
-- Action control: `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.
-```abap
-action ( features : instance ) <action_name> result [...];
-```
-- Operation control:  You can only `create` new booking instance for a travel if the overall status is not rejected. The feature control condition must be implemented in the behavior class.
-```abap
-association _<assoc_name> { create (features : instance); with draft }
-```
+**1. Definition**  
+- Action control: `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.  
+`action ( features : instance ) <action_name> result [...];`
+- Operation control:  You can only `create` new booking instance for a travel if the overall status is not rejected. The feature control condition must be implemented in the behavior class.  
+`association _<assoc_name> { create (features : instance); with draft }`
 - Field Control: 
-  `BookingFee`: if the status of the travel instance is accepted make the field readonly.
-```abap
- field ( features : instance ) `<field_name>`
-  ```
+  `BookingFee`: if the status of the travel instance is accepted make the field readonly.  
+  `field ( features : instance ) <field_name>`
 
-2. Travel Implementation  
-Dynamic feature control must be implemented in the behavior implementation in the method `Get_features` method of class `zbp_##_i_travelwdtp`.  
-**Solution** [Get_Feature](sources/Get_Feature.txt).
+**2. Travel Implementation**  
+Dynamic feature control must be implemented in the behavior implementation in the method `get_features` method of class `zbp_##_i_travelwdtp`.  
+**Solution**  
+[ZBP_##_I_TRAVELWDTP~get_features](sources/Get_Feature.txt).
 
 
 ## Next step
