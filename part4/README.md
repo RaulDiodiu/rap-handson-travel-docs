@@ -253,7 +253,7 @@ define behavior for Z##_I_TravelWDTP alias Travel
 }
 ```
 
-Travel  
+**1. Travel**  
 
 - Action `acceptTravel` and `rejectTravel`.
 The `acceptTravel` action sets the status to Accepted (A), and `rejectTravel` to Rejected (X).  
@@ -291,7 +291,7 @@ define behavior for Z##_I_TravelWDTP alias Travel
 
 >**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from the booking entity.
 
-1. Travel
+**1. Travel**
 
 - Determination `setInitialStatus`: We want to set the initial status of newly created travel instances to 'Open'. To achieve this, we'll need to add a determination on modify with trigger operation `create` to the behavior definition.  
 After creation, the overall status of the travel is only changed by the actions `rejectTravel` and `acceptTravel`, the two actions that we previously created, therefore the field should be read-only for the external consumer.  
@@ -307,24 +307,30 @@ In the implementation of this determination you simply have to call the travel's
 
 - Determination `setTravelID`: We want to automatically provide a TravelID for newly created instances without requiring the user to set one manually.  
 We need an additional determination generating a new unique id for the `TravelID` field of Travel entity. This determination it should be on modify with trigger operation `create`. The user should not be able to modify this id afterwards, therefore the field should be set to read-only.  
-For implementation we will go the way and simply read the highest currently used ID from the database and just use this ID increased by 1. In that case we'll first read the travels to be created with EML `READ` using the `keys`parameter from the RAP framework. Afterwards, loop over those entities, modify the `TravelID` accordingly and store the changes after the loop using EML's `MODIFY`.  
+For implementation we will go the way and simply read the highest currently used ID from the database and just use this ID increased by 1. In that case we'll first read the travels to be created with EML `READ` using the `keys` parameter from the RAP framework. Afterwards, loop over those entities, modify the `TravelID` accordingly and store the changes after the loop using EML's `MODIFY`.  
 In productive scenarios, you should never rely on this simple scenario. If several instances are created at the same time, it might happen that both will be assign the same ID which will obviously result in errors. For this course we'll ignore this problem but in productive scenarios we would use a number range object which is basically a counter returning unique numbers one after another - for more information see [Maintaining a number range object](https://help.sap.com/saphelp_em92/helpdata/en/48/d58f92982b424be10000000a421937/content.htm?no_cache=true).  
 **Solution**  
 [ZBP_##_I_TRAVELWDTP~setTravelID](sources/SetTravelID.txt).
 
-2. Booking
-- Determination `calculateTotalPrice`:  
-- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to readonly.  
+**2. Booking**
+- Determination `calculateTotalPrice`: This basically follows the logic of the determinations in the other instances. Whenever a price or currency is changed, the internal action of the root entity to recalculate the total price should be triggered. For the booking this means fields `Price`and `CurrencyCode`as trigger conditions.  
+For implementation, we'll first get the `LINK` relation to affected travel entities by reading `ENTITY booking BY \_travel` via EML. Afterwards, we execute the internal action `recalcTotalPrice` for the retrieved entities (looping over `LINK`).   
+**Solution**  
+[ZBP_##_I_BOOKINGWDTP~calculateTotalPrice](sources/BookingCalculateTotalPrice.txt)
+- Determination `setBookingDate`: the `BookingDate` is set when the instance is saved, the value should not be changed afterwards. Therefore, set the field to read-only.  
+For implementation we want to set the current system date `sy-datum` as `BookingDate` of newly created booking instances. First, read the affected entites via the `keys` parameter, loop over the retrieved instances afterwards and set the date where it's not yet set. Finally, save the changes of this particular field via EML.  
+**Solution**  
+[ZBP_##_I_BOOKINGWDTP~setBookingDate](sources/SetBookingDate.txt)
 
-3. Booking Supplement
+**3. Booking Supplement**
 - Determination `calculateTotalPrice`  
 
-4. Room Reservation
+**4. Room Reservation**
 - Determination `calculateTotalPrice`
 
 
 #### **Validations**.  
-Validations are used to verify if the values added by the user are consistent, in case the values are wrong an erorr is raised with a relevant message, in this case the save is not done.   
+Validations are used to verify if the values added by the user are consistent, in case the values are wrong an error is raised with a relevant message, in this case the save is not done.   
 For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html).
 
 >**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
