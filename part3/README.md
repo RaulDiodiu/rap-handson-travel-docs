@@ -33,7 +33,7 @@ define view entity child_entity
 > As you can observe we will use across the hands-on the next generation *CDS View Entities*. One of the main differences between CDS DDIC-based view (`define view`) and CDS view entity (`define view entity`), is that the latter does not have an associated SQL view, and the name of the Data Definition object in the Project Explorer and the name of the CDS entity specified after the keyword `DEFINE VIEW ENTITY` are identical. This makes the lifecycle of CDS View entities way easier and also the activation runs faster.
 
 ## Implementation
-Please log into S4D in Eclipse via the logon language EN. Otherwise, by standard we won’t see our FrontEnd texts later on when we open the Fiori app in the browser.
+Please log into your SAP System in Eclipse via the logon language EN. Otherwise, by standard we won’t see our FrontEnd texts later on when we open the Fiori app in the browser.
 ### Creation of basic interface views
 The following existing database tables from the persistency layer described previously will now be used as a base for our CDS Base Views:
 
@@ -235,7 +235,7 @@ annotate view Z##_C_TravelWDTP with
 ```
 ## Virtual elements (calculate, filter, sort)
 
-### Informations
+### Information
 Are use you define additional CDS fields that are not persisted on the database,they are calculated during runtime using ABAP classes that implement the virtual element interface. 
 Virtual elements represent transient fields in business applications. They are defined at the level of CDS projection views as additional elements within the `SELECT` list. However, the calculation of their values is carried out by means of ABAP classes that implement the specific virtual element interface provided for this purpose. The ABAP implementation class is referenced by annotating the virtual element in the CDS projection view with 
 `@ObjectModel.virtualElementCalculatedBy: ABAP:<CLASS_NAME>`.  
@@ -266,7 +266,7 @@ define view entity CDSProjView
 }
 
 ```
-For more informations see [Virtual Elements](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/df0ef4aac2d34fdd948b8a8883df3a1f.html).   
+For more information see [Virtual Elements](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/df0ef4aac2d34fdd948b8a8883df3a1f.html).   
 
 ### `virtualElementCalculatedBy` implementation
 We want to create a virtual element on the Travel list page ( `Z##_C_TravelWDTP` ).

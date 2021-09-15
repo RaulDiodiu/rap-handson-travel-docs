@@ -360,9 +360,10 @@ In the travel behavior pool you have to load the `CustomerID` field for the crea
 **Solution**  
 [ZRAPH_##_BP_I_TRAVELWDTP~validateAgency](sources/TravelValidateAgency.txt)
 
-- `validateDates`: Define a validation on save with trigger operation `create` and trigger fields `BeginDate` and `EndDate`.  
-The validation should check if `BeginDate` and `Enddate` are not be initial, the `BeginDate` is not  in the past and the `Enddate` is not be before `BeginDate`.
-Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.
+- `validateDates`: We want to make sure that both begin and end date of the travel are set, not in the past and in the correct order. Therefore, define a new validation on save with trigger operation `create` and trigger fields `BeginDate` and `EndDate`. Since the travel dates are an essential part of the travel data, define the fields `BeginDate` and `EndDate` as mandatory.  
+To implement the action we again first have to retrieve the newly created travel instances and the relevant date fields via EML using `keys`. Afterwards you have to loop over those instances and append invalid instances to the `failed` table and meaningful error messages to the `reported` table. First, check if the `BeginDate` is initial. Next, check the same for the `EndDate`. Then we should check if the `BeginDate` is smaller than the `EndDate`. Finally, we compare the `BeginDate` with the system variable `sy-datum` to catch dates in the past.  
+**Solution**  
+[ZRAPH_##_BP_I_TRAVELWDTP~validateDates](sources/TravelValidateDates.txt)
 
 
 **2. Booking**
@@ -372,9 +373,9 @@ Since the travel dates are an essential part of the travel data, define the fiel
 
 
 **3. Booking Supplement**
-- `validateSupplement`: Define a validation on save with trigger operation create and trigger field `SupplementID`.
-The Validation should check the the `SupplementID` field has an entry and check it against `/DMO/I_supplement`.
-Since there must always be a booking supplement instance always needs a supplement, define the field `SupplementID` as mandatory.
+- `validateSupplement`: Basically, this validation follows the same logic as the validation for customer ids on other instances. This time we have the trigger field `SupplementID` and will use the master data in `/DMO/I_Supplement` instead. Don't forget to define the field `SupplementID` as mandatory in the behavior definition.  
+**Solution**  
+[ZRAPH_##_BP_I_BOOKINGSUPPLWDTP~validateSupplement](sources/BookingSupplementValidateSupplement.txt)
 
 
 #### Feature Control
@@ -397,7 +398,7 @@ For more information, see [Feature Control](https://help.sap.com/viewer/fc4c71aa
   `field ( features : instance ) <field_name>`
 
 **2. Travel Implementation**  
-Dynamic feature control must be implemented in the behavior implementation in the method `get_features` method of class `zbp_##_i_travelwdtp`.  
+Dynamic feature control must be implemented in the behavior implementation in the method `get_features` of class `zbp_##_i_travelwdtp`.  
 **Solution**  
 [ZRAPH_##_BP_I_TRAVELWDTP~get_features](sources/Get_Feature.txt).
 
