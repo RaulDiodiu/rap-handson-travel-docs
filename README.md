@@ -27,9 +27,9 @@ Find more details in folder [part1](part1/README.md) of this Git repository.
 #### 2. Creating the Database Table for Room Reservation
 Find more details in folder [part2](part2/README.md) of this Git repository.
 #### 3. Creating the Virtual Data Model (VDM) via ABAP CDS Views
-Find more details in folder [part3](part3/README.md) of this Git repository.
+Find more details in folder [part3](part3/3a.md) of this Git repository.
 #### 4. Adding Transactional Behavior
-Find more details in folder [part4](part4/README.md) of this Git repository.
+Find more details in folder [part4](part4/4a.md) of this Git repository.
 #### 5. Publishing the Business Service
 Find more details in folder [part5](part5/README.md) of this Git repository.
 #### 6. Creating the SAP Fiori List Report app
