@@ -356,7 +356,7 @@ In the travel behavior pool you have to load the `CustomerID` field for the crea
 [ZRAPH_##_BP_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
 
 
-- `validateAgency`: Basically, this validation follows the same logic as the validation for customer ids. This time we have the trigger field `AgencyID` and will use the master data table `/DMO/Agency` instead. Don't forget to define the field `AgencyID` as mandatory in the behavior definition.
+- `validateAgency`: Basically, this validation follows the same logic as the validation for customer ids. This time we have the trigger field `AgencyID` and will use the master data table `/DMO/Agency` instead. Don't forget to define the field `AgencyID` as mandatory in the behavior definition.  
 **Solution**  
 [ZRAPH_##_BP_I_TRAVELWDTP~validateAgency](sources/TravelValidateAgency.txt)
 
@@ -366,13 +366,10 @@ Since the travel dates are an essential part of the travel data, define the fiel
 
 
 **2. Booking**
-- `validateCustomer`: Basically, this validation follows the same logic as the validation for customer ids on the travel instance. This time we have to include the link to the travel instance as well. Therefore we'll additionally select the `LINK DATA` via the `_Travel` association in EML. You can see in the solution how those links have to be returned to the framework.
+- `validateCustomer`: Basically, this validation follows the same logic as the validation for customer ids on the travel instance. This time we have to include the link to the travel instance as well. Therefore we'll additionally select the `LINK DATA` via the `_Travel` association in EML. You can see in the solution how those links have to be returned to the framework. Also, don't forget to mark the field as mandatory!  
 **Solution**  
 [ZRAPH_##_BP_I_BOOKINGWDTP~validateCustomer](sources/BookingValidateCustomer.txt)
 
-Define a validation on save with trigger operation `create` and trigger field `CustomerID`.  
-The validation should check if the customer field has a value and the value inserted is correct ( Exists in `/DMO/Customer` ).  
-Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory.
 
 **3. Booking Supplement**
 - `validateSupplement`: Define a validation on save with trigger operation create and trigger field `SupplementID`.
