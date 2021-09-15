@@ -380,27 +380,42 @@ To implement the action we again first have to retrieve the newly created travel
 
 #### Feature Control
 
-Feature control is used to make fields, actions and operations (CRUD): read-only, mandatory or configure in which scenarios what is allowed and what isn't.
-You can implement feature control in a static or dynamic way - we'll be using a mixture of both approaches. 
-- In a **static** case, you simply define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or readonly. 
-- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field. The available functionality is then set via a method depending on individual factors.
+Our final step in behavior implementation will be the feature control. This can be used to mark specific fields as read-only / mandatory and configure, in which situations which actions or operations as allowed or forbidden.  
+For example, you could forbid to allow any further changes to a travel with the status `Accepted`.  
+Controlling features with feature cantrol can be done in two ways: static and dynamic. 
+- In a **static** case, you simply define which operations are available for each business object entity or which fields have specific access restrictions like being mandatory or readonly. We actually already used this in past exercises.
+- In a **dynamic** case, the access restrictions for fields or the enabling/disabling of methods depends on the state of the business object, for example on the value of a specific field. The available functionality is then set via a framework method dynamically. We will add this dynamic field control now.
 
 For more information, see [Feature Control](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/a5055eef86fa492d99a29b3a9c7c2b88.html). 
 
 
-**1. Definition**  
-- Action control: `acceptTravel` and `rejectTravel`: if the status of the travel instance is accepted disabled the two actions.  
-`action ( features : instance ) <action_name> result [...];`
-- Operation control:  You can only `create` new booking instance for a travel if the overall status is not rejected. The feature control condition must be implemented in the behavior class.  
+**1. Feature Control Definition**  
+- Action control: `acceptTravel` and `rejectTravel`: We want to allow accepting or rejecting travel instances depending on the instance's current status. If the status of the travel instance is `Accepted` it should not be allowed, to accept it again. Similarly, rejecting shouldn't be offered when the status already is `Rejected`. First, use the following syntax to introduce a dynamic feature control to the behavior definition:  
+`action ( features : instance ) <action_name> result [1] $self;`
+- Operation control:  You can only `create` new booking instance for a travel if the overall status is not `Rejected`. This needs to be activated for the create-enabled child association in the behavior definition:  
 `association _<assoc_name> { create (features : instance); with draft }`
-- Field Control: 
-  `BookingFee`: if the status of the travel instance is accepted make the field readonly.  
-  `field ( features : instance ) <field_name>`
+- Field Control: Finally, the field `BookingFee` will be read-only in case the travel has the status `Accepted`. The following syntax is relevant in the behavior definition:  
+`field ( features : instance ) <field_name>`
 
-**2. Travel Implementation**  
-Dynamic feature control must be implemented in the behavior implementation in the method `get_features` of class `zbp_##_i_travelwdtp`.  
+**2. Feature Control Implementation**  
+Dynamic feature controls must be implemented in the behavior implementation in the method `get_features` of your behavior pool `zraph_##_bp_i_travelwdtp`.  
+All of our dynamic features rely on the field `OverallStatus` - that's why we first need to use EML for retrieving the relevant travel instances and their status field again using the `keys` parameter.  
+The RAP framework expects the output table `result` which contains the transactional keys for the relevant travels and the settings for the defined fields, actions and associations.  
+For the field `BookingFee` we either need `if_abap_behv=>fc-f-read_only` or `if_abap_behv=>fc-f-unrestricted`.  
+For actions and the create-enabled association the possible values are `if_abap_behv=>fc-o-enabled` and `if_abap_behv=>fc-o-disabled`.
+To actually implement the dynamic feature control you can orientate yourself on the following syntax to differentiate the different cases and return the setting for how the framework should behave:  
+```abap
+result = VALUE #( FOR <line> IN <table>
+                    ( %tky                               = <line>-%tky
+                      <%field | %action | %assoc>-<name> = COND #( WHEN <line>-<field> = <value>
+                                                                   THEN <enabled | read-only>
+                                                                   ELSE <disabled | unrestricted> ) 
+                      <%field | %action | %assoc>-<name> = [...]
+                    )
+                ).
+```
 **Solution**  
-[ZRAPH_##_BP_I_TRAVELWDTP~get_features](sources/Get_Feature.txt).
+[ZRAPH_##_BP_I_TRAVELWDTP~get_features](sources/GetFeatures.txt).
 
 
 ## Next step
