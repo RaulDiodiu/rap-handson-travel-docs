@@ -24,7 +24,7 @@ Click *Boosters* on the left, use the search and start *Prepare an Account for A
 
 You can close the BTP Cockpit now.
 
-### 3. Install Eclipse with ABAP Development Tools and the Git Plugin
+### 3. Install Eclipse with ABAP Development Tools
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
 Go to [Eclipse 2021-09](https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-ide-java-developers) and download the installer fitting your operating system. Obviously, you'll have to install the downloaded file afterwards (Select *Eclipse IDE for Java Developers* if asked). The default installation settings should fit our needs and remain unchanged.
@@ -33,13 +33,16 @@ When the installation finished you can launch Eclipse. You will be asked for a w
 
 Now we'll install the ABAP Development Tools: Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-09/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the next page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
-To finalise our Eclipse installation we'll need to install a Git plugin. Here you have follow the same steps as before using the URL https://eclipse.abapgit.org/updatesite/. Again accept the terms, trust the signers and restart Eclipse afterwards.
-
 ### 4. Add the BTP Trial as ABAP Project to Eclipse
-### 5. Import some required development objects from Git
->**Note** As you might end up on the same ABAP Trial instance as other students, the import might have been done by some other student already. In this case, you'll get import errors and can just skip this fifth subchapter.
+Now we will add the previously created ABAP Trial instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
-Text
+Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *default_key.json* which you've downloaded to your computer previously. Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
+
+### 5. Import some required development objects from Git
+>**Note** This step might be superfluos.
+
+To finalise our Eclipse installation we'll need to install a Git plugin. Here you have follow the same steps as before using the URL https://eclipse.abapgit.org/updatesite/. Select *abapGit for ABAP Development Tools (ADT)* for installation. Again accept the terms, trust the signers and restart Eclipse afterwards.
+
 ### 6. Install SAP Business Application Studio 
 
 
