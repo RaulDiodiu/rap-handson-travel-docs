@@ -7,7 +7,7 @@
                                        value: 'RoomResvnID' },
                      imageUrl: 'RoomImage' } }
 
-annotate entity Z##_C_RoomReservationWDTP with
+annotate entity ZRAPH_##_C_RoomReservationWDTP with
 {
 
   @UI.facet: [ { id:            'RoomReservation',

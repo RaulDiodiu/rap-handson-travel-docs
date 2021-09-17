@@ -1,4 +1,4 @@
-CLASS z##_cl_days_to_flight_listwd DEFINITION
+CLASS zraph_##_cl_days_to_flight DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -13,42 +13,34 @@ ENDCLASS.
 
 
 
-CLASS z##_cl_days_to_flight_listwd IMPLEMENTATION.
+CLASS zraph_##_cl_days_to_flight IMPLEMENTATION.
 
 
   METHOD if_sadl_exit_calc_element_read~calculate.
+    DATA(today) = cl_abap_context_info=>get_system_date( ).
+    DATA bookings TYPE STANDARD TABLE OF zraph_##_c_bookingwdtp WITH DEFAULT KEY.
+    bookings = CORRESPONDING #( it_original_data ).
 
-    DATA lt_original_data TYPE STANDARD TABLE OF Z##_C_TravelWDTP WITH DEFAULT KEY.
-    lt_original_data = CORRESPONDING #( it_original_data ).
-
-    SELECT FROM @lt_original_Data AS travel
-    INNER JOIN ZRAPH_I_BookingWDTP AS bk ON travel~TravelUUID = bk~TravelUUID
-    FIELDS travel~TravelUUID, MIN( bk~FlightDate ) AS MinFlightDate, travel~TravelID
-    WHERE FlightDate >= @sy-datum
-    GROUP BY travel~TravelUUID, travel~TravelID
-    ORDER BY travelid, MinFlightDate
-    INTO TABLE @DATA(lt_booking).
-
-    LOOP AT lt_original_data ASSIGNING FIELD-SYMBOL(<fs_original_data>).
-
-      DATA(ls_booking) = VALUE #( lt_booking[ TravelUUID = <fs_original_data>-TravelUUID ] OPTIONAL ).
-      CHECK ls_booking IS NOT INITIAL.
-      <fs_original_data>-NextFlightInDays =  ls_booking-minflightdate - sy-datum.
-
+    " Loop over all requested bookings
+    LOOP AT bookings ASSIGNING FIELD-SYMBOL(<booking>).
+      " Calculate DaysToFlight for the current booking instance
+      <booking>-daystoflight = <booking>-flightdate - today.
     ENDLOOP.
 
-    ct_calculated_data = CORRESPONDING #(  lt_original_data ).
-
+    " Add booking instances with the added virtual field to the output parameter
+    ct_calculated_data = CORRESPONDING #( bookings ).
   ENDMETHOD.
-
 
 
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
-
-* sample
-*    DATA(lt_requested_elements) = VALUE if_sadl_exit_calc_element_read=>tt_elements( ( |<requested_field_name>| )  ).
-*    INSERT LINES OF lt_requested_elements INTO TABLE et_requested_orig_elements.
-
+    LOOP AT it_requested_calc_elements ASSIGNING FIELD-SYMBOL(<element>).
+      " When DaysOfFlight was requested we also need to load the FlightDate for calculation
+      CASE <element>.
+        WHEN 'DAYSTOFLIGHT'.
+          APPEND 'FLIGHTDATE' TO et_requested_orig_elements.
+      ENDCASE.
+    ENDLOOP.
   ENDMETHOD.
+
 
 ENDCLASS.

@@ -4,8 +4,8 @@
 @Metadata.allowExtensions: true
 @Search.searchable: true
 
-define view entity Z##_C_RoomReservationWDTP
-  as projection on Z##_I_RoomReservationWDTP
+define view entity ZRAPH_##_C_RoomReservationWDTP
+  as projection on ZRAPH_##_I_RoomReservationWDTP
 {
   key RoomResvnUUID,
 
@@ -19,6 +19,10 @@ define view entity Z##_C_RoomReservationWDTP
                                           { localElement: 'City', element: 'City', usage: #RESULT }] }]
       HotelID,
 
+      _Hotel.Name as Hotel,
+
+      _Hotel.City as City
+
       BeginDate,
 
       EndDate,
@@ -28,21 +32,16 @@ define view entity Z##_C_RoomReservationWDTP
       @ObjectModel.text.element: ['RoomTypeText']
       @Search.defaultSearchElement: true
       RoomType,
+      
       _HotelRoomType.Text as RoomTypeText,
 
       RoomResvnPrice,
 
       CurrencyCode,
 
-      Hotel,
-
-      City,
-
-      RoomImage,
-
       LocalLastChangedAt,
       /* Associations */
       _Hotel,
       _HotelRoomType,
-      _Travel : redirected to parent Z##_C_TravelWDTP
+      _Travel : redirected to parent ZRAPH_##_C_TravelWDTP
 }

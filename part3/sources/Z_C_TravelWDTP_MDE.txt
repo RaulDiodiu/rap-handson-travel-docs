@@ -4,7 +4,7 @@
                      typeNamePlural: 'Travels',
                      title: { type: #STANDARD, value: 'TravelID' } },
        presentationVariant: [{ sortOrder: [{ by: 'TravelID', direction: #DESC }] }] }
-annotate entity Z##_C_TravelWDTP with
+annotate entity ZRAPH_##_C_TravelWDTP with
 {
   @UI.facet: [{ id:            'Travel',
                 purpose:       #STANDARD,
@@ -43,10 +43,6 @@ annotate entity Z##_C_TravelWDTP with
          identification: [ { position: 30 } ],
          selectionField: [ { position: 30 } ] }
   CustomerID;
-
-  @UI: { lineItem:       [ { position: 35, importance: #HIGH } ],
-         selectionField: [ { position: 35 } ] }
-  NextFlightInDays;
 
   @UI: { selectionField: [ { position: 37 } ] }
   KeyDate;

@@ -5,8 +5,8 @@
 @Search.searchable: true
 @ObjectModel.semanticKey: ['TravelID']
 
-define root view entity Z##_C_TravelWDTP
-  as projection on Z##_I_TravelWDTP
+define root view entity ZRAPH_##_C_TravelWDTP
+  as projection on ZRAPH_##_I_TravelWDTP
 {
   key     TravelUUID,
 
@@ -54,9 +54,8 @@ define root view entity Z##_C_TravelWDTP
           LastChangedAt,
 
           /* Associations */
-          _Booking         : redirected to composition child Z##_C_BookingWDTP,
-          _RoomReservation : redirected to composition child Z##_C_RoomReservationWDTP,
-
+          _Booking         : redirected to composition child ZRAPH_##_C_BookingWDTP,
+          _RoomReservation : redirected to composition child ZRAPH_##_C_RoomReservationWDTP,
           _Agency,
           _Currency,
           _Customer,

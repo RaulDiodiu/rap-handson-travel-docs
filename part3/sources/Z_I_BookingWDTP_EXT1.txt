@@ -1,10 +1,10 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'RAP HandsOn: Booking (Transactional)'
-define view entity Z##_I_BookingWDTP
-  as select from Z##_I_BookingWD
+define view entity ZRAPH_##_I_BookingWDTP
+  as select from /dmo/a_booking_d
 
-  association        to parent Z##_I_TravelWDTP     as _Travel     on  $projection.TravelUUID = _Travel.TravelUUID
-  composition [0..*] of Z##_I_BookingSupplementWDTP as _BookingSupplement
+  association        to parent ZRAPH_##_I_TravelWDTP     as _Travel     on  $projection.TravelUUID = _Travel.TravelUUID
+  composition [0..*] of ZRAPH_##_I_BookingSupplWDTP as _BookingSupplement
 
   association [1..1] to /DMO/I_Customer               as _Customer   on  $projection.CustomerID = _Customer.CustomerID
   association [1..1] to /DMO/I_Carrier                as _Carrier    on  $projection.CarrierID = _Carrier.AirlineID
@@ -12,26 +12,36 @@ define view entity Z##_I_BookingWDTP
                                                                      and $projection.ConnectionID = _Connection.ConnectionID
 
 {
-  key BookingUUID,
-      TravelUUID,
-      BookingID,
-      BookingDate,
-      CustomerID,
-      CarrierID,
-      ConnectionID,
-      FlightDate,
-      FlightPrice,
-      CurrencyCode,
-      BookingStatus,
+  key booking_uuid          as BookingUUID,
+
+      parent_uuid           as TravelUUID,
+
+      booking_id            as BookingID,
+
+      booking_date          as BookingDate,
+
+      customer_id           as CustomerID,
+
+      carrier_id            as CarrierID,
+
+      connection_id         as ConnectionID,
+
+      flight_date           as FlightDate,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      flight_price          as FlightPrice,
+
+      currency_code         as CurrencyCode,
+      
+      booking_status        as BookingStatus,
 
       //local ETag field --> OData ETag
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      LocalLastChangedAt,
+      local_last_changed_at as LocalLastChangedAt,
 
       //Associations
       _Travel,
       _BookingSupplement,
-
       _Customer,
       _Carrier,
       _Connection

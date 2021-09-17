@@ -4,8 +4,8 @@
 @Metadata.allowExtensions: true
 @Search.searchable: true
 
-define view entity Z##_C_BookingSupplementWDTP
-  as projection on Z##_I_BookingSupplementWDTP
+define view entity ZRAPH_##_C_BookingSupplWDTP
+  as projection on ZRAPH_##_I_BookingSupplWDTP
 {
   key BookSupplUUID,
 
@@ -31,8 +31,8 @@ define view entity Z##_C_BookingSupplementWDTP
       LocalLastChangedAt,
 
       /* Associations */
-      _Booking : redirected to parent Z##_C_BookingWDTP,
+      _Booking : redirected to parent ZRAPH_##_C_BookingWDTP,
       _Product,
       _SupplementText,
-      _Travel  : redirected to Z##_C_TravelWDTP
+      _Travel  : redirected to ZRAPH_##_C_TravelWDTP
 }

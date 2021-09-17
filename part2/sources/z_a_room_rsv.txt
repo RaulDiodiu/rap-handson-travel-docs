@@ -3,7 +3,7 @@
 @AbapCatalog.tableCategory : #TRANSPARENT
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zraph_##_a_room_rsv {
+define table zraph_##_roomrsv {
   key client            : abap.clnt not null;
   key room_resvn_uuid   : sysuuid_x16 not null;
   parent_uuid           : sysuuid_x16;
@@ -12,7 +12,7 @@ define table zraph_##_a_room_rsv {
   begin_date            : /dmo/begin_date;
   end_date              : /dmo/end_date;
   room_type             : zraph_room_type;
-  @Semantics.amount.currencyCode : 'zraph_##_a_room_rsv.currency_code'
+  @Semantics.amount.currencyCode : 'zraph_##_roomrsv.currency_code'
   room_resvn_price      : zraph_room_rsv_price;
   currency_code         : /dmo/currency_code;
   local_last_changed_at : timestampl;

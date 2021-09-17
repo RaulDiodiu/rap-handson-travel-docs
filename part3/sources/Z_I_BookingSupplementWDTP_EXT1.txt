@@ -1,22 +1,29 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'RAP HandsOn: Booking Supplement (Transactional)'
-define view entity Z##_I_BookingSupplementWDTP
-  as select from Z##_I_BookingSupplementWD
+define view entity ZRAPH_##_I_BookingSupplementWDTP
+  as select from /dmo/a_bksuppl_d
 
-  association        to parent Z##_I_BookingWDTP as _Booking        on $projection.BookingUUID = _Booking.BookingUUID
-  association [1..1] to Z##_I_TravelWDTP         as _Travel         on $projection.TravelUUID = _Travel.TravelUUID
+  association        to parent ZRAPH_##_I_BookingWDTP as _Booking     on $projection.BookingUUID = _Booking.BookingUUID
+  association [1..1] to ZRAPH_##_I_TravelWDTP         as _Travel      on $projection.TravelUUID = _Travel.TravelUUID
 
   association [1..1] to /DMO/I_Supplement          as _Product        on $projection.SupplementID = _Product.SupplementID
   association [1..*] to /DMO/I_SupplementText      as _SupplementText on $projection.SupplementID = _SupplementText.SupplementID
 
 {
-  key BookSupplUUID,
-      TravelUUID,
-      BookingUUID,
-      BookingSupplementID,
-      SupplementID,
-      Price,
-      CurrencyCode,
+  key booksuppl_uuid        as BookSupplUUID,
+
+      root_uuid             as TravelUUID,
+
+      parent_uuid           as BookingUUID,
+
+      booking_supplement_id as BookingSupplementID,
+
+      supplement_id         as SupplementID,
+
+      price                 as Price,
+
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      currency_code         as CurrencyCode,
 
       //local ETag field --> OData ETag
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
@@ -25,7 +32,6 @@ define view entity Z##_I_BookingSupplementWDTP
       //Associations
       _Travel,
       _Booking,
-
       _Product,
       _SupplementText
 }

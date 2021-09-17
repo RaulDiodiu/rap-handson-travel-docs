@@ -3,7 +3,7 @@
 As you've already created the database table before in the ABAP Dictionary section you can simply skip this part of the hands-on. Next, please continue with [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md).
 
 ## Requirement
-You will now create the database table `ZRAPH_##_A_ROOM_RSV` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
+You will now create the database table `ZRAPH_##_ROOMRSV` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
 
 ## Technical information
 The structure of the database table should be as follow:

@@ -6,7 +6,7 @@
                                        label: 'Booking Supplement',
                                        value: 'BookingSupplementID' } } }
 
-annotate entity Z##_C_BookingSupplementWDTP with
+annotate entity ZRAPH_##_C_BookingSupplWDTP with
 {
   @UI.facet: [ { id:              'BookingSupplement',
                  purpose:         #STANDARD,

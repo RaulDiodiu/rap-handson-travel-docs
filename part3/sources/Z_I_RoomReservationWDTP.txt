@@ -1,28 +1,32 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'RAP HandsOn: Room Reservation (Transactional)'
-define view entity Z##_I_RoomReservationWDTP
-  as select from Z##_I_RoomReservationWD
+define view entity ZRAPH_##_I_RoomReservationWDTP
+  as select from zraph_##_roomrsv
 
-  association        to parent Z##_I_TravelWDTP as _Travel        on $projection.TravelUUID = _Travel.TravelUUID
+  association        to parent ZRAPH_##_I_TravelWDTP as _Travel        on $projection.TravelUUID = _Travel.TravelUUID
 
 {
-  key RoomResvnUUID,
-      TravelUUID,
-      RoomResvnID,
-      HotelID,
-      BeginDate,
-      EndDate,
-      RoomType,
-      RoomResvnPrice,
-      CurrencyCode,
+  key room_resvn_uuid       as RoomResvnUUID,
 
-      _Hotel.Name               as Hotel,
-      _Hotel.City               as City,
-      '/webapp/images/room.png' as RoomImage,
+      parent_uuid           as TravelUUID,
+
+      room_resvn_id         as RoomResvnID,
+
+      hotel_id              as HotelID,
+
+      begin_date            as BeginDate,
+
+      end_date              as EndDate,
+
+      room_type             as RoomType,
+
+      room_resvn_price      as RoomResvnPrice,
+
+      currency_code         as CurrencyCode,
 
       //local ETag field --> OData ETag
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      LocalLastChangedAt,
+      local_last_changed_at as LocalLastChangedAt,
 
       //Associations
       _Travel
