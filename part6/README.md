@@ -161,11 +161,11 @@ The SAP Fiori tools extensions help you create applications, visualize navigatio
 ![alt](images/image6_11.png)
 
 SAP Fiori tools include the following extensions:
-1. **Application Wizard/Generator** - a wizard-style approach to generate the provided SAP Fiori elements and SAPUI5 freestyle floorplans. As you may observed, we used already the *Application Wizard* when we generated our SAP Fiori List Report app.
-2. **Application Modeler** - access to a visualization of the application pages, navigation, and service entities. You can add new navigation and pages, delete pages, and navigate to corresponding editing tools. The following features are part of this extension - *Page Editor* and *Page Map*.
-3. **Guided Development** - access to *How-To* guides and tutorials that explain how to implement certain functionality in an SAP Fiori elements application. You can follow the steps required to implement a feature and then use the guided development approach to make the required changes in your project.
-4. **Service Modeler** - visualization of the OData service metadata files. You can use it to browse complex services easily, including entities, properties, and associations.
-5. **XML Annotation Language Server** - access to resources that help to define annotations in the code editor, thus improving application development by reducing effort and maintaining code consistency. The following subset of features is part of this extension: Code completion, micro-snippets, diagnostics, internationalization support.
+- **Application Wizard/Generator** - a wizard-style approach to generate the provided SAP Fiori elements and SAPUI5 freestyle floorplans. As you may observed, we used already the *Application Wizard* when we generated our SAP Fiori List Report app.
+- **Application Modeler** - access to a visualization of the application pages, navigation, and service entities. You can add new navigation and pages, delete pages, and navigate to corresponding editing tools. The following features are part of this extension - *Page Editor* and *Page Map*.
+- **Guided Development** - access to *How-To* guides and tutorials that explain how to implement certain functionality in an SAP Fiori elements application. You can follow the steps required to implement a feature and then use the guided development approach to make the required changes in your project.
+- **Service Modeler** - visualization of the OData service metadata files. You can use it to browse complex services easily, including entities, properties, and associations.
+- **XML Annotation Language Server** - access to resources that help to define annotations in the code editor, thus improving application development by reducing effort and maintaining code consistency. The following subset of features is part of this extension: Code completion, micro-snippets, diagnostics, internationalization support.
 
 In the followin chapters of this hands-on, you will get yourself more in touch with each and every feature provided by SAP Fiori Tools.
 
