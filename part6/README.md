@@ -161,6 +161,7 @@ The SAP Fiori tools extensions help you create applications, visualize navigatio
 ![alt](images/image6_11.png)
 
 SAP Fiori tools include the following extensions:
+
 - **Application Wizard/Generator** - a wizard-style approach to generate the provided SAP Fiori elements and SAPUI5 freestyle floorplans. As you may observed, we used already the *Application Wizard* when we generated our SAP Fiori List Report app.
 - **Application Modeler** - access to a visualization of the application pages, navigation, and service entities. You can add new navigation and pages, delete pages, and navigate to corresponding editing tools. The following features are part of this extension - *Page Editor* and *Page Map*.
 - **Guided Development** - access to *How-To* guides and tutorials that explain how to implement certain functionality in an SAP Fiori elements application. You can follow the steps required to implement a feature and then use the guided development approach to make the required changes in your project.
