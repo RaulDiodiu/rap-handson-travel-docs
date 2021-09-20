@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:core="sap.ui.core">
+<smartfilterbar:ControlConfiguration groupId="_BASIC" 
+    key="customFilter"
+    label="Custom Filter"
+    visibleInAdvancedArea="true">
+    <smartfilterbar:customControl>
+        <ComboBox id="customFilter">
+        <core:Item key="0" text="https://www.msg.group/en"/>
+        <core:Item key="1" text="https://www.uni-passau.de/en/"/>
+        <core:Item key="2" text="https://sapui5.hana.ondemand.com/sdk/#/api/sap.fe.templates.ListReport.ExtensionAPI"/>
+    </ComboBox>
+    </smartfilterbar:customControl>
+</smartfilterbar:ControlConfiguration>
+</core:FragmentDefinition>

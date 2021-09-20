@@ -7,7 +7,7 @@ For this, we will need to implement 2 extensions to the list report.
 ## Implementation
 Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "SAP Fiori tools - Open Guided Development.  
 
-### Add custom filter
+### Add the custom filter
 
 Select item "Add a custom filter to the filter bar".  
 Press "Start Guide".  
@@ -44,7 +44,9 @@ Example:
 | 2        | https://sapui5.hana.ondemand.com/sdk/#/api/sap.fe.templates.ListReport.ExtensionAPI |
   
 Test the app and see the new filter "Custom Filter" that looks like this:  
-![Custom Action Button](images/image2.png)
+![Custom Filter Field](images/image2.png)
+  
+[Solution](../solutions/CustomFilter.fragment.xml)  
   
 ### Add custom action
 
@@ -72,7 +74,7 @@ In the next step select/enter the following information:
   
 Press "Insert Snippet".  
 Press "Exit Guide".  
-
+  
 ### Test the App
 Find the new button in the toolbar:  
 ![Custom Action Button](images/image1.png)
@@ -91,17 +93,21 @@ window.open(sExternalPage);
 ```
   
 Again test the button. Now the selected web page is opened (or an empty tab/window if nothing is selected).  
-
+  
+[Solution](../solutions/ListReportExt.controller-1.js)  
+  
 ## Add a custom column to the table
+
+### Add basic column
 
 Start the guide "Add custom columns to the table using extensions".  
 In the wizard select/enter the following information:  
 
-| Field            | Value          |
-| ---------------- | -------------- |
-| Table Type       | Responsive     |
-| Entity Set       | Travel         |
-| Leading Property | `<any column>` |
+| Field            | Value      |
+| ---------------- | ---------- |
+| Table Type       | Responsive |
+| Entity Set       | Travel     |
+| Leading Property | AgencyName |
 
 Press "Insert Snippet".  
 Press "Next".  
@@ -120,3 +126,39 @@ In this step, enter the following information:
 
 Press "Insert Snippet".  
 Press "Exit Guide".  
+  
+Check the app. Select data to see the custom cells.  
+It should look sort of like this:  
+![Custom Column](images/image3.png)  
+  
+### Give some life to the costum column
+  
+#### Make the button text context dependant
+Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.  
+We want to include the name of the hotel in the button text and handle the press on it later.  
+Replace the Text control with a button control with the following properties:  
+
+| Property | Value                     |
+| -------- | ------------------------- |
+| text     | Show info for {HotelName} |
+| press    | onRowButtonPressed        |
+  
+Check the app. Select data to see the custom cells.  
+It should now look sort of like this:  
+![Custom Column](images/image4.png)  
+  
+[Solution](../solutions/ResponsiveTableCells.fragment.xml)  
+
+#### Handle the button press
+In the previous step we already told the framework to call a function called "onRowButtonPressed", when the button is pressed.  
+However we did not yet define that function.  
+So now we open webapp/ext/controller/ListReportExt.controller.js and add the following function definition:  
+
+```js
+onRowButtonPressed: function(oEvent) {
+    var sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
+    sap.m.MessageToast.show(sAgencyName + " was pressed");
+}
+```
+  
+[Solution](../solutions/ListReportExt.controller-2.js)  
