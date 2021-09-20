@@ -90,4 +90,33 @@ var sExternalPage = this.getView().byId("customFilter").getValue();
 window.open(sExternalPage);
 ```
   
-Again test the button. Now the help page for the window.open function at w3schools will be opened.  
+Again test the button. Now the selected web page is opened (or an empty tab/window if nothing is selected).  
+
+## Add a custom column to the table
+
+Start the guide "Add custom columns to the table using extensions".  
+In the wizard select/enter the following information:  
+
+| Field            | Value          |
+| ---------------- | -------------- |
+| Table Type       | Responsive     |
+| Entity Set       | Travel         |
+| Leading Property | `<any column>` |
+
+Press "Insert Snippet".  
+Press "Next".  
+  
+In this step we don't have any input to give.  
+  
+Press "Insert Snippet".  
+Press "Next".  
+  
+In this step, enter the following information:  
+
+| Field      | Value       |
+| ---------- | ----------- |
+| Page Type  | List Report |
+| Entity Set | Travel      |
+
+Press "Insert Snippet".  
+Press "Exit Guide".  
