@@ -108,7 +108,7 @@ In the wizard select/enter the following information:
 | Table Type       | Responsive |
 | Entity Set       | Travel     |
 | Leading Property | AgencyName |
-
+  
 Press "Insert Snippet".  
 Press "Next".  
   
@@ -123,7 +123,7 @@ In this step, enter the following information:
 | ---------- | ----------- |
 | Page Type  | List Report |
 | Entity Set | Travel      |
-
+  
 Press "Insert Snippet".  
 Press "Exit Guide".  
   
@@ -161,4 +161,78 @@ onRowButtonPressed: function(oEvent) {
 }
 ```
   
+When the button is now pressed, the result should look like this:  
+![Custom Column](images/image5.png)  
+  
 [Solution](../solutions/ListReportExt.controller-2.js)  
+  
+## Let us use the extensionAPI for once
+
+### Add another custom action
+
+Select item "Add a custom action to a page using extension".  
+Press "Start Guide".  
+In the wizard select/enter the following information:  
+
+| Field         | Value                     |
+| ------------- | ------------------------- |
+| Page          | List Report Page          |
+| Function Name | onExtensionButton2Pressed |
+  
+Press "Insert Snippet".  
+Press "Next".  
+  
+In the next step select/enter the following information:  
+
+| Field           | Value             |
+| --------------- | ----------------- |
+| Entity Set      | Travel            |
+| Action Position | Table Toolbar     |
+| Action ID       | customAction2     |
+| Button Text     | What is selected? |
+| Row Selection   | yes               |
+  
+Press "Insert Snippet".  
+Press "Exit Guide".  
+  
+### Adapt the coding
+  
+In webapp/ext/controller/ListReportExt.controller.js find function onExtensionButton2Pressed.  
+Adapt it to show a message toast with the text "`<AgencyNames>` were selected", where `<AgencyName>` should be replaced with the comma separated list of selected agencies.  
+
+Within the function you can access the extension API using:  
+```js
+this.extensionAPI
+```
+Here is a helpful resource as how to get the selected contexts:  
+[ExtensionAPI](https://sapui5.hana.ondemand.com/sdk/#/api/sap.suite.ui.generic.template.ListReport.extensionAPI.ExtensionAPI%23methods/getSelectedContexts)  
+Call this method and assign the result to a variable aSelection:  
+```js
+var aSelection = // insert your code to determine the selected contexts here
+```
+  
+A selected context can access the data of the corresponding line using the getProperty method as already done in onRowButtonPressed.  
+  
+To concatenate the values of the resulting array, the reduce method can be used:    
+[Array.reduce](https://www.w3schools.com/jsref/jsref_reduce.asp)  
+This method takes a function as first and an initial value as second parameter.  
+The function to be given as first parameter can be declared an passed as follows.  
+```js
+var fnReduction = function(sValue, oContext) {
+    var sCurrentValue = // insert your code to determine the Agency name out of the context oContext here
+    if(sValue.length === 0) {
+        return sCurrentValue;
+    } else {
+        return sValue + ", " + sCurrentValue;
+    }
+};
+var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
+```
+  
+[Solution](../solutions/ListReportExt.controller-3.js)  
+  
+### Test the app
+It should now look like this:  
+
+![Custom Column](images/image6.png)
+![Custom Column](images/image7.png)  
