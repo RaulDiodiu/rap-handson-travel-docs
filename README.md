@@ -6,11 +6,8 @@ This repository offers hands-on exercises on RAP provided by msg group.
 ### Hands-On - Prerequisites
 
 * Minimum system prerequisite **SAP S/4HANA 2020 FPS01**
-* User available on ABAP development system (backend / frontend)
-* Eclipse + installed ABAP Development Tools (ADT) ([Eclipse 2021-06](https://www.eclipse.org/downloads/) or above is recommended)
+* [Installation Guide: SAP Trial, Eclipse and Business Application Studio](installation/Installation.md)
 * Basic knowledge of ABAP & ABAP CDS Views 
-* User in SAP Business Technology Platform (SAP BTP) with access to SAP Web IDE
-* SAP BTP destination to ABAP development system (frontend) which is enabled for usage in SAP Web IDE
   
 ### SAP Netweaver
 All created objects are implemented as local objects. The names to be used are listed within the corresponding chapters. For all objects, make sure, that you also provide the initials of your name as prefix. 
