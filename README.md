@@ -33,5 +33,7 @@ Find more details in folder [part5](part5/README.md) of this Git repository.
 Find more details in folder [part6](part6/README.md) of this Git repository.
 #### 7. Deploying your app
 Find more details in folder [part7](part7/README.md) of this Git repository.
+#### 8. Extending the SAP Fiori List Report
+Find more details in folder [part8](part8/README.md) of this Git repository.
 ## License
 Copyright (c) 2021 msg group. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
