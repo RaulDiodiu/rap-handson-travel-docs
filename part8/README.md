@@ -39,7 +39,7 @@ Example:
 
 | Item key | Item text                                                                           |
 | -------- | ----------------------------------------------------------------------------------- |
-| 0        | https://www.msg.group/en/                                                           |
+| 0        | https://www.msg.group/en                                                            |
 | 1        | https://www.uni-passau.de/en/                                                       |
 | 2        | https://sapui5.hana.ondemand.com/sdk/#/api/sap.fe.templates.ListReport.ExtensionAPI |
   
