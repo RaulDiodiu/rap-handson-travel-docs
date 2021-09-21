@@ -5,7 +5,7 @@ For our course we will rely on SAP's Business Technology Platform Trial ABAP Env
 1. Register for a SAP BTP Trial Account (~10min)  
 2. Create a ABAP Trial Environment (~5min)  
 3. Install Eclipse with ABAP Development Tools and the Git Plugin (~15min)  
-4. Add the BTP Trial as ABAP Project to Eclipse (~5min)  
+4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~10min)  
 5. Import some required development objects from Git (~15min, may be optional)  
 6. Install SAP Business Application Studio (~10min)
 
@@ -33,10 +33,26 @@ When the installation finished you can launch Eclipse. You will be asked for a w
 
 Now we'll install the ABAP Development Tools: Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-09/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
-### 4. Add the BTP Trial as ABAP Project to Eclipse
+### 4. Add the BTP Trial as ABAP Project to Eclipse and create a package
+#### Connecting Eclipse with BTP
 Now we will add the previously created ABAP Trial instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
 Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *default_key.json* which you've downloaded to your computer previously. Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
+
+#### Creating a development package
+You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
+
+![alt](images/image0_1.png)  
+
+On the *Next >* wizard page, assign the Name `ZRAPH_##_TRAVEL` where the `##` has to be replaced with your personal *initials*. This ensures that everybody has his own package and we don't interfere with each others - we'll use the `##` throughout the course! The superpackage will stay ZLOCAL and you can check the box to save this as favorite package for easier access.
+
+![alt](images/image0_2.png)
+
+Continue with *Next >* and select the radio button *Create a new request* where you should provide some meaningful *Request Description* and can complete the wizard by pressing *Finish*. This transport request is required as you would normally e.g. transport such packaged changes from a development to a test system. In our case this won't happen but is necessary nontheless.
+
+![alt](images/image0_3.png)
+
+With this, you've completed the fourth preparation step.
 
 ### 5. Import some required development objects from Git
 >**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with subchpater 6 to configure BAS. **If no files are found, you'll have to do the following steps!**
