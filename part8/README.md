@@ -2,13 +2,19 @@
 
 ## Requirement
 We want to add the absolutely useful function to open 3 predefined web pages by selecting them in a dropdown box and pressing a button.  
-For this, we will need to implement 2 extensions to the list report.  
+For this, we will need to implement 2 extensions to the list report, one filter and one action.  
+This is covered in section 1 and 2.  
   
-## Implementation
+Then we also want to add a new column to the list report, which contains a button that tells us the agency name of the current line.  
+This is covered in secion 3.  
+  
+At last we want a selection dependent multi select action that tells us which agencies are in the selected rows.  
+This is covered in section 4.  
+  
+## 1. Add the custom filter
+
 Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "SAP Fiori tools - Open Guided Development.  
-
-### Add the custom filter
-
+  
 Select item "Add a custom filter to the filter bar".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
@@ -48,7 +54,7 @@ Test the app and see the new filter "Custom Filter" that looks like this:
   
 [Solution](../solutions/CustomFilter.fragment.xml)  
   
-### Add custom action
+## 2. Add custom action
 
 Select item "Add a custom action to a page using extension".  
 Press "Start Guide".  
@@ -82,7 +88,7 @@ Find the new button in the toolbar:
 If you press on it, just a pop up appears with "onExtensionButtonPressed".  
 This is the generated default behaviour and will be overwritten in the next step.  
   
-## Add own coding to open an external web page
+### Add own coding to open an external web page
 Find the generated controller "ListReportExt.controller.js" in webapp/ext/controller.  
 Within this file, the function "onExtensionButtonPressed" exists, which we will now change.  
 
@@ -96,7 +102,7 @@ Again test the button. Now the selected web page is opened (or an empty tab/wind
   
 [Solution](../solutions/ListReportExt.controller-1.js)  
   
-## Add a custom column to the table
+## 3. Add a custom column to the table
 
 ### Add basic column
 
@@ -166,7 +172,7 @@ When the button is now pressed, the result should look like this:
   
 [Solution](../solutions/ListReportExt.controller-2.js)  
   
-## Let us use the extensionAPI for once
+## 4. Let us use the extensionAPI for once
 
 ### Add another custom action
 
