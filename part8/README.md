@@ -133,7 +133,7 @@ It should look sort of like this:
   
 ### Give some life to the costum column
   
-#### Make the button text context dependant
+#### Make the button text context dependent
 Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.  
 We want to include the name of the hotel in the button text and handle the press on it later.  
 Replace the Text control with a button control with the following properties:  
