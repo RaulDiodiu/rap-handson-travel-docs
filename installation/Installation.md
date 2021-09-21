@@ -4,9 +4,9 @@
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
 1. Register for a SAP BTP Trial Account (~10min)  
 2. Create a ABAP Trial Environment (~5min)  
-3. Install Eclipse with ABAP Development Tools and the Git Plugin (~15min)  
+3. Install Eclipse with ABAP Development Tools (~15min)  
 4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~10min)  
-5. Import some required development objects from Git (~15min, may be optional)  
+5. Import some required development objects from Git (~20min, may be optional)  
 6. Install SAP Business Application Studio (~10min)
 
 ### 1. SAP BTP Trial Account
@@ -55,7 +55,7 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 With this, you've completed the fourth preparation step.
 
 ### 5. Import some required development objects from Git
->**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with subchpater 6 to configure BAS. **If no files are found, you'll have to do the following steps!**
+>**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with subchapter 6 in order to configure BAS. **If no files are found, you'll have to do the following steps!**
 
 As you'll have to import a Git project to your ABAP system we'll need to install the abapGit plugin. Here you have follow the same steps as with the ADT installation - this time using the URL https://eclipse.abapgit.org/updatesite/. Select *abapGit for ABAP Development Tools (ADT)* for installation. Again accept the terms, trust the signers and restart Eclipse after the installation has finished.
 
