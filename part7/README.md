@@ -11,8 +11,8 @@ In the terminal enter the command *npm rund deploy-config*. As a consequence a w
 
 1. **Target**: ABAP
 2. **Destination**: Use the default abap-cloud destination as used in the application generation.
-3. **Name**: ZRAPH_INITIALS_TRVL (please keep in mind that the length is restricted to 15 characters)
-4. **Package**: ZRAPH_UI_INITIALS_TRAVEL (please keep in mind that this package should be created in advance before performing the deployment itself, otherwise the deploy will fail)
+3. **Name**: ZRAPH_##_TRVL (please keep in mind that the length is restricted to 15 characters)
+4. **Package**: ZRAPH_UI_##_TRAVEL (please keep in mind that this package should be created in advance before performing the deployment itself, otherwise the deploy will fail)
 5. **Transport Request**: TRLKXXXXXX (please keep in mind that this transport should already exist - you can reuse the one which you used for creating the other objects in SAP BTP ABAP Environment Trial) 
 6. **Deployment Description**: Travel Management
 
