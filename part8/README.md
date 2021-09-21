@@ -237,6 +237,8 @@ As Page, choose the ListReport.
   
 Press "Insert Snippet".  
 Press "Exit Guide".  
+  
+[Solution manifest.json](../solutions/manifest.json)  
 
 ### Test the app
 It should now look like this:  
