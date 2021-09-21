@@ -1,4 +1,4 @@
-# Readme file for Part 7 - Deploying our app
+# Part 7 - Deploying our app
 For now, only we as a developer have access to our Fiori app. In order to provide it for other users as well, we have to deploy it to our SAP BTP ABAP Environment Trials. This will be our next step.
 
 ## Deploying Apps from SAP Business Application Studio to SAP BTP ABAP Environment Trial

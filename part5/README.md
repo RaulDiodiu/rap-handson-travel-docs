@@ -46,5 +46,8 @@ To do this: double click the `Travel` EntitySet or select the `Travel` entity an
 
 This will open a new browser tab prompting you to log into your SAP system again. Once you’ve done that, the Fiori App Preview will load without showing any data, yet. You can already notice the table column’s header “Travel Identifier” which we’ve overwritten in our Metadata Extension previously.
 
+## Optional
+[5b. Implementing Basic Authorizations](5b.md)
+
 ## Next step
 [6. Creating the SAP Fiori List Report app](../part6/README.md)
