@@ -1,4 +1,4 @@
-# Readme file for Part 6 - Creating the SAP Fiori List Report app
+# Part 6 - Creating the SAP Fiori List Report app
 
 
 ## Requirement 
@@ -132,5 +132,10 @@ In the followin chapters of this hands-on, you will get yourself more in touch w
 The generated SAP Fiori List Application can be found in the following repository - https://bitbucket.org/chiuarucatalin/rap-handson-travel-managed-draft/src/main/
 
 > Please not try to clone/use this repository, since it is configured for an on Premise ABAP frontend server and not for SAP BTP, therefore the next step cannot be done without various manual activities. You can simply use it to check the code for different files in case it is needed and compare with yours.
-## Next step
+
+
+## Optional
 [7. Deploying your app](../part7/README.md)
+
+## Next step
+[8. Extending the SAP Fiori List Report](../part8/README.md)
