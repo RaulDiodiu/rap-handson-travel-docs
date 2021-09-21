@@ -231,6 +231,13 @@ var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
   
 [Solution](../solutions/ListReportExt.controller-3.js)  
   
+### Activate multiselect
+Open the guided development item "Enable multiple selection in tables".  
+As Page, choose the ListReport.  
+  
+Press "Insert Snippet".  
+Press "Exit Guide".  
+
 ### Test the app
 It should now look like this:  
 
