@@ -1,5 +1,5 @@
 METHOD calculatetotalprice.
-  MODIFY ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
       EXECUTE recalctotalprice
       FROM CORRESPONDING #( keys )

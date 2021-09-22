@@ -1,7 +1,7 @@
 METHOD settravelid.
 
   "Read travel entity
-  READ ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
       FIELDS ( travelid )
       WITH CORRESPONDING #( keys )
@@ -18,7 +18,7 @@ METHOD settravelid.
       INTO @DATA(max_travelid).
 
   " Set the travel ID
-  MODIFY ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
   ENTITY Travel
     UPDATE
       FROM VALUE #( FOR ls_travel IN lt_travel INDEX INTO i (

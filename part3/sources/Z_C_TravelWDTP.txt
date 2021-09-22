@@ -6,6 +6,7 @@
 @ObjectModel.semanticKey: ['TravelID']
 
 define root view entity ZRAPH_##_C_TravelWDTP
+  provider contract transactional_query
   as projection on ZRAPH_##_I_TravelWDTP
 {
   key     TravelUUID,

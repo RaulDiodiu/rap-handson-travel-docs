@@ -1,10 +1,10 @@
 METHOD calculatetotalprice.
-  READ ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY booking BY \_travel
       FROM CORRESPONDING #( keys )
     LINK DATA(lt_link).
 
-  MODIFY ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
     EXECUTE recalctotalprice
     FROM VALUE #( FOR <link> IN lt_link ( COND #( WHEN <link>-target-%is_draft = if_abap_behv=>mk-off THEN VALUE #( traveluuid = <link>-target-traveluuid ) ) ) )

@@ -1,16 +1,16 @@
 METHOD rejecttravel.
 
   "Modify travel instance
-  MODIFY ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
      ENTITY travel
       UPDATE FIELDS ( overallstatus )
       WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
-                                      overallstatus = travel_status-rejected ) )
+                                      overallstatus = 'X' ) )
   FAILED failed
   REPORTED reported.
 
   "Read changed data for action result
-  READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
      ENTITY travel
       ALL FIELDS WITH
       CORRESPONDING #( keys )

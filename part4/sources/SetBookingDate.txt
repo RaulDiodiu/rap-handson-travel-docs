@@ -1,6 +1,6 @@
 METHOD setbookingdate.
   " Read relevant booking instances
-  READ ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY booking
       FIELDS ( bookingdate )
       WITH CORRESPONDING #( keys )
@@ -12,7 +12,7 @@ METHOD setbookingdate.
   ENDLOOP.
 
   " Save changes via EML
-  MODIFY ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY booking
       UPDATE FIELDS ( bookingdate )
       WITH CORRESPONDING #( lt_booking )

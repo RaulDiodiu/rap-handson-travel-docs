@@ -7,7 +7,7 @@ METHOD recalctotalprice.
   DATA: amount_per_currencycode TYPE STANDARD TABLE OF ty_amount_per_currencycode.
 
   " Read all relevant travel instances.
-  READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
        ENTITY travel
           FIELDS ( bookingfee currencycode )
           WITH CORRESPONDING #( keys )
@@ -22,7 +22,7 @@ METHOD recalctotalprice.
                                          currency_code = <fs_travel>-currencycode ) ).
 
     " Read all associated room reservation and add them to the total price.
-    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+    READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY travel BY \_roomreservation
         FIELDS ( roomresvnprice currencycode )
       WITH VALUE #( ( %key = <fs_travel>-%key ) )
@@ -34,7 +34,7 @@ METHOD recalctotalprice.
     ENDLOOP.
 
     " Read all associated bookings and add them to the total price.
-    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+    READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY travel BY \_booking
         FIELDS ( flightprice currencycode )
       WITH VALUE #( ( %key = <fs_travel>-%key ) )
@@ -46,7 +46,7 @@ METHOD recalctotalprice.
     ENDLOOP.
 
     " Read all associated booking supplements and add them to the total price.
-    READ ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+    READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY booking BY \_bookingsupplement
         FIELDS (  price currencycode )
       WITH VALUE #( FOR rba_booking IN lt_booking ( %tky = rba_booking-%tky ) )
@@ -78,7 +78,7 @@ METHOD recalctotalprice.
   ENDLOOP.
 
   " write back the modified total_price of travels
-  MODIFY ENTITIES OF zraph_i_travelwdtp IN LOCAL MODE
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
       UPDATE FIELDS ( totalprice )
       WITH CORRESPONDING #( lt_travel ).

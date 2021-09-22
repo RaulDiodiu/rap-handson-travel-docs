@@ -1,32 +1,12 @@
-   "Read travel entity
-*   READ ENTITIES of Z##_I_TravelWDTP in LOCAL MODE
-*    ENTITY Travel
-*      FIELDS ( OverallStatus )
-*      with CORRESPONDING #( keys )
-*    RESULT data(lt_travel)
-*    FAILED data(lt_failed).
-*
-*    "If Status is already set, do nothing
-*    DELETE lt_travel WHERE OverallStatus IS NOT INITIAL.
-*    CHECK lt_travel IS NOT INITIAL.
-*
-*    MODIFY ENTITIES OF Z##_I_TravelWDTP IN LOCAL MODE
-*      ENTITY Travel
-*        UPDATE SET FIELDS
-*        WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
-*                                        OverallStatus = travel_status-open ) )
-*    REPORTED DATA(lt_reported).
-*
-*    reported = CORRESPONDING #( DEEP lt_reported ).
+METHOD setinitialstatus.
 
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY travel
+      UPDATE SET FIELDS
+      WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
+                                      overallstatus = 'O' ) )
+  REPORTED DATA(lt_reported).
 
+  reported = CORRESPONDING #( DEEP lt_reported ).
 
-    "SIMPLIFIED VERSION
-    MODIFY ENTITIES OF z##_i_travelwdtp IN LOCAL MODE
-      ENTITY travel
-        UPDATE SET FIELDS
-        WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
-                                        overallstatus = travel_status-open ) )
-    REPORTED DATA(lt_reported).
-
-    reported = CORRESPONDING #( DEEP lt_reported ).
+ENDMETHOD.
