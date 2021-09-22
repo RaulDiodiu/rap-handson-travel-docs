@@ -75,7 +75,7 @@ Click  `Ctrl + Shift + A` and type `ZCL_PREPARE_CURRENCY_TEST` - mark it and pre
 
 First, create another development package within `ZLOCAL` like before. Name it `ZRAPH_TRAVEL` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://bitbucket.org/chiuarucatalin/rap-handson-travel-reference-model/ as URL.
 
-Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished.
+Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished (there will probably be some irrelevant errors: *Pulled with errors*).
 
 Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
 
