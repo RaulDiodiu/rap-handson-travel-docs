@@ -24,7 +24,7 @@ METHOD validatecustomer.
 
       APPEND VALUE #( %tky                = ls_travel-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
-                      %msg                = new_message( id       = 'ZRAPH_##_MSG_TRAVELWD'
+                      %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '005' " Customer is initial
                                                          severity = if_abap_behv_message=>severity-error )
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-travel.
@@ -34,7 +34,7 @@ METHOD validatecustomer.
       APPEND VALUE #( %tky = ls_travel-%tky ) TO failed-travel.
       APPEND VALUE #( %tky                = ls_travel-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
-                      %msg                = new_message( id       = 'ZRAPH_##_MSG_TRAVELWD'
+                      %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '006' " Customer &1 unknown
                                                          v1       = ls_travel-customerid
                                                          severity = if_abap_behv_message=>severity-error )
