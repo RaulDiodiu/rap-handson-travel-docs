@@ -6,7 +6,7 @@ For our course we will rely on SAP's Business Technology Platform Trial ABAP Env
 2. Create a ABAP Trial Environment (~5min)  
 3. Install Eclipse with ABAP Development Tools (~15min)  
 4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~10min)  
-5. Import some required development objects from Git (~20min, may be optional)  
+5. Import some required development objects from Git (~25min, may be partially optional)  
 6. Install SAP Business Application Studio (~10min)
 
 ### 1. SAP BTP Trial Account
@@ -24,14 +24,16 @@ Click *Boosters* on the left, use the search and start *Prepare an Account for A
 
 You can close the BTP Cockpit now.
 
-### 3. Install Eclipse with ABAP Development Tools
+### 3. Install Eclipse with ABAP Development Tools and abapGit
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
 Go to [Eclipse 2021-09](https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-ide-java-developers) and download the installer fitting your operating system. Obviously, you'll have to install the downloaded file afterwards (Select *Eclipse IDE for Java Developers* if asked). The default installation settings should fit our needs and remain unchanged.
 
 When the installation finished you can launch Eclipse. You will be asked for a workspace and can set this as default for the future.
 
-Now we'll install the ABAP Development Tools: Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-09/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
+Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-09/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
+
+Now we'll install the abapGit AddOn: Click *Help* > *Install new Software...* in Eclipse and enter https://eclipse.abapgit.org/updatesite/ this time. Select *abapGit for ABAP Development Tools (ADT)* for installation. Continue the installation wizard like you did for ADT. After the installation Eclipse has to be restarted. Now you can access the abapGit View by clicking *Window* > *Show View* > *Other...* > *abapGit Repositories*.
 
 ### 4. Add the BTP Trial as ABAP Project to Eclipse and create a package
 #### Connecting Eclipse with BTP
@@ -55,9 +57,27 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 With this, you've completed the fourth preparation step.
 
 ### 5. Import some required development objects from Git
->**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with subchapter 6 in order to configure BAS. **If no files are found, you'll have to do the following steps!**
+#### 5 a) Importing cloud-abap-exchange-rates objects required for our course
+>**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZCL_PREPARE_CURRENCY_TEST`. If you find the class, you can skip this subchapter and continue with **5 b)** in order to configure the BAS. **If no class was found, you'll have to do the following steps!**
 
-As you'll have to import a Git project to your ABAP system we'll need to install the abapGit plugin. Here you have follow the same steps as with the ADT installation - this time using the URL https://eclipse.abapgit.org/updatesite/. Select *abapGit for ABAP Development Tools (ADT)* for installation. Again accept the terms, trust the signers and restart Eclipse after the installation has finished.
+First, create another development package within `ZLOCAL` like in subchapter 4. Name it `ZABAP_EXCHANGE_RATE` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://github.com/SAP-samples/cloud-abap-exchange-rates as URL.
+
+![alt](images/image0_4.png)
+
+Continue with *Next >* and fill your package name `ZABAP_EXCHANGE_RATE`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*.
+
+Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
+
+Click  `Ctrl + Shift + A` and type `ZCL_PREPARE_CURRENCY_TEST` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that currency exchange rates have been imported to the SAP system. Those will later be used to convert some amounts in our app.
+
+#### 5 b) Importing ZRAPH objects required for our course
+>**Note** This step might be superfluos. It could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with **subchapter 6** in order to configure the BAS. **If no files are found, you'll have to do the following steps!**
+
+First, create another development package within `ZLOCAL` like before. Name it `ZRAPH_TRAVEL` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://bitbucket.org/chiuarucatalin/rap-handson-travel-reference-model/ as URL.
+
+Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*.
+
+Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*. Great, we're good to go!
 
 ### 6. Install SAP Business Application Studio 
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
