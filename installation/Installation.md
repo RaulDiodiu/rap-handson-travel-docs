@@ -3,7 +3,7 @@
 ## Preparing for the ERP Praktikum
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
 1. Register for a SAP BTP Trial Account (~10min)  
-2. Create a ABAP Trial Environment (~5min)  
+2. Create an ABAP Trial Environment (~5min)  
 3. Install Eclipse with ABAP Development Tools and abapGit (~20min)  
 4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~5min)  
 5. Import some required development objects from Git (~25min, may be partially optional)  
@@ -17,7 +17,7 @@ Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](htt
 
 Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
 
-### 2. ABAP Trial
+### 2. ABAP Trial Environment
 With our SAP BTP Trial Account up and running we now want to oboard to the ABAP Environment Trial. Enter the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) (or stay where you've ended the first substep).
 
 Click *Boosters* on the left, use the search and start *Prepare an Account for ABAP Trial*. After a minute you should get a success message and store the *Service Key* on your computer - this will be needed to connect the ABAP Trial with Eclipse later on.
