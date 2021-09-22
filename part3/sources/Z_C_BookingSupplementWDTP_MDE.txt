@@ -18,15 +18,16 @@ annotate entity ZRAPH_##_C_BookingSupplWDTP with
                  purpose:         #HEADER,
                  targetQualifier: 'Price',
                  label:           'Price',
-                 position:        20 }
-                  ]
-  @UI.hidden:true
-  BookSupplUUID;
-  @UI.hidden:true
-  BookingUUID;
-  @UI.hidden:true
-  TravelUUID;
+                 position:        20 } ]
 
+  @UI.hidden: true
+  BookSupplUUID;
+
+  @UI.hidden: true
+  BookingUUID;
+
+  @UI.hidden: true
+  TravelUUID;
 
   @UI: { lineItem:       [ { position: 10, importance: #HIGH } ],
          identification: [ { position: 10 } ] }
