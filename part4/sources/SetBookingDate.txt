@@ -8,7 +8,7 @@ METHOD setbookingdate.
 
   " Loop over bookings and set system date as booking date
   LOOP AT lt_booking ASSIGNING FIELD-SYMBOL(<ls_booking>) WHERE bookingdate IS INITIAL.
-    <ls_booking>-bookingdate = sy-datum.
+    <ls_booking>-bookingdate = cl_abap_context_info=>get_system_date( ).
   ENDLOOP.
 
   " Save changes via EML
