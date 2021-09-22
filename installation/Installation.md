@@ -4,8 +4,8 @@
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
 1. Register for a SAP BTP Trial Account (~10min)  
 2. Create a ABAP Trial Environment (~5min)  
-3. Install Eclipse with ABAP Development Tools (~15min)  
-4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~10min)  
+3. Install Eclipse with ABAP Development Tools and abapGit (~20min)  
+4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~5min)  
 5. Import some required development objects from Git (~25min, may be partially optional)  
 6. Install SAP Business Application Studio (~10min)
 
