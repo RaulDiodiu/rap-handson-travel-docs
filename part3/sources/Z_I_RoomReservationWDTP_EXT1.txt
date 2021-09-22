@@ -8,11 +8,11 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
   association [1..1] to ZRAPH_I_HOTEL             as _Hotel         on $projection.HotelID  = _Hotel.HotelID
   association [1..1] to ZRAPH_I_HotelRoomType     as _HotelRoomType on $projection.RoomType = _HotelRoomType.Value
 {
-  key room_resvn_uuid       as RoomResvnUUID,
+  key room_rsv_uuid         as RoomResvnUUID,
 
       parent_uuid           as TravelUUID,
 
-      room_resvn_id         as RoomResvnID,
+      room_rsv_id           as RoomResvnID,
 
       hotel_id              as HotelID,
 
@@ -22,20 +22,18 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
 
       room_type             as RoomType,
 
-      room_resvn_price      as RoomResvnPrice,
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      room_rsv_price        as RoomResvnPrice,
 
       currency_code         as CurrencyCode,
-
-      _Hotel.Name           as Hotel,
-
-      _Hotel.City           as City,
 
       //local ETag field --> OData ETag
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
       local_last_changed_at as LocalLastChangedAt,
 
       //Associations
-      _Travel
+      _Travel,
+
       _Hotel,
       _HotelRoomType
 }

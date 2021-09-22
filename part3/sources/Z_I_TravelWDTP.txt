@@ -51,6 +51,5 @@ define root view entity ZRAPH_##_I_TravelWDTP
 
       //Associations
       _Booking,
-      
       _RoomReservation
 }
