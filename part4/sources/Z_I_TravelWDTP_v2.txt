@@ -1,9 +1,9 @@
 managed;
 with draft;
 
-define behavior for Z##_I_TRAVELWDTP alias Travel
+define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table /dmo/a_travel_d
-draft table z##_d_travel
+draft table zraph_##_d_travel
 lock master
 //authorization master ( instance )
 etag master LocalLastChangedAt
@@ -38,9 +38,9 @@ etag master LocalLastChangedAt
 }
 
 
-define behavior for Z##_I_BOOKINGWDTP alias Booking
+define behavior for ZRAPH_##_I_BOOKINGWDTP alias Booking
 persistent table /dmo/a_booking_d
-draft table z##_d_booking
+draft table zraph_##_d_booking
 lock dependent by _Travel
 //authorization dependent by <association>
 etag master LocalLastChangedAt
@@ -72,9 +72,9 @@ etag master LocalLastChangedAt
 
 }
 
-define behavior for Z##_I_BOOKINGSUPPLEMENTWDTP alias BookingSupplement
+define behavior for ZRAPH_##_I_BOOKINGSUPPLWDTP alias BookingSupplement
 persistent table /dmo/a_bksuppl_d
-draft table z##_d_bksup
+draft table zraph_##_d_bksup
 lock dependent by _Travel
 //authorization dependent by <association>
 etag master LocalLastChangedAt
@@ -101,9 +101,9 @@ etag master LocalLastChangedAt
   }
 }
 
-define behavior for Z##_I_ROOMRESERVATIONWDTP alias RoomReservation
-persistent table zraph_a_room_rsv
-draft table z##_d_room_rsv
+define behavior for ZRAPH_##_I_ROOMRESERVATIONWDTP alias RoomReservation
+persistent table zraph_##_roomrsv
+draft table zraph_##_d_roomrsv
 lock dependent by _Travel
 //authorization dependent by <association>
 etag master LocalLastChangedAt
@@ -116,16 +116,16 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) RoomResvnUUID;
   field ( readonly ) TravelUUID;
 
-  mapping for zraph_a_room_rsv
+  mapping for zraph_##_roomrsv
   {
-    RoomResvnUUID = room_resvn_uuid;
+    RoomResvnUUID = room_rsv_uuid;
     TravelUUID = parent_uuid;
-    RoomResvnID = room_resvn_id;
+    RoomResvnID = room_rsv_id;
     HotelID = hotel_id;
     BeginDate = begin_date;
     EndDate = end_date;
     RoomType = room_type;
-    RoomResvnPrice = room_resvn_price;
+    RoomResvnPrice = room_rsv_price;
     CurrencyCode = currency_code;
     LocalLastChangedAt = local_last_changed_at;
   }

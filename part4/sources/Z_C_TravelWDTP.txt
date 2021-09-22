@@ -1,7 +1,7 @@
 projection;
 use draft;
 
-define behavior for ZRAPH_C_TravelWDTP alias Travel
+define behavior for ZRAPH_##_C_TravelWDTP alias Travel
 {
   use create;
   use update;
@@ -14,7 +14,7 @@ define behavior for ZRAPH_C_TravelWDTP alias Travel
   use association _RoomReservation { create; with draft; }
 }
 
-define behavior for ZRAPH_C_BookingWDTP alias Booking
+define behavior for ZRAPH_##_C_BookingWDTP alias Booking
 {
   use update;
   use delete;
@@ -23,7 +23,7 @@ define behavior for ZRAPH_C_BookingWDTP alias Booking
   use association _BookingSupplement { create; with draft; }
 }
 
-define behavior for ZRAPH_C_BookingSupplementWDTP alias BookingSupplement
+define behavior for ZRAPH_##_C_BookingSupplWDTP alias BookingSupplement
 {
   use update;
   use delete;
@@ -31,7 +31,7 @@ define behavior for ZRAPH_C_BookingSupplementWDTP alias BookingSupplement
   use association _Travel { with draft; }
 }
 
-define behavior for ZRAPH_C_RoomReservationWDTP alias RoomReservation
+define behavior for ZRAPH_##_C_RoomReservationWDTP alias RoomReservation
 {
   use update;
   use delete;

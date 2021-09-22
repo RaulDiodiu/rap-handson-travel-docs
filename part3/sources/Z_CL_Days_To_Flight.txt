@@ -1,20 +1,9 @@
-CLASS zraph_##_cl_days_to_flight DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
-
+CLASS zraph_##_cl_days_to_flight DEFINITION PUBLIC FINAL CREATE PUBLIC.
   PUBLIC SECTION.
-    "for calculate
     INTERFACES if_sadl_exit_calc_element_read.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
 ENDCLASS.
 
-
-
 CLASS zraph_##_cl_days_to_flight IMPLEMENTATION.
-
 
   METHOD if_sadl_exit_calc_element_read~calculate.
     DATA(today) = cl_abap_context_info=>get_system_date( ).
@@ -31,7 +20,6 @@ CLASS zraph_##_cl_days_to_flight IMPLEMENTATION.
     ct_calculated_data = CORRESPONDING #( bookings ).
   ENDMETHOD.
 
-
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
     LOOP AT it_requested_calc_elements ASSIGNING FIELD-SYMBOL(<element>).
       " When DaysOfFlight was requested we also need to load the FlightDate for calculation
@@ -41,6 +29,5 @@ CLASS zraph_##_cl_days_to_flight IMPLEMENTATION.
       ENDCASE.
     ENDLOOP.
   ENDMETHOD.
-
 
 ENDCLASS.
