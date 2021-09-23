@@ -27,7 +27,10 @@ You can close the BTP Cockpit now.
 ### 3. Install Eclipse with ABAP Development Tools and abapGit
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
-Go to [Eclipse 2021-09](https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-ide-java-developers) and download the installer fitting your operating system. Obviously, you'll have to install the downloaded file afterwards (Select *Eclipse IDE for Java Developers* if asked). The default installation settings should fit our needs and remain unchanged.
+>**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
+
+Go to [Eclipse 2021-09](https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+>**Note** There are two different options: At the center top, *Download Links* provides a ZIP-file which simply has to be unpacked on your computer. The orange button on the right will download an installer which you'll have to run afterwards - basically you can choose your preferred option yourself. For the latter, select *Eclipse IDE for Java Developers* if asked. The default installation settings should fit our needs and remain unchanged.
 
 When the installation finished you can launch Eclipse. You will be asked for a workspace and can set this as default for the future.
 
