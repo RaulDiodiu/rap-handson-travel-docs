@@ -30,7 +30,7 @@ METHOD validatecustomer.
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-travel.
 
     " Raise messages for non existing customer ids
-    ELSEIF ls_travel-travelid IS NOT INITIAL AND NOT line_exists( lt_customer_db[ customer_id = ls_travel-customerid ] ).
+    ELSEIF ls_travel-customerid IS NOT INITIAL AND NOT line_exists( lt_customer_db[ customer_id = ls_travel-customerid ] ).
       APPEND VALUE #( %tky = ls_travel-%tky ) TO failed-travel.
       APPEND VALUE #( %tky                = ls_travel-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'

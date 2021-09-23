@@ -30,12 +30,12 @@ METHOD validateagency.
                       %element-agencyid   = if_abap_behv=>mk-on ) TO reported-travel.
 
     " Raise messages for non existing agency ids
-    ELSEIF ls_travel-travelid IS NOT INITIAL AND NOT line_exists( lt_agency_db[ agency_id = ls_travel-agencyid ] ).
+    ELSEIF ls_travel-agencyid IS NOT INITIAL AND NOT line_exists( lt_agency_db[ agency_id = ls_travel-agencyid ] ).
       APPEND VALUE #( %tky = ls_travel-%tky ) TO failed-travel.
       APPEND VALUE #( %tky                = ls_travel-%tky
                       %state_area         = 'VALIDATE_AGENCY'
                       %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
-                                                         number   = '008' " Ageency &1 unknown
+                                                         number   = '008' " Agency &1 unknown
                                                          v1       = ls_travel-agencyid
                                                          severity = if_abap_behv_message=>severity-error )
                       %element-agencyid = if_abap_behv=>mk-on ) TO reported-travel.
