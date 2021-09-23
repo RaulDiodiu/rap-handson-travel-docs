@@ -90,4 +90,4 @@ Click *View* > *Find Command...* or *Ctrl + Shift + P* and search for the comman
 Once you see the info message *You have been logged in.* you've finished necessary installations for our course!
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on October 4th **:)**
+**We're looking forward to seeing you** on October 4th **:)**
