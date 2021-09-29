@@ -92,5 +92,12 @@ Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fio
 Click *View* > *Find Command...* or *Ctrl + Shift + P* and search for the command *CF: Login to Cloud Foundry* and select it with enter. Click enter again to confirm the preset Cloud Foundry endpoint, enter your BTP Trial user's mail, confirm it with enter and do the same for the password.  
 Once you see the info message *You have been logged in.* you've finished necessary installations for our course!
 
+>**Note** There's a quite common error which mich happen when logging in to Cloud Foundry. You might get an API endpoint error message. If this affects you, there's an easy workaround:
+
+Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Confirm the command with enter.
+
+You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click`. You might have to select the *Default Identity Provider* in the browser window and will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`.  
+You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
+
 Basically, everything is ready now - congratulations!  
 **We're looking forward to see you** on October 4th **:)**
