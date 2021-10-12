@@ -4,8 +4,7 @@
                      typeNamePlural: 'Room Reservations',
                      title:          { type: #STANDARD,
                                        label: 'Room Reservation',
-                                       value: 'RoomResvnID' },
-                     imageUrl: 'RoomImage' } }
+                                       value: 'RoomResvnID' } } }
 
 annotate entity ZRAPH_##_C_RoomReservationWDTP with
 {
