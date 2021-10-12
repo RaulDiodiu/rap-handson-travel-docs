@@ -51,9 +51,6 @@ annotate entity ZRAPH_##_C_RoomReservationWDTP with
   RoomResvnPrice;
 
   @UI.hidden: true
-  RoomImage;
-
-  @UI.hidden: true
   LocalLastChangedAt;
 
 }
