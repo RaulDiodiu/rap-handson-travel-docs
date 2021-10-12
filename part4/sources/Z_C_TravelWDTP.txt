@@ -2,6 +2,7 @@ projection;
 use draft;
 
 define behavior for ZRAPH_##_C_TravelWDTP alias Travel
+use etag
 {
   use create;
   use update;
@@ -15,6 +16,7 @@ define behavior for ZRAPH_##_C_TravelWDTP alias Travel
 }
 
 define behavior for ZRAPH_##_C_BookingWDTP alias Booking
+use etag
 {
   use update;
   use delete;
@@ -24,6 +26,7 @@ define behavior for ZRAPH_##_C_BookingWDTP alias Booking
 }
 
 define behavior for ZRAPH_##_C_BookingSupplWDTP alias BookingSupplement
+use etag
 {
   use update;
   use delete;
@@ -32,6 +35,7 @@ define behavior for ZRAPH_##_C_BookingSupplWDTP alias BookingSupplement
 }
 
 define behavior for ZRAPH_##_C_RoomReservationWDTP alias RoomReservation
+use etag
 {
   use update;
   use delete;
