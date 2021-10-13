@@ -3,7 +3,7 @@ with draft;
 
 define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table /dmo/a_travel_d
-draft table zraph_##_d_travel
+draft table z##_d_travel
 lock master
 etag master LocalLastChangedAt
 {
@@ -39,7 +39,7 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_BOOKINGWDTP alias Booking
 persistent table /dmo/a_booking_d
-draft table zraph_##_d_booking
+draft table z##_d_booking
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -72,7 +72,7 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_BOOKINGSUPPLWDTP alias BookingSupplement
 persistent table /dmo/a_bksuppl_d
-draft table zraph_##_d_bksup
+draft table z##_d_bksup
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -100,7 +100,7 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_ROOMRESERVATIONWDTP alias RoomReservation
 persistent table zraph_##_roomrsv
-draft table zraph_##_d_roomrsv
+draft table z##_d_roomrsv
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
