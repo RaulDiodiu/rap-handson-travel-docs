@@ -5,6 +5,7 @@ define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table /dmo/a_travel_d
 draft table z##_d_travel
 lock master
+total etag LastChangedAt
 etag master LocalLastChangedAt
 {
   create;
