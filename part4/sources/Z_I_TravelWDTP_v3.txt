@@ -6,6 +6,7 @@ implementation in class zbp_##_i_travelwdtp unique
 persistent table /dmo/a_travel_d
 draft table z##_d_travel
 lock master
+total etag LastChangedAt
 etag master LocalLastChangedAt
 {
   create;
