@@ -1,0 +1,23 @@
+METHOD setbookingdate.
+  " Read relevant booking instances
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY booking
+      FIELDS ( bookingdate )
+      WITH CORRESPONDING #( keys )
+    RESULT DATA(lt_booking).
+
+  " Loop over bookings and set system date as booking date
+  LOOP AT lt_booking ASSIGNING FIELD-SYMBOL(<ls_booking>) WHERE bookingdate IS INITIAL.
+    <ls_booking>-bookingdate = cl_abap_context_info=>get_system_date( ).
+  ENDLOOP.
+
+  " Save changes via EML
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY booking
+      UPDATE FIELDS ( bookingdate )
+      WITH CORRESPONDING #( lt_booking )
+    REPORTED DATA(lt_reported).
+
+  " Forward reported instances
+  reported = CORRESPONDING #( DEEP lt_reported ).
+ENDMETHOD.

@@ -1,8 +1,10 @@
-managed;
+managed; // implementation in class zbp_##_i_travelwdtp unique;
+//with draft;
 
 define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table /dmo/a_travel_d
 lock master
+//authorization master ( instance )
 etag master LocalLastChangedAt
 {
   create;
@@ -38,6 +40,7 @@ etag master LocalLastChangedAt
 define behavior for ZRAPH_##_I_BOOKINGWDTP alias Booking
 persistent table /dmo/a_booking_d
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
 
@@ -70,6 +73,7 @@ etag master LocalLastChangedAt
 define behavior for ZRAPH_##_I_BOOKINGSUPPLWDTP alias BookingSupplement
 persistent table /dmo/a_bksuppl_d
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
   association _Travel;
@@ -95,6 +99,7 @@ etag master LocalLastChangedAt
 define behavior for ZRAPH_##_I_ROOMRESERVATIONWDTP alias RoomReservation
 persistent table zraph_##_roomrsv
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
   association _Travel;

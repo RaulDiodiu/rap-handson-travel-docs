@@ -1,15 +1,18 @@
 managed;
+with draft;
 
 define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table /dmo/a_travel_d
+draft table zraph_##_d_travel
 lock master
+//authorization master ( instance )
 etag master LocalLastChangedAt
 {
   create;
   update;
   delete;
-  association _Booking { create; }
-  association _RoomReservation { create; }
+  association _Booking { create; with draft; }
+  association _RoomReservation { create; with draft; }
 
   field ( numbering : managed, readonly ) TravelUUID;
 
@@ -37,15 +40,17 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_BOOKINGWDTP alias Booking
 persistent table /dmo/a_booking_d
+draft table zraph_##_d_booking
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
 
-  association _Travel;
+  association _Travel { with draft; }
 
   update;
   delete;
-  association _BookingSupplement { create; }
+  association _BookingSupplement { create; with draft; }
 
   field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID;
@@ -69,17 +74,21 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_BOOKINGSUPPLWDTP alias BookingSupplement
 persistent table /dmo/a_bksuppl_d
+draft table zraph_##_d_bksup
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
-  association _Travel;
+  association _Travel { with draft; }
+
   update;
   delete;
+  association _BookingSupplement { create; with draft; }
 
   field ( numbering : managed, readonly ) BookSupplUUID;
   field ( readonly ) TravelUUID;
 
-    mapping for /dmo/a_bksuppl_d
+  mapping for /dmo/a_bksuppl_d
   {
     BookSupplUUID = booksuppl_uuid;
     TravelUUID = root_uuid;
@@ -94,10 +103,12 @@ etag master LocalLastChangedAt
 
 define behavior for ZRAPH_##_I_ROOMRESERVATIONWDTP alias RoomReservation
 persistent table zraph_##_roomrsv
+draft table zraph_##_d_roomrsv
 lock dependent by _Travel
+//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
-  association _Travel;
+  association _Travel { with draft; }
 
   update;
   delete;

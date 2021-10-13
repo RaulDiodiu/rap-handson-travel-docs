@@ -1,0 +1,32 @@
+METHOD settravelid.
+
+  "Read travel entity
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY travel
+      FIELDS ( travelid )
+      WITH CORRESPONDING #( keys )
+    RESULT DATA(lt_travel).
+
+  " remove lines where TravelID is already filled.
+  DELETE lt_travel WHERE TravelID IS NOT INITIAL.
+  CHECK lt_travel IS NOT INITIAL.
+
+  " Select max travel ID
+  SELECT SINGLE
+      FROM  /dmo/a_travel_d
+      FIELDS MAX( travel_id )
+      INTO @DATA(max_travelid).
+
+  " Set the travel ID
+  MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+  ENTITY Travel
+    UPDATE
+      FROM VALUE #( FOR ls_travel IN lt_travel INDEX INTO i (
+        %tky              = ls_travel-%tky
+        TravelID          = max_travelid + i
+        %control-TravelID = if_abap_behv=>mk-on ) )
+    REPORTED DATA(update_reported).
+
+  reported = CORRESPONDING #( DEEP update_reported ).
+
+ENDMETHOD.
