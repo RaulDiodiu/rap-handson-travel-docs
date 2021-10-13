@@ -77,7 +77,7 @@ etag master LocalLastChangedAt
   delete;
 
   field ( numbering : managed, readonly ) BookSupplUUID;
-  field ( readonly ) TravelUUID;
+  field ( readonly ) TravelUUID, BookingUUID;
 
     mapping for /dmo/a_bksuppl_d
   {
@@ -103,7 +103,7 @@ etag master LocalLastChangedAt
   delete;
 
   field ( numbering : managed, readonly ) RoomResvnUUID;
-  field ( readonly ) TravelUUID, BookingUUID;
+  field ( readonly ) TravelUUID;
 
   mapping for zraph_##_roomrsv
   {
