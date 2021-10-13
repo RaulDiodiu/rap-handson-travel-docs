@@ -1,0 +1,42 @@
+projection;
+
+define behavior for ZRAPH_##_C_TravelWDTP alias Travel
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action acceptTravel;
+
+  use association _Booking { create; }
+  use association _RoomReservation { create; }
+}
+
+define behavior for ZRAPH_##_C_BookingWDTP alias Booking
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Travel { }
+  use association _BookingSupplement { create; }
+}
+
+define behavior for ZRAPH_##_C_BookingSupplementWDTP alias BookingSupplement
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Travel { }
+}
+
+define behavior for ZRAPH_##_C_RoomReservationWDTP alias RoomReservation
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Travel { }
+}
