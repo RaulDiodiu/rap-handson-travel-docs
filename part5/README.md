@@ -11,7 +11,7 @@ First, we’ll create the Service Definition and define which CDS entities are e
 define service ZRAPH_##_TRAVELWDTP {
   expose ZRAPH_##_C_TravelWDTP as Travel;
   expose ZRAPH_##_C_BookingWDTP as Booking;
-  expose ZRAPH_##_C_BookingSupplementWDTP as BookingSupplement;
+  expose ZRAPH_##_C_BookingSupplWDTP as BookingSupplement;
   expose ZRAPH_##_C_RoomReservationWDTP as RoomReservation;
   expose /DMO/I_Supplement as Supplement;
   expose /DMO/I_SupplementText as SupplementText;
