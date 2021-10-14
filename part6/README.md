@@ -9,7 +9,7 @@ As our FrontEnd team is not able to provide something in time, we will simply cr
 ### Create the SAP Fiori List Report in the FrontEnd
 Before starting creating the SAP Fiori List Report application, make sure that the *Step 6 - Install SAP Business Application Studio* from the [Installation Guide](../installation/Installation.md) is succesfully completed and your SAP Business Application Studio is connected to Cloud Foundry.
 
-**Important:** Seemingly, the SAP Business Application Studio is not running as expected in at least the browser _Mozilla Firefox_. Therefore, please use the _Google **Chrome**_ (which is recommended by SAP) for all future modifications with the BAS!
+**Important:** Seemingly, the SAP Business Application Studio is not running as expected in some browsers, specifically in Mozilla's _Firefox_. Therefore, **please use Google Chrome** (which is recommended by SAP) for all future modifications with the BAS!
 
 As our Service Bindings/OData service is working fine, let’s use it within a SAP Fiori app. As the app doesn’t even exist yet, let’s create (or more precisely generate) it. Therefore, access the SAP Business Application Studio via your browser and from the main screen select the tile *Start from template - Create a new project*:
 
