@@ -35,7 +35,7 @@ In the *Entity Selection* step, we have to provide as *Main entity* the *Travel*
 
 ![alt](images/image6_6.png)
 
-As final step, the project attributes will be provided as follow:
+As final step, you have to provide a name and some texts for your app. Basically you can choose those on your own but might also use our suggestion:
 
 ![alt](images/image6_7.png)
 
@@ -43,7 +43,7 @@ Now press Finish and wait for the magic to happen. After few seconds your first 
 
 ![alt](images/image6_8.png)
 
-Let's preview the just generated SAP Fiori List report app, by right clicking on the *webapp* folder and using the option *Preview Application*.
+Let's preview the just generated SAP Fiori List report app, by right clicking on the *webapp* folder and using the option *Preview Application*. Then, select the `start` option and press enter.
 
 ![alt](images/image6_9.png)
 
