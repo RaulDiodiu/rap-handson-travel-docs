@@ -144,10 +144,10 @@ Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.
 We want to include the name of the hotel in the button text and handle the press on it later.  
 Replace the Text control with a button control with the following properties:  
 
-| Property | Value                     |
-| -------- | ------------------------- |
-| text     | Show info for {HotelName} |
-| press    | onRowButtonPressed        |
+| Property | Value                       |
+| -------- | --------------------------- |
+| text     | Show info for `{HotelName}` |
+| press    | onRowButtonPressed          |
   
 Check the app. Select data to see the custom cells.  
 It should now look sort of like this:  
