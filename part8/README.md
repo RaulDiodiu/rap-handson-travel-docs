@@ -52,7 +52,7 @@ Example:
 Test the app and see the new filter "Custom Filter" that looks like this:  
 ![Custom Filter Field](images/image2.png)
   
-[Solution](../solutions/CustomFilter.fragment.xml)  
+[Solution](/solutions/CustomFilter.fragment.xml)  
   
 ## 2. Add custom action
 
@@ -100,7 +100,7 @@ window.open(sExternalPage);
   
 Again test the button. Now the selected web page is opened (or an empty tab/window if nothing is selected).  
   
-[Solution](../solutions/ListReportExt.controller-1.js)  
+[Solution](/solutions/ListReportExt.controller-1.js)  
   
 ## 3. Add a custom column to the table
 
@@ -153,7 +153,7 @@ Check the app. Select data to see the custom cells.
 It should now look sort of like this:  
 ![Custom Column](images/image4.png)  
   
-[Solution](../solutions/ResponsiveTableCells.fragment.xml)  
+[Solution](/solutions/ResponsiveTableCells.fragment.xml)  
 
 #### Handle the button press
 In the previous step we already told the framework to call a function called "onRowButtonPressed", when the button is pressed.  
@@ -170,7 +170,7 @@ onRowButtonPressed: function(oEvent) {
 When the button is now pressed, the result should look like this:  
 ![Custom Column](images/image5.png)  
   
-[Solution](../solutions/ListReportExt.controller-2.js)  
+[Solution](/solutions/ListReportExt.controller-2.js)  
   
 ## 4. Let us use the extensionAPI for once
 
@@ -235,7 +235,7 @@ var fnReduction = function(sValue, oContext) {
 var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
 ```
   
-[Solution](../solutions/ListReportExt.controller-3.js)  
+[Solution](/solutions/ListReportExt.controller-3.js)  
   
 ### Activate multiselect
 Open the guided development item "Enable multiple selection in tables".  
@@ -244,7 +244,7 @@ As Page, choose the ListReport.
 Press "Insert Snippet".  
 Press "Exit Guide".  
   
-[Solution manifest.json](../solutions/manifest.json)  
+[Solution manifest.json](/solutions/manifest.json)  
 
 ### Test the app
 It should now look like this:  
