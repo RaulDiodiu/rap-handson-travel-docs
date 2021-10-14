@@ -1,16 +1,16 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'RAP HandsOn: Room Reservation (Transactional)'
+@EndUserText.label: 'RAP HandsOn: RoomReservatn (Transactnl)'
 define view entity ZRAPH_##_I_RoomReservationWDTP
   as select from zraph_##_roomrsv
 
-  association        to parent ZRAPH_##_I_TravelWDTP as _Travel        on $projection.TravelUUID = _Travel.TravelUUID
+  association        to parent ZRAPH_##_I_TravelWDTP as _Travel     on $projection.TravelUUID = _Travel.TravelUUID
 
 {
-  key room_resvn_uuid       as RoomResvnUUID,
+  key room_rsv_uuid         as RoomResvnUUID,
 
       parent_uuid           as TravelUUID,
 
-      room_resvn_id         as RoomResvnID,
+      room_rsv_id           as RoomResvnID,
 
       hotel_id              as HotelID,
 
@@ -20,7 +20,8 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
 
       room_type             as RoomType,
 
-      room_resvn_price      as RoomResvnPrice,
+      @Semantics.amount.currencyCode: 'CurrencyCode'
+      room_rsv_price        as RoomResvnPrice,
 
       currency_code         as CurrencyCode,
 

@@ -1,0 +1,5 @@
+CLASS zbp_raph_##_i_travelwdtp DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zraph_##_i_travelwdtp.
+ENDCLASS.
+
+CLASS zbp_raph_##_i_travelwdtp IMPLEMENTATION.
+ENDCLASS.

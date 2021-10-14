@@ -4,8 +4,7 @@
                      typeNamePlural: 'Room Reservations',
                      title:          { type: #STANDARD,
                                        label: 'Room Reservation',
-                                       value: 'RoomResvnID' },
-                     imageUrl: 'RoomImage' } }
+                                       value: 'RoomResvnID' } } }
 
 annotate entity ZRAPH_##_C_RoomReservationWDTP with
 {
@@ -15,6 +14,7 @@ annotate entity ZRAPH_##_C_RoomReservationWDTP with
                  type:          #IDENTIFICATION_REFERENCE,
                  label:         'Room Reservation',
                  position:      10 } ]
+
   @UI.hidden: true
   RoomResvnUUID;
 
@@ -28,42 +28,26 @@ annotate entity ZRAPH_##_C_RoomReservationWDTP with
   @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
          identification: [ { position: 20 } ] }
   HotelID;
-
+  
   @UI: { lineItem:       [ { position: 30, importance: #HIGH } ],
          identification: [ { position: 30 } ] }
-  BeginDate;
+  City;
 
   @UI: { lineItem:       [ { position: 40, importance: #HIGH } ],
          identification: [ { position: 40 } ] }
-  EndDate;
+  BeginDate;
 
   @UI: { lineItem:       [ { position: 50, importance: #HIGH } ],
          identification: [ { position: 50 } ] }
-  RoomType;
-
-  @UI.dataPoint.title: 'Room Type'
-  RoomTypeText;
-
+  EndDate;
 
   @UI: { lineItem:       [ { position: 60, importance: #HIGH } ],
          identification: [ { position: 60 } ] }
-  RoomResvnPrice;
+  RoomType;
 
   @UI: { lineItem:       [ { position: 70, importance: #HIGH } ],
          identification: [ { position: 70 } ] }
-  CurrencyCode;
-
-  @UI: { lineItem:       [ { position: 80, importance: #HIGH } ],
-         identification: [ { position: 80 } ],
-         dataPoint:        { title: 'Hotel' }  }
-  Hotel;
-
-  @UI: { lineItem:       [ { position: 90, importance: #HIGH } ],
-         identification: [ { position: 90 } ] }
-  City;
-
-  @UI.hidden: true
-  RoomImage;
+  RoomResvnPrice;
 
   @UI.hidden: true
   LocalLastChangedAt;

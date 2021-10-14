@@ -6,7 +6,7 @@ implementation in class zbp_##_i_travelwdtp unique
 persistent table /dmo/a_travel_d
 draft table z##_d_travel
 lock master
-//authorization master ( instance )
+total etag LastChangedAt
 etag master LocalLastChangedAt
 {
   create;
@@ -40,11 +40,9 @@ etag master LocalLastChangedAt
 
 
 define behavior for Z##_I_BOOKINGWDTP alias Booking
-implementation in class zbp_##_i_bookingwdtp unique
 persistent table /dmo/a_booking_d
 draft table z##_d_booking
 lock dependent by _Travel
-//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
 
@@ -75,21 +73,18 @@ etag master LocalLastChangedAt
 }
 
 define behavior for Z##_I_BOOKINGSUPPLEMENTWDTP alias BookingSupplement
-implementation in class zbp_##_i_bookingsupplwdtp unique
 persistent table /dmo/a_bksuppl_d
 draft table z##_d_bksup
 lock dependent by _Travel
-//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
   association _Travel { with draft; }
 
   update;
   delete;
-  association _BookingSupplement { create; with draft; }
 
   field ( numbering : managed, readonly ) BookSupplUUID;
-  field ( readonly ) TravelUUID;
+  field ( readonly ) TravelUUID, BookingUUID;
 
   mapping for /dmo/a_bksuppl_d
   {
@@ -105,11 +100,9 @@ etag master LocalLastChangedAt
 }
 
 define behavior for Z##_I_ROOMRESERVATIONWDTP alias RoomReservation
-implementation in class zbp_##_i_roomreservationwdtp unique
 persistent table zraph_a_room_rsv
 draft table z##_d_room_rsv
 lock dependent by _Travel
-//authorization dependent by <association>
 etag master LocalLastChangedAt
 {
   association _Travel { with draft; }

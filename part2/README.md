@@ -34,7 +34,7 @@ Explanation:
 * `LOCAL_LAST_CHANGED_AT` is used as standard administrative field
 
 #### Solution
-[zraph_##_a_room_rsv](sources/z_a_room_rsv.txt)
+[zraph_##_roomrsv](sources/z_a_room_rsv.txt)
 
 ## Next step
 [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)

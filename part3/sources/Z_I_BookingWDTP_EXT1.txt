@@ -42,6 +42,7 @@ define view entity ZRAPH_##_I_BookingWDTP
       //Associations
       _Travel,
       _BookingSupplement,
+      
       _Customer,
       _Carrier,
       _Connection

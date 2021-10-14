@@ -1,0 +1,49 @@
+METHOD validatesupplement.
+  " Read relevant booking supplement instance data
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY bookingsupplement
+      FIELDS ( supplementid )
+      WITH CORRESPONDING #( keys )
+    RESULT DATA(lt_supplement).
+
+  READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
+    ENTITY bookingsupplement BY \_travel
+      FROM CORRESPONDING #( lt_supplement )
+    LINK DATA(lt_link).
+
+  " Get Supplement Master Data for comparison
+  SELECT FROM /dmo/i_supplement AS md_supplement
+    INNER JOIN @lt_supplement AS supplement ON supplement~supplementid = md_supplement~supplementid
+    FIELDS md_supplement~supplementid
+    INTO TABLE @DATA(lt_supplement_db).
+
+  " Loop over all booking supplement instances to be saved
+  LOOP AT lt_supplement INTO DATA(ls_supplement).
+    APPEND VALUE #(  %tky               = ls_supplement-%tky
+                     %state_area        = 'VALIDATE_SUPPLEMENT' ) TO reported-booking.
+
+    " Raise messages for empty supplement ids
+    IF ls_supplement-supplementid IS  INITIAL.
+      APPEND VALUE #( %tky = ls_supplement-%tky ) TO failed-bookingsupplement.
+      APPEND VALUE #( %tky                  = ls_supplement-%tky
+                      %state_area           = 'VALIDATE_SUPPLEMENT'
+                      %msg                  = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
+                                                           number   = '012' " Supplement is initial
+                                                           severity = if_abap_behv_message=>severity-error )
+                      %path                 = VALUE #( travel-%tky = lt_link[ KEY draft COMPONENTS source-%tky = ls_supplement-%tky ]-target-%tky )
+                      %element-supplementid = if_abap_behv=>mk-on ) TO reported-bookingsupplement.
+
+    " Raise messages for non existing supplement ids
+    ELSEIF ls_supplement-supplementid IS NOT INITIAL AND NOT line_exists( lt_supplement_db[ supplementid = ls_supplement-supplementid ] ).
+      APPEND VALUE #( %tky = ls_supplement-%tky ) TO failed-bookingsupplement.
+      APPEND VALUE #( %tky                  = ls_supplement-%tky
+                      %state_area           = 'VALIDATE_SUPPLEMENT'
+                      %msg                  = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
+                                                           number   = '013' " Supplement &1 unknown
+                                                           v1       = ls_supplement-supplementid
+                                                           severity = if_abap_behv_message=>severity-error )
+                      %path                 = VALUE #( travel-%tky = lt_link[ KEY draft COMPONENTS source-%tky = ls_supplement-%tky ]-target-%tky )
+                      %element-supplementid = if_abap_behv=>mk-on ) TO reported-bookingsupplement.
+    ENDIF.
+  ENDLOOP.
+ENDMETHOD.

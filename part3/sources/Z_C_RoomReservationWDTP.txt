@@ -14,13 +14,11 @@ define view entity ZRAPH_##_C_RoomReservationWDTP
       RoomResvnID,
 
       @Search.defaultSearchElement: true
-      @Consumption.valueHelpDefinition: [ {entity: {name: 'ZRAPH_I_HOTEL', element: 'HotelID' } ,
-                     additionalBinding: [ { localElement: 'Hotel',  element: 'Name', usage: #RESULT },
-                                          { localElement: 'City', element: 'City', usage: #RESULT }] }]
+      @ObjectModel.text.element: ['HotelName']
+      @Consumption.valueHelpDefinition: [ {entity: {name: 'ZRAPH_I_HOTEL', element: 'HotelID' } } ]
       HotelID,
-
-      _Hotel.Name as Hotel,
-
+      _Hotel.Name as HotelName,
+      
       _Hotel.City as City
 
       BeginDate,
@@ -32,14 +30,15 @@ define view entity ZRAPH_##_C_RoomReservationWDTP
       @ObjectModel.text.element: ['RoomTypeText']
       @Search.defaultSearchElement: true
       RoomType,
-      
       _HotelRoomType.Text as RoomTypeText,
 
       RoomResvnPrice,
 
+      @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
       CurrencyCode,
 
       LocalLastChangedAt,
+      
       /* Associations */
       _Hotel,
       _HotelRoomType,

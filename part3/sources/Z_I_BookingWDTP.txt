@@ -3,7 +3,7 @@
 define view entity ZRAPH_##_I_BookingWDTP
   as select from /dmo/a_booking_d
 
-  association        to parent ZRAPH_##_I_TravelWDTP as _Travel on  $projection.TravelUUID = _Travel.TravelUUID
+  association        to parent ZRAPH_##_I_TravelWDTP as _Travel on  $projection.TravelUUID        = _Travel.TravelUUID
   composition [0..*] of ZRAPH_##_I_BookingSupplWDTP  as _BookingSupplement
 
 {
