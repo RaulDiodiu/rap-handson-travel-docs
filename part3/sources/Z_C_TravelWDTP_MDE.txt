@@ -2,8 +2,7 @@
 
 @UI: { headerInfo: { typeName: 'Travel',
                      typeNamePlural: 'Travels',
-                     title: { type: #STANDARD, value: 'TravelID' } },
-       presentationVariant: [{ sortOrder: [{ by: 'TravelID', direction: #DESC }] }] }
+                     title: { type: #STANDARD, value: 'TravelID' } } }
 annotate entity ZRAPH_##_C_TravelWDTP with
 {
   @UI.facet: [{ id:            'Travel',
@@ -28,8 +27,7 @@ annotate entity ZRAPH_##_C_TravelWDTP with
   TravelUUID;
 
   @UI: { lineItem:       [ { position: 10, importance: #HIGH },
-                           { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' },
-                           { type: #FOR_ACTION, dataAction: 'rejectTravel', label: 'Reject Travel' } ],
+                           { type: #FOR_ACTION, dataAction: 'acceptTravel', label: 'Accept Travel' } ],
          identification: [ { position: 10, label: 'Travel ID' } ],
          selectionField: [ { position: 10 } ] }
   TravelID;
