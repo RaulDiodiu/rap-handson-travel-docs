@@ -112,7 +112,7 @@ In the wizard select/enter the following information:
 | Field            | Value      |
 | ---------------- | ---------- |
 | Table Type       | Responsive |
-| Entity Set       | Travel     |
+| Entity Type      | TravelType |
 | Leading Property | AgencyName |
   
 Press "Insert Snippet".  
