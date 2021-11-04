@@ -25,40 +25,62 @@ The detailed view (Object Page) of the bookings should provide its data (and boo
 ![alt](images/image1_4.png)
 
 ## Technical Setup
-We will use the following existing database tables for the travel, booking, booking supplement. You’ll find the relevant fields below. In addition to the existing database from the ABAP Flight Reference Scenario, we will create a new database table for storing the room reservations belonging to a specific travel (see [part2](../part2/README.md)).
-- **/DMO/A_Travel_D** - General Travel Data (and some administrative information)
-- **/DMO/A_Booking_D** - Booked Flights for Travel instances
-- **/DMO/A_BkSuppl_D** - Booking Supplements for Booking instances
+We will use the following database tables for the instances travel, booking, booking supplement, room reservation. You’ll find the relevant fields below. The first three are one-to-one copies from the ABAP Flight Reference Scenario. Additionally, we have already created a new database table for storing the room reservations belonging to a specific travel (otherwise those four tables will be created in [part2](../part2/README.md)).
+- **ZRAPH_##_Travel** - General Travel Data (and some administrative information)
+- **ZRAPH_##_Booking** - Booked Flights for Travel instances
+- **ZRAPH_##_BookSup** - Booking Supplements for Booking instances
+- **ZRAPH_##_RoomRsv** - Room Reservations for Booking Supplement instances
 
-| Database Table    | Field Name |
-| ----------- | ----------- |
-| **/DMO/A_Travel_D**     | travel_uuid **(key)**|
-|                     | travel_id        |
-|                     | agency_id        |
-|                     | customer_id      |
-|                     | begin_date       |
-|                     | end_date         |
-|                     | booking_fee      |
-|                     | currency_code    |
-|                     | description      |
-| **/DMO/A_Booking_D**    | booking_uuid **(key)** |
-|                     | parent_uuid        |
-|                     | booking_id        | 
-|                     | booking_date        | 
-|                     | customer_id        | 
-|                     | carrier_id        | 
-|                     | connection_id        | 
-|                     | flight_date        | 
-|                     | flight_price        | 
-|                     | currency_code        | 
-|                     | booking_status        | 
-| **/DMO/A_BkSuppl_D**    | booksuppl_uuid **(key)**        | 
-|                     | root_uuid         | 
-|                     | parent_uuid        | 
-|                     | booking_supplement_id        | 
-|                     | supplement_id        | 
-|                     | price        | 
-|                     | currency_code        | 
+| Database Table       | Field Name               |
+| -------------------- | ------------------------ |
+| **ZRAPH_##_Travel**  | client **(key)**         |
+|                      | travel_uuid **(key)**    |
+|                      | travel_id                |
+|                      | agency_id                |
+|                      | customer_id              |
+|                      | begin_date               |
+|                      | end_date                 |
+|                      | booking_fee              |
+|                      | currency_code            |
+|                      | description              |
+|                      | local_created_by         |
+|                      | local_created_at         |
+|                      | local_last_changed_by    |
+|                      | local_last_changed_at    |
+|                      | last_changed_at          |
+| **ZRAPH_##_Booking** | client **(key)**         |
+|                      | booking_uuid **(key)**   |
+|                      | parent_uuid              |
+|                      | booking_id               | 
+|                      | booking_date             | 
+|                      | customer_id              | 
+|                      | carrier_id               | 
+|                      | connection_id            | 
+|                      | flight_date              | 
+|                      | flight_price             | 
+|                      | currency_code            | 
+|                      | booking_status           |
+|                      | local_last_changed_at    |
+| **ZRAPH_##_BookSup** | client **(key)**         |
+|                      | booksuppl_uuid **(key)** |
+|                      | root_uuid                |
+|                      | parent_uuid              |
+|                      | booking_supplement_id    | 
+|                      | supplement_id            | 
+|                      | price                    | 
+|                      | currency_code            |
+|                      | local_last_changed_at    |
+| **ZRAPH_##_RoomRsv** | client **(key)**         |
+|                      | roomrsv_uuid **(key)**   | 
+|                      | parent_uuid              | 
+|                      | roomrsv_id               | 
+|                      | hotel_id                 | 
+|                      | begin_date               | 
+|                      | end_date                 |
+|                      | room_type                |
+|                      | roomrsv_price            |
+|                      | currency_code            |
+|                      | local_last_changed_at    |
 
 As you can see in the diagram below, those tables also have associations to other instances in our scenario like Agency, Customer, Flight or Hotel. For our own Virtual Data Model we’ll concentrate on the DB tables for the instances which are marked in green, though. Those are basically representing the transactional data. The remaining master data will be mostly reused by accessing existing CDS views for sake of simplicity to enrich our app with external master data. 
 
@@ -67,7 +89,7 @@ As you can see in the diagram below, those tables also have associations to othe
 With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful Application Programming Model were introduced. The app created within this hands-on will be based on the scenario managed/draft. In comparision with the unmanaged scenario, where the developer would have to implement the basic CUD (create, update, delete) operations, in the managed scenario those operations will be provided out of the box by the RAP framework. Draft-enabled business objects persist the state of the transactional buffer after every transaction on a designated draft database table. This allows the end user to stop and continue work processes at any point in time, even with inconsistent data. For more detailed information about the draft concept, see [Draft](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.001/en-US/a81081f76c904b878443bcdaf7a4eb10.html).
 
 ## Next step
-[2. Creating the Database Table for Room Reservation ](../part2/README.md)
+[2. Creating the Database Tables ](../part2/README.md)
 
 
  
