@@ -41,6 +41,7 @@ We will use the following database tables for the instances travel, booking, boo
 |                      | begin_date               |
 |                      | end_date                 |
 |                      | booking_fee              |
+|                      | total_price              |
 |                      | currency_code            |
 |                      | description              |
 |                      | local_created_by         |
