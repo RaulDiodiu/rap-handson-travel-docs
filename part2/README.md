@@ -20,7 +20,7 @@ The structure of the database table should be as follow:
 | room_type     | zraph_room_type | No |
 | roomrsv_price     | zraph_room_rsv_price | No |
 | currency_code     | /dmo/currency_code | No |
-| local_last_changed_at     | abp_locinst_lastchange_tstmpl; | No |
+| local_last_changed_at     | abp_locinst_lastchange_tstmpl | No |
 
 > **Hint**: The database tables are created from Eclipse ADT menu *New > Other ABAP Repository Object*. Please use the below code snippet for the new database table.
 

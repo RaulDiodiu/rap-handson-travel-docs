@@ -1,0 +1,13 @@
+@EndUserText.label : 'RAP HandsOn: Hotel Master Data'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zraph_##_hotel {
+  key client   : abap.clnt not null;
+  key hotel_id : zraph_##_hotel_id not null;
+  name         : zraph_##_hotel_name;
+  city         : /dmo/city;
+  country      : land1;
+
+}

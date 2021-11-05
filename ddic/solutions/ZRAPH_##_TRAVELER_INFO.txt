@@ -1,0 +1,8 @@
+@EndUserText.label : 'Traveler Info'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+define structure zraph_##_traveler_info {
+  first_name  : /dmo/first_name;
+  last_name   : /dmo/last_name;
+  travel_info : zraph_##_travel_info;
+
+}
