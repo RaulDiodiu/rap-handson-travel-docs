@@ -38,6 +38,7 @@ Define the following fields:
 Next, we have to duplicate some tables from the /DMO/ reference model to get a individual one. This allows us later when developing the RAP Fiori App to work with our own data instead of interfering with each other.
 
 Please duplicate the following tables in your SAP system to your local package via right-clicking:
+
 * Duplicate `/dmo/a_travel_d` as `ZRAPH_##_Travel`
 * Duplicate `/dmo/a_booking_d` as `ZRAPH_##_Booking`
 * Duplicate `/dmo/a_bksuppl_d` as `ZRAPH_##_BookSup`
