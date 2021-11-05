@@ -13,7 +13,7 @@ For our course we will rely on SAP's Business Technology Platform Trial ABAP Env
 First, we will register for a BTP Trial Account. Therefore, go to
 [SAP's website](https://www.sap.com/index.html) and register for an SAP account at the top right (you could e.g. provide 'University of Passau' as company, 'Training' as department and 'Student' as relationship or whatever seems fit to you). After confirming the mail you have to set a password and then log in.
 
-Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). If you close this tab after logging in and being asked for a phone number you might be lucky and won't be asked for a phone number when opening the link a second time - otherwise please provide your phone number. Select *Singapore - Azure* as your region and continue - the generation of your account might take roughly two minutes.
+Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). If you close this tab after logging in and being asked for a phone number you might be lucky and won't be asked for a phone number when opening the link a second time - otherwise please provide your phone number. Select *US East (VA) - AWS* as your region and continue - the generation of your account might take roughly two minutes.
 
 Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
 
