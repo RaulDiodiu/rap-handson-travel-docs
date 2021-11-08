@@ -25,6 +25,7 @@ Use the built-in dictionary type NUMC with a length of 6.
 
 This domain should represent the price of a reservation.  
 We'll use the same settings as the reference domain `/DMO/PRICE`:
+
 | Property  | Value |
 | --------- | ----- |
 | Data Type | CURR  |
