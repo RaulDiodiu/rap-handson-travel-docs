@@ -21,7 +21,7 @@ Define the following fields:
 | Field name            | Kind of type         | Type                    | Is key | Nullable | Reference                                                        |
 | --------------------- | -------------------- | ----------------------- | ------ | -------- | ---------------------------------------------------------------- |
 | client                | Predefined DDIC type | CLNT                    | yes    | no       |                                                                  |
-| room_rsv_uuid         | Data Element         | SYSUUID_X16             | yes    | no       |                                                                  |
+| roomrsv_uuid         | Data Element         | SYSUUID_X16             | yes    | no       |                                                                  |
 | parent_uuid           | Data Element         | SYSUUID_X16             | no     | yes      |                                                                  |
 | roomrsv_id            | Data Element         | ZRAPH_##_ROOM_RSV_ID    | no     | no       |                                                                  |
 | hotel_id              | Data Element         | ZRAPH_##_HOTEL_ID       | no     | yes      |                                                                  |
@@ -44,7 +44,7 @@ Please duplicate the following tables in your SAP system to your local package v
 * Duplicate `/dmo/a_bksuppl_d` as `ZRAPH_##_BookSup`
 
 
-### 3. Create table ZRAPH_##_HOTEL
+### 3. Create table ZRAPH_##_Hotel
 
 Above the table definition give the following metadata:  
 Give the table the description: 'RAP HandsOn: Hotel Master Data'  
