@@ -12,7 +12,7 @@ This domain should represent the identifier of a hotel.
 The ID shall be treated as character but must consist of numbers only.  
 We want to use the first 2 places of this ID to encode a numeric country code.  
 In each country we expect no more than 9.999 hotels.  
-Example: 019999
+Example: 019999  
 Choose the smallest possible number of places for the length of the ID.
 
 
