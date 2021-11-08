@@ -84,6 +84,11 @@ Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or pres
 
 Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that room reservation and hotel data has been generated in the SAP system. Great, we're good to go!
 
+Basically, everything is ready now - congratulations!  
+**We're looking forward to see you** on November 8th **:)**
+
+## NOT RELEVANT for Training SAP Development (November 2021)
+
 ### 6. Install SAP Business Application Studio 
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
 
@@ -100,4 +105,4 @@ You'll get a link in order to retrieve a temporary passcode for logging in - ope
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on October 4th **:)**
+**We're looking forward to see you** on November 8th **:)**
