@@ -23,7 +23,13 @@ Use the built-in dictionary type NUMC with a length of 6.
 
 ### 4. Create a domain ZRAPH_##_ROOM_RSV_PRICE
 
-This domain should represent the price of a reservation.
+This domain should represent the price of a reservation.  
+We'll use the same settings as the reference domain `/DMO/PRICE`:
+| Property  | Value |
+| --------- | ----- |
+| Data Type | CURR  |
+| Length    | 16    |
+| Decimals  | 2     |
 
 
 ### 5. Create a domain ZRAPH_##_ROOM_TYPE
