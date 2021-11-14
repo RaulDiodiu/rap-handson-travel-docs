@@ -4,7 +4,7 @@
                      typeNamePlural: 'Room Reservations',
                      title:          { type: #STANDARD,
                                        label: 'Room Reservation',
-                                       value: 'RoomResvnID' } } }
+                                       value: 'RoomRsvID' } } }
 
 annotate entity ZRAPH_##_C_RoomReservationWDTP with
 {
@@ -16,14 +16,14 @@ annotate entity ZRAPH_##_C_RoomReservationWDTP with
                  position:      10 } ]
 
   @UI.hidden: true
-  RoomResvnUUID;
+  RoomRsvUUID;
 
   @UI.hidden: true
   TravelUUID;
 
   @UI: { lineItem:       [ { position: 10, importance: #HIGH } ],
          identification: [ { position: 10 } ] }
-  RoomResvnID;
+  RoomRsvID;
 
   @UI: { lineItem:       [ { position: 20, importance: #HIGH } ],
          identification: [ { position: 20 } ] }
@@ -47,7 +47,7 @@ annotate entity ZRAPH_##_C_RoomReservationWDTP with
 
   @UI: { lineItem:       [ { position: 70, importance: #HIGH } ],
          identification: [ { position: 70 } ] }
-  RoomResvnPrice;
+  RoomRsvPrice;
 
   @UI.hidden: true
   LocalLastChangedAt;

@@ -11,7 +11,7 @@
 @VDM.viewType: #BASIC
 
 define view entity Z##_I_TravelWD
-  as select from /dmo/a_travel_d
+  as select from zraph_##_travel
 {
   key travel_uuid           as TravelUUID,
       travel_id             as TravelID,

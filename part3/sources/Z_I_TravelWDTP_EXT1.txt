@@ -1,7 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'RAP HandsOn: Travel (Transactional)'
 define root view entity ZRAPH_##_I_TravelWDTP
-  as select from zraaph_##_travel
+  as select from zraph_##_travel
 
   composition [0..*] of Z##_I_BookingWDTP         as _Booking
   composition [0..*] of Z##_I_RoomReservationWDTP as _RoomReservation

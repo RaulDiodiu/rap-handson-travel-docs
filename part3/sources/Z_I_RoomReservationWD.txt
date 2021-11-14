@@ -11,17 +11,17 @@
 @VDM.viewType: #BASIC
 
 define view entity Z##_I_RoomReservationWD
-  as select from zraph_a_room_rsv
+  as select from zraph_##_roomrsv
 {
-  key room_resvn_uuid       as RoomResvnUUID,
+  key roomrsv_uuid          as RoomRsvUUID,
       parent_uuid           as TravelUUID,
-      room_resvn_id         as RoomResvnID,
+      roomrsv_id            as RoomRsvID,
       hotel_id              as HotelID,
       begin_date            as BeginDate,
       end_date              as EndDate,
       room_type             as RoomType,
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      room_resvn_price      as RoomResvnPrice,
+      roomrsv_price         as RoomRsvPrice,
       currency_code         as CurrencyCode,
       local_last_changed_at as LocalLastChangedAt
 }

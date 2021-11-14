@@ -6,11 +6,11 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
   association        to parent ZRAPH_##_I_TravelWDTP as _Travel     on $projection.TravelUUID = _Travel.TravelUUID
 
 {
-  key room_rsv_uuid         as RoomResvnUUID,
+  key roomrsv_uuid         as RoomRsvUUID,
 
       parent_uuid           as TravelUUID,
 
-      room_rsv_id           as RoomResvnID,
+      roomrsv_id            as RoomRsvID,
 
       hotel_id              as HotelID,
 
@@ -21,7 +21,7 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
       room_type             as RoomType,
 
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      room_rsv_price        as RoomResvnPrice,
+      roomrsv_price         as RoomRsvPrice,
 
       currency_code         as CurrencyCode,
 

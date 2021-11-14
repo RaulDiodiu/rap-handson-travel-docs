@@ -7,11 +7,11 @@
 define view entity ZRAPH_##_C_RoomReservationWDTP
   as projection on ZRAPH_##_I_RoomReservationWDTP
 {
-  key RoomResvnUUID,
+  key RoomRsvUUID,
 
       TravelUUID,
 
-      RoomResvnID,
+      RoomRsvID,
 
       @Search.defaultSearchElement: true
       @ObjectModel.text.element: ['HotelName']
@@ -32,7 +32,7 @@ define view entity ZRAPH_##_C_RoomReservationWDTP
       RoomType,
       _HotelRoomType.Text as RoomTypeText,
 
-      RoomResvnPrice,
+      RoomRsvPrice,
 
       @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
       CurrencyCode,

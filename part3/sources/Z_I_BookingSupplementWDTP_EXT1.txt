@@ -1,7 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'RAP HandsOn: Booking Supplement (Transactional)'
 define view entity ZRAPH_##_I_BookingSupplementWDTP
-  as select from /dmo/a_bksuppl_d
+  as select from zraph_##_booksup
 
   association        to parent ZRAPH_##_I_BookingWDTP as _Booking     on $projection.BookingUUID = _Booking.BookingUUID
   association [1..1] to ZRAPH_##_I_TravelWDTP         as _Travel      on $projection.TravelUUID = _Travel.TravelUUID
