@@ -51,4 +51,4 @@ This will open a new browser tab prompting you to log into your SAP system again
 [5b. Implementing Basic Authorizations](5b.md)
 
 ## Next step
-[6. Creating the SAP Fiori List Report app](../part6/README.md)
+[6. Transactional Behavior](../part6/6a.md)
