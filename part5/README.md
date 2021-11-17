@@ -1,4 +1,4 @@
-# Readme file for Part 5 - Publishing the Business Service
+# Part 5 - Publishing the Business Service
 
 With our behavior definition and implementation being completed the next step ist to actually publish the CDS views to be exposed via an OData service. This will also allow us to finally test our implementations.
 

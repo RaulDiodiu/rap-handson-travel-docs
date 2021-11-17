@@ -1,7 +1,7 @@
 managed;
 
 define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
-persistent table /dmo/a_travel_d
+persistent table ZRAPH_##_Travel
 lock master
 etag master LocalLastChangedAt
 {
@@ -13,7 +13,7 @@ etag master LocalLastChangedAt
 
   field ( numbering : managed, readonly ) TravelUUID;
 
-  mapping for /dmo/a_travel_d
+  mapping for ZRAPH_##_Travel
   {
     TravelUUID = travel_uuid;
     TravelID = travel_id;
@@ -36,7 +36,7 @@ etag master LocalLastChangedAt
 
 
 define behavior for ZRAPH_##_I_BOOKINGWDTP alias Booking
-persistent table /dmo/a_booking_d
+persistent table ZRAPH_##_Booking
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -50,7 +50,7 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID;
 
-  mapping for /dmo/a_booking_d
+  mapping for ZRAPH_##_Booking
   {
     BookingUUID = booking_uuid;
     TravelUUID = parent_uuid;
@@ -68,7 +68,7 @@ etag master LocalLastChangedAt
 }
 
 define behavior for ZRAPH_##_I_BOOKINGSUPPLWDTP alias BookingSupplement
-persistent table /dmo/a_bksuppl_d
+persistent table ZRAPH_##_BookSup
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -79,7 +79,7 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) BookSupplUUID;
   field ( readonly ) TravelUUID, BookingUUID;
 
-    mapping for /dmo/a_bksuppl_d
+    mapping for ZRAPH_##_BookSup
   {
     BookSupplUUID = booksuppl_uuid;
     TravelUUID = root_uuid;
@@ -93,7 +93,7 @@ etag master LocalLastChangedAt
 }
 
 define behavior for ZRAPH_##_I_ROOMRESERVATIONWDTP alias RoomReservation
-persistent table zraph_##_roomrsv
+persistent table ZRAPH_##_RoomRsv
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -105,16 +105,16 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) RoomResvnUUID;
   field ( readonly ) TravelUUID;
 
-  mapping for zraph_##_roomrsv
+  mapping for ZRAPH_##_RoomRsv
   {
-    RoomResvnUUID = room_rsv_uuid;
+    RoomRsvUUID = roomrsv_uuid;
     TravelUUID = parent_uuid;
-    RoomResvnID = room_rsv_id;
+    RoomRsvID = roomrsv_id;
     HotelID = hotel_id;
     BeginDate = begin_date;
     EndDate = end_date;
     RoomType = room_type;
-    RoomResvnPrice = room_rsv_price;
+    RoomRsvPrice = roomrsv_price;
     CurrencyCode = currency_code;
     LocalLastChangedAt = local_last_changed_at;
   }
