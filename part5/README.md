@@ -51,4 +51,4 @@ This will open a new browser tab prompting you to log into your SAP system again
 [5b. Implementing Basic Authorizations](5b.md)
 
 ## Next step
-[6. Behavior Definition & Projection](../part6/6a.md)
+[6. Behavior Implementation](../part6/6a.md)
