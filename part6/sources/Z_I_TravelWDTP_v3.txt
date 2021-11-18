@@ -1,9 +1,8 @@
-managed;
+managed implementation in class zraph_##_bp_i_travelwdtp unique;
 with draft;
 
 define behavior for Z##_I_TRAVELWDTP alias Travel
-implementation in class zbp_##_i_travelwdtp unique
-persistent table /dmo/a_travel_d
+persistent table zraph_##_travel
 draft table z##_d_travel
 lock master
 total etag LastChangedAt
@@ -17,7 +16,7 @@ etag master LocalLastChangedAt
 
   field ( numbering : managed, readonly ) TravelUUID;
 
-  mapping for /dmo/a_travel_d
+  mapping for zraph_##_travel
   {
     TravelUUID = travel_uuid;
     TravelID = travel_id;
@@ -40,7 +39,7 @@ etag master LocalLastChangedAt
 
 
 define behavior for Z##_I_BOOKINGWDTP alias Booking
-persistent table /dmo/a_booking_d
+persistent table zraph_##_booking
 draft table z##_d_booking
 lock dependent by _Travel
 etag master LocalLastChangedAt
@@ -55,7 +54,7 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID;
 
-  mapping for /dmo/a_booking_d
+  mapping for zraph_##_booking
   {
     BookingUUID = booking_uuid;
     TravelUUID = parent_uuid;
@@ -73,7 +72,7 @@ etag master LocalLastChangedAt
 }
 
 define behavior for Z##_I_BOOKINGSUPPLEMENTWDTP alias BookingSupplement
-persistent table /dmo/a_bksuppl_d
+persistent table zraph_##_booksup
 draft table z##_d_bksup
 lock dependent by _Travel
 etag master LocalLastChangedAt
@@ -86,7 +85,7 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) BookSupplUUID;
   field ( readonly ) TravelUUID, BookingUUID;
 
-  mapping for /dmo/a_bksuppl_d
+  mapping for zraph_##_booksup
   {
     BookSupplUUID = booksuppl_uuid;
     TravelUUID = root_uuid;
@@ -100,8 +99,8 @@ etag master LocalLastChangedAt
 }
 
 define behavior for Z##_I_ROOMRESERVATIONWDTP alias RoomReservation
-persistent table zraph_a_room_rsv
-draft table z##_d_room_rsv
+persistent table zraph_##_roomrsv
+draft table z##_d_roomrsv
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
@@ -113,16 +112,16 @@ etag master LocalLastChangedAt
   field ( numbering : managed, readonly ) RoomResvnUUID;
   field ( readonly ) TravelUUID;
 
-  mapping for zraph_a_room_rsv
+  mapping for zraph_##_roomrsv
   {
-    RoomResvnUUID = room_resvn_uuid;
+    RoomRsvUUID = roomrsv_uuid;
     TravelUUID = parent_uuid;
-    RoomResvnID = room_resvn_id;
+    RoomRsvID = roomrsv_id;
     HotelID = hotel_id;
     BeginDate = begin_date;
     EndDate = end_date;
     RoomType = room_type;
-    RoomResvnPrice = room_resvn_price;
+    RoomRsvPrice = roomrsv_price;
     CurrencyCode = currency_code;
     LocalLastChangedAt = local_last_changed_at;
   }
