@@ -1,7 +1,6 @@
-# Part 7 - Creating the SAP Fiori List Report app
+# Part 7 - Business Application Studio
 
-
-## Requirement 
+## Creating the SAP Fiori List Report app - Requirement
 As our FrontEnd team is not able to provide something in time, we will simply create a quick application on our own as this can be achieved pretty easy – even for a BackEnd developer with no UI5 skills. Basically, we want to implement exactly what we’ve just seen in the Fiori App Preview of the Service Binding. This is using the SAP Fiori Elements floorplan “List Report Object Page" which we’ll create ourselves now. 
 
 ## Implementation
