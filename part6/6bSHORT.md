@@ -44,7 +44,7 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 
 >**Remark** Via a quick fix, you can generate the method declaration in the behavior pool directly from the behavior definition editor.
 
->**Important** Make sure you add the validation also to the `Prepare` framework action in the root behavior definition. This is necessary in draft scenarios to also run validations on draft entities and not only for final checks during activation. Please add the following statement to the travel root behavior definition - directly between the just created determination and the field mapping for /dmo/a_travel_d:  
+>**Important** Make sure you add the validation also to the `Prepare` framework action in the root behavior definition. This is necessary in draft scenarios to also run validations on draft entities and not only for final checks during activation. Please add the following statement to the travel root behavior definition - directly between the just created determination and the field mapping for ZRAPH_##_Travel:  
 `draft determine action Prepare {`  
   `validation validateCustomer;`  
 `}`
