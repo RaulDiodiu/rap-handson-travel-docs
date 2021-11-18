@@ -24,12 +24,12 @@ METHOD recalctotalprice.
     " Read all associated room reservation and add them to the total price.
     READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY travel BY \_roomreservation
-        FIELDS ( roomresvnprice currencycode )
+        FIELDS ( roomrsvprice currencycode )
       WITH VALUE #( ( %key = <fs_travel>-%key ) )
       RESULT DATA(lt_roomreservation).
 
     LOOP AT lt_roomreservation INTO DATA(roomreservation) WHERE currencycode IS NOT INITIAL.
-      COLLECT VALUE ty_amount_per_currencycode( amount        = roomreservation-roomresvnprice
+      COLLECT VALUE ty_amount_per_currencycode( amount        = roomreservation-roomrsvprice
                                                 currency_code = roomreservation-currencycode ) INTO amount_per_currencycode.
     ENDLOOP.
 
