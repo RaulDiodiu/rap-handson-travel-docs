@@ -12,13 +12,7 @@ annotate entity ZRAPH_##_C_BookingSupplWDTP with
                  purpose:         #STANDARD,
                  type:            #IDENTIFICATION_REFERENCE,
                  label:           'Booking Supplement',
-                 position:        10 },
-                { id:              'PriceHeader',
-                 type:            #DATAPOINT_REFERENCE,
-                 purpose:         #HEADER,
-                 targetQualifier: 'Price',
-                 label:           'Price',
-                 position:        20 } ]
+                 position:        10 } ]
 
   @UI.hidden: true
   BookSupplUUID;
