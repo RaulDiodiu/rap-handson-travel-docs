@@ -102,7 +102,7 @@ etag master LocalLastChangedAt
   update;
   delete;
 
-  field ( numbering : managed, readonly ) RoomResvnUUID;
+  field ( numbering : managed, readonly ) RoomRsvUUID;
   field ( readonly ) TravelUUID;
 
   mapping for ZRAPH_##_RoomRsv
