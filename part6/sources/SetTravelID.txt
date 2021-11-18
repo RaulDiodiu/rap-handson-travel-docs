@@ -13,7 +13,7 @@ METHOD settravelid.
 
   " Select max travel ID
   SELECT SINGLE
-      FROM  /dmo/a_travel_d
+      FROM  ZRAPH_##_Travel
       FIELDS MAX( travel_id )
       INTO @DATA(max_travelid).
 
