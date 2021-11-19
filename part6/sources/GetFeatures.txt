@@ -1,4 +1,4 @@
-METHOD get_features.
+METHOD get_instance_features.
   READ ENTITIES OF ZRAPH_##_I_TravelWDTP IN LOCAL MODE
     ENTITY Travel
       FIELDS ( OverallStatus )
