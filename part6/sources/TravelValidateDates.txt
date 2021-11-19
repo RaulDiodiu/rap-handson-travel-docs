@@ -1,7 +1,8 @@
 METHOD validatedates.
   "Read relevant travel instance data
   READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
-  FIELDS ( begindate enddate ) WITH CORRESPONDING #( keys )
+    ENTITY trvael
+    FIELDS ( begindate enddate ) WITH CORRESPONDING #( keys )
     RESULT DATA(lt_travel).
 
   LOOP AT lt_travel INTO DATA(ls_travel).
