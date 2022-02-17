@@ -35,7 +35,10 @@ Go to [Eclipse 2021-12](https://www.eclipse.org/downloads/packages/release/2021-
 
 >**Note** There are two different options: At the center top, *Download Links* provides a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences. The orange button on the right will download an **installer** which you'll have to run afterwards - basically you can choose your preferred option yourself. For the latter, select *Eclipse IDE for Java Developers* if asked. The default installation settings should fit our needs and remain unchanged.
 
-When the installation finished you can launch Eclipse. You will be asked for a workspace and can set this as default for the future.
+When the installation finished you can launch Eclipse.  
+You will be asked for a workspace and can set this as default for the future.
+
+>**Note** You may have to **run Eclipse as administrator** in order to install add-ons.
 
 Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
