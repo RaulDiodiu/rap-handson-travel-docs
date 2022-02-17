@@ -1,4 +1,4 @@
-# Installation Guide: SAP Trial, Eclipse and Business Application Studio
+# Installation Guide: SAP Trial, Eclipse and BAS
 
 ## Preparing for the ERP Praktikum
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
