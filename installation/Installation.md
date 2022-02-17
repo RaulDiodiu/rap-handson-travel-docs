@@ -29,15 +29,15 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
 
->**Note** You may have to leave your company's VPN! The connection to Eclipse's plugin repository may fail otherwise.
+>**Note** You may have to **leave your company's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2021-09](https://www.eclipse.org/downloads/packages/release/2021-09/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2021-12](https://www.eclipse.org/downloads/packages/release/2021-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
 
->**Note** There are two different options: At the center top, *Download Links* provides a ZIP-file which simply has to be unpacked on your computer. The orange button on the right will download an installer which you'll have to run afterwards - basically you can choose your preferred option yourself. For the latter, select *Eclipse IDE for Java Developers* if asked. The default installation settings should fit our needs and remain unchanged.
+>**Note** There are two different options: At the center top, *Download Links* provides a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences. The orange button on the right will download an **installer** which you'll have to run afterwards - basically you can choose your preferred option yourself. For the latter, select *Eclipse IDE for Java Developers* if asked. The default installation settings should fit our needs and remain unchanged.
 
 When the installation finished you can launch Eclipse. You will be asked for a workspace and can set this as default for the future.
 
-Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-09/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
+Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
 Now we'll install the abapGit AddOn: Click *Help* > *Install new Software...* in Eclipse and enter https://eclipse.abapgit.org/updatesite/ this time. Select *abapGit for ABAP Development Tools (ADT)* for installation. Continue the installation wizard like you did for ADT. After the installation Eclipse has to be restarted. Now you can access the abapGit View by clicking *Window* > *Show View* > *Other...* > *abapGit Repositories*.
 
@@ -87,11 +87,6 @@ Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or pres
 
 Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that room reservation and hotel data has been generated in the SAP system. Great, we're good to go!
 
-Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on November 8th **:)**
-
-## NOT RELEVANT for Training SAP Development (November 2021)
-
 ### 6. Install SAP Business Application Studio 
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
 
@@ -108,4 +103,4 @@ You'll get a link in order to retrieve a temporary passcode for logging in - ope
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on November 8th **:)**
+**We're looking forward to see you** on March 28th **:)**
