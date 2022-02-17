@@ -107,3 +107,7 @@ You won't see that the passcode was pasted, the input field will remain empty. J
 
 Basically, everything is ready now - congratulations!  
 **We're looking forward to see you** on March 28th **:)**
+
+## Further Links
+- [Eclipse Keyboard Shortcuts](Shortcuts.md)  
+- [RAP HandsOn: Introduction](../part1/README.md)
