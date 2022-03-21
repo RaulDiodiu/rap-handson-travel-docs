@@ -82,7 +82,7 @@ Click  `Ctrl + Shift + A` and type `ZCL_PREPARE_CURRENCY_TEST` - mark it and pre
 #### 5 b) Importing ZRAPH objects required for our course
 >**Note** This step might be superfluos. It could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with **subchapter 6** in order to configure the BAS. **If no files are found, you'll have to do the following steps!**
 
-First, create another development package within `ZLOCAL` like before. Name it `ZRAPH_TRAVEL` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://bitbucket.org/chiuarucatalin/rap-handson-travel-reference-model/ as URL.
+First, create another development package within `ZLOCAL` like before. Name it `ZRAPH_TRAVEL` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://bitbucket.org/erp-praktikum/rap-handson-travel-reference-model as URL.
 
 Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished (there will probably be some irrelevant errors: *Pulled with errors*).
 
