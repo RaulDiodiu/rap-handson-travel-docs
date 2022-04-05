@@ -45,7 +45,11 @@ To do this: double click the `Travel` EntitySet or select the `Travel` entity an
 
 ![alt](images/image5_1.png)
 
-This will open a new browser tab prompting you to log into your SAP system again. Once you’ve done that, the Fiori App Preview will load without showing any data, yet. You can already notice the table column’s header “Travel Identifier” which we’ve overwritten in our Metadata Extension previously. Feel free to play around a bit with the application. Use the filters or search for travels, create a new one, run our "Accept Travel" action and test whether your determination and validation are working. Don't forget to navigate through the app's hierarchy with all four of our entities.
+This will open a new browser tab prompting you to log into your SAP system again. Once you’ve done that, the Fiori App Preview will load without showing any data, yet. You can already notice the table column’s header “Travel Identifier” which we’ve overwritten in our Metadata Extension previously.  
+
+When pressing the Go button, you should already see the existing travels from your database.  
+
+Navigation to object pages is not yet working but **you already got your very first Fiori app running :)**
 
 ## Skipped
 [5b. Implementing Basic Authorizations](5b.md)
