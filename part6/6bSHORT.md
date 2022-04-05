@@ -25,7 +25,7 @@ After creation, the overall status of the travel should only be changed by the a
 To implement this action you have to first add it to the behavior definition and then create a new method in the travel behavior pool via the Quick Fix. Use the EML like before to `MODIFY` the travel instance and update the overall status accordingly. This time, we don't have to return any data after our EML modification.  
 
 **Solution**  
-[ZRAPH_##_BP_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
+[ZBP_RAPH_##_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
 
 
 ### Validation
@@ -62,7 +62,7 @@ Afterwards loop over the travels and check for every entry if the `CustomerID` h
 Once you implemented abovementioned logic you can check the solution to see how we have to react if the customer is either initial or invalid. In those cases we have to add the instance to the `failed` and `reported` tables and provide a error message (like shown in the solution).  
 
 **Solution**  
-[ZRAPH_##_BP_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
+[ZBP_RAPH_##_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
 
 ## Next step
-[6c. Feature Control](6c.md)
+[6c. Validations](6c.md)

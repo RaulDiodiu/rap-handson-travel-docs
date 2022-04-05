@@ -1,4 +1,4 @@
-managed implementation in class zraph_##_bp_i_travelwdtp unique;
+managed implementation in class zbp_raph_##_i_travelwdtp unique;
 with draft;
 
 define behavior for Z##_I_TRAVELWDTP alias Travel
