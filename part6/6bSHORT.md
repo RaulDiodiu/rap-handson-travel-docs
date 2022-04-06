@@ -10,7 +10,7 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ...
 {
 ...
-  determination <doSomething> on modify { create; field <trigger_field_name> ; }
+  determination <doSomething> on modify { create; [ field <trigger_field_name> ; ] }
 ...
 }
 ```
@@ -22,7 +22,7 @@ We want to set the initial status of newly created travel instances to _Open (O)
 
 After creation, the overall status of the travel should only be changed by the action `acceptTravel`, which we previously created, therefore the field should be read-only for the external consumer.  
 
-To implement this action you have to first add it to the behavior definition and then create a new method in the travel behavior pool via the Quick Fix. Use the EML like before to `MODIFY` the travel instance and update the overall status accordingly. This time, we don't have to return any data after our EML modification.  
+To implement this action you have to first add it to the behavior definition and then create a new method in the travel behavior pool via the Quick Fix. Use the EML like before to `MODIFY` the travel instance and update the overall status field to the value `O` for Open. This time, we don't have to return any data after our EML modification.  
 
 **Solution**  
 [ZBP_RAPH_##_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
@@ -65,4 +65,4 @@ Once you implemented abovementioned logic you can check the solution to see how 
 [ZBP_RAPH_##_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
 
 ## Next step
-[6c. Validations](6c.md)
+[7. Business Application Studio](../part7/README.md)
