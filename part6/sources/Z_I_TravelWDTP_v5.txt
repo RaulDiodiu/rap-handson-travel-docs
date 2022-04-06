@@ -1,0 +1,162 @@
+managed implementation in class zbp_raph_##_i_travelwdtp unique;
+with draft;
+
+define behavior for ZRAPH_##_I_TravelWDTP alias Travel
+persistent table zraph_##_travel
+draft table z##_d_travel
+lock master
+total etag LastChangedAt
+etag master LocalLastChangedAt
+{
+  create;
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) TravelUUID;
+  field ( readonly ) TravelID, OverallStatus;
+  field ( mandatory ) CustomerID, AgencyID, BeginDate, EndDate;
+
+  action acceptTravel result [1] $self;
+  action rejectTravel result [1] $self;
+  internal action reCalcTotalPrice;
+
+  determination setInitialStatus on modify { create; }
+  determination calculateTotalPrice on modify { field BookingFee, CurrencyCode; }
+  determination setTravelID on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
+  validation validateAgency on save { create; field AgencyID; }
+  validation validateDates on save { create; field BeginDate, EndDate; }
+
+  draft determine action Prepare {
+    validation validateCustomer;
+    validation validateAgency;
+    validation validateDates;
+    validation Booking~validateCustomer;
+    validation BookingSupplement~validateSupplement;
+  }
+
+  association _Booking { create; with draft; }
+  association _RoomReservation { create; with draft; }
+
+  mapping for ZRAPH_##_Travel
+  {
+    TravelUUID = travel_uuid;
+    TravelID = travel_id;
+    AgencyID = agency_id;
+    CustomerID = customer_id;
+    BeginDate = begin_date;
+    EndDate = end_date;
+    BookingFee = booking_fee;
+    TotalPrice = total_price;
+    CurrencyCode = currency_code;
+    Description = description;
+    OverallStatus = overall_status;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LastChangedAt = last_changed_at;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZRAPH_##_I_BookingWDTP alias Booking
+persistent table zraph_##_booking
+draft table z##_d_booking
+lock dependent by _Travel
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly ) TravelUUID, BookingDate;
+  field ( numbering : managed, readonly ) BookingUUID;
+  field ( mandatory ) CustomerID;
+
+  determination calculateTotalPrice on modify { field FlightPrice, CurrencyCode; }
+  determination setBookingDate on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
+
+  association _Travel { with draft; }
+  association _BookingSupplement { create; with draft; }
+
+  mapping for ZRAPH_##_Booking
+  {
+    BookingUUID = booking_uuid;
+    TravelUUID = parent_uuid;
+    BookingID = booking_id;
+    BookingDate = booking_date;
+    CustomerID = customer_id;
+    CarrierID = carrier_id;
+    ConnectionID = connection_id;
+    FlightDate = flight_date;
+    FlightPrice = flight_price;
+    CurrencyCode = currency_code;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZRAPH_##_I_BookingSupplWDTP alias BookingSupplement
+persistent table zraph_##_booksup
+draft table z##_d_bksup
+lock dependent by _Travel
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly ) TravelUUID, BookingUUID;
+  field ( numbering : managed, readonly ) BookSupplUUID;
+  field ( mandatory ) SupplementID;
+
+  determination calculateTotalPrice on modify { field Price, CurrencyCode; }
+
+  validation validateSupplement on save { create; field SupplementID; }
+
+  association _Travel { with draft; }
+  association _Booking { with draft; }
+
+  mapping for ZRAPH_##_BookSup
+  {
+    BookSupplUUID = booksuppl_uuid;
+    TravelUUID = root_uuid;
+    BookingUUID = parent_uuid;
+    BookingSupplementID = booking_supplement_id;
+    SupplementID = supplement_id;
+    Price = price;
+    CurrencyCode = currency_code;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
+
+define behavior for ZRAPH_##_I_RoomReservationWDTP alias RoomReservation
+persistent table zraph_##_roomrsv
+draft table z##_d_roomrsv
+lock dependent by _Travel
+etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly ) TravelUUID;
+  field ( numbering : managed, readonly ) RoomRsvUUID;
+
+  determination calculateTotalPrice on modify { field RoomRsvPrice, CurrencyCode; }
+
+  association _Travel { with draft; }
+
+  mapping for ZRAPH_##_RoomRsv
+  {
+    RoomRsvUUID = roomrsv_uuid;
+    TravelUUID = parent_uuid;
+    RoomRsvID = roomrsv_id;
+    HotelID = hotel_id;
+    BeginDate = begin_date;
+    EndDate = end_date;
+    RoomType = room_type;
+    RoomRsvPrice = roomrsv_price;
+    CurrencyCode = currency_code;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}
