@@ -46,10 +46,10 @@ etag master LocalLastChangedAt
 {
 
   association _Travel { with draft; }
+  association _BookingSupplement { create; with draft; }
 
   update;
   delete;
-  association _BookingSupplement { create; with draft; }
 
   field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID;
@@ -78,6 +78,7 @@ lock dependent by _Travel
 etag master LocalLastChangedAt
 {
   association _Travel { with draft; }
+  association _Booking { with draft; }
 
   update;
   delete;
