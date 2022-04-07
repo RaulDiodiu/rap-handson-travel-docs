@@ -14,10 +14,27 @@ etag master LocalLastChangedAt
 
   field ( numbering : managed, readonly ) TravelUUID;
   field ( readonly ) TravelID, OverallStatus;
+  field ( mandatory ) CustomerID, AgencyID, BeginDate, EndDate;
 
   action acceptTravel result [1] $self;
   action rejectTravel result [1] $self;
   internal action reCalcTotalPrice;
+
+  determination setInitialStatus on modify { create; }
+  determination calculateTotalPrice on modify { field BookingFee, CurrencyCode; }
+  determination setTravelID on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
+  validation validateAgency on save { create; field AgencyID; }
+  validation validateDates on save { create; field BeginDate, EndDate; }
+
+  draft determine action Prepare {
+    validation validateCustomer;
+    validation validateAgency;
+    validation validateDates;
+    validation Booking~validateCustomer;
+    validation BookingSupplement~validateSupplement;
+  }
 
   association _Booking { create; with draft; }
   association _RoomReservation { create; with draft; }
@@ -54,6 +71,12 @@ etag master LocalLastChangedAt
 
   field ( readonly ) TravelUUID, BookingDate;
   field ( numbering : managed, readonly ) BookingUUID;
+  field ( mandatory ) CustomerID;
+
+  determination calculateTotalPrice on modify { field FlightPrice, CurrencyCode; }
+  determination setBookingDate on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
 
   association _Travel { with draft; }
   association _BookingSupplement { create; with draft; }
@@ -85,6 +108,11 @@ etag master LocalLastChangedAt
 
   field ( readonly ) TravelUUID, BookingUUID;
   field ( numbering : managed, readonly ) BookSupplUUID;
+  field ( mandatory ) SupplementID;
+
+  determination calculateTotalPrice on modify { field Price, CurrencyCode; }
+
+  validation validateSupplement on save { create; field SupplementID; }
 
   association _Travel { with draft; }
   association _Booking { with draft; }
@@ -113,6 +141,8 @@ etag master LocalLastChangedAt
 
   field ( readonly ) TravelUUID;
   field ( numbering : managed, readonly ) RoomRsvUUID;
+
+  determination calculateTotalPrice on modify { field RoomRsvPrice, CurrencyCode; }
 
   association _Travel { with draft; }
 
