@@ -1,0 +1,9 @@
+zrd_cl_hotelextid@EndUserText.label: 'Hotel External Id'
+@ObjectModel.query.implementedBy: 'ABAP:ZRAPH_CL_HotelExtID_##'
+
+define custom entity zraph_ce_hotelextid_###
+{
+  key hotel_id   : zraph_hotel_id;
+      Hotel_name : zraph_hotel_name;
+
+}

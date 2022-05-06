@@ -1,0 +1,34 @@
+CLASS zraph_cl_##_hotelextid DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES: if_rap_query_provider.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zraph_cl_##_hotelextid IMPLEMENTATION.
+
+  METHOD if_rap_query_provider~select.
+  
+  DATA lt_hotelheader TYPE zrd_t_hotelextid.
+
+    IF io_request->is_data_requested( ).
+
+      CALL FUNCTION 'Z_RAPH_TRAVEL_API'
+        IMPORTING
+          et_hotelheader = lt_hotelheader.
+
+      io_response->set_total_number_of_records( lines( lt_hotelheader ) ).
+      io_response->set_data( lt_hotelheader ).
+
+    ENDIF.
+
+  ENDMETHOD.
+
+ENDCLASS.

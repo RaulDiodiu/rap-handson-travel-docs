@@ -1,0 +1,43 @@
+CLASS zrd_cl_hotelextid DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    INTERFACES: if_rap_query_provider.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zrd_cl_hotelextid IMPLEMENTATION.
+
+  METHOD if_rap_query_provider~select.
+
+    DATA lt_hotelheader TYPE zrd_t_hotelextid.
+
+    IF io_request->is_data_requested( ).
+
+      CALL FUNCTION 'Z_RD_TRAVEL_API'
+        IMPORTING
+          et_hotelheader = lt_hotelheader.
+
+      DATA(lv_dyn_clause) =  io_request->get_filter( )->get_as_sql_string( ).
+
+      SELECT * FROM @lt_hotelheader AS products
+             WHERE (lv_dyn_clause)
+             INTO TABLE @DATA(lt_result).
+
+      io_response->set_data( lt_result ).
+
+      IF io_request->is_total_numb_of_rec_requested( ).
+        io_response->set_total_number_of_records( lines( lt_result ) ).
+      ENDIF.
+
+    ENDIF.
+
+  ENDMETHOD.
+
+ENDCLASS.
