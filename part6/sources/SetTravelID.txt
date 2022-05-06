@@ -1,5 +1,4 @@
 METHOD settravelid.
-
   "Read travel entity
   READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
@@ -21,12 +20,10 @@ METHOD settravelid.
   MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
   ENTITY Travel
     UPDATE
-      FROM VALUE #( FOR ls_travel IN lt_travel INDEX INTO i (
-        %tky              = ls_travel-%tky
-        TravelID          = max_travelid + i
-        %control-TravelID = if_abap_behv=>mk-on ) )
+      FROM VALUE #( FOR ls_travel IN lt_travel INDEX INTO i ( %tky              = ls_travel-%tky
+                                                              TravelID          = max_travelid + i
+                                                              %control-TravelID = if_abap_behv=>mk-on ) )
     REPORTED DATA(update_reported).
 
   reported = CORRESPONDING #( DEEP update_reported ).
-
 ENDMETHOD.

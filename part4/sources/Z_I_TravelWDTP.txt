@@ -1,4 +1,4 @@
-managed;
+managed implementation in class zbp_raph_##_i_travelwdtp unique;
 
 define behavior for ZRAPH_##_I_TRAVELWDTP alias Travel
 persistent table ZRAPH_##_Travel
@@ -8,10 +8,11 @@ etag master LocalLastChangedAt
   create;
   update;
   delete;
-  association _Booking { create; }
-  association _RoomReservation { create; }
 
   field ( numbering : managed, readonly ) TravelUUID;
+
+  association _Booking { create; }
+  association _RoomReservation { create; }
 
   mapping for ZRAPH_##_Travel
   {
@@ -41,14 +42,14 @@ lock dependent by _Travel
 etag master LocalLastChangedAt
 {
 
-  association _Travel;
-
   update;
   delete;
-  association _BookingSupplement { create; }
 
-  field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID;
+  field ( numbering : managed, readonly ) BookingUUID;
+
+  association _Travel;
+  association _BookingSupplement { create; }
 
   mapping for ZRAPH_##_Booking
   {
@@ -72,14 +73,16 @@ persistent table ZRAPH_##_BookSup
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
-  association _Travel;
   update;
   delete;
 
-  field ( numbering : managed, readonly ) BookSupplUUID;
   field ( readonly ) TravelUUID, BookingUUID;
+  field ( numbering : managed, readonly ) BookSupplUUID;
 
-    mapping for ZRAPH_##_BookSup
+  association _Travel;
+  association _Booking;
+
+  mapping for ZRAPH_##_BookSup
   {
     BookSupplUUID = booksuppl_uuid;
     TravelUUID = root_uuid;
@@ -97,13 +100,13 @@ persistent table ZRAPH_##_RoomRsv
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
-  association _Travel;
-
   update;
   delete;
 
-  field ( numbering : managed, readonly ) RoomRsvUUID;
   field ( readonly ) TravelUUID;
+  field ( numbering : managed, readonly ) RoomRsvUUID;
+
+  association _Travel;
 
   mapping for ZRAPH_##_RoomRsv
   {

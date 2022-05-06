@@ -1,6 +1,7 @@
 # Part 2 - Creating the Database Tables
-## Special note for the SocialBee Course
-As you've already created these database tables before in the ABAP Dictionary section you can simply skip this part of the hands-on. Next, please continue with [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md).
+## Special note for the ERP Praktikum
+As you've already created these database tables before in the ABAP Dictionary (DDIC) section you can simply skip this part of the hands-on.  
+Next, please continue with [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md).
 
 ## Requirement
 You will now create the database table `ZRAPH_##_RoomRsv` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.

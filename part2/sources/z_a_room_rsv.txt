@@ -15,6 +15,5 @@ define table zraph_##_roomrsv {
   @Semantics.amount.currencyCode : 'zraph_##_roomrsv.currency_code'
   roomrsv_price         : zraph_room_rsv_price;
   currency_code         : /dmo/currency_code;
-  local_last_changed_at : abp_locinst_lastchange_tstmpl;;
-
+  local_last_changed_at : abp_locinst_lastchange_tstmpl;
 }

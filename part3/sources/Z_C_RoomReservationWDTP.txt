@@ -18,8 +18,7 @@ define view entity ZRAPH_##_C_RoomReservationWDTP
       @Consumption.valueHelpDefinition: [ {entity: {name: 'ZRAPH_I_HOTEL', element: 'HotelID' } } ]
       HotelID,
       _Hotel.Name as HotelName,
-      
-      _Hotel.City as City
+      _Hotel.City as City,
 
       BeginDate,
 

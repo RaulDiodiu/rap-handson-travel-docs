@@ -1,5 +1,5 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'RAP HandsOn: RoomReservatn (Transactnl)'
+@EndUserText.label: 'RAP HandsOn: RoomReservation (Transactnl)'
 define view entity ZRAPH_##_I_RoomReservationWDTP
   as select from zraph_##_roomrsv
 

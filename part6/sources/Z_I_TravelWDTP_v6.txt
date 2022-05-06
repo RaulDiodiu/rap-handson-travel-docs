@@ -11,12 +11,35 @@ etag master LocalLastChangedAt
   create;
   update;
   delete;
+
+  field ( numbering : managed, readonly ) TravelUUID;
+  field ( readonly ) TravelID, OverallStatus;
+  field ( mandatory ) CustomerID, AgencyID, BeginDate, EndDate;
+
+  action acceptTravel result [1] $self;
+  action rejectTravel result [1] $self;
+  internal action reCalcTotalPrice;
+
+  determination setInitialStatus on modify { create; }
+  determination calculateTotalPrice on modify { field BookingFee, CurrencyCode; }
+  determination setTravelID on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
+  validation validateAgency on save { create; field AgencyID; }
+  validation validateDates on save { create; field BeginDate, EndDate; }
+
+  draft determine action Prepare {
+    validation validateCustomer;
+    validation validateAgency;
+    validation validateDates;
+    validation Booking~validateCustomer;
+    validation BookingSupplement~validateSupplement;
+  }
+
   association _Booking { create; with draft; }
   association _RoomReservation { create; with draft; }
 
-  field ( numbering : managed, readonly ) TravelUUID;
-
-  mapping for zraph_##_travel
+  mapping for ZRAPH_##_Travel
   {
     TravelUUID = travel_uuid;
     TravelID = travel_id;
@@ -37,24 +60,28 @@ etag master LocalLastChangedAt
   }
 }
 
-
-define behavior for Z##_I_BOOKINGWDTP alias Booking
+define behavior for ZRAPH_##_I_BookingWDTP alias Booking
 persistent table zraph_##_booking
 draft table z##_d_booking
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
-
-  association _Travel { with draft; }
-
   update;
   delete;
+
+  field ( readonly ) TravelUUID, BookingDate;
+  field ( numbering : managed, readonly ) BookingUUID;
+  field ( mandatory ) CustomerID;
+
+  determination calculateTotalPrice on modify { field FlightPrice, CurrencyCode; }
+  determination setBookingDate on modify { create; }
+
+  validation validateCustomer on save { create; field CustomerID; }
+
+  association _Travel { with draft; }
   association _BookingSupplement { create; with draft; }
 
-  field ( numbering : managed, readonly ) BookingUUID;
-  field ( readonly ) TravelUUID;
-
-  mapping for zraph_##_booking
+  mapping for ZRAPH_##_Booking
   {
     BookingUUID = booking_uuid;
     TravelUUID = parent_uuid;
@@ -68,24 +95,29 @@ etag master LocalLastChangedAt
     CurrencyCode = currency_code;
     LocalLastChangedAt = local_last_changed_at;
   }
-
 }
 
-define behavior for Z##_I_BOOKINGSUPPLEMENTWDTP alias BookingSupplement
+define behavior for ZRAPH_##_I_BookingSupplWDTP alias BookingSupplement
 persistent table zraph_##_booksup
 draft table z##_d_bksup
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
-  association _Travel { with draft; }
-
   update;
   delete;
 
-  field ( numbering : managed, readonly ) BookSupplUUID;
   field ( readonly ) TravelUUID, BookingUUID;
+  field ( numbering : managed, readonly ) BookSupplUUID;
+  field ( mandatory ) SupplementID;
 
-  mapping for zraph_##_booksup
+  determination calculateTotalPrice on modify { field Price, CurrencyCode; }
+
+  validation validateSupplement on save { create; field SupplementID; }
+
+  association _Travel { with draft; }
+  association _Booking { with draft; }
+
+  mapping for ZRAPH_##_BookSup
   {
     BookSupplUUID = booksuppl_uuid;
     TravelUUID = root_uuid;
@@ -98,21 +130,23 @@ etag master LocalLastChangedAt
   }
 }
 
-define behavior for Z##_I_ROOMRESERVATIONWDTP alias RoomReservation
+define behavior for ZRAPH_##_I_RoomReservationWDTP alias RoomReservation
 persistent table zraph_##_roomrsv
 draft table z##_d_roomrsv
 lock dependent by _Travel
 etag master LocalLastChangedAt
 {
-  association _Travel { with draft; }
-
   update;
   delete;
 
-  field ( numbering : managed, readonly ) RoomResvnUUID;
   field ( readonly ) TravelUUID;
+  field ( numbering : managed, readonly ) RoomRsvUUID;
 
-  mapping for zraph_##_roomrsv
+  determination calculateTotalPrice on modify { field RoomRsvPrice, CurrencyCode; }
+
+  association _Travel { with draft; }
+
+  mapping for ZRAPH_##_RoomRsv
   {
     RoomRsvUUID = roomrsv_uuid;
     TravelUUID = parent_uuid;

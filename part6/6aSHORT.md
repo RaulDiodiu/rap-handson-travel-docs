@@ -12,24 +12,19 @@ CLASS class_name IMPLEMENTATION.
 ENDCLASS.
 ```
 
-### Enhance the behavior definition
-- Open the base behavior definition `ZRAPH_##_I_TravelWDTP`
-- Provide a behavior implementation for the travel entity.
-For that, specify a behavior implementation class (aka behavior pool) using a definition like e.g. `implementation in class zraph_##_bp_i_travelwdtp unique` for the travel entity directly under the `define behavior for ...` statement. You can also use the recommended name which was automatically generated.
+## Creating our Behavior Pool
+Open the base behavior definition `ZRAPH_##_I_TravelWDTP`.
 
->**Remark** The ADT `Quick Fix` feature can be used to generate the class, do this for abovementioned behavior pool. For this, set the cursor on the class name and press `Ctrl + 1` to start the Quick Fix dialog.      
-Open the created class and click `Local Type` on the bottom - here we should have the local class. This is where we implement the logic for all validations, actions and determinations. 
-Every time we add a new action, determination or validation to the behavior definition use the quick fix there to generate the corresponding method into the associated behavior pool class.
+Here, the ADT `Quick Fix` feature can be used to generate the class.  
+For this, set the cursor on the class name `zbp_raph_##_i_travelwdtp` in line 1 and press `Ctrl + 1` to start the Quick Fix dialog.  
 
-![alt](images/Image6_1.png)
+Open the created class and click `Local Types` on the bottom. This is where we implement the logic for all validations, actions, determinations and feature control. Every time we add a new action, determination or validation use the quick fix in the behavior definition to adjust the associated behavior pool class with a new method. You don't have to change anything yet, just activate the behavior pool.
 
-**Solution**
-- [ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt) with draft.
+**Solution**  
+[ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt)
 
 
-### Creating Behavior Pool 
-
-#### Actions
+## Introducing Actions
 Actions are used to manifest business logic specific workflows in one operation. You can implement simple status changes or a complete creation workflow in one operation. For the UI, you can define action buttons that execute the action directly when the consumer chooses the button. Below, you can find the syntax for the behavior definition. For more detailed information, see [Actions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/83bad707a5a241a2ae93953d81d17a6b.html).
 
 ```abap
@@ -44,10 +39,11 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ```
 
 
-#### Implementation Action `acceptTravel`:  
+### Implementation Action `acceptTravel`:  
 The `acceptTravel` action sets the status of a chosen travel instance to Accepted (A).  
 Technically speaking, this action is an instance action with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
-For implementation you have to go to your Behavior Definition and add the definition of this new action. Next, use the Quick Fix to generate the corresponding implementation method in the Behavior Pool. Go to the Local Types section of your Behavior Pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection! For more information on EML, check the course slides or visit [SAP Help for EML](https://help.sap.com/viewer/923180ddb98240829d935862025004d6/Cloud/en-US/af7782de6b9140e29a24eae607bf4138.html).  
+For implementation you have to first add the action definition in the behavior definition and then use Quick Fix via `Ctrl + 1` - Eclipse will auomatically create a new method for the action in the previously created behavior pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection!  
+For more information on EML, check the course slides or visit [SAP Help for EML](https://help.sap.com/viewer/923180ddb98240829d935862025004d6/Cloud/en-US/af7782de6b9140e29a24eae607bf4138.html).  
 ```abap
 MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE  
   ENTITY travel
@@ -67,7 +63,7 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
                                               %param = travel ) ).
 ```
 **Solution**  
-[ZRAPH_##_BP_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)
+[ZBP_RAPH_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)
 
 ## Next step
 [6b. Determinations & Validations](6b.md)

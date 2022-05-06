@@ -29,6 +29,7 @@ use etag
   use delete;
 
   use association _Travel { with draft; }
+  use association _Booking { with draft; }
 }
 
 define behavior for ZRAPH_##_C_RoomReservationWDTP alias RoomReservation

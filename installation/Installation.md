@@ -31,9 +31,9 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** You may have to **leave your company's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2021-12](https://www.eclipse.org/downloads/packages/release/2021-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2021-12](https://www.eclipse.org/downloads/packages/release/2021-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
 
->**Note** There are two different options: At the center top, *Download Links* provides a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences. The orange button on the right will download an **installer** which you'll have to run afterwards - basically you can choose your preferred option yourself. For the latter, select *Eclipse IDE for Java Developers* if asked. The default installation settings should fit our needs and remain unchanged.
+>**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences and includes the finished installation. But you can choose your preferred option yourself.
 
 When the installation finished you can launch Eclipse.  
 You will be asked for a workspace and can set this as default for the future.
