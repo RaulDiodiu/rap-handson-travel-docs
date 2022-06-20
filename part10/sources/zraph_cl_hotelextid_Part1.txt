@@ -1,4 +1,4 @@
-CLASS zraph_cl_##_hotelextid DEFINITION
+CLASS ZRAPH_CL_HotelExtID_## DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -12,15 +12,15 @@ ENDCLASS.
 
 
 
-CLASS zraph_cl_##_hotelextid IMPLEMENTATION.
+CLASS ZRAPH_CL_HotelExtID_## IMPLEMENTATION.
 
   METHOD if_rap_query_provider~select.
   
-  DATA lt_hotelheader TYPE zrd_t_hotelextid.
+  DATA lt_hotelheader TYPE zraph_t_hotelextid.
 
     IF io_request->is_data_requested( ).
 
-      CALL FUNCTION 'Z_RAPH_TRAVEL_API'
+      CALL FUNCTION 'Z_RAPH_HOTELEXTID_API'
         IMPORTING
           et_hotelheader = lt_hotelheader.
 
