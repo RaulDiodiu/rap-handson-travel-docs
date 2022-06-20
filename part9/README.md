@@ -6,7 +6,7 @@ For this, we will need to implement 2 extensions to the list report, one filter 
 This is covered in section 1 and 2.  
   
 Then we also want to add a new column to the list report, which contains a button that tells us the agency name of the current line.  
-This is covered in secion 3.  
+This is covered in section 3.  
   
 At last we want a selection dependent multi select action that tells us which agencies are in the selected rows.  
 This is covered in section 4.  
