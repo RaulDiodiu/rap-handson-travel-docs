@@ -20,7 +20,7 @@ CLASS zrd_cl_hotelextid IMPLEMENTATION.
 
     IF io_request->is_data_requested( ).
 
-      CALL FUNCTION 'Z_RAPH_TRAVEL_API'
+      CALL FUNCTION 'Z_RAPH_HOTELEXTID_API'
         IMPORTING
           et_hotelheader = lt_hotelheader.
 
