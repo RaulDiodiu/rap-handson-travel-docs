@@ -51,7 +51,7 @@ When pressing the Go button, you should already see the existing travels from yo
 
 Navigation to object pages is not yet working but **you already got your very first Fiori app running :)**
 
-## Skipped
+## Optional
 [5b. Implementing Basic Authorizations](5b.md)
 
 ## Next step

@@ -91,14 +91,3 @@ With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful App
 
 ## Next step
 [2. Creating the Database Tables ](../part2/README.md)
-
-
- 
- 
-
-
-
- 
-
-
-
