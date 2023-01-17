@@ -136,12 +136,10 @@ Your newly created tables have no data, yet. Therefore, we'll write a small prog
 
 
 5. Activate your finished program and execute it. Afterwards, check your tables `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` via Data Preview for existing entries.  
-
 [^ Top of page](#)  
 
 #### Solution
 [zraph_##_data_generator](sources/zraph_data_generator.txt)
-
 
 ## Next step
 [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
