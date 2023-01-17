@@ -2,9 +2,9 @@
 ## Table of Contents
 * [Previous: 1. Introduction](../part1/README.md)
 * **Current: 2. Creating and filling the Database Tables**  
-   * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1---create-room-reservation-table)  
-   * [Requirement #2 - Duplicate /DMO/ tables](#markdown-header-requirement-2---duplicate-dmo-tables)  
-   * [Requirement #3 - Fill database tables](#markdown-header-requirement-3---fill-database-tables)  
+    * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-room-reservation-table)  
+    * [Requirement #2 - Duplicate /DMO/ tables](#markdown-header-requirement-2-duplicate-dmo-tables)  
+    * [Requirement #3 - Fill database tables](#markdown-header-requirement-3-fill-database-tables)  
 * [Next: 3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
 
 
