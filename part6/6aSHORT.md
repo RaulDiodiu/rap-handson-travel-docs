@@ -1,8 +1,18 @@
-# Part 6a - Behavior Implementation
+# Part 6 - Behavior Implementation
+# Part 6a - Behavior Pool & Actions (short version)
+* [Previous: 5. Business Service](../part5/README.md)  
+* **Current: 6a. Behavior Pool & Actions (short version)**  
+    * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)  
+    * [Creating our Behavior Pool](#markdown-header-creating-our-behavior-pool)  
+    * [Introducing Actions](#markdown-header-introducing-actions)  
+    * [Implementation Action acceptTravel](#markdown-header-implementing-action-accepttravel)   
+* [Next: 6b. Determinations (short version)](6bSHORT.md)  
+* [Next: 6c. Validations](6c.md)  
+* [Next: 6d. Feature Control (optional)](6d.md) 
+* [Next: 7. Business Application Studio](../part7/README.md) 
 
 ## Implementing the business object behavior
-
-### Introduction
+[^ Top of page](#)  
 For the implementation of the business object behavior the RESTful Programming model has introduced the concept of behavior pools. One Behavior Definition can be implemented with a single or more of such special ABAP classes (e.g. one separate class per instance). The actual implementation is then defined within local classes in this behavior pool with itself just serving as basically empty container with the following syntax:
 ```abap
 CLASS class_name DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF MyRootBehavior.
@@ -13,6 +23,7 @@ ENDCLASS.
 ```
 
 ## Creating our Behavior Pool
+[^ Top of page](#)  
 Open the base behavior definition `ZRAPH_##_I_TravelWDTP`.
 
 Here, the ADT `Quick Fix` feature can be used to generate the class.  
@@ -25,6 +36,7 @@ Open the created class and click `Local Types` on the bottom. This is where we i
 
 
 ## Introducing Actions
+[^ Top of page](#)  
 Actions are used to manifest business logic specific workflows in one operation. You can implement simple status changes or a complete creation workflow in one operation. For the UI, you can define action buttons that execute the action directly when the consumer chooses the button. Below, you can find the syntax for the behavior definition. For more detailed information, see [Actions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/83bad707a5a241a2ae93953d81d17a6b.html).
 
 ```abap
@@ -40,6 +52,7 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 
 
 ### Implementation Action `acceptTravel`:  
+[^ Top of page](#)  
 The `acceptTravel` action sets the status of a chosen travel instance to Accepted (A).  
 Technically speaking, this action is an instance action with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
 For implementation you have to first add the action definition in the behavior definition and then use Quick Fix via `Ctrl + 1` - Eclipse will auomatically create a new method for the action in the previously created behavior pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection!  
@@ -66,4 +79,5 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
 [ZBP_RAPH_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)
 
 ## Next step
-[6b. Determinations & Validations](6b.md)
+[^ Top of page](#)  
+[6b. Determinations & Validations (short version)](6b.md)
