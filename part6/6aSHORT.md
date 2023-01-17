@@ -5,7 +5,7 @@
     * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)  
     * [Creating our Behavior Pool](#markdown-header-creating-our-behavior-pool)  
     * [Introducing Actions](#markdown-header-introducing-actions)  
-    * [Implementation Action acceptTravel](#markdown-header-implementing-action-accepttravel)   
+    * [Implementation Action acceptTravel](#markdown-header-implementation-action-accepttravel)   
 * [Next: 6b. Determinations (short version)](6bSHORT.md)  
 * [Next: 6c. Validations](6c.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
@@ -51,7 +51,7 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ```
 
 
-### Implementation Action `acceptTravel`:  
+### Implementation Action `acceptTravel`  
 [^ Top of page](#)  
 The `acceptTravel` action sets the status of a chosen travel instance to Accepted (A).  
 Technically speaking, this action is an instance action with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
@@ -80,4 +80,4 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
 
 ## Next step
 [^ Top of page](#)  
-[6b. Determinations & Validations (short version)](6b.md)
+[6b. Determinations (short version)](6b.md)
