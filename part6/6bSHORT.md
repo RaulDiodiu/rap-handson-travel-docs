@@ -1,12 +1,12 @@
-# Part 6b - Determinations & Validations (short version)
+# Part 6b - Determination & Validation (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
-* [Previous: 6a. Behavior Pool & Actions (short version)](6aSHORT.md)  
-* **Current: 6b. Determinations & Validations (short version)**  
+* [Previous: 6a. Behavior Pool & Action (short version)](6aSHORT.md)  
+* **Current: 6b. Determination & Validation (short version)**  
     * [Introducing Determinations](#markdown-header-introducing-determinations)  
     * [Implementing Determination setInitialStatus](#markdown-header-implementing-determination-setinitialstatus)  
     * [Introducing Validations](#markdown-header-introducing-validations)  
-    * [Implementing Validation validateCustomer](#markdown-header-implementating-validation-validatecustomer)  
+    * [Implementing Validation validateCustomer](#markdown-header-implementing-validation-validatecustomer)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
 * [Next: 7. Business Application Studio](../part7/README.md) 
 
@@ -77,5 +77,5 @@ Once you implemented abovementioned logic you can check the solution to see how 
 
 ## Next step
 [^ Top of page](#)  
-[6d. Feature Control (optional)](6d.md)
+[6d. Feature Control (optional)](6d.md)  
 [7. Business Application Studio](../part7/README.md)
