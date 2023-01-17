@@ -1,4 +1,10 @@
 # Part 1 - Introduction
+## Table of Contents
+* [Previous: Installation Guide](../installation/Installation.md)
+* [Previous: Keyboard Shortcuts](../installation/Shortcuts.md)
+* **Current: 1. Introduction**
+* [Next: 2. Creating the Database Tables ](../part2/README.md)
+
 ## Overall description and high-level architecture
 In this course we’ll create a SAP Fiori application with the help of a Virtual Data Model using ABAP CDS, Behavior Definitions & Implementations for the transactional behavior and OData via Service Definition & Binding for publishing our data from the BackEnd.
 
