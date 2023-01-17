@@ -16,16 +16,16 @@ CLASS ZRAPH_CL_HotelExtID_## IMPLEMENTATION.
 
   METHOD if_rap_query_provider~select.
   
-  DATA lt_hotelheader TYPE zraph_t_hotelextid.
+  DATA hotelheaderw TYPE zraph_t_hotelextid.
 
     IF io_request->is_data_requested( ).
 
       CALL FUNCTION 'Z_RAPH_HOTELEXTID_API'
         IMPORTING
-          et_hotelheader = lt_hotelheader.
+          et_hotelheader = hotelheaders.
 
-      io_response->set_total_number_of_records( lines( lt_hotelheader ) ).
-      io_response->set_data( lt_hotelheader ).
+      io_response->set_total_number_of_records( lines( hotelheaders ) ).
+      io_response->set_data( hotelheaders ).
 
     ENDIF.
 

@@ -21,26 +21,26 @@ CLASS z##_cl_days_to_flight_listwd IMPLEMENTATION.
 
   METHOD if_sadl_exit_calc_element_read~calculate.
 
-    DATA lt_original_data TYPE STANDARD TABLE OF Z##_C_TravelWDTP WITH DEFAULT KEY.
-    lt_original_data = CORRESPONDING #( it_original_data ).
+    DATA original_data TYPE STANDARD TABLE OF Z##_C_TravelWDTP WITH DEFAULT KEY.
+    original_data = CORRESPONDING #( it_original_data ).
 
-    SELECT FROM @lt_original_Data AS travel
+    SELECT FROM @original_Data AS travel
     INNER JOIN ZRAPH_I_BookingWDTP AS bk ON travel~TravelUUID = bk~TravelUUID
     FIELDS travel~TravelUUID, MIN( bk~FlightDate ) AS MinFlightDate, travel~TravelID
     WHERE FlightDate >= @sy-datum
     GROUP BY travel~TravelUUID, travel~TravelID
     ORDER BY travelid, MinFlightDate
-    INTO TABLE @DATA(lt_booking).
+    INTO TABLE @DATA(bookings).
 
-    LOOP AT lt_original_data ASSIGNING FIELD-SYMBOL(<fs_original_data>).
+    LOOP AT original_data ASSIGNING FIELD-SYMBOL(<original_data>).
 
-      DATA(ls_booking) = VALUE #( lt_booking[ TravelUUID = <fs_original_data>-TravelUUID ] OPTIONAL ).
-      CHECK ls_booking IS NOT INITIAL.
-      <fs_original_data>-NextFlightInDays =  ls_booking-minflightdate - sy-datum.
+      DATA(booking) = VALUE #( bookings[ TravelUUID = <original_data>-TravelUUID ] OPTIONAL ).
+      CHECK booking IS NOT INITIAL.
+      <original_data>-NextFlightInDays =  booking-minflightdate - sy-datum.
 
     ENDLOOP.
 
-    ct_calculated_data = CORRESPONDING #(  lt_original_data ).
+    ct_calculated_data = CORRESPONDING #( original_data ).
 
   ENDMETHOD.
 
@@ -49,8 +49,8 @@ CLASS z##_cl_days_to_flight_listwd IMPLEMENTATION.
   METHOD if_sadl_exit_calc_element_read~get_calculation_info.
 
 * sample
-*    DATA(lt_requested_elements) = VALUE if_sadl_exit_calc_element_read=>tt_elements( ( |<requested_field_name>| )  ).
-*    INSERT LINES OF lt_requested_elements INTO TABLE et_requested_orig_elements.
+*    DATA(requested_elements) = VALUE if_sadl_exit_calc_element_read=>tt_elements( ( |<requested_field_name>| )  ).
+*    INSERT LINES OF requested_elements INTO TABLE et_requested_orig_elements.
 
   ENDMETHOD.
 

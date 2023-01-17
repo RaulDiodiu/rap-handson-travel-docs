@@ -70,10 +70,10 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
      ENTITY travel
       ALL FIELDS WITH
       CORRESPONDING #( keys )
-    RESULT DATA(lt_travel).
+    RESULT DATA(travels).
 
-  result = VALUE #( FOR travel IN lt_travel ( %tky   = travel-%tky
-                                              %param = travel ) ).
+  result = VALUE #( FOR travel IN travels ( %tky   = travel-%tky
+                                            %param = travel ) ).
 ```
 **Solution**  
 [ZBP_RAPH_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)

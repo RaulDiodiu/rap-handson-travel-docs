@@ -4,11 +4,11 @@ METHOD settravelid.
     ENTITY travel
       FIELDS ( travelid )
       WITH CORRESPONDING #( keys )
-    RESULT DATA(lt_travel).
+    RESULT DATA(travelw).
 
   " remove lines where TravelID is already filled.
-  DELETE lt_travel WHERE TravelID IS NOT INITIAL.
-  CHECK lt_travel IS NOT INITIAL.
+  DELETE travels WHERE TravelID IS NOT INITIAL.
+  CHECK travels IS NOT INITIAL.
 
   " Select max travel ID
   SELECT SINGLE
@@ -20,9 +20,9 @@ METHOD settravelid.
   MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
   ENTITY Travel
     UPDATE
-      FROM VALUE #( FOR ls_travel IN lt_travel INDEX INTO i ( %tky              = ls_travel-%tky
-                                                              TravelID          = max_travelid + i
-                                                              %control-TravelID = if_abap_behv=>mk-on ) )
+      FROM VALUE #( FOR travel IN travels INDEX INTO i ( %tky              = travel-%tky
+                                                         TravelID          = max_travelid + i
+                                                         %control-TravelID = if_abap_behv=>mk-on ) )
     REPORTED DATA(update_reported).
 
   reported = CORRESPONDING #( DEEP update_reported ).

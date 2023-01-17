@@ -16,24 +16,24 @@ CLASS zrd_cl_hotelextid IMPLEMENTATION.
 
   METHOD if_rap_query_provider~select.
 
-    DATA lt_hotelheader TYPE zrd_t_hotelextid.
+    DATA hotelheaders TYPE zrd_t_hotelextid.
 
     IF io_request->is_data_requested( ).
 
       CALL FUNCTION 'Z_RAPH_HOTELEXTID_API'
         IMPORTING
-          et_hotelheader = lt_hotelheader.
+          et_hotelheader = hotelheaders.
 
       DATA(lv_dyn_clause) =  io_request->get_filter( )->get_as_sql_string( ).
 
-      SELECT * FROM @lt_hotelheader AS products
+      SELECT * FROM @hotelheaders AS products
              WHERE (lv_dyn_clause)
-             INTO TABLE @DATA(lt_result).
+             INTO TABLE @DATA(results).
 
-      io_response->set_data( lt_result ).
+      io_response->set_data( results ).
 
       IF io_request->is_total_numb_of_rec_requested( ).
-        io_response->set_total_number_of_records( lines( lt_result ) ).
+        io_response->set_total_number_of_records( lines( results ) ).
       ENDIF.
 
     ENDIF.

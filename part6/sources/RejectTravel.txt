@@ -14,9 +14,9 @@ METHOD rejecttravel.
      ENTITY travel
       ALL FIELDS WITH
       CORRESPONDING #( keys )
-    RESULT DATA(lt_travel).
+    RESULT DATA(travels).
 
-  result = VALUE #( FOR travel IN lt_travel ( %tky   = travel-%tky
-                                              %param = travel ) ).
+  result = VALUE #( FOR travel IN travels ( %tky   = travel-%tky
+                                            %param = travel ) ).
 
 ENDMETHOD.

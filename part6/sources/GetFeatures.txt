@@ -3,20 +3,20 @@ METHOD get_instance_features.
     ENTITY Travel
       FIELDS ( OverallStatus )
       WITH CORRESPONDING #( keys )
-    RESULT DATA(lt_travel).
+    RESULT DATA(travels).
 
-    result = VALUE #( FOR ls_travel IN lt_travel
-                          ( %tky                   = ls_travel-%tky
-                            %field-BookingFee      = COND #( WHEN ls_travel-OverallStatus = 'A'
+    result = VALUE #( FOR travel IN travels
+                          ( %tky                   = travel-%tky
+                            %field-BookingFee      = COND #( WHEN travel-OverallStatus = 'A'
                                                              THEN if_abap_behv=>fc-f-read_only
                                                              ELSE if_abap_behv=>fc-f-unrestricted )
-                            %action-acceptTravel   = COND #( WHEN ls_travel-OverallStatus = 'A'
+                            %action-acceptTravel   = COND #( WHEN travel-OverallStatus = 'A'
                                                              THEN if_abap_behv=>fc-o-disabled
                                                              ELSE if_abap_behv=>fc-o-enabled )
-                            %action-rejectTravel   = COND #( WHEN ls_travel-OverallStatus = 'X'
+                            %action-rejectTravel   = COND #( WHEN travel-OverallStatus = 'X'
                                                              THEN if_abap_behv=>fc-o-disabled
                                                              ELSE if_abap_behv=>fc-o-enabled )
-                            %assoc-_Booking        = COND #( WHEN ls_travel-OverallStatus = 'X'
+                            %assoc-_Booking        = COND #( WHEN travel-OverallStatus = 'X'
                                                             THEN if_abap_behv=>fc-o-disabled
                                                             ELSE if_abap_behv=>fc-o-enabled )
                           ) ).

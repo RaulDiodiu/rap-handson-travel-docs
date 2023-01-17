@@ -5,8 +5,8 @@ METHOD setinitialstatus.
       UPDATE SET FIELDS
       WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
                                       overallstatus = 'O' ) )
-  REPORTED DATA(lt_reported).
+  REPORTED DATA(reported).
 
-  reported = CORRESPONDING #( DEEP lt_reported ).
+  reported = CORRESPONDING #( DEEP reported ).
 
 ENDMETHOD.

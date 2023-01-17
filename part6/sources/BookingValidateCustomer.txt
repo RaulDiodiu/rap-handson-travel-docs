@@ -4,45 +4,45 @@ METHOD validatecustomer.
     ENTITY booking
       FIELDS (  customerid )
       WITH CORRESPONDING #( keys )
-    RESULT DATA(lt_booking).
+    RESULT DATA(bookings).
 
   READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY booking BY \_travel
-      FROM CORRESPONDING #( lt_booking )
-    LINK DATA(lt_link).
+      FROM CORRESPONDING #( bookings )
+    LINK DATA(links).
 
   " Get Customer Master Data for comparison
   SELECT FROM /dmo/customer AS md_customer
-    INNER JOIN @lt_booking AS book ON book~customerid = md_customer~customer_id
+    INNER JOIN @bookings AS book ON book~customerid = md_customer~customer_id
     FIELDS customer_id
-    INTO TABLE @DATA(lt_customer_db).
+    INTO TABLE @DATA(customers_db).
 
   " Loop over all travel instances to be saved
-  LOOP AT lt_booking INTO DATA(ls_booking).
-    APPEND VALUE #(  %tky               = ls_booking-%tky
+  LOOP AT bookings INTO DATA(booking).
+    APPEND VALUE #(  %tky               = booking-%tky
                      %state_area        = 'VALIDATE_CUSTOMER' ) TO reported-booking.
 
     " Raise messages for empty customer ids
-    IF ls_booking-customerid IS  INITIAL.
-      APPEND VALUE #( %tky = ls_booking-%tky ) TO failed-booking.
-      APPEND VALUE #( %tky                = ls_booking-%tky
+    IF booking-customerid IS  INITIAL.
+      APPEND VALUE #( %tky = booking-%tky ) TO failed-booking.
+      APPEND VALUE #( %tky                = booking-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
                       %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '005' " Customer is initial
                                                          severity = if_abap_behv_message=>severity-error )
-                      %path               = VALUE #( travel-%tky = lt_link[ KEY draft COMPONENTS source-%tky = ls_booking-%tky ]-target-%tky )
+                      %path               = VALUE #( travel-%tky = links[ KEY draft COMPONENTS source-%tky = booking-%tky ]-target-%tky )
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-booking.
 
     " Raise messages for non existing customer ids
-    ELSEIF ls_booking-customerid IS NOT INITIAL AND NOT line_exists( lt_customer_db[ customer_id = ls_booking-customerid ] ).
-      APPEND VALUE #(  %tky = ls_booking-%tky ) TO failed-booking.
-      APPEND VALUE #( %tky                = ls_booking-%tky
+    ELSEIF booking-customerid IS NOT INITIAL AND NOT line_exists( customers_db[ customer_id = booking-customerid ] ).
+      APPEND VALUE #( %tky = booking-%tky ) TO failed-booking.
+      APPEND VALUE #( %tky                = booking-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
                       %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '006' " Customer &1 unknown
-                                                         v1       = ls_booking-customerid
+                                                         v1       = booking-customerid
                                                          severity = if_abap_behv_message=>severity-error )
-                      %path               = VALUE #( travel-%tky = lt_link[ KEY draft COMPONENTS source-%tky = ls_booking-%tky ]-target-%tky )
+                      %path               = VALUE #( travel-%tky = links[ KEY draft COMPONENTS source-%tky = booking-%tky ]-target-%tky )
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-booking.
     ENDIF.
   ENDLOOP.

@@ -4,25 +4,25 @@ METHOD validatecustomer.
     ENTITY travel
       FIELDS ( customerid )
       WITH CORRESPONDING #( keys )
-    RESULT DATA(lt_travel).
+    RESULT DATA(travels).
 
   " Get Customer Master Data for comparison
   SELECT FROM /dmo/customer AS customer
-    INNER JOIN @lt_travel AS travel ON travel~customerid = customer~customer_id
+    INNER JOIN @travels AS travel ON travel~customerid = customer~customer_id
     FIELDS customer_id
-    INTO TABLE @DATA(lt_customer_db).
+    INTO TABLE @DATA(customers_db).
 
 
   " Loop over all travel instances to be saved
-  LOOP AT lt_travel INTO DATA(ls_travel).
-    APPEND VALUE #( %tky               = ls_travel-%tky
+  LOOP AT travels INTO DATA(travel).
+    APPEND VALUE #( %tky               = travel-%tky
                     %state_area        = 'VALIDATE_CUSTOMER' ) TO reported-travel.
 
     " Raise messages for empty customer ids
-    IF ls_travel-customerid IS INITIAL.
-      APPEND VALUE #( %tky = ls_travel-%tky ) TO failed-travel.
+    IF travel-customerid IS INITIAL.
+      APPEND VALUE #( %tky = travel-%tky ) TO failed-travel.
 
-      APPEND VALUE #( %tky                = ls_travel-%tky
+      APPEND VALUE #( %tky                = travel-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
                       %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '005' " Customer is initial
@@ -30,13 +30,13 @@ METHOD validatecustomer.
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-travel.
 
     " Raise messages for non existing customer ids
-    ELSEIF ls_travel-customerid IS NOT INITIAL AND NOT line_exists( lt_customer_db[ customer_id = ls_travel-customerid ] ).
-      APPEND VALUE #( %tky = ls_travel-%tky ) TO failed-travel.
-      APPEND VALUE #( %tky                = ls_travel-%tky
+    ELSEIF travel-customerid IS NOT INITIAL AND NOT line_exists( customers_db[ customer_id = travel-customerid ] ).
+      APPEND VALUE #( %tky = travel-%tky ) TO failed-travel.
+      APPEND VALUE #( %tky                = travel-%tky
                       %state_area         = 'VALIDATE_CUSTOMER'
                       %msg                = new_message( id       = 'ZRAPH_MSG_TRAVELWD'
                                                          number   = '006' " Customer &1 unknown
-                                                         v1       = ls_travel-customerid
+                                                         v1       = travel-customerid
                                                          severity = if_abap_behv_message=>severity-error )
                       %element-customerid = if_abap_behv=>mk-on ) TO reported-travel.
     ENDIF.
