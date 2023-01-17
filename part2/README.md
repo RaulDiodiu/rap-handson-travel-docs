@@ -57,7 +57,89 @@ Please duplicate the following tables in your SAP system into your local package
 
 ## Requirement #3 - Fill database tables
 [^ Top of page](#)  
-@TODO
+Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
+
+1. Create the executable report `zraph_##_data_generator` in you ABAP package.
+
+2. It should always be possible to run the report to reset the existing data entries.  
+   To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
+   Do this by using a `DELETE` statement per table.
+
+3. Fill your personal Travel, Booking and BookingSupplement tables with the same data existing in the respective `/DMO/` reference tables: `/DMO/A_TRAVEL_D`, `/DMO/A_BOOKING_D` and `/DMO/A_BKSUPPL_D`.  
+   Firstly, select data from each `/DMO/` reference table and secondly, fill the data into your personal table by using the `INSERT` statement.
+
+4. For RoomReservations no `/DMO` table exists and we will have to dynamically generate entries based on the other tables.  
+   Please use the following code snippet to do this:
+
+        " Clear personal room reservation table and fill it from data generated
+        " based on existing travels and hotels
+        DATA roomreservations TYPE STANDARD TABLE OF zraph_##_roomrsv WITH DEFAULT KEY.
+        SELECT COUNT( * ) FROM zraph_hotel INTO @DATA(hotel_count).
+        IF hotel_count = 0.
+          out->write( 'Aborted: No hotels found!' ).
+          RETURN.
+        ENDIF.
+        DELETE FROM zraph_##_roomrsv.
+    
+        SELECT travel_uuid, begin_date, end_date, total_price, currency_code
+          FROM zraph_##_travel INTO TABLE @DATA(travels).
+        SELECT hotel_id FROM zraph_hotel INTO TABLE @DATA(hotels).
+        LOOP AT travels ASSIGNING FIELD-SYMBOL(<travel>).
+          DATA(index) = sy-tabix.
+          READ TABLE hotels INDEX index MOD hotel_count + 1 INTO DATA(hotel).
+          IF index MOD 4 <= 2.
+            APPEND VALUE #( parent_uuid   = <travel>-travel_uuid
+                            roomrsv_uuid  = cl_system_uuid=>create_uuid_x16_static( )
+                            roomrsv_id    = '000001'
+                            hotel_id      = hotel-hotel_id
+                            begin_date    = <travel>-begin_date
+                            end_date      = <travel>-end_date
+                            room_type     = 'S'
+                            roomrsv_price = <travel>-total_price * '0.15'
+                            currency_code = <travel>-currency_code ) TO roomreservations.
+            IF index MOD 4 = 1.
+              APPEND VALUE #( parent_uuid   = <travel>-travel_uuid
+                              roomrsv_uuid  = cl_system_uuid=>create_uuid_x16_static( )
+                              roomrsv_id    = '000002'
+                              hotel_id      = hotel-hotel_id
+                              begin_date    = <travel>-begin_date
+                              end_date      = <travel>-end_date
+                              room_type     = 'D'
+                              roomrsv_price = <travel>-total_price * '0.25'
+                              currency_code = <travel>-currency_code ) TO roomreservations.
+            ELSEIF index MOD 4 = 2.
+              APPEND VALUE #( parent_uuid   = <travel>-travel_uuid
+                              roomrsv_uuid  = cl_system_uuid=>create_uuid_x16_static( )
+                              roomrsv_id    = '000002'
+                              hotel_id      = hotel-hotel_id
+                              begin_date    = <travel>-begin_date
+                              end_date      = <travel>-end_date
+                              room_type     = 'F'
+                              roomrsv_price = <travel>-total_price * '0.4'
+                              currency_code = <travel>-currency_code ) TO roomreservations.
+            ENDIF.
+          ENDIF.
+          IF index MOD 4 = 3.
+            APPEND VALUE #( parent_uuid   = <travel>-travel_uuid
+                            roomrsv_uuid  = cl_system_uuid=>create_uuid_x16_static( )
+                            roomrsv_id    = '000001'
+                            hotel_id      = hotel-hotel_id
+                            begin_date    = <travel>-begin_date
+                            end_date      = <travel>-end_date
+                            room_type     = 'E'
+                            roomrsv_price = <travel>-total_price * '0.7'
+                            currency_code = <travel>-currency_code ) TO roomreservations.
+          ENDIF.
+        ENDLOOP.
+        INSERT zraph_##_roomrsv FROM TABLE @roomreservations.
+        out->write( 'Room reservation data generated.' ).
+
+
+5. Activate your finished program and execute it. Afterwards, check your tables `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` via Data Preview for existing entries.
+
+#### Solution
+[zraph_##_data_generator](sources/zraph_data_generator.txt)
+
 
 ## Next step
 [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
