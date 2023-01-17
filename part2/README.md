@@ -136,6 +136,7 @@ Your newly created tables have no data, yet. Therefore, we'll write a small prog
 
 
 5. Activate your finished program and execute it. Afterwards, check your tables `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` via Data Preview for existing entries.  
+
 [^ Top of page](#)  
 
 #### Solution
