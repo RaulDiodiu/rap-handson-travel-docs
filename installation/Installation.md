@@ -4,7 +4,7 @@
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
 1. [Register for a SAP BTP Trial Account (~10min)](#markdown-header-1-sap-btp-trial-account)  
 2. [Create an ABAP Trial Environment (~5min)](#markdown-header-2-abap-trial-environment)  
-3. [Install Eclipse 2022-12 with ABAP Development Tools and abapGit (~20min)](#markdown-header-3-install-202212-with-abap-development-tools-and-abapgit)  
+3. [Install Eclipse with necessary plugins (~20min)](#markdown-header-3-install-eclipse-with-necessary-plugins)  
 4. [Add the BTP Trial as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-btp-trial-as-abap-project-to-eclipse)  
 5. [Import some required development objects from Git (~25min, may be partially optional)](#markdown-header-5-import-some-required-development-objects-from-git)  
 6. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
@@ -25,13 +25,13 @@ Click *Boosters* on the left, use the search and start *Prepare an Account for A
 
 You can close the BTP Cockpit now.
 
-### 3. Install Eclipse 2022-12 with ABAP Development Tools and abapGit
+### 3. Install Eclipse with necessary plugins
 [^ Top of page](#)  
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
 
->**Note** You may have to **leave your company's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
+>**Note** You may have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
 Go to [Eclipse 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
 
