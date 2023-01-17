@@ -1,4 +1,4 @@
-# Part 5 - Publishing the Business Service
+# Part 5a - Publishing the Business Service
 ## Table of Contents
 * [Previous: 4. Behavior Definition](../part4/4a.md)  
 * **Current: 5a. Publishing the Business Service**  
@@ -7,7 +7,8 @@
     * [Service Binding](#markdown-header-service-binding)  
     * [Testing the UI service locally](#markdown-header-testing-the-ui-service-locally)     
 * [Next: 5b. Implementing Basic Authorizations (optional)](5b.md)  
-* [Next: 6. Business Service](../part6/6a.md)
+* [Next: 6. Behavior Implementation](../part6/6a.md)  
+* [Next: 6. Behavior Implementation (short version)](../part6/6aSHORT.md)
 
 ## Introduction  
 [^ Top of page](#)  
