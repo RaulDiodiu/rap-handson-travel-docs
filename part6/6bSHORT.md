@@ -1,8 +1,17 @@
-# Part 6b - Determinations & Validations
+# Part 6b - Determinations & Validations (short version)
+## Table of Contents
+* [Previous: 5. Business Service](../part5/README.md)  
+* [Previous: 6a. Behavior Pool & Actions (short version)](6aSHORT.md)  
+* **Current: 6b. Determinations & Validations (short version)**  
+    * [Introducing Determinations](#markdown-header-introducing-determinations)  
+    * [Implementing Determination setInitialStatus](#markdown-header-implementing-determination-setinitialstatus)  
+    * [Introducing Validations](#markdown-header-introducing-validations)  
+    * [Implementing Validation validateCustomer](#markdown-header-implementating-validation-validatecustomer)  
+* [Next: 6d. Feature Control (optional)](6d.md) 
+* [Next: 7. Business Application Studio](../part7/README.md) 
 
-## Finalising the behavior implementation
-
-### Determination
+## Introducing Determinations
+[^ Top of page](#)  
 Determinations are used to determine, derive or calculate the fields of the instance in use. A determination is called based on some triggers conditions, for example it can be automatically executed when a create, update or delete of an instance is happening.
 For more informations see [Determinations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/c0a547a10ca04b1492945e9d8dc3e836.html). You can see the behavior definition syntax below:  
 ```abap
@@ -17,7 +26,8 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 
 >**Remark**  You can only define trigger fields for a determination from the same entity the determination is assigned to. A determination that is defined for the travel entity cannot have trigger fields from e.g. the booking entity.
 
-#### Implementating Determination `setInitialStatus`
+### Implementing Determination `setInitialStatus`
+[^ Top of page](#)  
 We want to set the initial status of newly created travel instances to _Open (O)_. To achieve this, we'll need to add a determination on modify with trigger operation `create` to the behavior definition. This time, you **don't** have to `use` the determination in the behavior projection as determinations will always run automatically.
 
 After creation, the overall status of the travel should only be changed by the action `acceptTravel`, which we previously created, therefore the field should be read-only for the external consumer.  
@@ -28,8 +38,8 @@ To implement this action you have to first add it to the behavior definition and
 [ZBP_RAPH_##_I_TRAVELWDTP~setInitialStatus](sources/SetInitialStatus.txt)
 
 
-### Validation
- 
+## Introducing Validations
+[^ Top of page](#)  
 Validations are used to verify if the values added by the user are consistent, in case the values are wrong an error is raised with a relevant message, in this case the save is not done.   
 For more informations see [Validations](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/abfbcd933c264fe4a4883d80d1e951d8.html). You can see the behavior definition syntax below:  
 ```abap
@@ -50,8 +60,9 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 `}`
 
 
-#### Implementating Validation `validateCustomer` 
-Our first validation will check whether the customer chosen for this travel is actually existing and valid. Therefore you have to define a validation on save with trigger operation `create` using the trigger field `CustomerID`. Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory in the behavior definition as well. This time, you **don't** have to `use` the validation in the behavior projection as validations will always run automatically. 
+### Implementing Validation `validateCustomer` 
+[^ Top of page](#)  
+Our validation will check whether the customer chosen for this travel is actually existing and valid. Therefore you have to define a validation on save with trigger operation `create` using the trigger field `CustomerID`. Since there must always be a customer assigned to a certain travel, define the field `CustomerID` as mandatory in the behavior definition as well. This time, you **don't** have to `use` the validation in the behavior projection as validations will always run automatically. 
 
 In the travel behavior pool you have to `READ` the `CustomerID` field for the created travels using the parameter `keys` in EML.  
 
@@ -65,4 +76,6 @@ Once you implemented abovementioned logic you can check the solution to see how 
 [ZBP_RAPH_##_I_TRAVELWDTP~validateCustomer](sources/TravelValidateCustomer.txt)
 
 ## Next step
+[^ Top of page](#)  
+[6d. Feature Control (optional)](6d.md)
 [7. Business Application Studio](../part7/README.md)
