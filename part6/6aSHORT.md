@@ -1,5 +1,6 @@
 # Part 6 - Behavior Implementation
 # Part 6a - Behavior Pool & Actions (short version)
+## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * **Current: 6a. Behavior Pool & Actions (short version)**  
     * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)  
@@ -80,4 +81,4 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
 
 ## Next step
 [^ Top of page](#)  
-[6b. Determinations (short version)](6b.md)
+[6b. Determinations (short version)](6bSHORT.md)
