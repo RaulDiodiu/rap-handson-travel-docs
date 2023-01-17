@@ -80,4 +80,4 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
 
 ## Next step
 [^ Top of page](#)  
-[6b. Determinations & Validations (short version)](6bSHORT.md)
+[6b. Determination & Validation (short version)](6bSHORT.md)
