@@ -2,9 +2,9 @@
 
 ## Preparing for the ERP Praktikum
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
-1. Register for a SAP BTP Trial Account (~10min)  
+1. [Register for a SAP BTP Trial Account (~10min)](#1-sap-btp-trial-account)  
 2. Create an ABAP Trial Environment (~5min)  
-3. Install Eclipse with ABAP Development Tools and abapGit (~20min)  
+3. Install Eclipse 2022-12 with ABAP Development Tools and abapGit (~20min)  
 4. Add the BTP Trial as ABAP Project to Eclipse and create a package (~5min)  
 5. Import some required development objects from Git (~25min, may be partially optional)  
 6. Install SAP Business Application Studio (~10min)
@@ -18,20 +18,22 @@ Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](htt
 Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
 
 ### 2. ABAP Trial Environment
+[^ Top of page](#)  
 With our SAP BTP Trial Account up and running we now want to oboard to the ABAP Environment Trial. Enter the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) (or stay where you've ended the first substep).
 
 Click *Boosters* on the left, use the search and start *Prepare an Account for ABAP Trial*. After a minute you should get a success message and store the *Service Key* on your computer - this will be needed to connect the ABAP Trial with Eclipse later on.
 
 You can close the BTP Cockpit now.
 
-### 3. Install Eclipse with ABAP Development Tools and abapGit
+### 3. Install Eclipse 2022-12 with ABAP Development Tools and abapGit
+[^ Top of page](#)  
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
 
 >**Note** You may have to **leave your company's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2021-12](https://www.eclipse.org/downloads/packages/release/2021-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
+Go to [Eclipse 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
 
 >**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences and includes the finished installation. But you can choose your preferred option yourself.
 
@@ -40,12 +42,13 @@ You will be asked for a workspace and can set this as default for the future.
 
 >**Note** You may have to **run Eclipse as administrator** in order to install add-ons.
 
-Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2021-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
+Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2022-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
 Now we'll install the abapGit AddOn: Click *Help* > *Install new Software...* in Eclipse and enter https://eclipse.abapgit.org/updatesite/ this time. Select *abapGit for ABAP Development Tools (ADT)* for installation. Continue the installation wizard like you did for ADT. After the installation Eclipse has to be restarted. Now you can access the abapGit View by clicking *Window* > *Show View* > *Other...* > *abapGit Repositories*.
 
 ### 4. Add the BTP Trial as ABAP Project to Eclipse and create a package
 #### Connecting Eclipse with BTP
+[^ Top of page](#)  
 Now we will add the previously created ABAP Trial instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
 Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *default_key.json* which you've downloaded to your computer previously. Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
@@ -66,6 +69,7 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 With this, you've completed the fourth preparation step.
 
 ### 5. Import some required development objects from Git
+[^ Top of page](#)  
 #### 5 a) Importing cloud-abap-exchange-rates objects required for our course
 >**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZCL_PREPARE_CURRENCY_TEST`. If you find the class, you can skip this subchapter and continue with **5 b)** in order to configure the BAS. **If no class was found, you'll have to do the following steps!**
 
@@ -91,6 +95,7 @@ Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or pres
 Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that room reservation and hotel data has been generated in the SAP system. Great, we're good to go!
 
 ### 6. Install SAP Business Application Studio 
+[^ Top of page](#)  
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
 
 Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
@@ -106,7 +111,7 @@ You'll get a link in order to retrieve a temporary passcode for logging in - ope
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on March 28th **:)**
+**We're looking forward to see you** on March 20th **:)**
 
 ## Further Links
 - [Eclipse Keyboard Shortcuts](Shortcuts.md)  
