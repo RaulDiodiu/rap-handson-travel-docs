@@ -1,15 +1,17 @@
-# Part 2 - Creating the Database Tables
+# Part 2 - Creating and filling the Database Tables
 ## Table of Contents
-* [Previous: Installation Guide](../installation/Installation.md)
-* [Previous: Keyboard Shortcuts](../installation/Shortcuts.md)
-* **Current: 1. Introduction**
-* [Next: 2. Creating the Database Tables ](../part2/README.md)
+* [Previous: 1. Introduction](../part1/README.md)
+* **Current: 2. Creating and filling the Database Tables**  
+   * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1---create-room-reservation-table)  
+   * [Requirement #2 - Duplicate /DMO/ tables](#markdown-header-requirement-2---duplicate-dmo-tables)  
+   * [Requirement #3 - Fill database tables](#markdown-header-requirement-3---fill-database-tables)  
+* [Next: 3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
 
 
 ## Note for the ERP Praktikum
 **If** you're taking part in the university course ERP Praktikum, you've already created these database tables before in the [ABAP Dictionary (DDIC) section](../ddic/Tables.md). Therefore, you can simply skip this part of the hands-on and please continue with [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md). Otherwise, please continue with creating the necessary tables like described below.
 
-## Requirement #1 - Create custom room reservation table
+## Requirement #1 - Create room reservation table
 You will now create the database table `ZRAPH_##_RoomRsv` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
 
 ## Technical information
@@ -52,6 +54,10 @@ Please duplicate the following tables in your SAP system into your local package
 * Duplicate `/dmo/a_travel_d` as `ZRAPH_##_Travel`
 * Duplicate `/dmo/a_booking_d` as `ZRAPH_##_Booking`
 * Duplicate `/dmo/a_bksuppl_d` as `ZRAPH_##_BookSup`
+
+## Requirement #3 - Fill database tables
+[^ Top of page](#)  
+@TODO
 
 ## Next step
 [3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
