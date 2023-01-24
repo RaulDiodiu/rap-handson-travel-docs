@@ -81,6 +81,7 @@ In the wizard select/enter the following information:
 Press "Insert Snippet".  
 Press "Next".  
   
+[^ Top of page](#)  
 In the next step select/enter the following information:  
 
 | Field           | Value         |
@@ -133,6 +134,7 @@ In the wizard select/enter the following information:
 Press "Insert Snippet".  
 Press "Next".  
   
+[^ Top of page](#)  
 In this step we don't have any input to give.  
   
 Press "Insert Snippet".  
@@ -234,6 +236,7 @@ Call this method and assign the result to a variable aSelection:
 var aSelection = // insert your code to determine the selected contexts here
 ```
   
+[^ Top of page](#)  
 A selected context can access the data of the corresponding line using the getProperty method as already done in onRowButtonPressed.  
   
 To concatenate the values of the resulting array, the reduce method can be used:    
