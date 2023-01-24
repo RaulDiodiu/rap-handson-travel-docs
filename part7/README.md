@@ -1,4 +1,4 @@
-# Part 7 - Business Application Studio
+# Part 7a - Business Application Studio
 ## Table of Contents
 * [Previous: 6. Behavior Implementation](../part6/6a.md) / [6a. Short Version](../part6/6aSHORT.md)
 * **Current: 7a. Business Application Studio**  
