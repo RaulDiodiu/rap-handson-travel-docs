@@ -7,7 +7,7 @@
     * [1. Add the custom filter](#markdown-header-1-add-the-custom-filter)    
     * [2. Add custom action](#markdown-header-2-add-custom-action)  
     * [3. Add a custom column to the table](#markdown-header-3-add-a-custom-column-to-the-table)  
-    * [4. Let us use the extensionAPI for once](#markdown-header-4-let-us-use-the-extensionaapi-for-once)  
+    * [4. Let us use the extensionAPI for once](#markdown-header-4-let-us-use-the-extensionapi-for-once)  
 * [Next: 10. CDS Custom Entity (optional)](../part10/1.CustomEntityIntro.md)
 
 ## Requirement
@@ -41,6 +41,7 @@ Press "Insert Snippet".
 Press "Next".  
 Press "Next" again to skip step 2.  
   
+[^ Top of page](#)  
 In the next step enter the following information:  
 
 | Field      | Value   |
@@ -50,6 +51,7 @@ In the next step enter the following information:
 Press "Insert Snippet".  
 Press "Exit Guide".  
   
+[^ Top of page](#)  
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
 Example:  
