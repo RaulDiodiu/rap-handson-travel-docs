@@ -13,7 +13,9 @@ For our course we will rely on SAP's Business Technology Platform Trial ABAP Env
 First, we will register for a BTP Trial Account. Therefore, go to
 [SAP's website](https://www.sap.com/index.html) and register for an SAP account at the top right (you could e.g. provide 'University of Passau' as company, 'Training' as department and 'Student' as relationship or whatever seems fit to you). After confirming the mail you have to set a password and then log in.
 
-Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). If you close this tab after logging in and being asked for a phone number you might be lucky and won't be asked for a phone number when opening the link a second time - otherwise please provide your phone number. Select *US East (VA) - AWS* as your region and continue - the generation of your account might take roughly two minutes.
+Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). You'll have to provide your phone number for 2FA and SAP to ensure that you won't create unlimited amounts of accounts - but you can be sure that they'll never bother you using the phone number!  
+
+Select *US East (VA) - AWS* as your region and continue - the generation of your account might take roughly two minutes.
 
 Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
 
@@ -36,6 +38,8 @@ Next, we have to install the local development environment. For this, SAP switch
 Go to [Eclipse 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
 
 >**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences and includes the finished installation. But you can choose your preferred option yourself.
+
+>**IMPORTANT NOTE for Mac users** Eclipse will self-modify its own info.plist file with some preferences during the first startup. This will lead to Eclipse not being allowed to open again after it was first started. The built-in [macOS Gatekeeper XProtect](https://support.apple.com/guide/security/protecting-against-malware-sec469d47bd8/web) prevents starting Eclipse after its self-modification due to this being interpreted as security threat. Therefore we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal. Please open the Terminal **directly after installing Eclipse and before running it** and execute the following command: `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`
 
 When the installation finished you can launch Eclipse.  
 You will be asked for a workspace and can set this as default for the future.
