@@ -32,7 +32,7 @@ You can close the BTP Cockpit now.
 [^ Top of page](#)  
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
->**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
+>**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial. Even if you have older Eclipse + ADT Installations, setup a new one as only the latest state is expected to work properly over the course.
 
 >**Note** You'll have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
@@ -104,6 +104,11 @@ Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *O
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
 
 Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
+
+Click *View* > *Command palette* or *Ctrl + Shift + P* and search for the command *CF: Login to Cloud Foundry* and select it with enter. Click enter again to confirm the preset Cloud Foundry endpoint, enter your BTP Trial user's mail, confirm it with enter and do the same for the password.  
+Once you see the info message *You have been logged in.* you've finished necessary installations for our course!
+
+>**Note** There's a quite common error which mich happen when logging in to Cloud Foundry. You might get an API endpoint error message. If this affects you, there's an easy workaround:
 
 Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Confirm the command with enter.
 
