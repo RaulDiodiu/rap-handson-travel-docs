@@ -33,18 +33,18 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial.
 
->**Note** You may have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
+>**Note** You'll have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
 Go to [Eclipse 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
 
->**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download a **ZIP-file** which simply has to be unpacked on your computer - this might be the easier option based on your preferences and includes the finished installation. But you can choose your preferred option yourself.
+>**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download an **archive** which simply has to be unpacked on your computer. This might be the easier option based on your liking and includes the ready-to-use Eclipse app. But you can choose your preferred option yourself.
 
->**IMPORTANT NOTE for Mac users** Eclipse will self-modify its own info.plist file with some preferences during the first startup. This will lead to Eclipse not being allowed to open again after it was first started. The built-in [macOS Gatekeeper XProtect](https://support.apple.com/guide/security/protecting-against-malware-sec469d47bd8/web) prevents starting Eclipse after its self-modification due to this being interpreted as security threat. Therefore we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal. Please open the Terminal **directly after installing Eclipse and before running it** and execute the following command: `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`
+>**IMPORTANT NOTE for Mac users** Eclipse will self-modify its own info.plist file with some preferences during the first startup. This will lead to Eclipse not starting again afterwards. The built-in [macOS Gatekeeper XProtect](https://support.apple.com/guide/security/protecting-against-malware-sec469d47bd8/web) prevents starting Eclipse after its self-modification (as this is considered as security threat). Therefore we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal: Please open the Terminal **directly after installing Eclipse and before running it** and execute the following command (adapted to your local path to the Eclipse app in the Mac user directory): `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`
 
 When the installation finished you can launch Eclipse.  
 You will be asked for a workspace and can set this as default for the future.
 
->**Note** You may have to **run Eclipse as administrator** in order to install add-ons.
+>**Note** You may have to **run Eclipse as administrator** on Windows in order to install add-ons.
 
 Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2022-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
