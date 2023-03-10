@@ -105,7 +105,7 @@ Our final step is to configure the Business Application Studio (BAS) which is th
 
 Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
 
-Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Confirm the command with enter.
+Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.us10.hana.ondemand.com` and confirm via Enter.
 
 You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click`. You might have to select the *Default Identity Provider* in the browser window and will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`.  
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
