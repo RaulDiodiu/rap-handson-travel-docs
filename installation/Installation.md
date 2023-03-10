@@ -15,6 +15,7 @@ First, we will register for a BTP Trial Account. Therefore, go to
 
 Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). You'll have to provide your phone number for 2FA and SAP to ensure that you won't create unlimited amounts of accounts - but you can be sure that they'll never bother you using the phone number!  
 
+If you have to decide in a pop-up to go to "Free Tier" or continue with "Trial", just continue with the "Trial".
 Select *US East (VA) - AWS* as your region and continue - the generation of your account might take roughly two minutes.
 
 Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
