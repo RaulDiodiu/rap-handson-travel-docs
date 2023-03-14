@@ -44,7 +44,7 @@ Now we'll install the abapGit AddOn: Click *Help* > *Install new Software...* in
 [^ Top of page](#)  
 Now we will add the ABAP instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
-Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file [abap_environment_service_key.json](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
+Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *abap_environment_service_key.json* which you can download [here](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
