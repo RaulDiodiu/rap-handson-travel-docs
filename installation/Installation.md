@@ -61,7 +61,7 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 
 With this, you've completed the fourth preparation step.
 
-### 5. Install SAP Business Application Studio 
+### 4. Install SAP Business Application Studio 
 [^ Top of page](#)  
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on.  
 
