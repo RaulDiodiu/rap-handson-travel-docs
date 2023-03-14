@@ -61,15 +61,15 @@ Here you have to select the option using a *Service Key* and continue with *Next
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
 
-![alt](images/image0_1.png)  
+![alt](files/image0_1.png)  
 
 On the *Next >* wizard page, assign the Name `ZRAPH_##_TRAVEL` where the `##` has to be replaced with your personal *initials*. This ensures that everybody has his own package and we don't interfere with each others - we'll use the `##` throughout the course! The superpackage will stay ZLOCAL and you can check the box to save this as favorite package for easier access.
 
-![alt](images/image0_2.png)
+![alt](files/image0_2.png)
 
 Continue with *Next >* and select the radio button *Create a new request* where you should provide some meaningful *Request Description* and can complete the wizard by pressing *Finish*. This transport request is required as you would normally e.g. transport such packaged changes from a development to a test system. In our case this won't happen but is necessary nontheless.
 
-![alt](images/image0_3.png)
+![alt](files/image0_3.png)
 
 With this, you've completed the fourth preparation step.
 
@@ -80,11 +80,11 @@ With this, you've completed the fourth preparation step.
 
 First, create another development package within `ZLOCAL` like in subchapter 4. Name it `ZABAP_EXCHANGE_RATE` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://github.com/SAP-samples/cloud-abap-exchange-rates as URL.
 
-![alt](images/image0_4.png)
+![alt](files/image0_4.png)
 
 Continue with *Next >* and fill your package name `ZABAP_EXCHANGE_RATE`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished.
 
-Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
+Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](files/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
 
 Click  `Ctrl + Shift + A` and type `ZCL_PREPARE_CURRENCY_TEST` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that currency exchange rates have been imported to the SAP system. Those will later be used to convert some amounts in our app.
 
@@ -95,7 +95,7 @@ First, create another development package within `ZLOCAL` like before. Name it `
 
 Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished (there will probably be some irrelevant errors: *Pulled with errors*).
 
-Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
+Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](files/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
 
 Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that room reservation and hotel data has been generated in the SAP system. Great, we're good to go!
 
