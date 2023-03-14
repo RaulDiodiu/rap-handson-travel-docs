@@ -5,9 +5,8 @@ For our course we will rely on SAP's Business Technology Platform Trial ABAP Env
 1. [Register for a SAP BTP Trial Account (~10min)](#markdown-header-1-sap-btp-trial-account)  
 2. [Create an ABAP Trial Environment (~5min)](#markdown-header-2-abap-trial-environment)  
 3. [Install Eclipse with necessary plugins (~20min)](#markdown-header-3-install-eclipse-with-necessary-plugins)  
-4. [Add the BTP Trial as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-btp-trial-as-abap-project-to-eclipse)  
-5. [Import some required development objects from Git (~25min, may be partially optional)](#markdown-header-5-import-some-required-development-objects-from-git)  
-6. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
+4. [Add the BTP Trial as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-btp-trial-as-abap-project-to-eclipse)   
+5. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
 
 ### 1. SAP BTP Trial Account
 First, we will register for a BTP Trial Account. Therefore, go to
@@ -73,39 +72,13 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 
 With this, you've completed the fourth preparation step.
 
-### 5. Import some required development objects from Git
+### 5. Install SAP Business Application Studio 
 [^ Top of page](#)  
-#### 5 a) Importing cloud-abap-exchange-rates objects required for our course
->**Note** This step might be superfluos. BTP Accounts are automatically distributed across different instances. So it could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZCL_PREPARE_CURRENCY_TEST`. If you find the class, you can skip this subchapter and continue with **5 b)** in order to configure the BAS. **If no class was found, you'll have to do the following steps!**
+Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on.  
 
-First, create another development package within `ZLOCAL` like in subchapter 4. Name it `ZABAP_EXCHANGE_RATE` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://github.com/SAP-samples/cloud-abap-exchange-rates as URL.
+To get started, open the [Business Application Stutio](https://sose-2023-uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html). Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
 
-![alt](images/image0_4.png)
-
-Continue with *Next >* and fill your package name `ZABAP_EXCHANGE_RATE`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished.
-
-Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
-
-Click  `Ctrl + Shift + A` and type `ZCL_PREPARE_CURRENCY_TEST` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that currency exchange rates have been imported to the SAP system. Those will later be used to convert some amounts in our app.
-
-#### 5 b) Importing ZRAPH objects required for our course
->**Note** This step might be superfluos. It could be that our required objects have already been imported from Git by another student. To check, if those objects are already available, please do the following: Mark the ABAP Project in Eclipse on the left and click `Ctrl + Shift + A`. Type `ZRAPH_HOTEL_NAME`. If you find two matches, you can skip this subchapter and continue with **subchapter 6** in order to configure the BAS. **If no files are found, you'll have to do the following steps!**
-
-First, create another development package within `ZLOCAL` like before. Name it `ZRAPH_TRAVEL` and select your existing transport request. Now, open the abapGit plugin via *Window* > *Show View* > *Other...* > *abapGit Repositories*. Click the green plus button and provide https://bitbucket.org/erp-praktikum/rap-handson-travel-reference-model as URL.
-
-Continue with *Next >* and fill your package name `ZRAPH_TRAVEL`. Check the box *Pull after link* and click *Next >* again. Choose your transport request and click *Finish*. Press the refresh button in the repository overview until the import has finished (there will probably be some irrelevant errors: *Pulled with errors*).
-
-Now we have to activate the imported elements. Click `Ctrl + Shift + F3` or press ![alt](images/image0_5.png). Select all shown elements and continue with *OK*. Select all shown elements and click *Activate*.
-
-Click  `Ctrl + Shift + A` and type `ZRAPH_DATA_GENERATOR` - mark it and press *OK*. Click into the opened source code editor and Press *F9* to run the class as ABAP Application (Console). You'll see some outputs confirming that room reservation and hotel data has been generated in the SAP system. Great, we're good to go!
-
-### 6. Install SAP Business Application Studio 
-[^ Top of page](#)  
-Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on. To get started, open the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) again. Here, click on you *trial* subaccount, select *Services*, then *Instances and Subscriptions* on the left. Now click the *Go to Application* link for the *SAP Business Application Studio* and accept the legal disclaimer.
-
-Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
-
-Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.us10.hana.ondemand.com` and confirm via Enter.
+Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.eu10.hana.ondemand.com` and confirm via Enter.
 
 You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click`. You might have to select the *Default Identity Provider* in the browser window and will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`.  
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
