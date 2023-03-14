@@ -2,32 +2,21 @@
 
 ## Preparing for the ERP Praktikum
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
-1. [Register for a SAP BTP Trial Account (~10min)](#markdown-header-1-sap-btp-trial-account)  
-2. [Create an ABAP Trial Environment (~5min)](#markdown-header-2-abap-trial-environment)  
-3. [Install Eclipse with necessary plugins (~20min)](#markdown-header-3-install-eclipse-with-necessary-plugins)  
-4. [Add the BTP Trial as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-btp-trial-as-abap-project-to-eclipse)   
-5. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
+1. [Activate msg ABAP Environment User (~5min)](#markdown-header-1-sap-btp-trial-account)  
+2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-3-install-eclipse-with-necessary-plugins)  
+3. [Add the ABAP Instance as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-abap-instance-as-abap-project-to-eclipse)   
+4. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
 
-### 1. SAP BTP Trial Account
-First, we will register for a BTP Trial Account. Therefore, go to
-[SAP's website](https://www.sap.com/index.html) and register for an SAP account at the top right (you could e.g. provide 'University of Passau' as company, 'Training' as department and 'Student' as relationship or whatever seems fit to you). After confirming the mail you have to set a password and then log in.
-
-Next, you have to register for the BTP Trial itself. Go to the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/). You'll have to provide your phone number for 2FA and SAP to ensure that you won't create unlimited amounts of accounts - but you can be sure that they'll never bother you using the phone number!  
-
-If you have to decide in a pop-up to go to "Free Tier" or continue with "Trial", just continue with the "Trial".
-Select *US East (VA) - AWS* as your region and continue - the generation of your account might take roughly two minutes.
-
-Afterwards, click *Go To Your Trial Account* to get started - the opened Cockpit might be a useful browser bookmark!
-
-### 2. ABAP Trial Environment
+### 1. Activate msg ABAP Environment User
 [^ Top of page](#)  
-With our SAP BTP Trial Account up and running we now want to oboard to the ABAP Environment Trial. Enter the [BTP Cockpit](https://account.hanatrial.ondemand.com/trial/) (or stay where you've ended the first substep).
+You'll get an activation link via mail and simply have to click it:
 
-Click *Boosters* on the left, use the search and start *Prepare an Account for ABAP Trial*. After a minute you should get a success message and store the *Service Key* on your computer - this will be needed to connect the ABAP Trial with Eclipse later on.
+![alt](images/image_sap.png)
 
-You can close the BTP Cockpit now.
+Afterwards, you'll have to set a password for your SAP user.  
+Please remember it (:
 
-### 3. Install Eclipse with necessary plugins
+### 2. Install Eclipse with necessary plugins
 [^ Top of page](#)  
 Next, we have to install the local development environment. For this, SAP switched from their own solution to the Eclipse IDE with an ABAP Development Tool plugin.
 
@@ -50,7 +39,7 @@ Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new 
 
 Now we'll install the abapGit AddOn: Click *Help* > *Install new Software...* in Eclipse and enter https://eclipse.abapgit.org/updatesite/ this time. Select *abapGit for ABAP Development Tools (ADT)* for installation. Continue the installation wizard like you did for ADT. After the installation Eclipse has to be restarted. Now you can access the abapGit View by clicking *Window* > *Show View* > *Other...* > *abapGit Repositories*.
 
-### 4. Add the BTP Trial as ABAP Project to Eclipse
+### 3. Add the ABAP Instance as ABAP Project to Eclipse
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
 Now we will add the previously created ABAP Trial instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
@@ -78,7 +67,7 @@ Our final step is to configure the Business Application Studio (BAS) which is th
 
 To get started, open the [Business Application Stutio](https://sose-2023-uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html). Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
 
-Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.eu10.hana.ondemand.com` and confirm via Enter.
+Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter.
 
 You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click`. You might have to select the *Default Identity Provider* in the browser window and will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`.  
 You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
