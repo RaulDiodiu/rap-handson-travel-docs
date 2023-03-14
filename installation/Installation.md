@@ -3,9 +3,9 @@
 ## Preparing for the ERP Praktikum
 For our course we will rely on SAP's Business Technology Platform Free Tier ABAP Environment. To get ready for developing we have to set up some things first:  
 1. [Activate msg ABAP Environment User (~5min)](#markdown-header-1-sap-btp-trial-account)  
-2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-3-install-eclipse-with-necessary-plugins)  
-3. [Add the ABAP Instance as ABAP Project to Eclipse (~5min)](#markdown-header-4-add-the-abap-instance-as-abap-project-to-eclipse)   
-4. [Install SAP Business Application Studio (~10min)](#markdown-header-6-install-sap-business-application-studio)
+2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-2-install-eclipse-with-necessary-plugins)  
+3. [Add the ABAP Instance as ABAP Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-project-to-eclipse)   
+4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)
 
 ### 1. Activate msg ABAP Environment User
 [^ Top of page](#)  
