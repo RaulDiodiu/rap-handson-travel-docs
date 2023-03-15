@@ -4,7 +4,7 @@
 For our course we will rely on SAP's Business Technology Platform Free Tier ABAP Environment. To get ready for developing we have to set up some things first:  
 1. [Activate msg ABAP Environment User (~5min)](#markdown-header-1-activate-msg-abap-environment-user)  
 2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-2-install-eclipse-with-necessary-plugins)  
-3. [Add the ABAP Instance as ABAP Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-project-to-eclipse)   
+3. [Add the ABAP Instance as ABAP Cloud Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-cloud-project-to-eclipse)   
 4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)
 
 ### 1. Activate msg ABAP Environment User
@@ -37,10 +37,10 @@ You will be asked for a workspace and can set this as default for the future.
 
 Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter https://tools.hana.ondemand.com/2022-12/ into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse. After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
-### 3. Add the ABAP Instance as ABAP Project to Eclipse
+### 3. Add the ABAP Instance as ABAP Cloud Project to Eclipse
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
-Now we will add the ABAP instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
+Now we will add the ABAP instance as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
 Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from this [service_key](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
 
