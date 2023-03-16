@@ -42,7 +42,7 @@ Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new 
 [^ Top of page](#)  
 Now we will add the ABAP instance as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
-Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from this [service_key](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `msgsystems-sci.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
+Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `msgsystems-sci.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
@@ -57,7 +57,7 @@ Continue with *Next >* and select the radio button *Create a new request* where 
 
 ![alt](files/image0_3.png)
 
-With this, you've completed the fourth preparation step.
+With this, you've completed the third preparation step.
 
 ### 4. Install SAP Business Application Studio 
 [^ Top of page](#)  
