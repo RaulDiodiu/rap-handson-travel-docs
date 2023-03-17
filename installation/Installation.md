@@ -9,7 +9,7 @@ For our course we will rely on SAP's Business Technology Platform Free Tier ABAP
 
 ### 1. Activate msg ABAP Environment User
 [^ Top of page](#)  
-You'll get an activation link via mail and simply have to click it:
+You should have gotten an activation link via mail (already at the beginning of the week) and simply have to click the shiny blue button:
 
 ![alt](files/image_sap.png)
 
