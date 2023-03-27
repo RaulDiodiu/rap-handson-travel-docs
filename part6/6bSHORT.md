@@ -1,4 +1,4 @@
-# Part 6b - Determination & Validation (short version)
+# Part 6b - Determinations (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * [Previous: 6a. Behavior Pool & Action (short version)](6aSHORT.md)  

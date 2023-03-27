@@ -1,4 +1,4 @@
-# Part 6b - Determination & Validation (short version)
+# Part 6b - Validations (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * [Previous: 6b. Determination (short version)](6bSHORT.md)  
