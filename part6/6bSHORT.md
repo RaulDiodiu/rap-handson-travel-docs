@@ -38,5 +38,5 @@ To implement this action you have to first add it to the behavior definition and
 
 ## Next step
 [^ Top of page](#)  
-[6d. Feature Control (optional)](6d.md)  
+[6c. Validations (short version)](6cSHORT.md)  
 [7. Business Application Studio](../part7/README.md)
