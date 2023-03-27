@@ -5,7 +5,7 @@ For our course we will rely on SAP's Business Technology Platform Free Tier ABAP
 1. [Activate msg ABAP Environment User (~5min)](#markdown-header-1-activate-msg-abap-environment-user)  
 2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-2-install-eclipse-with-necessary-plugins)  
 3. [Add the ABAP Instance as ABAP Cloud Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-cloud-project-to-eclipse)   
-4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)
+4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)  
 5. [Connecting BAS with the ABAP Environment (~2min)](#markdown-header-5-connecting-bas-with-the-abap-environment)
 
 ### 1. Activate msg ABAP Environment User
