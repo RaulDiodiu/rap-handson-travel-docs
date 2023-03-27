@@ -22,7 +22,7 @@ At last we want a selection dependent multi select action that tells us which ag
 This is covered in section 4.  
   
 ## 1. Add the custom filter
-Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development.  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
 Select item "Add a custom filter to the filter bar of a list report page".  
 Press "Start Guide".  
@@ -72,7 +72,7 @@ Test the app and see the new filter "Custom Filter" that looks like this:
 [Solution](solutions/CustomFilter.fragment.xml)  
   
 ## 2. Add custom action
-Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development.  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
 Select item "Add a custom action to a page using extensions" in "List Report Page".  
 Press "Start Guide".  
@@ -203,7 +203,7 @@ When the button is now pressed, the result should look like this:
 ## 4. Let us use the extensionAPI for once
 
 ### Add another custom action
-Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development.  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
 Select item "Add a custom action to a page using extensions" in "List Report Page".  
 Press "Start Guide".  
