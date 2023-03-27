@@ -67,3 +67,4 @@ Navigation to object pages is not yet working but **you already got your very fi
 [^ Top of page](#)  
 [5b. Implementing Basic Authorizations](5b.md)  
 [6. Behavior Implementation](../part6/6a.md)
+[6. Behavior Implementation (short version)](../part6/6aSHORT.md)

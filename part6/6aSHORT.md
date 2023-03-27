@@ -7,7 +7,8 @@
     * [Creating our Behavior Pool](#markdown-header-creating-our-behavior-pool)  
     * [Introducing Actions](#markdown-header-introducing-actions)  
     * [Implementating Action acceptTravel](#markdown-header-implementating-action-accepttravel)   
-* [Next: 6b. Determination & Validation (short version)](6bSHORT.md)   
+* [Next: 6b. Determinations (short version)](6bSHORT.md)  
+* [Next: 6c. Validations (short version)](6cSHORT.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
 * [Next: 7. Business Application Studio](../part7/README.md) 
 
