@@ -11,7 +11,6 @@
 * [Next: 10. CDS Custom Entity (optional)](../part10/1.CustomEntityIntro.md)
 
 ## Requirement
-[^ Top of page](#)  
 We want to add the absolutely useful function to open 3 predefined web pages by selecting them in a dropdown box and pressing a button.  
 For this, we will need to implement 2 extensions to the list report, one filter and one action.  
 This is covered in section 1 and 2.  
@@ -23,10 +22,9 @@ At last we want a selection dependent multi select action that tells us which ag
 This is covered in section 4.  
   
 ## 1. Add the custom filter
-[^ Top of page](#)  
-Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "SAP Fiori tools - Open Guided Development.  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
-Select item "Add a custom filter to the filter bar".  
+Select item "Add a custom filter to the filter bar of a list report page".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
 
@@ -37,11 +35,18 @@ In the wizard select/enter the following information:
 | Custom Filter name | Custom Filter |
 | Control ID         | customFilter  |
   
-Press "Insert Snippet".  
+Press "Create a File and Insert Snippet".  
 Press "Next".  
-Press "Next" again to skip step 2.  
   
-[^ Top of page](#)  
+In the next step enter the following information:  
+
+| Field                  | Value                 |
+| ---------------------- | --------------------- |
+| Custom Filter Property | customFilterProperty  |
+  
+Press "Create or Update a File and Insert Snippet".  
+Press "Next".  
+  
 In the next step enter the following information:  
 
 | Field      | Value   |
@@ -51,7 +56,6 @@ In the next step enter the following information:
 Press "Insert Snippet".  
 Press "Exit Guide".  
   
-[^ Top of page](#)  
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
 Example:  
@@ -68,20 +72,20 @@ Test the app and see the new filter "Custom Filter" that looks like this:
 [Solution](solutions/CustomFilter.fragment.xml)  
   
 ## 2. Add custom action
-[^ Top of page](#)  
-Select item "Add a custom action to a page using extension".  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
+  
+Select item "Add a custom action to a page using extensions" in "List Report Page".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
 
 | Field         | Value                    |
 | ------------- | ------------------------ |
-| Page          | List Report Page         |
+| Page Type     | List Report Page         |
 | Function Name | onExtensionButtonPressed |
   
-Press "Insert Snippet".  
+Press "Create or Update a File and Insert Snippet".  
 Press "Next".  
   
-[^ Top of page](#)  
 In the next step select/enter the following information:  
 
 | Field           | Value         |
@@ -96,7 +100,6 @@ Press "Insert Snippet".
 Press "Exit Guide".  
   
 ### Test the App
-[^ Top of page](#)  
 Find the new button in the toolbar:  
 ![Custom Action Button](images/image1.png)
   
@@ -104,13 +107,12 @@ If you press on it, just a pop up appears with "onExtensionButtonPressed".
 This is the generated default behaviour and will be overwritten in the next step.  
   
 ### Add own coding to open an external web page
-[^ Top of page](#)  
 Find the generated controller "ListReportExt.controller.js" in webapp/ext/controller.  
 Within this file, the function "onExtensionButtonPressed" exists, which we will now change.  
 
 Replace the functions content with:  
 ```js
-var sExternalPage = this.getView().byId("customFilter").getValue();
+let sExternalPage = this.getView().byId("customFilter").getValue();
 window.open(sExternalPage);
 ```
   
@@ -121,8 +123,7 @@ Again test the button. Now the selected web page is opened (or an empty tab/wind
 ## 3. Add a custom column to the table
 
 ### Add basic column
-[^ Top of page](#)  
-Start the guide "Add custom columns to the table using extensions".  
+Start the guide "Add custom columns to the table using extensions" in "List Report Page".  
 In the wizard select/enter the following information:  
 
 | Field            | Value      |
@@ -131,13 +132,12 @@ In the wizard select/enter the following information:
 | Entity Type      | TravelType |
 | Leading Property | AgencyName |
   
-Press "Insert Snippet".  
+Press "Create a File and Insert Snippet".  
 Press "Next".  
   
-[^ Top of page](#)  
 In this step we don't have any input to give.  
   
-Press "Insert Snippet".  
+Press "Create a file and Insert Snippet".  
 Press "Next".  
   
 In this step, enter the following information:  
@@ -150,16 +150,26 @@ In this step, enter the following information:
 Press "Insert Snippet".  
 Press "Exit Guide".  
   
+Find file ResponsiveTableColumns.fragment.xml in webapp/ext/fragments.  
+In the file, change the columnIndex value from 101 to 2.  
+before:  
+```xml
+<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;101&quot;}"/>
+```
+after:  
+```xml
+<core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;2&quot;}"/>
+```
+  
 Check the app. Select data to see the custom cells.  
 It should look sort of like this:  
 ![Custom Column](images/image3.png)  
   
-### Give some life to the costum column
+### Give some life to the custom column
   
-#### Make the button text context dependent
-[^ Top of page](#)  
+#### Make a button with context dependent text
 Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.  
-We want to include the name of the hotel in the button text and handle the press on it later.  
+We want to include the name of the hotel in a button text and handle the press on it later.  
 Replace the Text control with a button control with the following properties:  
 
 | Property | Value                        |
@@ -174,7 +184,6 @@ It should now look sort of like this:
 [Solution](solutions/ResponsiveTableCells.fragment.xml)  
 
 #### Handle the button press
-[^ Top of page](#)  
 In the previous step we already told the framework to call a function called "onRowButtonPressed", when the button is pressed.  
 However we did not yet define that function.  
 So now we open webapp/ext/controller/ListReportExt.controller.js and add the following function definition:  
@@ -194,17 +203,18 @@ When the button is now pressed, the result should look like this:
 ## 4. Let us use the extensionAPI for once
 
 ### Add another custom action
-[^ Top of page](#)  
-Select item "Add a custom action to a page using extension".  
+Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
+  
+Select item "Add a custom action to a page using extensions" in "List Report Page".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
 
 | Field         | Value                     |
 | ------------- | ------------------------- |
-| Page          | List Report Page          |
+| Page Type     | List Report Page          |
 | Function Name | onExtensionButton2Pressed |
   
-Press "Insert Snippet".  
+Press "Create or Update a File and Insert Snippet".  
 Press "Next".  
   
 In the next step select/enter the following information:  
@@ -221,10 +231,9 @@ Press "Insert Snippet".
 Press "Exit Guide".  
   
 ### Adapt the coding
-[^ Top of page](#)   
 In webapp/ext/controller/ListReportExt.controller.js find function onExtensionButton2Pressed.  
 Adapt it to show a message toast with the text "`<AgencyNames>` were selected", where `<AgencyName>` should be replaced with the comma separated list of selected agencies.  
-
+  
 Within the function you can access the extension API using:  
 ```js
 this.extensionAPI
@@ -236,7 +245,6 @@ Call this method and assign the result to a variable aSelection:
 var aSelection = // insert your code to determine the selected contexts here
 ```
   
-[^ Top of page](#)  
 A selected context can access the data of the corresponding line using the getProperty method as already done in onRowButtonPressed.  
   
 To concatenate the values of the resulting array, the reduce method can be used:    
@@ -258,9 +266,8 @@ var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
 [Solution](solutions/ListReportExt.controller-3.js)  
   
 ### Activate multiselect
-[^ Top of page](#)  
-Open the guided development item "Enable multiple selection in tables".  
-As Page, choose the ListReport.  
+Open the guided development item "Configure multiple selection in tables" in "List Report Page".  
+As Page Name, choose the ListReport_Travel.  
   
 Press "Insert Snippet".  
 Press "Exit Guide".  
@@ -268,12 +275,10 @@ Press "Exit Guide".
 [Solution manifest.json](solutions/manifest.json)  
 
 ### Test the app
-[^ Top of page](#)  
 It should now look like this:  
 
 ![Custom Column](images/image6.png)
 ![Custom Column](images/image7.png)  
 
 ## Next step
-[^ Top of page](#)  
 [10. CDS Custom Entity (optional)](../part10/1.CustomEntityIntro.md)

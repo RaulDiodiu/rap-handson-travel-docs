@@ -2,17 +2,18 @@ sap.ui.define("com.erp.lrp.listreport.ext.controller.ListReportExt", [],
 function (){
     "use strict";
     return {
+        //(...) other methods are defined above getCustomAppStateDataExtension, restoreCustomAppStateDataExtension, onBeforeRebindTableExtension
         onExtensionButtonPressed: function(oEvent) {
-            var sExternalPage = this.getView().byId("customFilter").getValue();
+            let sExternalPage = this.getView().byId("customFilter").getValue();
             window.open(sExternalPage);
         },
         onRowButtonPressed: function(oEvent) {
-            var sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
+            let sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
             sap.m.MessageToast.show(sAgencyName + " was pressed");
         },
         onExtensionButton2Pressed: function(oEvent) {
-            var aSelection = this.extensionAPI.getSelectedContexts();
-            var fnReduction = function(sValue, oContext) {
+            let aSelection = this.extensionAPI.getSelectedContexts();
+            let fnReduction = function(sValue, oContext) {
                 var sCurrentValue = oContext.getProperty("AgencyName");
                 if(sValue.length === 0) {
                     return sCurrentValue;
@@ -20,7 +21,7 @@ function (){
                     return sValue + ", " + sCurrentValue;
                 }
             };
-            var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
+            let sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
             sap.m.MessageToast.show(sMessageText);
         }
     };
