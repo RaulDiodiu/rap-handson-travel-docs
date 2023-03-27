@@ -6,6 +6,9 @@ For our course we will rely on SAP's Business Technology Platform Free Tier ABAP
 2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-2-install-eclipse-with-necessary-plugins)  
 3. [Add the ABAP Instance as ABAP Cloud Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-cloud-project-to-eclipse)   
 4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)
+5. [Connecting BAS with the ABAP Environment (~2min)](#markdown-header-5-connecting-bas-with-the-abap-environment)
+
+### 5. Connecting BAS with the ABAP Environment
 
 ### 1. Activate msg ABAP Environment User
 [^ Top of page](#)  
@@ -71,7 +74,13 @@ Our final step is to configure the Business Application Studio (BAS) which is th
 
 To get started, open the [Business Application Studio](https://sose-2023-uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html). Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this takes some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
 
->**That's it for now!** The remaining tasks will be done together during the course: Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter. You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click` and enter `msgsystems-sci-platform`. You will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
+
+### 5. Connecting BAS with the ABAP Environment 
+Now we'll have to connect the BAS with Cloud Foundry in order to use OData services from the BackEnd in our FrontEnd app. Therefore, open [BAS](https://sose-2023-uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html) again via your browser bookmark.  
+
+Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter. You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click` and enter `msgsystems-sci-platform` as origin key. You will get a passcode afterwards (but might have to login again with user and password).  
+
+Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
 **We're looking forward to see you** on March 20th **:)**
