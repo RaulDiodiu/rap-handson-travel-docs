@@ -41,7 +41,7 @@ Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new 
 
 After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
-**Another note for Mac users**: Eclipse somehow hasn't preconfigured the keyboard shortcut for _Content Assist_. To activate it, go to the following menu bar settings: _Eclipse_ > _Settings / Preferences_. Search for _Keys_ in the menu pop-up and select the corresponding menu. Here, provide _Command_ + _Space_ as _Binding_ for the entry _Content Assist_ and save:  
+**Another note for Mac users**: Eclipse somehow hasn't preconfigured the keyboard shortcut for _Content Assist_. To activate it, go to the following menu bar settings: _Eclipse_ > _Settings / Preferences_. Search for _Keys_ in the menu pop-up and select the corresponding menu. Here, provide _Shift_ + _Space_ as _Binding_ for the entry _Content Assist_ and save:  
 ![alt](files/Mac_ContentAssist.png)  
 
 ### 3. Add the ABAP Instance as ABAP Cloud Project to Eclipse
