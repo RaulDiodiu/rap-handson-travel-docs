@@ -8,7 +8,7 @@ define view entity ZRAPH_##_I_BookingSupplementWDTP
 
   association [1..1] to /DMO/I_Supplement          as _Product        on $projection.SupplementID = _Product.SupplementID
   association [1..*] to /DMO/I_SupplementText      as _SupplementText on $projection.SupplementID = _SupplementText.SupplementID
-
+  association [1..1] to I_Currency                 as _Currency       on $projection.CurrencyCode = _Currency.Currency
 {
   key booksuppl_uuid        as BookSupplUUID,
 
@@ -34,5 +34,6 @@ define view entity ZRAPH_##_I_BookingSupplementWDTP
       _Booking,
       
       _Product,
-      _SupplementText
+      _SupplementText,
+      _Currency
 }
