@@ -80,4 +80,4 @@ TravelID;
 
 ## Next step
 [^ Top of page](#)  
-[6b. Determination & Validation (short version)](6bSHORT.md)
+[6b. Determination (short version)](6bSHORT.md)
