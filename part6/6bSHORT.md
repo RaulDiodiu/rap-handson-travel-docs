@@ -1,4 +1,4 @@
-# Part 6b - Determinations (short version)
+# Part 6b - Determination (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * [Previous: 6a. Behavior Pool & Action (short version)](6aSHORT.md)  
@@ -38,5 +38,5 @@ To implement this action you have to first add it to the behavior definition and
 
 ## Next step
 [^ Top of page](#)  
-[6c. Validations (short version)](6cSHORT.md)  
+[6c. Validation (short version)](6cSHORT.md)  
 [7. Business Application Studio](../part7/README.md)
