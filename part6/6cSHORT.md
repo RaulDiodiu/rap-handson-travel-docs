@@ -1,6 +1,7 @@
 # Part 6b - Validation (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
+* [Previous: 6a. Behavior Pool & Action (short version)](6aSHORT.md)  
 * [Previous: 6b. Determination (short version)](6bSHORT.md)  
 * **Current: 6c. Validation (short version)**   
     * [Introducing Validations](#markdown-header-introducing-validations)  

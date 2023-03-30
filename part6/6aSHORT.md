@@ -7,8 +7,8 @@
     * [Introducing Actions](#markdown-header-introducing-actions)  
     * [Implementing Action acceptTravel](#markdown-header-implementing-action-accepttravel)  
     * [BO Action Annotation](#markdown-header-bo-action-annotation)  
-* [Next: 6b. Determinations (short version)](6bSHORT.md)  
-* [Next: 6c. Validations (short version)](6cSHORT.md)  
+* [Next: 6b. Determination (short version)](6bSHORT.md)  
+* [Next: 6c. Validation (short version)](6cSHORT.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
 * [Next: 7. Business Application Studio](../part7/README.md) 
 
