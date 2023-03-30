@@ -38,11 +38,11 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ```
 
 
-### Implementating Action `acceptTravel`  
+### Implementing Action `acceptTravel`  
 [^ Top of page](#)  
 The `acceptTravel` action sets the status of a chosen travel instance to Accepted (A).  
 Technically speaking, this action is an instance action with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
-For implementation you have to first add the action definition in the behavior definition and then use Quick Fix via `Ctrl + 1` - Eclipse will auomatically create a new method for the action in the previously created behavior pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection!  
+For implementation you have to first add the action definition in the behavior definition and then use Quick Fix via `Ctrl + 1`. Eclipse will automatically create a new method for the action in the previously created behavior pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection!  
 For more information on EML, check the course slides or visit [SAP Help for EML](https://help.sap.com/viewer/923180ddb98240829d935862025004d6/Cloud/en-US/af7782de6b9140e29a24eae607bf4138.html).  
 ```abap
 MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE  
