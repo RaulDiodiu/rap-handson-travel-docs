@@ -5,7 +5,8 @@
 * **Current: 6a. Behavior Pool & Action (short version)**  
     * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)    
     * [Introducing Actions](#markdown-header-introducing-actions)  
-    * [Implementing Action acceptTravel](#markdown-header-implementing-action-accepttravel)   
+    * [Implementing Action acceptTravel](#markdown-header-implementing-action-accepttravel)  
+    * [BO Action Annotation](#markdown-header-bo-action-annotation)  
 * [Next: 6b. Determinations (short version)](6bSHORT.md)  
 * [Next: 6c. Validations (short version)](6cSHORT.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
@@ -64,6 +65,18 @@ READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
 ```
 **Solution**  
 [ZBP_RAPH_##_I_TRAVELWDTP~AcceptTravel](sources/AcceptTravel.txt)
+
+### BO Action Annotation
+In order to show the BO action which we've just created we have to annotate any field (like, e.g. `TravelID`) with a special `@UI.lineItem` annotation. Check the relevant syntax below and add this annotation to the Metadata Extension of your Travel entity:  
+
+```abap
+@UI: { lineItem: [ { type: #FOR_ACTION,
+                     dataAction: 'action_name',
+                     label: 'Button Label' } ] }
+TravelID;
+```
+**Solution**  
+[ZRAPH_##_C_TravelWDTP](sources/Z_C_TravelWDTP_MDE.txt)
 
 ## Next step
 [^ Top of page](#)  
