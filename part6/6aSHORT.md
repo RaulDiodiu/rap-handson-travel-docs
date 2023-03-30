@@ -25,12 +25,7 @@ ENDCLASS.
 
 ## Creating our Behavior Pool
 [^ Top of page](#)  
-Open the base behavior definition `ZRAPH_##_I_TravelWDTP`.
-
-Here, the ADT `Quick Fix` feature can be used to generate the class.  
-For this, set the cursor on the class name `zbp_raph_##_i_travelwdtp` in line 1 and press `Ctrl + 1` to start the Quick Fix dialog.  
-
-Open the created class and click `Local Types` on the bottom. This is where we implement the logic for all validations, actions, determinations and feature control. Every time we add a new action, determination or validation use the quick fix in the behavior definition to adjust the associated behavior pool class with a new method. You don't have to change anything yet, just activate the behavior pool.
+Open the base behavior definition `ZRAPH_##_I_TravelWDTP` and navigate to the class `zbp_raph_##_i_travelwdtp` in the first line. Click `Local Types` on the bottom. This is where we implement the logic for all validations, actions, determinations and feature control. Every time we add a new action, determination or validation use the quick fix in the behavior definition to adjust the associated behavior pool class with a new method. You don't have to change anything yet, just activate the behavior pool.
 
 **Solution**  
 [ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt)
