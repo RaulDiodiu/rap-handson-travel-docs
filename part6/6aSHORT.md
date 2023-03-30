@@ -71,7 +71,7 @@ In order to show the BO action which we've just created we have to annotate any 
 
 ```abap
 @UI: { lineItem: [ { type: #FOR_ACTION,
-                     dataAction: 'action_name',
+                     dataAction: '<action_name>',
                      label: 'Button Label' } ] }
 TravelID;
 ```
