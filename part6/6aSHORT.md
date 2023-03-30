@@ -5,7 +5,7 @@
 * **Current: 6a. Behavior Pool & Action (short version)**  
     * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)    
     * [Introducing Actions](#markdown-header-introducing-actions)  
-    * [Implementating Action acceptTravel](#markdown-header-implementating-action-accepttravel)   
+    * [Implementing Action acceptTravel](#markdown-header-implementing-action-accepttravel)   
 * [Next: 6b. Determinations (short version)](6bSHORT.md)  
 * [Next: 6c. Validations (short version)](6cSHORT.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
