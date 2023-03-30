@@ -3,8 +3,7 @@
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * **Current: 6a. Behavior Pool & Action (short version)**  
-    * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)  
-    * [Creating our Behavior Pool](#markdown-header-creating-our-behavior-pool)  
+    * [Implementing the business object behavior](#markdown-header-implementing-the-business-object-behavior)    
     * [Introducing Actions](#markdown-header-introducing-actions)  
     * [Implementating Action acceptTravel](#markdown-header-implementating-action-accepttravel)   
 * [Next: 6b. Determinations (short version)](6bSHORT.md)  
@@ -22,14 +21,6 @@ ENDCLASS.
 CLASS class_name IMPLEMENTATION.
 ENDCLASS.
 ```
-
-## Creating our Behavior Pool
-[^ Top of page](#)  
-Open the base behavior definition `ZRAPH_##_I_TravelWDTP` and navigate to the class `zbp_raph_##_i_travelwdtp` in the first line. Click `Local Types` on the bottom. This is where we implement the logic for all validations, actions, determinations and feature control. Every time we add a new action, determination or validation use the quick fix in the behavior definition to adjust the associated behavior pool class with a new method. You don't have to change anything yet, just activate the behavior pool.
-
-**Solution**  
-[ZRAPH_##_I_TravelWDTP](sources/Z_I_TravelWDTP_v3.txt)
-
 
 ## Introducing Actions
 [^ Top of page](#)  
