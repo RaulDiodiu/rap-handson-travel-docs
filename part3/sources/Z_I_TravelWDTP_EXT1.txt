@@ -7,10 +7,10 @@ define root view entity ZRAPH_##_I_TravelWDTP
   composition [0..*] of ZRAPH_##_I_RoomReservationWDTP as _RoomReservation
 
 
-  association [1..1] to /DMO/I_Agency             as _Agency       on $projection.AgencyID = _Agency.AgencyID
-  association [1..1] to /DMO/I_Customer           as _Customer     on $projection.CustomerID = _Customer.CustomerID
-  association [1..1] to I_Currency                as _Currency     on $projection.CurrencyCode = _Currency.Currency
-  association [1..1] to ZRAPH_I_OverallStatus     as _TravelStatus on $projection.OverallStatus = _TravelStatus.TravelStatus
+  association [0..1] to /DMO/I_Agency             as _Agency       on $projection.AgencyID = _Agency.AgencyID
+  association [0..1] to /DMO/I_Customer           as _Customer     on $projection.CustomerID = _Customer.CustomerID
+  association [0..1] to I_Currency                as _Currency     on $projection.CurrencyCode = _Currency.Currency
+  association [0..1] to ZRAPH_I_OverallStatus     as _TravelStatus on $projection.OverallStatus = _TravelStatus.TravelStatus
 
 {
   key travel_uuid           as TravelUUID,
