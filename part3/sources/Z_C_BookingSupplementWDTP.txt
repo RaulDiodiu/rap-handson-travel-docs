@@ -21,7 +21,7 @@ define view entity ZRAPH_##_C_BookingSupplWDTP
                      additionalBinding: [ { localElement: 'Price',  element: 'Price', usage: #RESULT },
                                           { localElement: 'CurrencyCode', element: 'CurrencyCode', usage: #RESULT }] }]
       SupplementID,
-      _SupplementText.Description as SupplementDescription : localized,
+      _SupplementText.Description as SupplementDescription,
 
       Price,
 
