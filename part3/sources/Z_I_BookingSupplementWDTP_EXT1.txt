@@ -20,14 +20,14 @@ define view entity ZRAPH_##_I_BookingSupplementWDTP
 
       supplement_id         as SupplementID,
 
+      @Semantics.amount.currencyCode: 'CurrencyCode'
       price                 as Price,
 
-      @Semantics.amount.currencyCode: 'CurrencyCode'
       currency_code         as CurrencyCode,
 
       //local ETag field --> OData ETag
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      LocalLastChangedAt,
+      local_last_changed_at as LocalLastChangedAt,
 
       //Associations
       _Travel,

@@ -3,8 +3,8 @@
 define root view entity ZRAPH_##_I_TravelWDTP
   as select from zraph_##_travel
 
-  composition [0..*] of Z##_I_BookingWDTP         as _Booking
-  composition [0..*] of Z##_I_RoomReservationWDTP as _RoomReservation
+  composition [0..*] of ZRAPH_##_I_BookingWDTP         as _Booking
+  composition [0..*] of ZRAPH_##_I_RoomReservationWDTP as _RoomReservation
 
 
   association [1..1] to /DMO/I_Agency             as _Agency       on $projection.AgencyID = _Agency.AgencyID
