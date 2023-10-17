@@ -22,7 +22,7 @@ use etag
   use association _BookingSupplement { create; with draft; }
 }
 
-define behavior for ZRAPH_##_C_BookingSupplementWDTP alias BookingSupplement
+define behavior for ZRAPH_##_C_BookingSupplWDTP alias BookingSupplement
 use etag
 {
   use update;
