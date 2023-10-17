@@ -1,4 +1,4 @@
-# Part 6b - Validation (short version)
+# Part 6c - Validation (short version)
 ## Table of Contents
 * [Previous: 5. Business Service](../part5/README.md)  
 * [Previous: 6a. Behavior Pool & Action (short version)](6aSHORT.md)  
