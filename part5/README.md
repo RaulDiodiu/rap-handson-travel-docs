@@ -30,7 +30,6 @@ define service ZRAPH_##_TRAVELWDTP {
   expose /DMO/I_Customer as Passenger;
   expose /DMO/I_Agency as TravelAgency;
   expose /DMO/I_Carrier as Carrier;
-  expose /DMO/I_Connection as FlightConnection;
   expose /DMO/I_Flight as Flight;
   expose I_Currency as Currency;
   expose I_Country as Country;
