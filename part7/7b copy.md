@@ -18,7 +18,9 @@ As our FrontEnd team is not able to provide something in time, we will simply cr
 
 ### Create the SAP Fiori List Report in the FrontEnd
 [^ Top of page](#)  
-Before creating the SAP Fiori List Report application, make sure that step 4 *Install SAP Business Application Studio* from the [Installation Guide](../installation/Installation.md) is successfully completed!   
+Before creating the SAP Fiori List Report application, make sure that the *Install SAP Business Application Studio* from the [Installation Guide](../installation/Installation.md) is successfully completed and your SAP Business Application Studio is connected to Cloud Foundry.  
+
+**Important:** As we skipped this installation step prior to the course you'll now have to do _Step 5_ in the [Installation Guide](../installation/Installation.md#markdown-header-5-connecting-bas-with-the-abap-environment).  
 
 **Important:** Seemingly, the SAP Business Application Studio is not running as expected in some browsers, specifically in Mozilla's _Firefox_. Therefore, **please use Google Chrome** (which is recommended by SAP) for all future modifications with the BAS!
 
@@ -37,7 +39,9 @@ As part of the *Florplan Selection* step, we will pick the *List Report Page* fl
 ![alt](images/image6_3.png)
 
 [^ Top of page](#)  
-In the next step, the *Data source* (Connect to a System), *System* (New System), *System type* (ABAP On Premise), *System URL* (https://vhosts4d.awscloud.msg.de:8443), *SAP client* (200) and log on using your S4D user. Next, your personal OData service (ZRAPH_##_UI_TRAVELWDTP_V2) will be selected. ITeanova colleagues can use(ZRAPH_UI_TRAVELWDTP_V2). Provide this information and press *Next*.
+In the next step, the *Data source* (Connect to a System), *System* (ABAP Environment on BTP), _ABAP environment_ (msgsystemsag-06-sose-2023-uni-passau-sb-tdd-abap) and *Service* (your personal OData service ZRAPH_##_UI_TRAVELWDTP_V2) will be selected. Provide this information and press *Next*.
+
+![alt](images/image6_4.png)
 
 [^ Top of page](#)  
 In the *Entity Selection* step, we have to provide as *Main entity* the *Travel* entity and in *Navigation entity* please provide *None* since related navigation from the main entity to the child entities will be provided from backend via UI annotations.
