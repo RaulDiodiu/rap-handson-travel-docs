@@ -25,11 +25,11 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** You'll have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2022-12](https://www.eclipse.org/downloads/packages/release/2022-12/r) and download the *Eclipse IDE for Java Developers* version fitting your operating system.  
+Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
 
->**Note** There are two different options: At the center top, the blue box offers a version with a **guided installer**. Further below (under *Packages*) you can choose to download an **archive** which simply has to be unpacked on your computer. This might be the easier option based on your liking and includes the ready-to-use Eclipse app. But you can choose your preferred option yourself.
+>**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.dmg or .zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.
 
-**IMPORTANT FOR MAC USERS:**  
+**IMPORTANT FOR MAC USERS !!!**  
 We'll have to change some settings **directly after installing Eclipse and before running it** as otherwise you won't be able to start Eclipse. The app will self-modify itself during the first startup. This will lead to Eclipse not starting again as the built-in [macOS Gatekeeper XProtect](https://support.apple.com/guide/security/protecting-against-malware-sec469d47bd8/web) prevents starting Eclipse after its self-modification (this is considered as security threat). Therefore, we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal. But first, make sure that you have moved Eclipse.app to the directory `Macintosh HD/Applications`! Afterwards, please open the Terminal and execute the command `cd /` to change to the root directory. Next, please execute `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`. Don't expect an answer from the Terminal, you sadly won't get any. Nonetheless, you're now safe to start Eclipse (from `Macintosh HD/Applications`).
 
 When the installation finished you can launch Eclipse.  
@@ -37,7 +37,7 @@ You will be asked for a workspace and can store the presetting as default.
 
 >**Note** You may have to **run Eclipse as administrator** on Windows in order to install add-ons.
 
-Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter `https://tools.hana.ondemand.com/2022-12/` into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse.  
+Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter `https://tools.hana.ondemand.com/2023-12/` into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse.  
 
 After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
@@ -82,7 +82,7 @@ Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso`
 Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on March 20th **:)**
+**We're looking forward to see you** on March 11th **:)**
 
 ## Further Links
 - [Eclipse Keyboard Shortcuts](Shortcuts.md)  
