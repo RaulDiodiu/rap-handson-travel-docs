@@ -25,7 +25,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** You'll have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-enterprise-java-and-web-developers) and download the version fitting your operating system.  
 
 >**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.dmg or .zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.
 
