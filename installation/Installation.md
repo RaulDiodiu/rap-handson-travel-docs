@@ -82,7 +82,7 @@ Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso`
 Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to see you** on March 11th **:)**
+**We're looking forward to seeing you** on March 11th **:)**
 
 ## Further Links
 - [Eclipse Keyboard Shortcuts](Shortcuts.md)  
