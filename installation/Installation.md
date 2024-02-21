@@ -23,9 +23,9 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial. Even if you have older Eclipse + ADT Installations, setup a new one as only the latest state is expected to work properly over the course.
 
->**Note** You'll have to **leave your company's / university's VPN**! The connection to Eclipse's plugin repository may fail otherwise.
+>**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-enterprise-java-and-web-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
 
 >**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.dmg or .zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.
 
