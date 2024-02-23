@@ -7,7 +7,7 @@
     * [Introducing Validations](#markdown-header-introducing-validations)  
     * [Implementing Validation validateCustomer](#markdown-header-implementing-validation-validatecustomer)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
-* [Next: 7. Business Application Studio](../part7/README.md) 
+* [Next: 7. Business Application Studio](../part7/7a.md) 
 
 ## Introducing Validations
 [^ Top of page](#)  
@@ -49,4 +49,4 @@ Once you implemented abovementioned logic you can check the solution to see how 
 ## Next step
 [^ Top of page](#)  
 [6d. Feature Control (optional)](6d.md)  
-[7. Business Application Studio](../part7/README.md)
+[7. Business Application Studio](../part7/7a.md)

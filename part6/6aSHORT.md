@@ -10,7 +10,7 @@
 * [Next: 6b. Determination (short version)](6bSHORT.md)  
 * [Next: 6c. Validation (short version)](6cSHORT.md)  
 * [Next: 6d. Feature Control (optional)](6d.md) 
-* [Next: 7. Business Application Studio](../part7/README.md) 
+* [Next: 7. Business Application Studio](../part7/7a.md) 
 
 ## Implementing the business object behavior
 [^ Top of page](#)  
@@ -80,4 +80,5 @@ TravelID;
 
 ## Next step
 [^ Top of page](#)  
-[6b. Determination (short version)](6bSHORT.md)
+[6b. Determination (short version)](6bSHORT.md)  
+[7. Business Application Studio](../part7/7a.md)
