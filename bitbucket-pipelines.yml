@@ -3,6 +3,5 @@ pipelines:
   default:
       - step:
           script:
-            - git config --global --unset https.proxy
-            - git push --force https://dachenej:${BitBucketToken}@bitbucket.org/erp-praktikum/rap-handson-travel-docs.git
+            - sh .pipelines/synchronize-repository.sh
             - echo "Repository has been successfully synchronized."
