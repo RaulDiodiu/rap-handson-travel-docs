@@ -47,9 +47,11 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 ### 3. Add the ABAP Instance as ABAP Cloud Project to Eclipse
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
-Now we will add the ABAP instance as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
+We're using an ABAP System hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (specifically "SAP BTP, ABAP environment" [ABAP IN SAP CLOUD PLATFORM 2402 (HFC 4)].  
 
 >**Note** Our ABAP Cloud System _UNP_ is configured to be only **available weekdays from 8 to 18 o'clock**.  
+
+Now we will add this ABAP instance as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
 
 Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `msgsystems-sci.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
