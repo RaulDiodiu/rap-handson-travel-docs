@@ -1,6 +1,15 @@
 # Installation Guide: SAP Trial, Eclipse and BAS
 
-## Preparing for the ERP Praktikum
+# IF YOU END UP HERE, YOU ARE WRONG!!
+**PLEASE GO [HERE](Installation.md)**  
+
+# IF YOU END UP HERE, YOU ARE WRONG!!
+**PLEASE GO [HERE](Installation.md)**  
+
+# IF YOU END UP HERE, YOU ARE WRONG!!
+**PLEASE GO [HERE](Installation.md)**  
+
+## Preparing for the ERP Praktikum 2022
 For our course we will rely on SAP's Business Technology Platform Trial ABAP Environment. To get ready for developing we have to set up some things first:  
 1. [Register for a SAP BTP Trial Account (~10min)](#markdown-header-1-sap-btp-trial-account)  
 2. [Create an ABAP Trial Environment (~5min)](#markdown-header-2-abap-trial-environment)  
