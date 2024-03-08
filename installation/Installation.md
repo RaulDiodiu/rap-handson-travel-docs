@@ -4,7 +4,7 @@
 For our course we will rely on SAP's Business Technology Platform ABAP Environment. To get ready for developing we have to set up some things first:  
 1. [Activate msg ABAP Environment User (~5min)](#markdown-header-1-activate-msg-abap-environment-user)  
 2. [Install Eclipse with necessary plugins (~20min)](#markdown-header-2-install-eclipse-with-necessary-plugins)  
-3. [Add the ABAP Instance as ABAP Cloud Project to Eclipse (~5min)](#markdown-header-3-add-the-abap-instance-as-abap-cloud-project-to-eclipse)   
+3. [Add the development system as ABAP Cloud Project to Eclipse (~5min)](#markdown-header-3-add-the-development-system-as-abap-cloud-project-to-eclipse)   
 4. [Install SAP Business Application Studio (~10min)](#markdown-header-4-install-sap-business-application-studio)  
 5. [Connecting BAS with the ABAP Environment (~2min)](#markdown-header-5-connecting-bas-with-the-abap-environment)
 
@@ -44,14 +44,16 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 **Another note for Mac users**: Eclipse somehow hasn't preconfigured the keyboard shortcut for _Content Assist_. To activate it, go to the following menu bar settings: _Eclipse_ > _Settings / Preferences_. Search for _Keys_ in the menu pop-up and select the corresponding menu. Here, provide _Shift_ + _Space_ as _Binding_ for the entry _Content Assist_ and save:  
 ![alt](files/Mac_ContentAssist.png)  
 
-### 3. Add the ABAP Instance as ABAP Cloud Project to Eclipse
+### 3. Add the development system as ABAP Cloud Project to Eclipse
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
-We're using an ABAP System hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (specifically "SAP BTP, ABAP environment" [ABAP IN SAP CLOUD PLATFORM 2402 (HFC 4)].  
+>We're using a development system hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (SAP BTP, ABAP environment).  
+>The system version is _ABAP IN SAP CLOUD PLATFORM 2402 (HFC 4)_, the newest version of S/4HANA from February 2024.  
+>**Note** Our ABAP system _UNP_ is configured to be only **available weekdays from 8 to 18 o'clock**.  
+>**Additionally, it will be online on Sunday, March 10th from 8 to 18 as well.**  
+ 
 
->**Note** Our ABAP Cloud System _UNP_ is configured to be only **available weekdays from 8 to 18 o'clock**.  
-
-Now we will add this ABAP instance as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
+Now we will add this system as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
 
 Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `msgsystems-sci.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
