@@ -64,6 +64,8 @@ You've successfully connected your development IDE with the ABAP Environment in 
 
 On the *Next >* wizard page, assign the Name `ZRAPH_##_TRAVEL` where the `##` has to be replaced with your personal *initials*. This ensures that everybody has his own package and we don't interfere with each others - we'll use the `##` throughout the course! The superpackage will stay *ZLOCAL* and you should check the box to save this as favorite package for easier access before continuing with *Next >*.  
 
+>**Important!** In case your `##` two-digit initials are already used by another student: Please **choose another two-digit combination** like, e.g. `M2` instead of `MM` for Max Mustermann. Three-digits combinations should be used! Due to development object name length restrictions, you'll run into problems otherwise.  
+
 ![alt](files/Package_1.png)
 
 On the second wizard screen you can leave everything as is and just continue with *Next >*.  
