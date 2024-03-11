@@ -19,12 +19,10 @@ The app will self-modify itself during the first startup. This will lead to Ecli
 **Therefore, we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal**:  
 * Make sure that you have moved Eclipse.app to the directory `Macintosh HD/Applications`!  
 * Open the Terminal and execute the command `cd /` to change to the user root directory.  
-* Execute `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`. Don't expect an answer from the Terminal, you sadly won't get any. Nonetheless, you're now safe to start Eclipse (from `Macintosh HD/Applications`).
+* Execute `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`. Don't expect an answer from the Terminal, you sadly won't get any. Nonetheless, you're now safe to start Eclipse (from `Macintosh HD/Applications`).  
 
 When the installation finished you can launch Eclipse.  
 You will be asked for a workspace and can store the presetting as default.
-
->**Note** You may have to **run Eclipse as administrator** on Windows in order to install add-ons.
 
 Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter `https://tools.hana.ondemand.com/2023-12/` into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse.  
 
@@ -33,7 +31,5 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 Eclipse somehow hasn't preconfigured the keyboard shortcut for _Content Assist_ on Macs. To activate it, go to the following menu bar settings: _Eclipse_ > _Settings / Preferences_. Search for _Keys_ in the menu pop-up and select the corresponding menu. Here, provide _Shift_ + _Space_ as _Binding_ for the entry _Content Assist_ and save:  
 ![alt](files/Mac_ContentAssist.png)  
 
-### 3. Add the development system as ABAP Cloud Project to Eclipse
-#### Connecting Eclipse with BTP
-[^ Top of page](#)  
+### 3. Add the development system as ABAP Cloud Project to Eclipse 
 Now we'll go back to the [main installation guide](Installation.md#markdown-header-3-add-the-development-system-as-abap-cloud-project-to-eclipse).
