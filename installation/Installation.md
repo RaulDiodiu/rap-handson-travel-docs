@@ -25,6 +25,8 @@ Next, we have to install the local development environment. For this, SAP switch
 #### ATTENTION FOR MAC USERS  
 **Please [continue here](InstallationMac.md), if you have an Apple Macintosh!**  
 
+#### Installation Guide for Windows 
+
 >**Note** Even if you already happen to have Eclipse installed we urge you to install it again due to compatibility reasons with the Eclipse and ADT versions together with BTP Trial. Even if you have older Eclipse + ADT Installations, setup a new one as only the latest state is expected to work properly over the course.
 
 >**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
