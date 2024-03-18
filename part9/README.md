@@ -67,7 +67,10 @@ It is not important for the exercise why this is, but you are welcome to ask the
   
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
 You will find 3 generated XML entries with this pattern:  
-```<core:Item key="0" text="Item1"/>```  
+```xml
+<core:Item key="0" text="Item1"/>
+```
+  
 In this example, 0 is the key and Item1 is the text as they are assigned the corresponding properties.  
 The double quotes (") are just needed for proper XML syntax.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
@@ -144,15 +147,17 @@ In the wizard select/enter the following information:
 | Field            | Value      |
 | ---------------- | ---------- |
 | Table Type       | Responsive |
-| Entity Type      | TravelType |
+| Entity Set       | Travel     |
 | Leading Property | AgencyName |
   
 Press "Create a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In this step we don't have any input to give.  
   
 Press "Create a file and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In this step, enter the following information:  
@@ -163,10 +168,12 @@ In this step, enter the following information:
 | Entity Set | Travel      |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
 Find file ResponsiveTableColumns.fragment.xml in webapp/ext/fragments.  
 In the file, change the columnIndex value from 101 to 2.  
+this value is a bit hidden between `&quot;` codes, so here is a little help.  
 before:  
 ```xml
 <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;101&quot;}"/>
@@ -176,7 +183,7 @@ after:
 <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;2&quot;}"/>
 ```
   
-Check the app. Select data to see the custom cells.  
+Check the app. Select data by pressing the "Go" button and see the custom cells.  
 It should look sort of like this:  
 ![Custom Column](images/image3.png)  
   
@@ -185,7 +192,11 @@ It should look sort of like this:
 #### Make a button with context dependent text
 Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.  
 We want to include the name of the hotel in a button text and handle the press on it later.  
-Replace the Text control with a button control with the following properties:  
+Replace the Text control with a button control.  
+This is done by replacing "Text" with "Button" within the XML Tags.  
+The property "text" is already defined, but "press" must be added by you.  
+Remember that in XML values for properties need to be within double quotes.  
+It must have the following properties:  
 
 | Property | Value                        |
 | -------- | ---------------------------- |
@@ -205,7 +216,7 @@ So now we open webapp/ext/controller/ListReportExt.controller.js and add the fol
 
 ```js
 onRowButtonPressed: function(oEvent) {
-    var sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
+    const sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
     sap.m.MessageToast.show(sAgencyName + " was pressed");
 }
 ```
