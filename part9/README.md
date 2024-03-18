@@ -97,6 +97,7 @@ In the wizard select/enter the following information:
 | Function Name | onExtensionButtonPressed |
   
 Press "Create or Update a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step select/enter the following information:  
@@ -110,22 +111,23 @@ In the next step select/enter the following information:
 | Row Selection   | no            |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
 ### Test the App
 Find the new button in the toolbar:  
 ![Custom Action Button](images/image1.png)
   
-If you press on it, just a pop up appears with "onExtensionButtonPressed".  
-This is the generated default behaviour and will be overwritten in the next step.  
+If you press on it, you will not yet see anything happen.  
+While there is a default behaviour generated, it contains an error as of now.  
   
 ### Add own coding to open an external web page
 Find the generated controller "ListReportExt.controller.js" in webapp/ext/controller.  
 Within this file, the function "onExtensionButtonPressed" exists, which we will now change.  
 
-Replace the functions content with:  
+Replace the functions content (everything within the curly braces {}) with:  
 ```js
-let sExternalPage = this.getView().byId("customFilter").getValue();
+const sExternalPage = this.getView().byId("customFilter").getValue();
 window.open(sExternalPage);
 ```
   
