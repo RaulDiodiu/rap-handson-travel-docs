@@ -259,6 +259,7 @@ Press "Exit Guide".
 ### Adapt the coding
 In webapp/ext/controller/ListReportExt.controller.js find function onExtensionButton2Pressed.  
 Adapt it to show a message toast with the text "`<AgencyNames>` were selected", where `<AgencyName>` should be replaced with the comma separated list of selected agencies.  
+Note: you need to call the message toast like in the previous extension button handler with "sap.m.MessageToast".  
   
 Within the function you can access the extension API using:  
 ```js
@@ -268,7 +269,7 @@ Here is a helpful resource as how to get the selected contexts:
 [ExtensionAPI](https://sapui5.hana.ondemand.com/sdk/#/api/sap.suite.ui.generic.template.ListReport.extensionAPI.ExtensionAPI%23methods/getSelectedContexts)  
 Call this method and assign the result to a variable aSelection:  
 ```js
-var aSelection = // insert your code to determine the selected contexts here
+let aSelection = // insert your code to determine the selected contexts here
 ```
   
 A selected context can access the data of the corresponding line using the getProperty method as already done in onRowButtonPressed.  
@@ -278,22 +279,23 @@ To concatenate the values of the resulting array, the reduce method can be used:
 This method takes a function as first and an initial value as second parameter.  
 The function to be given as first parameter can be declared an passed as follows.  
 ```js
-var fnReduction = function(sValue, oContext) {
-    var sCurrentValue = // insert your code to determine the Agency name out of the context oContext here
+const fnReduction = function(sValue, oContext) {
+    let sCurrentValue = // insert your code to determine the Agency name out of the context oContext here
     if(sValue.length === 0) {
         return sCurrentValue;
     } else {
         return sValue + ", " + sCurrentValue;
     }
 };
-var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
+let sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
 ```
   
 [Solution](solutions/ListReportExt.controller-3.js)  
   
 ### Activate multiselect
-Open the guided development item "Configure multiple selection in tables" in "List Report Page".  
+Open the guided development item "Configure multiple selection for a table" in "List Report Page".  
 As Page Name, choose the ListReport_Travel.  
+Set "Toggle Multi Select" to "True".  
   
 Press "Insert Snippet".  
 Press "Exit Guide".  
