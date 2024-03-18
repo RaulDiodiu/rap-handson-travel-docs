@@ -31,12 +31,11 @@ define service ZRAPH_##_TRAVELWDTP {
   expose /DMO/I_Agency as TravelAgency;
   expose /DMO/I_Carrier as Carrier;
   expose /DMO/I_Flight as Flight;
+  expose /DMO/I_Overall_Status_VH as OverallStatus;
   expose I_Currency as Currency;
   expose I_Country as Country;
   expose ZRAPH_I_HOTEL as Hotel;
   expose ZRAPH_I_HotelRoomType as HotelRoomType;
-  expose ZRAPH_I_OverallStatus as TravelStatus;
-  expose ZRAPH_I_OverallStatusText as TravelStatusText;
 }
 ```
 For more information see Creating Service Definitions [Service Definitions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/ce3133d161ae492698c5b321c74c3274.html).
