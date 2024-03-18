@@ -1,0 +1,7 @@
+image: atlassian/default-image:2
+pipelines:
+  default:
+      - step:
+          script:
+            - sh .pipelines/synchronize-repository.sh
+            - echo "Repository has been successfully synchronized."

@@ -1,7 +1,7 @@
 {
   "binding": {
     "env": "cf",
-    "id": "915319be-0442-463c-8f90-999ec3596ecb",
+    "id": "15718928-84b4-47b6-83a4-4cade52a6bc7",
     "type": "oauth",
     "version": "1.0.1.1"
   },
@@ -12,27 +12,28 @@
     }
   },
   "endpoints": {
-    "abap": "https://e2e56408-c002-4a26-9ca6-942c71bf7c04.abap.eu10.hana.ondemand.com"
+    "abap": "https://fdfc53e6-aee3-44a0-9199-6f0fc49692c1.abap.eu10.hana.ondemand.com"
   },
   "preserve_host_header": true,
   "sap.cloud.service": "com.sap.cloud.abap",
-  "systemid": "UN1",
+  "systemid": "UNP",
   "uaa": {
     "apiurl": "https://api.authentication.eu10.hana.ondemand.com",
-    "clientid": "sb-xs-e2e56408-c002-4a26-9ca6-942c71bf7c04!b195689|xsuaa-abapcp-prod-eu10!b4584",
-    "clientsecret": "915319be-0442-463c-8f90-999ec3596ecb$bAPsynrpWRSOQBpf2cULrbKJGAh3SockEc0n8PJnzlk=",
+    "clientid": "sb-xs-fdfc53e6-aee3-44a0-9199-6f0fc49692c1!b403905|xsuaa-abapcp-prod-eu10!b4584",
+    "clientsecret": "15718928-84b4-47b6-83a4-4cade52a6bc7$GACO2qvTc2of8XgLVgn5qnxroUAk323V9t6rQuCMUKE=",
     "credential-type": "binding-secret",
-    "identityzone": "sose-2023-uni-passau-sb-tdd",
-    "identityzoneid": "a5a62967-2b61-424f-8604-d3cdc5d44a92",
+    "identityzone": "uni-passau-sb-tdd",
+    "identityzoneid": "1abff01c-a523-492c-94da-2871e0196aa0",
     "sburl": "https://internal-xsuaa.authentication.eu10.hana.ondemand.com",
-    "subaccountid": "a5a62967-2b61-424f-8604-d3cdc5d44a92",
-    "tenantid": "a5a62967-2b61-424f-8604-d3cdc5d44a92",
+    "serviceInstanceId": "fdfc53e6-aee3-44a0-9199-6f0fc49692c1",
+    "subaccountid": "1abff01c-a523-492c-94da-2871e0196aa0",
+    "tenantid": "1abff01c-a523-492c-94da-2871e0196aa0",
     "tenantmode": "dedicated",
     "uaadomain": "authentication.eu10.hana.ondemand.com",
-    "url": "https://sose-2023-uni-passau-sb-tdd.authentication.eu10.hana.ondemand.com",
-    "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1aD9iJnL8xIBQE1/LpFh\nuBVkRCsPhIeKqA89aONELAqqpL41tkpcfBPS8iRVBzL8vKZDLZ5VM7MnvIS2hws4\n45EWHkqVD2Npi2Vo4y33Tg5s/XcmGkhpVjkGxW3HvnQFBhol0Je5UE3+vbIG0C0g\nMg+bTL6iocHta1fN12HPWNcGsdjrWcW8p/bzvMobhpaW9KUxH7H/H4wXQCPHy8Me\nRQFUJPfGCWOXPPQ1baIItUHrYvt9F3l6NseOI5Se4FAJiUyMDGRb+t2+DIKeOUNc\npCQDFgFmdvRSOIq5KNR8siN/OXdBJ3Ofy997IBuW1WrJTRUJY6Lu7JGo56AnnZrn\nMQIDAQAB\n-----END PUBLIC KEY-----",
-    "xsappname": "xs-e2e56408-c002-4a26-9ca6-942c71bf7c04!b195689|xsuaa-abapcp-prod-eu10!b4584",
-    "zoneid": "a5a62967-2b61-424f-8604-d3cdc5d44a92"
+    "url": "https://uni-passau-sb-tdd.authentication.eu10.hana.ondemand.com",
+    "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjE3rnzVd1pazU6Xu1fB\nXS0TwmiBXSSSLajnitcDONzEnQgy4gxxgOKMPHjTfsi7nur1H7RoUWv49HKlCcf1\n+YyYtqFWkpdJmpSB7c9fJSBBe4cT+cVJVKhlv/vn9HVVihqhRJympHF02jTcTGuH\nBh23xd3FMBHrFMY8f+yc+U/woQ2PQnGt0TYG6RstllSGWTD5KWB5gbMTCwvXluoN\nvzRWXge2nHENq0HPVQuCsMu1+Up6TsnqhQE/wgnwG7pCu8pRGvXlBTji0+/673Vi\nOaciZY9JFeYbArYJvnLBXWa6UKnO2g/YAkV0cLB296NhqmUZmpIcyQpgGI5wHqoY\nFwIDAQAB\n-----END PUBLIC KEY-----",
+    "xsappname": "xs-fdfc53e6-aee3-44a0-9199-6f0fc49692c1!b403905|xsuaa-abapcp-prod-eu10!b4584",
+    "zoneid": "1abff01c-a523-492c-94da-2871e0196aa0"
   },
-  "url": "https://e2e56408-c002-4a26-9ca6-942c71bf7c04.abap.eu10.hana.ondemand.com"
+  "url": "https://fdfc53e6-aee3-44a0-9199-6f0fc49692c1.abap.eu10.hana.ondemand.com"
 }

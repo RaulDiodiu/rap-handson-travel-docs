@@ -1,6 +1,6 @@
 # Part 9 - Extending the SAP Fiori List Report
 ## Table of Contents
-* [Previous: 7. Business Application Studio](../part7/README.md)  
+* [Previous: 7. Business Application Studio](../part7/7a.md)  
 * [Previous: 8. Deploying our app (optional)](../part8/README.md)  
 * **Current: 9. Extending the SAP Fiori List Report**  
     * [Requirement](#markdown-header-requirement)  
@@ -67,7 +67,7 @@ It is not important for the exercise why this is, but you are welcome to ask the
   
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
 You will find 3 generated XML entries with this pattern:  
-```xml <core:Item key="0" text="Item1"/> ```  
+```XML <core:Item key="0" text="Item1"/> ```  
 In this example, 0 is the key and Item1 is the text as they are assigned the corresponding properties.  
 The double quotes (") are just needed for proper XML syntax.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  

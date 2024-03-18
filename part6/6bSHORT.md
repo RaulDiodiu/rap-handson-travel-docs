@@ -7,7 +7,7 @@
     * [Implementing Determination setInitialStatus](#markdown-header-implementing-determination-setinitialstatus)  
 * [Next: 6c. Validation (short version)](6cSHORT.md) 
 * [Next: 6d. Feature Control (optional)](6d.md) 
-* [Next: 7. Business Application Studio](../part7/README.md) 
+* [Next: 7. Business Application Studio](../part7/7a.md) 
 
 ## Introducing Determinations
 [^ Top of page](#)  
@@ -39,4 +39,4 @@ To implement this action you have to first add it to the behavior definition and
 ## Next step
 [^ Top of page](#)  
 [6c. Validation (short version)](6cSHORT.md)  
-[7. Business Application Studio](../part7/README.md)
+[7. Business Application Studio](../part7/7a.md)
