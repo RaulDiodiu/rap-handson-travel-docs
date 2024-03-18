@@ -1,6 +1,6 @@
 # Part 9 - Extending the SAP Fiori List Report
 ## Table of Contents
-* [Previous: 7. Business Application Studio](../part7/README.md)  
+* [Previous: 7. Business Application Studio](../part7/7a.md)  
 * [Previous: 8. Deploying our app (optional)](../part8/README.md)  
 * **Current: 9. Extending the SAP Fiori List Report**  
     * [Requirement](#markdown-header-requirement)  

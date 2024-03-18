@@ -32,7 +32,7 @@ Find more details in folder [part5](part5/README.md) of this Git repository.
 #### 6. Adding Transactional Behavior
 Find more details in folder [part6](part6/6a.md) of this Git repository.
 #### 7. Creating the SAP Fiori List Report app
-Find more details in folder [part7](part7/README.md) of this Git repository.
+Find more details in folder [part7](part7/7a.md) of this Git repository.
 #### 8. Deploying your app
 Find more details in folder [part8](part8/README.md) of this Git repository.
 #### 9. Extending the SAP Fiori List Report

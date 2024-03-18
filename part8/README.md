@@ -1,6 +1,6 @@
 # Part 8 - Deploying our app
 ## Table of Contents 
-* [Previous: 7. Business Application Studio](../part7/README.md)  
+* [Previous: 7. Business Application Studio](../part7/7a.md)  
 * **Current: 8. Deploying our app (optional)**   
 * [Next: 9. Extending the SAP Fiori List Report](../part9/README.md)
 
