@@ -24,18 +24,19 @@ This is covered in section 4.
 ## 1. Add the custom filter
 Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
-Select item "Add a custom filter to the filter bar of a list report page".  
+In section "List Report Page" select item "Add a custom filter to the filter bar".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
 
 | Field              | Value         |
 | ------------------ | ------------- |
 | Fragment File Name | CustomFilter  |
-| Custom Filter key  | customFilter  |
-| Custom Filter name | Custom Filter |
+| Custom Filter Key  | customFilter  |
+| Custom Filter Name | Custom Filter |
 | Control ID         | customFilter  |
   
 Press "Create a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step enter the following information:  
@@ -45,6 +46,7 @@ In the next step enter the following information:
 | Custom Filter Property | customFilterProperty  |
   
 Press "Create or Update a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step enter the following information:  
@@ -54,9 +56,23 @@ In the next step enter the following information:
 | Entity Set | Travel  |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
+In the folder webapp find the file manifest.json.  
+Within this file, find the entry "flexEnabled" in section "sap.ui5".  
+Change the entry from "flexEnabled": true to "flexEnabled": false.  
+This will disable certain error messages regarding missing ids.  
+It is not important for the exercise why this is, but you are welcome to ask the trainer.  
+  
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
+You will find 3 generated XML entries with this pattern:  
+```xml
+<core:Item key="0" text="Item1"/>
+```
+  
+In this example, 0 is the key and Item1 is the text as they are assigned the corresponding properties.  
+The double quotes (") are just needed for proper XML syntax.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
 Example:  
 
@@ -84,6 +100,7 @@ In the wizard select/enter the following information:
 | Function Name | onExtensionButtonPressed |
   
 Press "Create or Update a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step select/enter the following information:  
@@ -97,22 +114,23 @@ In the next step select/enter the following information:
 | Row Selection   | no            |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
 ### Test the App
 Find the new button in the toolbar:  
 ![Custom Action Button](images/image1.png)
   
-If you press on it, just a pop up appears with "onExtensionButtonPressed".  
-This is the generated default behaviour and will be overwritten in the next step.  
+If you press on it, you will not yet see anything happen.  
+While there is a default behaviour generated, it contains an error as of now.  
   
 ### Add own coding to open an external web page
 Find the generated controller "ListReportExt.controller.js" in webapp/ext/controller.  
 Within this file, the function "onExtensionButtonPressed" exists, which we will now change.  
 
-Replace the functions content with:  
+Replace the functions content (everything within the curly braces {}) with:  
 ```js
-let sExternalPage = this.getView().byId("customFilter").getValue();
+const sExternalPage = this.getView().byId("customFilter").getValue();
 window.open(sExternalPage);
 ```
   
@@ -129,15 +147,17 @@ In the wizard select/enter the following information:
 | Field            | Value      |
 | ---------------- | ---------- |
 | Table Type       | Responsive |
-| Entity Type      | TravelType |
+| Entity Set       | Travel     |
 | Leading Property | AgencyName |
   
 Press "Create a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In this step we don't have any input to give.  
   
 Press "Create a file and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In this step, enter the following information:  
@@ -148,10 +168,12 @@ In this step, enter the following information:
 | Entity Set | Travel      |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
 Find file ResponsiveTableColumns.fragment.xml in webapp/ext/fragments.  
 In the file, change the columnIndex value from 101 to 2.  
+this value is a bit hidden between `&quot;` codes, so here is a little help.  
 before:  
 ```xml
 <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;101&quot;}"/>
@@ -161,7 +183,7 @@ after:
 <core:CustomData key="p13nData" value="\{&quot;columnKey&quot;: &quot;CustomColumn1&quot;, &quot;leadingProperty&quot;: &quot;TravelID&quot;, &quot;columnIndex&quot;: &quot;2&quot;}"/>
 ```
   
-Check the app. Select data to see the custom cells.  
+Check the app. Select data by pressing the "Go" button and see the custom cells.  
 It should look sort of like this:  
 ![Custom Column](images/image3.png)  
   
@@ -170,7 +192,11 @@ It should look sort of like this:
 #### Make a button with context dependent text
 Find ResponsiveTableCells.fragment.xml in webapp/ext/fragments.  
 We want to include the name of the hotel in a button text and handle the press on it later.  
-Replace the Text control with a button control with the following properties:  
+Replace the Text control with a button control.  
+This is done by replacing "Text" with "Button" within the XML Tags.  
+The property "text" is already defined, but "press" must be added by you.  
+Remember that in XML values for properties need to be within double quotes.  
+It must have the following properties:  
 
 | Property | Value                        |
 | -------- | ---------------------------- |
@@ -190,7 +216,7 @@ So now we open webapp/ext/controller/ListReportExt.controller.js and add the fol
 
 ```js
 onRowButtonPressed: function(oEvent) {
-    var sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
+    const sAgencyName = oEvent.getSource().getBindingContext().getProperty("AgencyName");
     sap.m.MessageToast.show(sAgencyName + " was pressed");
 }
 ```
@@ -233,6 +259,7 @@ Press "Exit Guide".
 ### Adapt the coding
 In webapp/ext/controller/ListReportExt.controller.js find function onExtensionButton2Pressed.  
 Adapt it to show a message toast with the text "`<AgencyNames>` were selected", where `<AgencyName>` should be replaced with the comma separated list of selected agencies.  
+Note: you need to call the message toast like in the previous extension button handler with "sap.m.MessageToast".  
   
 Within the function you can access the extension API using:  
 ```js
@@ -242,7 +269,7 @@ Here is a helpful resource as how to get the selected contexts:
 [ExtensionAPI](https://sapui5.hana.ondemand.com/sdk/#/api/sap.suite.ui.generic.template.ListReport.extensionAPI.ExtensionAPI%23methods/getSelectedContexts)  
 Call this method and assign the result to a variable aSelection:  
 ```js
-var aSelection = // insert your code to determine the selected contexts here
+let aSelection = // insert your code to determine the selected contexts here
 ```
   
 A selected context can access the data of the corresponding line using the getProperty method as already done in onRowButtonPressed.  
@@ -252,22 +279,23 @@ To concatenate the values of the resulting array, the reduce method can be used:
 This method takes a function as first and an initial value as second parameter.  
 The function to be given as first parameter can be declared an passed as follows.  
 ```js
-var fnReduction = function(sValue, oContext) {
-    var sCurrentValue = // insert your code to determine the Agency name out of the context oContext here
+const fnReduction = function(sValue, oContext) {
+    let sCurrentValue = // insert your code to determine the Agency name out of the context oContext here
     if(sValue.length === 0) {
         return sCurrentValue;
     } else {
         return sValue + ", " + sCurrentValue;
     }
 };
-var sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
+let sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
 ```
   
 [Solution](solutions/ListReportExt.controller-3.js)  
   
 ### Activate multiselect
-Open the guided development item "Configure multiple selection in tables" in "List Report Page".  
+Open the guided development item "Configure multiple selection for a table" in "List Report Page".  
 As Page Name, choose the ListReport_Travel.  
+Set "Toggle Multi Select" to "True".  
   
 Press "Insert Snippet".  
 Press "Exit Guide".  

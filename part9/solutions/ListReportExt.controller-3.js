@@ -12,16 +12,16 @@ function (){
             sap.m.MessageToast.show(sAgencyName + " was pressed");
         },
         onExtensionButton2Pressed: function(oEvent) {
-            let aSelection = this.extensionAPI.getSelectedContexts();
-            let fnReduction = function(sValue, oContext) {
-                var sCurrentValue = oContext.getProperty("AgencyName");
+            const aSelection = this.extensionAPI.getSelectedContexts();
+            const fnReduction = function(sValue, oContext) {
+                let sCurrentValue = oContext.getProperty("AgencyName");
                 if(sValue.length === 0) {
                     return sCurrentValue;
                 } else {
                     return sValue + ", " + sCurrentValue;
                 }
             };
-            let sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
+            const sMessageText = aSelection.reduce(fnReduction, "") + " were selected";
             sap.m.MessageToast.show(sMessageText);
         }
     };

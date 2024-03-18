@@ -4,7 +4,7 @@ function (){
     return {
         //(...) other methods are defined above getCustomAppStateDataExtension, restoreCustomAppStateDataExtension, onBeforeRebindTableExtension
         onExtensionButtonPressed: function(oEvent) {
-            let sExternalPage = this.getView().byId("customFilter").getValue();
+            const sExternalPage = this.getView().byId("customFilter").getValue();
             window.open(sExternalPage);
         }
     };
