@@ -24,18 +24,19 @@ This is covered in section 4.
 ## 1. Add the custom filter
 Open the guided development by pressing CTRL+SHIFT+P and choose "Fiori: Open Guided Development" or right click on the project and select the item "Open Guided Development".  
   
-Select item "Add a custom filter to the filter bar of a list report page".  
+In section "List Report Page" select item "Add a custom filter to the filter bar".  
 Press "Start Guide".  
 In the wizard select/enter the following information:  
 
 | Field              | Value         |
 | ------------------ | ------------- |
 | Fragment File Name | CustomFilter  |
-| Custom Filter key  | customFilter  |
-| Custom Filter name | Custom Filter |
+| Custom Filter Key  | customFilter  |
+| Custom Filter Name | Custom Filter |
 | Control ID         | customFilter  |
   
 Press "Create a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step enter the following information:  
@@ -45,6 +46,7 @@ In the next step enter the following information:
 | Custom Filter Property | customFilterProperty  |
   
 Press "Create or Update a File and Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Next".  
   
 In the next step enter the following information:  
@@ -54,9 +56,20 @@ In the next step enter the following information:
 | Entity Set | Travel  |
   
 Press "Insert Snippet".  
+You can close the tab that opens to the right.  
 Press "Exit Guide".  
   
+In the folder webapp find the file manifest.json.  
+Within this file, find the entry "flexEnabled" in section "sap.ui5".  
+Change the entry from "flexEnabled": true to "flexEnabled": false.  
+This will disable certain error messages regarding missing ids.  
+It is not important for the exercise why this is, but you are welcome to ask the trainer.  
+  
 In webapp/ext/fragments find the file CustomFilter.fragment.xml.  
+You will find 3 generated XML entries with this pattern:  
+```xml <core:Item key="0" text="Item1"/> ```  
+In this example, 0 is the key and Item1 is the text as they are assigned the corresponding properties.  
+The double quotes (") are just needed for proper XML syntax.  
 Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
 Example:  
 
