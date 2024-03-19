@@ -5,9 +5,9 @@ define view entity ZRAPH_##_I_RoomReservationWDTP
 
   association        to parent ZRAPH_##_I_TravelWDTP as _Travel        on $projection.TravelUUID = _Travel.TravelUUID
 
-  association [0..1] to ZRAPH_I_HOTEL             as _Hotel         on $projection.HotelID  = _Hotel.HotelID
-  association [0..1] to ZRAPH_I_HotelRoomType     as _HotelRoomType on $projection.RoomType = _HotelRoomType.Value
-  association [0..1] to I_Currency                as _Currency      on $projection.CurrencyCode = _Currency.Currency
+  association [1..1] to ZRAPH_I_HOTEL             as _Hotel         on $projection.HotelID  = _Hotel.HotelID
+  association [1..1] to ZRAPH_I_HotelRoomType     as _HotelRoomType on $projection.RoomType = _HotelRoomType.Value
+  association [1..1] to I_Currency                as _Currency      on $projection.CurrencyCode = _Currency.Currency
 {
   key roomrsv_uuid          as RoomRsvUUID,
 
