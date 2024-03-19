@@ -16,7 +16,7 @@ With our behavior definition and implementation being completed the next step is
 
 ## Service Definition
 [^ Top of page](#)  
-First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your project and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. This therefore not only includes our Consumption Views for Travel, Booking an BookingSupplement instances but also those used for Value Helps, Navigation and Text Provision. All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
+First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your package and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. This therefore not only includes our Consumption Views for Travel, Booking an BookingSupplement instances but also those used for Value Helps, Navigation and Text Provision. All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
 
 ```abap
 @EndUserText.label: 'RAP HandsOn: Travel Draft Scenario'
