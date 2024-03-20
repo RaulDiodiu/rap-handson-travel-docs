@@ -9,7 +9,7 @@
     * [BO Action Annotation](#markdown-header-bo-action-annotation)  
 * [Next: 6b. Determination (short version)](6bSHORT.md)  
 * [Next: 6c. Validation (short version)](6cSHORT.md)  
-* [Next: 6d. Feature Control (optional)](6d.md) 
+* [Next: 6d. Feature Control](6d.md) 
 * [Next: 7. Business Application Studio](../part7/7a.md) 
 
 ## Implementing the business object behavior
@@ -42,7 +42,7 @@ define behavior for ZRAPH_##_I_TravelWDTP alias Travel
 ### Implementing Action `acceptTravel`  
 [^ Top of page](#)  
 The `acceptTravel` action sets the status of a chosen travel instance to Accepted (A).  
-Technically speaking, this action is an instance action with return parameter $self. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
+Technically speaking, this action is an instance action with return parameter `[1] $self`. The value of the field OverallStatus is changed by executing a modify request to update this field with the corresponding value.  
 For implementation you have to first add the action definition in the behavior definition and then use Quick Fix via `Ctrl + 1`. Eclipse will automatically create a new method for the action in the previously created behavior pool. In the method implementation you'll want to use the EML Update syntax to set the status to accepted. **Don't forget** to `use` the action also in the behavior projection!  
 For more information on EML, check the course slides or visit [SAP Help for EML](https://help.sap.com/viewer/923180ddb98240829d935862025004d6/Cloud/en-US/af7782de6b9140e29a24eae607bf4138.html).  
 ```abap
@@ -76,7 +76,10 @@ In order to show the BO action which we've just created we have to annotate any 
 TravelID;
 ```
 **Solution**  
-[ZRAPH_##_C_TravelWDTP](sources/Z_C_TravelWDTP_MDE.txt)
+[ZRAPH_##_C_TravelWDTP](sources/Z_C_TravelWDTP_MDE.txt)  
+
+### Implementing Action `rejectTravel`  
+After successful test of the first action, repeat above steps for a second action rejecting an travel instance by setting the overall status to `X`.
 
 ## Next step
 [^ Top of page](#)  
