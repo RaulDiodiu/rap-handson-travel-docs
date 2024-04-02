@@ -50,7 +50,10 @@ Next, we'll improve our Access Control to become more sophisticated and actually
       DistanceUnit = 'KM'; 
 ```
 
-Activate the updated access control and run the CDS View Data Preview again. This time you won't see any results at all (because your user doesn't have the necessary PFCG role containing the authorization object + field). Depending on your system you might be able to grant the necessary rights to your user.
+Activate the updated access control and run the CDS View Data Preview again. This time you won't see any results at all (because your user doesn't have the necessary PFCG role containing the authorization object + field). Depending on your system you might be able to grant the necessary rights to your user.  
+
+[Solution](./solutions/CDS3.txt)  
+
 
 ### Inheriting the CDS Access Control
 [^ Top of page](#)  

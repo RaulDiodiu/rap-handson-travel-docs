@@ -1,0 +1,10 @@
+@EndUserText.label: 'ZCDS_##_SPFLI'
+@MappingRole: true
+define role ZCDS_##_SPFLI {
+    grant
+        select
+            on
+                ZCDS_##_SPFLI
+                    where ( DistanceUnit ) = aspect pfcg_auth ( Z_##_OUNIT, Z_##_OUNIT, actvt = '03' )
+                      and DistanceUnit = 'KM' ;                     
+}
