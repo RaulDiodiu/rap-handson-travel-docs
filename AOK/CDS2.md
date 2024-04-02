@@ -37,7 +37,7 @@ Now you can save and activate the authorization object, it should look like this
 ### Creating a CDS Access Control
 [^ Top of page](#)  
 **Using a literal condition**  
-Now we want to actually use the created authorization object! To do so we have to define an *Access Control* for our travel interface view using ABAP's data control language. To do so, right-click your CDS view `ZCDS_##_SPFLI` and select *New Access Control*. The name should be the same as the view itself and you can choose a fitting description for the Access Control. When continuing the wizard using *Next >* you'll get to the template selection - choose *Define Role with Simple Conditions* and *Finish*.
+Now we want to actually use the created authorization object! To do so we have to define an *Access Control* for our CDS view using ABAP's data control language. To do so, right-click your CDS view `ZCDS_##_SPFLI` and select *New Access Control*. The name should be the same as the view itself and you can choose a fitting description for the Access Control. When continuing the wizard using *Next >* you'll get to the template selection - choose *Define Role with Simple Conditions* and *Finish*.
 
 In the template, replace the `where` condition to restrict access to flights with `DistanceUnit = 'KM';` and activate the Access Control afterwards. Now you can try to execute the data preview for the CDS view and will only see entries with kilometres as distance.
 
