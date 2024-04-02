@@ -1,50 +1,62 @@
 # CDS View Entities
   
-For komfort you can give aliases to the data sources and the association itself.  
+For comfort you can give aliases to the data sources and the association itself.  
 This is done with the key word "as".  
 Associations should by convention start with an underscore.  
 While this is not technically needed, you will find this technique being used in the solutions.  
 Here is an example of what this can look like:  
   
 ```abap
-define view entity ZCDSV_TZ_TEST2 
-as
-select from zta_tz_test2 as test2
-association[1..1] to /dmo/agency as _agency on _agency.agency_id = test2.agency_id
+define view entity ZCDS_##_SPFLI 
+as select from spfli as flight
+association[1..1] to scarr as _Carrier on _Carrier.carrid = flight.carrid
 {
-    key test2.agency_id as AgencyID,
-    _agency.city        as City
+    key flight.carrid as AgencyId,
+    key flight.connid as ConnectionId,
+    _Carrier.carrname as CarrierName,
+
+    _Carrier
 }
 ```
   
 
-### 1. Create CDS View Entity ZRAPH_##_RESERVATION
-Use ZRAPH_##_ROOMRSV as the primary source.  
+### 1. Create CDS View Entity ZCDS_##_SPFLI
+Use the DB table SPFLI as the primary source and use the template `Define View Entity`.  
 
 To comply with the naming convention to have each first letter of a word capitalized and make some field names more readable, rename the following fields:
   
-| Field                 | New name             | Is key | Reference                                       |
-| --------------------- | -------------------- | ------ | ----------------------------------------------- |
-| ROOMRSV_UUID          | RoomReservationUUID  | yes    |                                                 |
-| PARENT_UUID           | ParentUUID           | no     |                                                 |
-| ROOMRSV_ID            | RoomReservationID    | no     |                                                 |
-| HOTEL_ID              | HotelID              | no     |                                                 |
-| BEGIN_DATE            | BeginDate            | no     |                                                 |
-| END_DATE              | EndDate              | no     |                                                 |
-| ROOM_TYPE             | RoomType             | no     |                                                 |
-| ROOMRSV_PRICE         | RoomReservationPrice | no     | @Semantics.amount.currencyCode : 'CurrencyCode' |
-| CURRENCY_CODE         | CurrencyCode         | no     |                                                 |
-| LOCAL_LAST_CHANGED_AT | LocalLastChangedAt   | no     |                                                 |
+| Field                 | New name             | Is key | Reference                                         |
+| --------------------- | -------------------- | ------ | ------------------------------------------------- |
+| CARRID                | CarrierId            | yes    |                                                   |
+| CONNID                | ConnectionId         | yes    |                                                   |
+| COUNTRYFR             | CountryFrom          | no     |                                                   |
+| CITYFROM              | CityFrom             | no     |                                                   |
+| AIRPFROM              | AirportFrom          | no     |                                                   |
+| COUNTRYTO             | CountryTo            | no     |                                                   |
+| CITYTO                | CityTo               | no     |                                                   |
+| AIRPTO                | AirportTo            | no     |                                                   |
+| FLTIME                | FlightTime           | no     |                                                   |
+| DEPTIME               | DepartureTime        | no     |                                                   |
+| ARRTIME               | ArrivalTime          | no     |                                                   |
+| DISTANCE              | DistanceAmount       | no     | @Semantics.quantity.unitOfMeasure: 'DistanceUnit' |
+| DISTID                | DistanceUnit         | no     |                                                   |
+| FLTYPE                | FlightType           | no     |                                                   |
+| PERIOD                | Period               | no     |                                                   |
   
 [Solution](./solutions/CDS1.txt)
   
-### 2. Enhance the CDS View Entity ZRAPH_##_RESERVATION
-Add an association to ZRAPH_##_HOTEL.  
-As connection use the field HOTEL_ID of both tables.  
-A cardinality to the association should be set to `[1..1]` as we expect exactly one hotel for every room reservation.  
+### 2. Enhance the CDS View Entity ZCDS_##_SPFLI
+Add an association to SCARR for the field CARRID.  
+As connection use the field CARRID of both tables.  
+The cardinality to the association should be set to `[1..1]` as we expect exactly one carrier for every flight (for both start and to).  
+Include the fields CARRNAME of SCARR.  
+These fields shall also comply with the naming convention to use camel case.
 
-Include the fields NAME, CITY and COUNTRY of ZRAPH_##_HOTEL.  
-These fields shall also comply with the naming convention to have each first letter of a word capitalized.
+Add an association to SAIRPORT for both AirportFrom and AirportTo.  
+As connection use the field airpfrom/airpto and id of both tables.  
+The cardinality to the association should be set to `[1..1]` as we expect exactly one aiport for every flight (for both start and to).  
+Include the fields NAME of SAIRPORT.  
+These fields shall also comply with the naming convention to use camel case.
   
 [Solution](./solutions/CDS2.txt)
   

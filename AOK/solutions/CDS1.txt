@@ -1,24 +1,28 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
 @AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Reservation'
-@Metadata.ignorePropagatedAnnotations: true
+@EndUserText.label: 'Flight CDS'
 @ObjectModel.usageType:{
     serviceQuality: #X,
     sizeCategory: #S,
     dataClass: #MIXED
 }
-define view entity ZRAPH_##_RESERVATION
-  as select from zraph_##_roomrsv
+define view entity ZCDS_##_SPFLI
+  as select from spfli as flight
 {
-  key roomrsv_uuid          as RoomReservationUUID,
-      parent_uuid           as ParentUUID,
-      roomrsv_id            as RoomReservationID,
-      hotel_id              as HotelID,
-      begin_date            as BeginDate,
-      end_date              as EndDate,
-      room_type             as RoomType,
-      @Semantics.amount.currencyCode : 'CurrencyCode'
-      roomrsv_price         as RoomReservationPrice,
-      currency_code         as CurrencyCode,
-      local_last_changed_at as LocalLastChangedAt
+  key carrid            as CarrierId,
+  key connid            as ConnectionId,
+      countryfr         as CountryFrom,
+      cityfrom          as CityFrom,
+      airpfrom          as AirportFrom,
+      countryto         as CountryTo,
+      cityto            as CityTo,
+      airpto            as AirportTo,
+      fltime            as FlightTime,
+      deptime           as DepartureTime,
+      arrtime           as ArrivalTime,
+      @Semantics.quantity.unitOfMeasure: 'DistanceUnit'
+      distance          as DistanceAmount,
+      distid            as DistanceUnit,
+      fltype            as FlightType,
+      period            as Period
 }
