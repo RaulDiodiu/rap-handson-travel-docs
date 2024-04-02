@@ -24,7 +24,7 @@ With the authorization field being shown in the Eclipse editor, click on *Create
 
 ![alt](images/image5_2.png)
 
-In this wizard, again provide `Z_##_OUNIT` as name for you authorization object and choose a meaningful description before finishing. The authorization field table should automatically include your field `Z_##_OUNIT` as well as `ACTVT`. Add the following values to the *Permitted Activities* (if they're not already pre-filled):
+In this wizard, again provide `Z_##_OUNIT` as name for you authorization object and choose a meaningful description before finishing. Chose a valid Object Class of your SAP system. The authorization field table should automatically include your field `Z_##_OUNIT` but you might have to manually add `ACTVT`. Add the following values to the *Permitted Activities* (if they're not already pre-filled):
 * `01` Add or Create
 * `02` Change
 * `03` Display
