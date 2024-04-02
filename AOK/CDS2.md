@@ -1,4 +1,4 @@
-# Implementing Basic Authorizations (optional)
+# Implementing Basic Authorizations 
 ## Table of Contents
 * **Implementing Basic Authorizations**  
     * [Introduction](#markdown-header-introduction)  
