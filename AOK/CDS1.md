@@ -11,7 +11,7 @@ define view entity ZCDS_##_SPFLI
 as select from spfli as flight
 association[1..1] to scarr as _Carrier on _Carrier.carrid = flight.carrid
 {
-    key flight.carrid as AgencyId,
+    key flight.carrid as CarrierId,
     key flight.connid as ConnectionId,
     _Carrier.carrname as CarrierName,
 
