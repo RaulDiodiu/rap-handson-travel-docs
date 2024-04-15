@@ -11,7 +11,7 @@
 ## Requirement #1 - Create a personal development package
 You will now create the development package `ZRAPH_##_Travel` on the **sandbox system `CRS`** (where `##` are the initials of your name), to store the RAP development objects of this training. Please use the superpackage `ZRAPH_TRAINING` (i.e. transport Layer `ZCRT` and software component `HOME`).  
 
-> **Hint**: The package is created from Eclipse ADT menu *New > Other ABAP Repository Object*.  
+> **Hint**: The package is created from Eclipse ADT menu *New > ABAP Package*.  
 
 
 ## Requirement #2 - Create room reservation table
@@ -33,6 +33,10 @@ The structure of the database table should be as follow:
 | roomrsv_price     | zraph_room_rsv_price | No |
 | currency_code     | /dmo/currency_code | No |
 | local_last_changed_at     | abp_locinst_lastchange_tstmpl | No |
+
+
+> **Hint**: The DDIC tables are created from Eclipse ADT menu *New > Other ABAP Repository Object*.  
+
 
 [^ Top of page](#)  
  Explanation:
