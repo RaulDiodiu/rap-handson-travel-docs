@@ -1,6 +1,6 @@
 # Part 2 - Creating and filling the Database Tables
 ## Table of Contents
-* [Previous: 1. Introduction](../part1/README.md)
+* [Previous: 1. Introduction](Intro.md)
 * **Current: 2. Creating and filling the Database Tables**  
     * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-a-personal-development-package)  
     * [Requirement #2 - Create room reservation table](#markdown-header-requirement-2-create-room-reservation-table)  
