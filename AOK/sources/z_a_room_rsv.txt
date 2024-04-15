@@ -1,0 +1,19 @@
+@EndUserText.label : 'RAP HandsOn: Hotel Room Reservation'
+@AbapCatalog.enhancementCategory : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #RESTRICTED
+define table zraph_##_roomrsv {
+  key client            : abap.clnt not null;
+  key roomrsv_uuid      : sysuuid_x16 not null;
+  parent_uuid           : sysuuid_x16;
+  roomrsv_id            : zraph_room_rsv_id not null;
+  hotel_id              : zraph_hotel_id;
+  begin_date            : /dmo/begin_date;
+  end_date              : /dmo/end_date;
+  room_type             : zraph_room_type;
+  @Semantics.amount.currencyCode : 'zraph_##_roomrsv.currency_code'
+  roomrsv_price         : zraph_room_rsv_price;
+  currency_code         : /dmo/currency_code;
+  local_last_changed_at : abp_locinst_lastchange_tstmpl;
+}
