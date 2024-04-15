@@ -2,7 +2,7 @@
 ## Table of Contents
 * [Previous: 1. Introduction](Intro.md)
 * **Current: 2. Creating and filling the Database Tables**  
-    * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-a-personal-development-package)  
+    * [Requirement #1 - Create a personal development package](#markdown-header-requirement-1-create-a-personal-development-package)  
     * [Requirement #2 - Create room reservation table](#markdown-header-requirement-2-create-room-reservation-table)  
     * [Requirement #3 - Duplicate /DMO/ tables](#markdown-header-requirement-3-duplicate-dmo-tables)  
     * [Requirement #4 - Fill database tables](#markdown-header-requirement-4-fill-database-tables)  
@@ -64,7 +64,7 @@ Please duplicate the following tables in your SAP system into your local package
 [^ Top of page](#)  
 Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
 
-1. Create the executable report `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this.
+1. Create the executable clall `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this. With implementing this interface, you can execute the ABAP class as console application via `F9`.
 
 2. It should always be possible to run the report to reset the existing data entries.  
    To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
