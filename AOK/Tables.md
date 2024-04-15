@@ -3,13 +3,19 @@
 * [Previous: 1. Introduction](../part1/README.md)
 * **Current: 2. Creating and filling the Database Tables**  
     * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-room-reservation-table)  
-    * [Requirement #2 - Duplicate /DMO/ tables](#markdown-header-requirement-2-duplicate-dmo-tables)  
-    * [Requirement #3 - Fill database tables](#markdown-header-requirement-3-fill-database-tables)  
+    * [Requirement #2 - Create room reservation table](#markdown-header-requirement-2-create-room-reservation-table)  
+    * [Requirement #3 - Duplicate /DMO/ tables](#markdown-header-requirement-3-duplicate-dmo-tables)  
+    * [Requirement #4 - Fill database tables](#markdown-header-requirement-4-fill-database-tables)  
 * [Next: 3. Creating the Virtual Data Model (VDM) via ABAP CDS Views](../part3/3a.md)
 
+## Requirement #1 - Create a personal development package
+You will now create the development package `ZRAPH_##_Travel` on the **sandbox system `CRS`** (where `##` are the initials of your name), to store the RAP development objects of this training. Please use the superpackage `ZRAPH_TRAINING` (i.e. transport Layer `ZCRT` and software component `HOME`).  
 
-## Requirement #1 - Create room reservation table
-You will now create the database table `ZRAPH_##_RoomRsv` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
+> **Hint**: The package is created from Eclipse ADT menu *New > Other ABAP Repository Object*.  
+
+
+## Requirement #2 - Create room reservation table
+You will now create the database table `ZRAPH_##_RoomRsv`, to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
 
 ## Technical information
 The structure of the database table should be as follow:
@@ -28,8 +34,6 @@ The structure of the database table should be as follow:
 | currency_code     | /dmo/currency_code | No |
 | local_last_changed_at     | abp_locinst_lastchange_tstmpl | No |
 
-> **Hint**: The database tables are created from Eclipse ADT menu *New > Other ABAP Repository Object*. Please use the below code snippet for the new database table.
-
 [^ Top of page](#)  
  Explanation:
 
@@ -42,7 +46,7 @@ The structure of the database table should be as follow:
 #### Solution
 [zraph_##_roomrsv](sources/z_a_room_rsv.txt)
 
-## Requirement #2 - Duplicate /DMO/ tables
+## Requirement #3 - Duplicate /DMO/ tables
 [^ Top of page](#)  
 Next, we have to duplicate some tables from the /DMO/ reference model to get a individual one. This allows us later when developing the RAP Fiori App to work with our own data instead of interfering with each other.
 
@@ -52,7 +56,7 @@ Please duplicate the following tables in your SAP system into your local package
 * Duplicate `/dmo/a_booking_d` as `ZRAPH_##_Booking`
 * Duplicate `/dmo/a_bksuppl_d` as `ZRAPH_##_BookSup`
 
-## Requirement #3 - Fill database tables
+## Requirement #4 - Fill database tables
 [^ Top of page](#)  
 Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
 
