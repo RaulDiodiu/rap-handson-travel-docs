@@ -3,7 +3,7 @@
 * [Previous: Installation Guide](../installation/Installation.md)
 * [Previous: Keyboard Shortcuts](../installation/Shortcuts.md)
 * **Current: 1. Introduction**
-* [Next: 2. Creating the Database Tables ](../Tables.md)
+* [Next: 2. Creating the Database Tables ](Tables.md)
 
 ## Overall description and high-level architecture
 In this course we’ll create a SAP Fiori application with the help of a Virtual Data Model using ABAP CDS, Behavior Definitions & Implementations for the transactional behavior and OData via Service Definition & Binding for publishing our data from the BackEnd.
@@ -33,7 +33,7 @@ The detailed view (Object Page) of the bookings should provide its data (and boo
 
 ## Technical Setup
 [^ Top of page](#)  
-We will use the following database tables for the instances travel, booking, booking supplement, room reservation. You’ll find the relevant fields below. The first three are one-to-one copies from the ABAP Flight Reference Scenario. Additionally, the fourth table will be created in [part2](../Tables.md).
+We will use the following database tables for the instances travel, booking, booking supplement, room reservation. You’ll find the relevant fields below. The first three are one-to-one copies from the ABAP Flight Reference Scenario. Additionally, the fourth table will be created in [part2](Tables.md).
 - **ZRAPH_##_Travel** - General Travel Data (and some administrative information)
 - **ZRAPH_##_Booking** - Booked Flights for Travel instances
 - **ZRAPH_##_BookSup** - Booking Supplements for Booking instances
@@ -99,4 +99,4 @@ With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful App
 
 ## Next step
 [^ Top of page](#)  
-[2. Creating the Database Tables ](../Tables.md)
+[2. Creating the Database Tables ](Tables.md)
