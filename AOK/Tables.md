@@ -2,7 +2,7 @@
 ## Table of Contents
 * [Previous: 1. Introduction](../part1/README.md)
 * **Current: 2. Creating and filling the Database Tables**  
-    * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-room-reservation-table)  
+    * [Requirement #1 - Create room reservation table](#markdown-header-requirement-1-create-a-personal-development-package)  
     * [Requirement #2 - Create room reservation table](#markdown-header-requirement-2-create-room-reservation-table)  
     * [Requirement #3 - Duplicate /DMO/ tables](#markdown-header-requirement-3-duplicate-dmo-tables)  
     * [Requirement #4 - Fill database tables](#markdown-header-requirement-4-fill-database-tables)  
