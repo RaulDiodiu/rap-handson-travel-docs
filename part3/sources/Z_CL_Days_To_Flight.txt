@@ -13,7 +13,11 @@ CLASS zraph_##_cl_days_to_flight IMPLEMENTATION.
     " Loop over all requested bookings
     LOOP AT bookings ASSIGNING FIELD-SYMBOL(<booking>).
       " Calculate DaysToFlight for the current booking instance
-      <booking>-daystoflight = <booking>-flightdate - today.
+      IF <booking>-flightdate IS INITIAL.
+        <booking>-daystoflight = 0.
+      ELSE.
+        <booking>-daystoflight = <booking>-flightdate - today.
+      ENDIF.
     ENDLOOP.
 
     " Add booking instances with the added virtual field to the output parameter
