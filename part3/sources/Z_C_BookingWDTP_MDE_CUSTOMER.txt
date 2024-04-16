@@ -1,0 +1,8 @@
+@Metadata.layer: #CUSTOMER
+
+annotate entity ZRAPH_##_C_BookingWDTP with
+{
+  @UI: { lineItem:       [ { position: 20, importance: #HIGH, label: 'Booking Identifier' } ],
+         identification: [ { position: 20 } ] }
+  BookingID;
+}
