@@ -8,7 +8,7 @@ METHOD calculatetotalprice.
     ENTITY travel
     EXECUTE recalctotalprice
     FROM VALUE #( FOR <link> IN links ( COND #( WHEN <link>-target-%is_draft = if_abap_behv=>mk-off THEN VALUE #( traveluuid = <link>-target-traveluuid ) ) ) )
-    REPORTED DATA(reported).
+    REPORTED DATA(reported_in).
 
-  reported = CORRESPONDING #( DEEP reported ).
+  reported = CORRESPONDING #( DEEP reported_in ).
 ENDMETHOD.

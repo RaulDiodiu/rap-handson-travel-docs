@@ -16,8 +16,8 @@ METHOD setbookingdate.
     ENTITY booking
       UPDATE FIELDS ( bookingdate )
       WITH CORRESPONDING #( bookings )
-    REPORTED DATA(reported).
+    REPORTED DATA(reported_in).
 
   " Forward reported instances
-  reported = CORRESPONDING #( DEEP reported ).
+  reported = CORRESPONDING #( DEEP reported_in ).
 ENDMETHOD.
