@@ -64,16 +64,16 @@ Now, **you've already got your very first Fiori app running :)**
 ## Maintaining the service on COS
 As AOK Systems is using a *Front-End-Server Hub-Scenario*, we cannot directly access this OData service from outside the CRS S/4 system. We have to complete one additional step in order to make our service accessible.
 
-Connect to the FES system **COS** and execute transaction `/IWFND/MAINT_SERVICE`.
+Connect to the FES system **COS** and execute transaction `/IWFND/MAINT_SERVICE`.  
 ![alt](images/1.PNG)  
 
-Click on `Add Service` at the top with the plus icon.
+Click on `Add Service` at the top with the plus icon.  
 ![alt](images/2.PNG)  
 
-Search for your service under system alias `GKV_SART_R` and using external service name `ZRAPH*##*`, then click `Get Services at the top`.
+Search for your service under system alias `GKV_SART_R` and using external service name `ZRAPH*##*`, then click `Get Services at the top`.  
 ![alt](images/3.PNG)  
 
-Finally, select your found service, click `Add selected service` and provide the packag `$TMP` (the rest should stay untouched). After clicking the green checkmark at the bottom right corner, you should be good to go!
+Finally, select your found service, click `Add selected service` and provide the packag `$TMP` (the rest should stay untouched). After clicking the green checkmark at the bottom right corner, you should be good to go!  
 ![alt](images/4.PNG)
 
 
