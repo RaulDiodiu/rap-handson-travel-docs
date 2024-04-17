@@ -4,7 +4,7 @@ METHOD settravelid.
     ENTITY travel
       FIELDS ( travelid )
       WITH CORRESPONDING #( keys )
-    RESULT DATA(travelw).
+    RESULT DATA(travels).
 
   " remove lines where TravelID is already filled.
   DELETE travels WHERE TravelID IS NOT INITIAL.

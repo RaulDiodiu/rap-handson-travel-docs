@@ -2,7 +2,7 @@ METHOD setinitialstatus.
 
   MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
-      UPDATE SET FIELDS
+      UPDATE FIELDS ( OverallStatus )
       WITH VALUE #( FOR key IN keys ( %tky          = key-%tky
                                       overallstatus = 'O' ) )
   REPORTED DATA(reported_in).
