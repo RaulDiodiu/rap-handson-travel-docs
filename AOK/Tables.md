@@ -67,7 +67,7 @@ Your newly created tables have no data, yet. Therefore, we'll write a small exec
 1. Create the class `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this. With implementing this interface, you can execute the ABAP class as console application via `F9`.
 
 2. Your coding should be implemented in the interface's main method. It should always be possible to execute the class to reset the existing data entries.  
-   To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
+   To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when running the executable class.  
    Do this by using a `DELETE` statement per table.
 
 3. Fill your personal Travel, Booking and BookingSupplement tables with the same data existing in the respective `/DMO/` reference tables: `/DMO/A_TRAVEL_D`, `/DMO/A_BOOKING_D` and `/DMO/A_BKSUPPL_D`.  
