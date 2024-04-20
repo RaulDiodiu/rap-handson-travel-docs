@@ -62,11 +62,11 @@ Please duplicate the following tables in your SAP system into your local package
 
 ## Requirement #4 - Fill database tables
 [^ Top of page](#)  
-Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
+Your newly created tables have no data, yet. Therefore, we'll write a small executable class which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
 
-1. Create the executable class `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this. With implementing this interface, you can execute the ABAP class as console application via `F9`.
+1. Create the class `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this. With implementing this interface, you can execute the ABAP class as console application via `F9`.
 
-2. It should always be possible to run the report to reset the existing data entries.  
+2. Your coding should be implemented in the interface's main method. It should always be possible to execute the class to reset the existing data entries.  
    To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
    Do this by using a `DELETE` statement per table.
 
@@ -143,7 +143,7 @@ Your newly created tables have no data, yet. Therefore, we'll write a small prog
         out->write( 'Room reservation data generated.' ).
 
 
-5. Activate your finished program and execute it. Afterwards, check your tables `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` via Data Preview for existing entries.  
+5. Activate your finished class and execute it via `F9`. Afterwards, check your tables `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` via Data Preview for existing entries.  
 
 [^ Top of page](#)  
 
