@@ -12,8 +12,9 @@ jobs:
       - uses: pixta-dev/repository-mirroring-action@v1
         with:
           target_repo_url:
+            git@bitbucket.org:erp-praktikum/rap-handson-travel-docs.git
             # https://dachenej:@bitbucket.org/erp-praktikum/rap-handson-travel-docs.git
-            git@bitbucket.org:dachenej/erp-praktikum/rap-handson-travel-docs.git
+            # git@bitbucket.org:dachenej/erp-praktikum/rap-handson-travel-docs.git
             # git@gitlab.com:<username>/<target_repository_name>.git
           ssh_private_key:                              # <-- use 'secrets' to pass credential information.
             ${{ secrets.SSH_PRIVATE_KEY }}
