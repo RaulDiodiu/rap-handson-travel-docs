@@ -31,7 +31,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2024-12](https://www.eclipse.org/downloads/packages/release/2024-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
 
 >**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
 
@@ -94,7 +94,7 @@ Click on the *hamburger menu* in the top left corner and select *Terminal* > *Ne
 Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
-**We're looking forward to seeing you on March 11th :)**
+**We're looking forward to seeing you on March 31st :)**
 
 ## Further Links
 - [Eclipse Keyboard Shortcuts](Shortcuts.md)
