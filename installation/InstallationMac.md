@@ -9,7 +9,7 @@
 
 Go to [Eclipse 2024-12](https://www.eclipse.org/downloads/packages/release/2024-12/r) and download the version fitting your operating system.  
 
->**Note** There are two different options: The option 1 at the top offers a **guided installer**. Option 2 at the bottom allows you to download an **archive** (.dmg) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
+>**Note** There are two different options: The option 1 at the top offers a **guided installer**. Option 2 at the bottom allows you to download an **archive** (.dmg) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app (please move it to your user folder and don't start Eclipse while it's in the Downloads folder). Anyways, you can choose your preferred option yourself.  
 
 ![alt](files/image_eclipse.png)
 

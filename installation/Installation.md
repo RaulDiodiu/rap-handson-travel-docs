@@ -50,15 +50,16 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 ### 3. Add the development system as ABAP Cloud Project to Eclipse
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
->We're using a development system hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (SAP BTP, ABAP environment).  
->The system version is _ABAP IN SAP CLOUD PLATFORM 2402 (HFC 4)_, the newest version of S/4HANA from February 2024.  
->**Note** Our ABAP system _UNP_ is configured to be only **available weekdays from 8 to 18 o'clock**.  
->**Additionally, it will be online on Sunday, March 10th from 8 to 18 as well.**  
+>We're using a development system hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (SAP BTP, ABAP Environment).  
+>The system version is _ABAP IN SAP CLOUD PLATFORM 2502 (HFC 6)_, the newest version of S/4HANA from February 2025.  
+>**Note** Our ABAP system _UNP_ is configured to be only **available March 31st to April 11th daily from 8 to 18 o'clock**.  
+>**Also, it will be online from Monday, March 24th to Friday, April 28th from 8 to 18 for you to configure your Eclipse installation.**  
+>**Additionally, it will be online from Tuesday, April 22nd to Thursday, April 24th from 8 to 18 for exam preparation.**  
  
 
 Now we will add this system as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
 
-Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `msgsystems-sci.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
+Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `ahg2zqgbd.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project *UNP* and select *New* > *ABAP Package*.
@@ -84,14 +85,14 @@ With this, you've completed the third preparation step.
 [^ Top of page](#)  
 Our final step is to configure the Business Application Studio (BAS) which is the development environment for the FrontEnd. Here, our browser applications will be implemented later on.  
 
-To get started, open the [Business Application Studio](https://uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html). If asked, select *msgsystems-sci.accounts.ondemand.com* for signing in. Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this may take some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
+To get started, open the [Business Application Studio](https://uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html). If asked, select *ahg2zqgbd.accounts.ondemand.com* for signing in. Once the BAS has opened, you'll have to click *Create Dev Space*: Select the name *Fiori* and the application type *SAP Fiori* and click on *Create Dev Space*. Your Dev Space will automatically be started - this may take some minutes. Meanwhile you can store a browser bookmark for the BAS. Once it's *running*, open the Dev Space.
 
 
 ### 5. Connecting BAS with the ABAP Environment 
 [^ Top of page](#)  
-Now we'll have to connect the BAS with Cloud Foundry in order to use OData services from the BackEnd in our FrontEnd app. Therefore, open [BAS](https://uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html) again via your browser bookmark.  
+Now we'll have to connect the BAS with Cloud Foundry in order to use OData services from the BackEnd in our FrontEnd app. Therefore, open [BAS](https://uni-passau-sb-tdd.eu10cf.applicationstudio.cloud.sap/index.html) again via your browser bookmark and open your Fiori Dev Space.  
 
-Click on the *hamburger menu* in the top left corner and select *Terminal* > *New Terminal...*. Type `cf login --sso` into the opened editor and confirm via *Enter*. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter. You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click` and enter `msgsystems-sci-platform` as origin key. You will get a passcode afterwards (but might have to login again with user and password).  
+Click on the *hamburger menu* in the top left corner and select *Terminal* > *New Terminal...*. Type `cf login --sso` into the opened editor and confirm via *Enter*. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter. You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click` and enter `ahg2zqgbd-platform` as origin key, click the second button. You will get a passcode afterwards (but might have to login again with user and password).  
 
 Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
 
