@@ -31,7 +31,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 >**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2024-12](https://www.eclipse.org/downloads/packages/release/2024-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
+Go to [Eclipse 2024-12](https://www.eclipse.org/downloads/packages/release/2024-12/r) and download the version fitting your operating system.  
 
 >**Note** There are two different options: The option 1 at the top offers a **guided installer**. Option 2 at the bottom allows you to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
 
