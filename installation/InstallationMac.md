@@ -7,7 +7,7 @@
 
 >**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2024-12](https://www.eclipse.org/downloads/packages/release/2024-12/r) and download the version fitting your operating system.  
+Go to [Eclipse 2025-03](https://www.eclipse.org/downloads/packages/release/2025-03/r) and download the version fitting your operating system.  
 
 >**Note** There are two different options: The option 1 at the top offers a **guided installer**. Option 2 at the bottom allows you to download an **archive** (.dmg) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app (please move it to your user folder and don't start Eclipse while it's in the Downloads folder). Anyways, you can choose your preferred option yourself.  
 
@@ -27,7 +27,7 @@ The app will self-modify itself during the first startup. This will lead to Ecli
 When the installation finished you can launch Eclipse.  
 You will be asked for a workspace and can store the presetting as default.
 
-Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter `https://tools.hana.ondemand.com/2024-12/` into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse.  
+Now we'll install the ABAP Development Tools (ADT): Click *Help* > *Install new Software...* in Eclipse and enter `https://tools.hana.ondemand.com/2025-03/` into the field *Work with*. Click *Add...* and store the plugin URL under the name *ADT*. After adding, the available tools will be loaded. Active the checkbox for *ABAP Development Tools* and click on *Next >*. On the following page again *Next >*, then accept the license terms and click *Finish*. You'll see the installation progress in the lower right corner of Eclipse. In some cases you have to explicitly state that you're trusting the signers SAP and Eclipse.  
 
 After the installation Eclipse has to be restarted. Close the welcome tab and open the ABAP perspective by clicking *Window* > *Perspective* > *Open Perspective* > *Other* > *ABAP*.
 
