@@ -51,7 +51,7 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 #### Connecting Eclipse with BTP
 [^ Top of page](#)  
 >We're using a development system hosted by SAP in "the Cloud", i.e. SAP Business Technology Platform (SAP BTP, ABAP Environment).  
->The system version is _ABAP IN SAP CLOUD PLATFORM 2502 (HFC 6)_, the newest version of S/4HANA from February 2025.  
+>Our system version is _ABAP IN SAP CLOUD PLATFORM 2502 (HFC 6)_, the newest currently available release from March 2025.  
 >**Note** Our ABAP system _UNP_ is configured to be only **available March 31st to April 11th daily from 8 to 18 o'clock**.  
 >**Also, it will be online from Monday, March 24th to Friday, April 28th from 8 to 18 for you to configure your Eclipse installation.**  
 >**Additionally, it will be online from Tuesday, April 22nd to Thursday, April 24th from 8 to 18 for exam preparation.**  
