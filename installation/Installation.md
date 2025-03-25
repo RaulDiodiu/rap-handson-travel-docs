@@ -59,7 +59,7 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 
 Now we will add this system as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP Cloud Project* in the *Project Explorer* on the left.  
 
-Here you have to provide the ABAP Service Instance URL `https://7cbaeb95-7407-4944-8db5-de9606d227f4.abap.eu10.hana.ondemand.com` and continue with *Next >*. Next, you'll have to logon to your SAP BTP Account by clicking *Open Logon Page in Browser*. Here you have to select `ahg2zqgbd.accounts.ondemand.com` and provide the mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
+Here you have to provide the ABAP Service Instance URL `https://7cbaeb95-7407-4944-8db5-de9606d227f4.abap.eu10.hana.ondemand.com` and continue with *Next >*. Now you'll have to logon to your SAP BTP Account by clicking *Open Logon Page in Browser*. Here you have to select `ahg2zqgbd.accounts.ondemand.com` and provide the mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project *UNP* and select *New* > *ABAP Package*.
