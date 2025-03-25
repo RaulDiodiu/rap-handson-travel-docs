@@ -33,7 +33,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 Go to [Eclipse 2025-03](https://www.eclipse.org/downloads/packages/release/2025-03/r) and download the version fitting your operating system.  
 
->**Note** There are two different options: The option 1 at the top offers a **guided installer**. Option 2 at the bottom allows you to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
+>**Note** There are two different options: The option **1** at the top offers a **guided installer**. Option **2** at the bottom allows you to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
 
 ![alt](files/image_eclipse.png) 
 
@@ -57,9 +57,9 @@ After the installation Eclipse has to be restarted. Close the welcome tab and op
 >**Additionally, it will be online from Tuesday, April 22nd to Thursday, April 24th from 8 to 18 for exam preparation.**  
  
 
-Now we will add this system as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.  
+Now we will add this system as ABAP Cloud Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP Cloud Project* in the *Project Explorer* on the left.  
 
-Here you have to select the option using a *Service Key* and continue with *Next >*. On the next screen, paste the JSON code which you can copy from [this service key file](files/abap_environment_service_key.json). Click *Next >* and then *Open Logon Page in Browser*. Here you have to select `ahg2zqgbd.accounts.ondemand.com` and provide your mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
+Here you have to provide the ABAP Service Instance URL `https://7cbaeb95-7407-4944-8db5-de9606d227f4.abap.eu10.hana.ondemand.com` and and continue with *Next >*. Next, you'll have to logon to your SAP BTP Account by clicking *Open Logon Page in Browser*. Here you have to select `ahg2zqgbd.accounts.ondemand.com` and provide the mail and passwort you chose in the first step. Back in Eclipse use *EN* as logon language when asked and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project *UNP* and select *New* > *ABAP Package*.
