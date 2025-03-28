@@ -1,0 +1,40 @@
+{
+    "url": "https://7cbaeb95-7407-4944-8db5-de9606d227f4.abap.eu10.hana.ondemand.com",
+    "binding": {
+        "env": "cf",
+        "id": "f6325a31-f4a2-4525-b0d7-016c5789b7d7",
+        "type": "oauth",
+        "version": "1.0.1.1"
+    },
+    "catalogs": {
+        "abap": {
+            "path": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2",
+            "type": "sap_abap_catalog_v1"
+        }
+    },
+    "endpoints": {
+        "abap": "https://7cbaeb95-7407-4944-8db5-de9606d227f4.abap.eu10.hana.ondemand.com"
+    },
+    "preserve_host_header": true,
+    "sap.cloud.service": "com.sap.cloud.abap",
+    "systemid": "UNP",
+    "uaa": {
+        "clientid": "sb-xs-7cbaeb95-7407-4944-8db5-de9606d227f4!b403905|xsuaa-abapcp-prod-eu10!b4584",
+        "clientsecret": "f6325a31-f4a2-4525-b0d7-016c5789b7d7$ey-2ek6uonPxIh9wAoooNyXdIFJJYcmRTjbVnQVUdk0=",
+        "url": "https://uni-passau-sb-tdd.authentication.eu10.hana.ondemand.com",
+        "identityzone": "uni-passau-sb-tdd",
+        "identityzoneid": "1abff01c-a523-492c-94da-2871e0196aa0",
+        "tenantid": "1abff01c-a523-492c-94da-2871e0196aa0",
+        "tenantmode": "dedicated",
+        "sburl": "https://internal-xsuaa.authentication.eu10.hana.ondemand.com",
+        "apiurl": "https://api.authentication.eu10.hana.ondemand.com",
+        "verificationkey": "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjE3rnzVd1pazU6Xu1fB\nXS0TwmiBXSSSLajnitcDONzEnQgy4gxxgOKMPHjTfsi7nur1H7RoUWv49HKlCcf1\n+YyYtqFWkpdJmpSB7c9fJSBBe4cT+cVJVKhlv/vn9HVVihqhRJympHF02jTcTGuH\nBh23xd3FMBHrFMY8f+yc+U/woQ2PQnGt0TYG6RstllSGWTD5KWB5gbMTCwvXluoN\nvzRWXge2nHENq0HPVQuCsMu1+Up6TsnqhQE/wgnwG7pCu8pRGvXlBTji0+/673Vi\nOaciZY9JFeYbArYJvnLBXWa6UKnO2g/YAkV0cLB296NhqmUZmpIcyQpgGI5wHqoY\nFwIDAQAB\n-----END PUBLIC KEY-----",
+        "xsappname": "xs-7cbaeb95-7407-4944-8db5-de9606d227f4!b403905|xsuaa-abapcp-prod-eu10!b4584",
+        "subaccountid": "1abff01c-a523-492c-94da-2871e0196aa0",
+        "uaadomain": "authentication.eu10.hana.ondemand.com",
+        "zoneid": "1abff01c-a523-492c-94da-2871e0196aa0",
+        "credential-type": "binding-secret",
+        "serviceInstanceId": "7cbaeb95-7407-4944-8db5-de9606d227f4"
+    },
+    "URL.headers.x-sap-security-session": "create"
+  }
