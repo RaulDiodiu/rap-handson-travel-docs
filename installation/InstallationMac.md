@@ -7,11 +7,11 @@
 
 >**Note** You'll probably have to **leave any VPN** (e.g., from msg or the university)! The connection to Eclipse's plugin repository may fail otherwise.
 
-Go to [Eclipse 2025-03](https://www.eclipse.org/downloads/packages/release/2025-03/r) and download the version fitting your operating system.  
+Go to [Eclipse 2025-03](https://www.eclipse.org/downloads/packages/release/2025-03/r) and download Eclipse IDE for Enterprise Java and Web Developers for macOS x66_64:  
 
->**Note** There are two different options: The option **1** at the top offers a **guided installer**. Option **2** at the bottom allows you to download an **archive** (.dmg) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app (please move it to your user folder and don't start Eclipse while it's in the Downloads folder). Anyways, you can choose your preferred option yourself.  
+![alt](files/image_eclipse_mac.png)
 
-![alt](files/image_eclipse.png)
+>**Note** This will download an **archive** (.dmg) which simply has to be unpacked on your computer. Unzip the downloaded archive and move Eclipse.app to the folder `Macintosh HD/Applications`.  
 
 ### DON'T OPEN ECLIPSE, YET !!!   
 We'll have to change some settings **directly after installing Eclipse and BEFORE opening it** as otherwise you won't be able to start Eclipse. It is okay to move Eclipse.app after unzipping the downloaded dmg-file to your Applications folder. But **please do not execute Eclipse.app**, yet!
