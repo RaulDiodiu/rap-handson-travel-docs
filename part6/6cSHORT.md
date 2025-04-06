@@ -6,7 +6,7 @@
 * **Current: 6c. Validation (short version)**   
     * [Introducing Validations](#markdown-header-introducing-validations)  
     * [Implementing Validation validateCustomer](#markdown-header-implementing-validation-validatecustomer)  
-* [Next: 6d. Feature Control (optional)](6d.md) 
+* [Next: 6d. Feature Control](6d.md) 
 * [Next: 7. Business Application Studio](../part7/7a.md) 
 
 ## Introducing Validations
