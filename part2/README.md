@@ -59,7 +59,7 @@ Please duplicate the following tables in your SAP system into your local package
 [^ Top of page](#)  
 Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
 
-1. Create the executable report `zraph_##_data_generator` in you ABAP package. You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this.
+1. Create the executable report `zraph_##_data_generator` in you ABAP package (i.e., an ABAP class). You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this.
 
 2. It should always be possible to run the report to reset the existing data entries.  
    To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
