@@ -58,7 +58,7 @@ This will open a new browser tab prompting you to log into your SAP system again
 
 When pressing the Go button, you should already see the existing travels from your database.  
 
-Navigation to object pages is not yet working but **you already got your very first Fiori app running :)**
+Now you already got your **very first Fiori app running :)** and can play around with it.
 
 ## Next step
 [^ Top of page](#)  
