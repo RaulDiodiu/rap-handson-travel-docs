@@ -66,6 +66,7 @@ etag master LocalLastChangedAt
     FlightDate = flight_date;
     FlightPrice = flight_price;
     CurrencyCode = currency_code;
+    BookingStatus = booking_status;
     LocalLastChangedAt = local_last_changed_at;
   }
 
