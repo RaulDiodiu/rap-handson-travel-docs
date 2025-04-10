@@ -148,7 +148,7 @@ In the wizard select/enter the following information:
 | ---------------- | ---------- |
 | Table Type       | Responsive |
 | Entity Set       | Travel     |
-| Leading Property | AgencyName |
+| Leading Property | TravelID   |
   
 Press "Create a File and Insert Snippet".  
 You can close the tab that opens to the right.  

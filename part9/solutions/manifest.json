@@ -1,35 +1,26 @@
 {
-    "_version": "1.32.0",
+    "_version": "1.65.0",
     "sap.app": {
-        "id": "com.erp.lrp.zraph_##_travel",
+        "id": "zraph##travel",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
-            "version": "1.0.0"
+            "version": "0.0.1"
         },
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
-        "tags": {
-            "keywords": []
-        },
         "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.17.1",
+            "toolsId": "0e7aac5d-5568-4a80-adb9-701fd1896ed6"
+        },
         "dataSources": {
-            "mainService": {
-                "uri": "/sap/opu/odata/sap/ZRAPH_##_TRAVELWDTP/",
-                "type": "OData",
-                "settings": {
-                    "annotations": [
-                        "ZRAPH_##_TRAVELWDTP_VAN",
-                        "annotation"
-                    ],
-                    "localUri": "localService/metadata.xml"
-                }
-            },
-            "ZRAPH_##_TRAVELWDTP_VAN": {
-                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZRAPH_##_TRAVELWDTP_VAN',Version='0001')/$value/",
+            "ZRAPH_##_UI_TRAVELWDTP_V2_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZRAPH_##_UI_TRAVELWDTP_V2_VAN',Version='0001')/$value/",
                 "type": "ODataAnnotation",
                 "settings": {
-                    "localUri": "localService/ZRAPH_##_TRAVELWDTP_VAN.xml"
+                    "localUri": "localService/mainService/ZRAPH_##_UI_TRAVELWDTP_V2_VAN.xml"
                 }
             },
             "annotation": {
@@ -38,12 +29,19 @@
                 "settings": {
                     "localUri": "annotations/annotation.xml"
                 }
+            },
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZRAPH_##_UI_TRAVELWDTP_V2/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZRAPH_##_UI_TRAVELWDTP_V2_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
             }
-        },
-        "offline": false,
-        "sourceTemplate": {
-            "id": "ui5template.smartTemplate",
-            "version": "1.40.12"
         }
     },
     "sap.ui": {
@@ -60,49 +58,32 @@
             "desktop": true,
             "tablet": true,
             "phone": true
-        },
-        "supportedThemes": [
-            "sap_hcb",
-            "sap_belize",
-            "sap_fiori_3"
-        ]
+        }
     },
     "sap.ui5": {
-        "resources": {
-            "js": [],
-            "css": []
-        },
+        "flexEnabled": false,
         "dependencies": {
-            "minUI5Version": "1.94.1",
+            "minUI5Version": "1.130.8",
             "libs": {
-                "sap.ui.core": {
-                    "lazy": false
-                },
-                "sap.ui.generic.app": {
-                    "lazy": false
-                },
-                "sap.suite.ui.generic.template": {
-                    "lazy": false
-                }
-            },
-            "components": {}
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.f": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.suite.ui.generic.template": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
         },
         "models": {
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
-            },
-            "@i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
-            },
-            "i18n|sap.suite.ui.generic.template.ListReport|Travel": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/ListReport/Travel/i18n.properties"
-            },
-            "i18n|sap.suite.ui.generic.template.ObjectPage|Travel": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/ObjectPage/Travel/i18n.properties"
+                "settings": {
+                    "bundleName": "zraph##travel.i18n.i18n"
+                }
             },
             "": {
                 "dataSource": "mainService",
@@ -115,28 +96,40 @@
                         "sap-value-list": "none"
                     }
                 }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
             }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "config": {},
+            "routes": [],
+            "targets": {}
         },
         "extends": {
             "extensions": {
                 "sap.ui.controllerExtensions": {
                     "sap.suite.ui.generic.template.ListReport.view.ListReport": {
-                        "controllerName": "com.erp.lrp.listreport.ext.controller.ListReportExt",
+                        "controllerName": "zraph##travel.ext.controller.ListReportExt",
                         "sap.ui.generic.app": {
                             "Travel": {
                                 "EntitySet": "Travel",
                                 "Actions": {
-                                    "customAction": {
-                                        "id": "customActionButton",
-                                        "text": "Custom Action",
-                                        "press": "onExtensionButtonPressed",
-                                        "requiresSelection": false
-                                    },
                                     "customAction2": {
                                         "id": "customAction2Button",
                                         "text": "What is selected?",
                                         "press": "onExtensionButton2Pressed",
                                         "requiresSelection": true
+                                    },
+                                    "customAction": {
+                                        "id": "customActionButton",
+                                        "text": "Custom Action",
+                                        "press": "onExtensionButtonPressed",
+                                        "requiresSelection": false
                                     }
                                 }
                             }
@@ -147,27 +140,23 @@
                     "sap.suite.ui.generic.template.ListReport.view.ListReport": {
                         "SmartFilterBarControlConfigurationExtension|Travel": {
                             "className": "sap.ui.core.Fragment",
-                            "fragmentName": "com.erp.lrp.listreport.ext.fragments.CustomFilter",
+                            "fragmentName": "zraph##travel.ext.fragments.CustomFilter",
                             "type": "XML"
                         },
                         "ResponsiveTableColumnsExtension|Travel": {
                             "className": "sap.ui.core.Fragment",
-                            "fragmentName": "com.erp.lrp.listreport.ext.fragments.ResponsiveTableColumns",
+                            "fragmentName": "zraph##travel.ext.fragments.ResponsiveTableColumns",
                             "type": "XML"
                         },
                         "ResponsiveTableCellsExtension|Travel": {
                             "className": "sap.ui.core.Fragment",
-                            "fragmentName": "com.erp.lrp.listreport.ext.fragments.ResponsiveTableCells",
+                            "fragmentName": "zraph##travel.ext.fragments.ResponsiveTableCells",
                             "type": "XML"
                         }
                     },
                     "sap.suite.ui.generic.template.ObjectPage.view.Details": {}
                 }
             }
-        },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
         }
     },
     "sap.ui.generic.app": {
@@ -205,20 +194,39 @@
                         "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
                         "component": {
                             "name": "sap.suite.ui.generic.template.ObjectPage"
+                        },
+                        "pages": {
+                            "ObjectPage|RoomReservation": {
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "entitySet": "RoomReservation",
+                                "navigationProperty": "to_RoomReservation"
+                            },
+                            "ObjectPage|Booking": {
+                                "component": {
+                                    "name": "sap.suite.ui.generic.template.ObjectPage"
+                                },
+                                "entitySet": "Booking",
+                                "navigationProperty": "to_Booking",
+                                "pages": {
+                                    "ObjectPage|BookingSupplement": {
+                                        "component": {
+                                            "name": "sap.suite.ui.generic.template.ObjectPage"
+                                        },
+                                        "entitySet": "BookingSupplement",
+                                        "navigationProperty": "to_BookingSupplement"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     },
-    "sap.platform.abap": {
-        "uri": ""
-    },
     "sap.fiori": {
         "registrationIds": [],
         "archeType": "transactional"
-    },
-    "sap.platform.hcp": {
-        "uri": ""
     }
 }
