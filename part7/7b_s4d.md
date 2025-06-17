@@ -1,4 +1,4 @@
-# Part 7b - App Creation
+# Part 7b - App Creation (msg internal)
 ## Table of Contents
 * [Previous: 6. Behavior Implementation](../part6/6a.md) / [6. Short Version](../part6/6aSHORT.md)  
 * [Previous: 7a. Fiori Tools / BAS Capabilities](7a.md)
@@ -18,7 +18,7 @@ As our FrontEnd team is not able to provide something in time, we will simply cr
 
 ### Create the SAP Fiori List Report in the FrontEnd
 [^ Top of page](#)  
-Before creating the SAP Fiori List Report application, make sure that step 4 *Install SAP Business Application Studio* from the [Installation Guide](../installation/Installation.md) is successfully completed!   
+Before creating the SAP Fiori List Report application, you'll have to access the _Business Application Studio_, aka BAS! If you have a S-User assigned, you should hopefully be able to access the [BAS from here](https://gbp-coc-sap-s4-eu10-sb-tdd.authentication.eu10.hana.ondemand.com/login). If not, please contact your mentor for clarification if you want to try Front End Development as well.  
 
 **Important:** Seemingly, the SAP Business Application Studio is not running as expected in some browsers, specifically in Mozilla's _Firefox_. Therefore, **please use Google Chrome** (which is recommended by SAP) for all future modifications with the BAS!
 
