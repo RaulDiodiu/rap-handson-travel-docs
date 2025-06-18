@@ -57,4 +57,4 @@ Activate the updated access control and run the CDS View Data Preview again. Thi
 
 ### Inheriting the CDS Access Control
 [^ Top of page](#)  
-Note: If you're using your CDS view in a Fiori app, it is necessary for the consumption view to inherit the access rules from its underlying CDS View. Otherwise, they won't have an effect on those CDS views selecting from your current one.  
+Note: If you're using your CDS view in a Fiori app, it is necessary for the projection view to inherit the access rules from its underlying CDS View. Otherwise, they won't have an effect on those CDS views selecting from your current one.  
