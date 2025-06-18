@@ -7,7 +7,7 @@ METHOD calculatetotalprice.
   MODIFY ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
     ENTITY travel
     EXECUTE recalctotalprice
-    FROM VALUE #( FOR <link> IN links ( COND #( WHEN <link>-target-%is_draft = if_abap_behv=>mk-off THEN VALUE #( traveluuid = <link>-target-traveluuid ) ) ) )
+    FROM VALUE #( FOR <link> IN links ( traveluuid = <link>-target-%tky ) )
     REPORTED DATA(reported).
 
   reported = CORRESPONDING #( DEEP reported ).

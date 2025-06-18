@@ -15,6 +15,7 @@ METHOD validateagency.
 
   " Loop over all travel instances to be saved
   LOOP AT travels INTO DATA(travel).
+    " Invalidating State Messages from message table for state area travel agency validation
     APPEND VALUE #( %tky               = travel-%tky
                     %state_area        = 'VALIDATE_AGENCY' ) TO reported-travel.
 

@@ -19,8 +19,9 @@ METHOD validatesupplement.
 
   " Loop over all booking supplement instances to be saved
   LOOP AT supplements INTO DATA(supplement).
+    " Invalidating State Messages from message table for state area booking supplement supplement validation
     APPEND VALUE #(  %tky               = supplement-%tky
-                     %state_area        = 'VALIDATE_SUPPLEMENT' ) TO reported-booking.
+                     %state_area        = 'VALIDATE_SUPPLEMENT' ) TO reported-bookingsupplement.
 
     " Raise messages for empty supplement ids
     IF supplement-supplementid IS  INITIAL.

@@ -7,6 +7,7 @@ METHOD validatedates.
 
   LOOP AT travels INTO DATA(travel).
 
+    " Invalidating State Messages from message table for state area travel date validation
     APPEND VALUE #(  %tky               = travel-%tky
                      %state_area        = 'VALIDATE_DATES' ) TO reported-travel.
 

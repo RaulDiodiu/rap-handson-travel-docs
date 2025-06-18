@@ -25,7 +25,7 @@ METHOD recalctotalprice.
     READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY travel BY \_roomreservation
         FIELDS ( roomrsvprice currencycode )
-      WITH VALUE #( ( %key = <travel>-%key ) )
+      WITH VALUE #( ( %tky = <travel>-%tky ) )
       RESULT DATA(roomreservations).
 
     LOOP AT roomreservations INTO DATA(roomreservation) WHERE currencycode IS NOT INITIAL.
@@ -37,7 +37,7 @@ METHOD recalctotalprice.
     READ ENTITIES OF zraph_##_i_travelwdtp IN LOCAL MODE
       ENTITY travel BY \_booking
         FIELDS ( flightprice currencycode )
-      WITH VALUE #( ( %key = <travel>-%key ) )
+      WITH VALUE #( ( %tky = <travel>-%tky ) )
       RESULT DATA(bookings).
 
     LOOP AT bookings INTO DATA(booking) WHERE currencycode IS NOT INITIAL.
