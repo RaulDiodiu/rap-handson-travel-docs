@@ -16,7 +16,7 @@ With our behavior definition and implementation being completed the next step is
 
 ## Service Definition
 [^ Top of page](#)  
-First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your package and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. This therefore not only includes our Consumption Views for Travel, Booking an BookingSupplement instances but also those used for Value Helps, Navigation and Text Provision. All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
+First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your package and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. We have to publish our four BO entities but the connected value help CDS views will automatically be published (without an alias if we don't explicitly add them to the Service Definition). All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
 
 ```abap
 @EndUserText.label: 'RAP HandsOn: Travel Draft Scenario'
@@ -25,17 +25,6 @@ define service ZRAPH_##_TRAVELWDTP {
   expose ZRAPH_##_C_BookingWDTP as Booking;
   expose ZRAPH_##_C_BookingSupplWDTP as BookingSupplement;
   expose ZRAPH_##_C_RoomReservationWDTP as RoomReservation;
-  expose /DMO/I_Supplement as Supplement;
-  expose /DMO/I_SupplementText as SupplementText;
-  expose /DMO/I_Customer as Passenger;
-  expose /DMO/I_Agency as TravelAgency;
-  expose /DMO/I_Carrier as Carrier;
-  expose /DMO/I_Flight as Flight;
-  expose /DMO/I_Overall_Status_VH as OverallStatus;
-  expose I_Currency as Currency;
-  expose I_Country as Country;
-  expose ZRAPH_I_HOTEL as Hotel;
-  expose ZRAPH_I_HotelRoomType as HotelRoomType;
 }
 ```
 For more information see Creating Service Definitions [Service Definitions](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.000/en-US/ce3133d161ae492698c5b321c74c3274.html).
