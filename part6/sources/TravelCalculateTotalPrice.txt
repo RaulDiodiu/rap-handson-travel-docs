@@ -3,7 +3,7 @@ METHOD calculatetotalprice.
     ENTITY travel
       EXECUTE recalctotalprice
       FROM CORRESPONDING #( keys )
-    REPORTED DATA(reported).
+    REPORTED DATA(reported_in).
 
-  reported = CORRESPONDING #( DEEP reported ).
+  reported = CORRESPONDING #( DEEP reported_in ).
 ENDMETHOD.
