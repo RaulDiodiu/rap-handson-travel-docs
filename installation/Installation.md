@@ -33,7 +33,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 Go to [Eclipse 2025-03](https://www.eclipse.org/downloads/packages/release/2025-03/r) and download the version fitting your operating system.  
 
->**Note** There are two different options: The option **1** at the top offers a **guided installer**. Option **2** at the bottom allows you to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.  
+>**Note** There are two different options: The option **1** at the top offers a **guided installer**. Option **2** at the bottom allows you to download an **archive** (.zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyway, you can choose your preferred option yourself.  
 
 ![alt](files/image_eclipse.png) 
 
@@ -94,7 +94,7 @@ Now we'll have to connect the BAS with Cloud Foundry in order to use OData servi
 
 Click on the *hamburger menu* in the top left corner and select *Terminal* > *New Terminal...*. Type `cf login --sso` into the opened editor and confirm via *Enter*. Paste the API endpoint `https://api.cf.eu10-004.hana.ondemand.com` and confirm via Enter. You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click` and enter `ahg2zqgbd-platform` as origin key, click the second button. You will get a passcode afterwards (but might have to login again with user and password).  
 
-Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get a green *OK* message in the Terminal and are finally good to go.
+Copy this passcode, paste it back into the BAS Terminal and click `Enter`. You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyway! You should get a green *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
 **We're looking forward to seeing you on March 31st :)**

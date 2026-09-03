@@ -37,7 +37,7 @@ As part of the *Florplan Selection* step, we will pick the *List Report Page* fl
 ![alt](images/image6_3.png)
 
 [^ Top of page](#)  
-In the next step, the *Data source* (Connect to a System), *System* (New System), *System type* (ABAP On Premise), *System URL* (https://vhosts4d.awscloud.msg.de:8443), *SAP client* (200) and log on using your S4D user. Next, your personal OData service (ZRAPH_##_UI_TRAVELWDTP_V2) will be selected. ITeanova colleagues can use(ZRAPH_UI_TRAVELWDTP_V2). Provide this information and press *Next*.
+In the next step, the *Data source* (Connect to a System), *System* (New System), *System type* (ABAP On Premise), *System URL* (https://vhosts4d.awscloud.msg.de:8443), *SAP client* (200) and log on using your S4D user. Next, your personal OData service (ZRAPH_##_UI_TRAVELWDTP_V2) will be selected. ITeanova colleagues can use (ZRAPH_UI_TRAVELWDTP_V2). Provide this information and press *Next*.
 
 [^ Top of page](#)  
 In the *Entity Selection* step, we have to provide as *Main entity* the *Travel* entity and in *Navigation entity* please provide *None* since related navigation from the main entity to the child entities will be provided from backend via UI annotations.
@@ -68,7 +68,7 @@ Let's preview the just generated SAP Fiori List report app, by right clicking on
 [^ Top of page](#)  
 In the appearing pop-up select the first npm script *start*. You'll have to disable the popup blocker (if necessary). Now it'll take a few moments until it starts, but finally your app will appear in an additional browser tab. 
 
-The app is opening and looking exactly as we saw it previously when testing the Service Binding. As we didn’t change any code, this is quite obvious. Anyways we’re e.g. able to change the selected columns manually by clicking on _Settings_ and selecting them. Those settings allows some out-of-the-box functionality for the user without us having to code anything at all. For example, changing selected fields or arranging their order, sorting, grouping and filtering. 
+The app is opening and looking exactly as we saw it previously when testing the Service Binding. As we didn’t change any code, this is quite obvious. Anyway, we’re e.g. able to change the selected columns manually by clicking on _Settings_ and selecting them. Those settings allow some out-of-the-box functionality for the user without us having to code anything at all. For example, changing selected fields or arranging their order, sorting, grouping and filtering. 
 
 ![alt](images/image6_10.png)
 

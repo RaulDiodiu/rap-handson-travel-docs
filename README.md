@@ -16,7 +16,7 @@ All created objects are implemented as local objects. The names to be used are l
 ### Goals and Motivation
 The main goal of this exercise is to show how software development with ABAP has changed within the past years. The exercise wants to highlight the future techniques and technologies within the **ABAP RESTful Application Programming Model** (you may also find the abbreviation **RAP**). 
 
-Simplification and fast IT was the leading motivation for SAP in the last years – this brought several new functionalities and features. This HandsOn aims to make you familiar with those new technologies by build-ing your own app. When you finished this exercise, you have basic knowledge how a simple Fiori App can be created with the help of CDS Views (data retrieval and UI annotation), Behavior Definitions (transactional actions on data) and the resulting OData service (Service Binding).
+Simplification and fast IT was the leading motivation for SAP in the last years – this brought several new functionalities and features. This HandsOn aims to make you familiar with those new technologies by building your own app. When you finish this exercise, you will have basic knowledge of how a simple Fiori app can be created with the help of CDS views (data retrieval and UI annotations), behavior definitions (transactional actions on data), and the resulting OData service (service binding).
 
 ### SAP Fiori transactional app (RAP scenario managed/draft)
 #### 1. Introduction

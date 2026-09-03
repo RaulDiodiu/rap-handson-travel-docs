@@ -13,11 +13,11 @@
 
 ## Introduction  
 [^ Top of page](#)  
-With our behavior definition and implementation being completed the next step ist to actually publish the CDS views to be exposed via an OData service. This will also allow us to finally test our implementations.
+With our behavior definition and implementation being completed the next step is to actually publish the CDS views to be exposed via an OData service. This will also allow us to finally test our implementations.
 
 ## Service Definition
 [^ Top of page](#)  
-First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your package and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. This therefore not only includes our Projection Views for Travel, Booking an BookingSupplement instances but also those used for Value Helps, Navigation and Text Provision. All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
+First, we’ll create the Service Definition and define which CDS entities are exposed as a UI service. Right-click on your package and navigate to New Other ABAP Repository Object > Business Services > Service Definition and define a new one called `ZRAPH_##_TRAVELWDTP`. The Service Definition is used to define which CDS Views are exposed for external usage. This therefore not only includes our Projection Views for Travel, Booking and BookingSupplement instances but also those used for Value Helps, Navigation and Text Provision. All information on compositions and associations of the exposed CDS views is automatically used. You can see the code below:
 
 ```abap
 @EndUserText.label: 'RAP HandsOn: Travel Draft Scenario'
@@ -51,7 +51,7 @@ Afterwards, click `Publish` on the top right. Now the table Entity Set and Assoc
 [^ Top of page](#)  
 Let’s test the newly created UI Service locally to check whether everything is working.   
 The editor of Service Bindings is offering this functionality via running an automatically generated Fiori Elements App based on the OData service.   
-To do this: double click the `Travel` EntitySet or select the `Travel` entity and click the `Preview` button or like in the screenshoot right click and select `Open Fiori Elements App Preview`. Of course, you can also preview the other entity sets.
+To do this: double click the `Travel` EntitySet or select the `Travel` entity and click the `Preview` button, or right-click and select `Open Fiori Elements App Preview`. Of course, you can also preview the other entity sets.
 
 ![alt](images/image5_1.png)
 

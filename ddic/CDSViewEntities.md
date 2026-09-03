@@ -20,7 +20,7 @@ association[1..1] to /dmo/agency as _agency on _agency.agency_id = test2.agency_
 
 ### 1. Create CDS View Entity ZRAPH_##_RESERVATION
 Use ZRAPH_##_ROOMRSV as the primary source.  
-Change the generated autorization check to not required:  
+Change the generated authorization check to not required:  
 
 ```abap
 @AccessControl.authorizationCheck: #NOT_REQUIRED

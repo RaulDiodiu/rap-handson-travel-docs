@@ -15,7 +15,7 @@
 You will now create the database table `ZRAPH_##_RoomRsv` (where `##` are the initials of your name), to store the room reservation data. This will be the only child node which must be created by you as extension of the existing Flight reference model from `/DMO/` namespace.
 
 ## Technical information
-The structure of the database table should be as follow:
+The structure of the database table should be as follows:
 
 | Field Name    | Data Element | Is key field? |
 | ----------- | ----------- | ----------- | 
@@ -47,7 +47,7 @@ The structure of the database table should be as follow:
 
 ## Requirement #2 - Duplicate /DMO/ tables
 [^ Top of page](#)  
-Next, we have to duplicate some tables from the /DMO/ reference model to get a individual one. This allows us later when developing the RAP Fiori App to work with our own data instead of interfering with each other.
+Next, we have to duplicate some tables from the /DMO/ reference model to get an individual copy. This allows us to work with our own data later when developing the RAP Fiori app instead of interfering with each other.
 
 Please duplicate the following tables in your SAP system into your local package via right-clicking the source:
 
@@ -57,9 +57,9 @@ Please duplicate the following tables in your SAP system into your local package
 
 ## Requirement #3 - Fill database tables
 [^ Top of page](#)  
-Your newly created tables have no data, yet. Therefore, we'll write a small program which will automatically fill them based on SAP's /DMO/ tables and some additionaly generated data for our room reservation table.
+Your newly created tables have no data yet. Therefore, we'll write a small program that will automatically fill them based on SAP's /DMO/ tables and some additionally generated data for our room reservation table.
 
-1. Create the executable report `zraph_##_data_generator` in you ABAP package (i.e., an ABAP class). You'll have to use the INTERFACE `if_oo_adt_classrun` to achieve this.
+1. Create the executable report `zraph_##_data_generator` in your ABAP package (that is, an ABAP class). You'll have to use the interface `if_oo_adt_classrun` to achieve this.
 
 2. It should always be possible to run the report to reset the existing data entries.  
    To ensure this, you'll initially have to clear the data from `ZRAPH_##_Travel`, `ZRAPH_##_Booking`, `ZRAPH_##_BookSup` and `ZRAPH_##_RoomRsv` when executing the report.  
@@ -132,7 +132,7 @@ Your newly created tables have no data, yet. Therefore, we'll write a small prog
                               currency_code = <travel>-currency_code ) TO roomreservations.
             ENDIF.
           CATCH cx_uuid_error.
-          ENDTY.
+          ENDTRY.
         ENDLOOP.
         INSERT zraph_##_roomrsv FROM TABLE @roomreservations.
         out->write( 'Room reservation data generated.' ).

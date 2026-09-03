@@ -8,11 +8,11 @@
     * [Testing the UI service locally](#markdown-header-testing-the-ui-service-locally)     
 * [Next: 5b. Implementing Basic Authorizations (optional)](5b.md)  
 * [Next: 6. Behavior Implementation](../part6/6a.md)  
-* [Next: 6. Behavior Implementation (short version)](../part6/6aSHORT.md)
+* [Alternative: 6. Behavior Implementation (short version)](../part6/6aSHORT.md)
 
 ## Introduction  
 [^ Top of page](#)  
-With our behavior definition and implementation being completed the next step ist to actually publish the CDS views to be exposed via an OData service. This will also allow us to finally test our implementations.
+With our behavior definition completed, the next step is to publish the CDS views through an OData service. This will also allow us to test our implementation.
 
 ## Service Definition
 [^ Top of page](#)  
@@ -39,7 +39,7 @@ Afterwards, click `Publish` on the top right. Now the table Entity Set and Assoc
 [^ Top of page](#)  
 Let’s test the newly created UI Service locally to check whether everything is working.   
 The editor of Service Bindings is offering this functionality via running an automatically generated Fiori Elements App based on the OData service.   
-To do this: double click the `Travel` EntitySet or select the `Travel` entity and click the `Preview` button or like in the screenshoot right click and select `Open Fiori Elements App Preview`. Of course, you can also preview the other entity sets.
+To do this, double-click the `Travel` entity set, or select the `Travel` entity and click the `Preview` button. Alternatively, right-click it and select `Open Fiori Elements App Preview`. You can also preview the other entity sets.
 
 ![alt](images/image5_1.png)
 
@@ -51,6 +51,6 @@ Now you already got your **very first Fiori app running :)** and can play around
 
 ## Next step
 [^ Top of page](#)  
-[5b. Implementing Basic Authorizations (skipped)](5b.md)  
+[5b. Implementing Basic Authorizations (optional)](5b.md)
 [6. Behavior Implementation](../part6/6a.md)  
-[6. Behavior Implementation (short version)](../part6/6aSHORT.md)
+[Alternative: 6. Behavior Implementation (short version)](../part6/6aSHORT.md)

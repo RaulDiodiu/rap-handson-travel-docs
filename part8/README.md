@@ -13,7 +13,7 @@ In SAP Business Application Studio, for the SAP Fiori List Report project create
 From the menu *Terminal>New Terminal* open a new terminal and in the terminal enter the command *npm run deploy*. In case that the file which contains the deployment configuration is not created yet, you will receive the following message *No deployment configuration has been detected. Run "npm run deploy-config" to add configuration first.*
 
 ### Creating the deployment configuration
-In the terminal enter the command *npm rund deploy-config*. As a consequence a wizard-approach will appear in the terminal. Please enter the following information:
+In the terminal, enter the command *npm run deploy-config*. A wizard will then appear in the terminal. Enter the following information:
 
 1. **Target**: ABAP
 2. **Destination**: Use the default abap-cloud destination as used in the application generation.

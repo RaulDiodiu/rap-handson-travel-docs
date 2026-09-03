@@ -6,9 +6,9 @@
 * [Next: 2. Creating the Database Tables ](Tables.md)
 
 ## Overall description and high-level architecture
-In this course we’ll create a SAP Fiori application with the help of a Virtual Data Model using ABAP CDS, Behavior Definitions & Implementations for the transactional behavior and OData via Service Definition & Binding for publishing our data from the BackEnd.
+In this course we’ll create an SAP Fiori application with the help of a Virtual Data Model using ABAP CDS, Behavior Definitions & Implementations for the transactional behavior and OData via Service Definition & Binding for publishing our data from the BackEnd.
 
-The finished Fiori app will display travel information (one travel possibly consisting of several flight bookings and room reservations). The main screen will list all travels stored in the database. Also, it allows to open an individual travel with its information shown in an object page and the associated bookings and room reservations listed as well. From there you can e.g. navigate to the object page of an individual booking to see its data and associated booking supplements in detail.
+The finished Fiori app will display travel information (one travel possibly consisting of several flight bookings and room reservations). The main screen will list all travels stored in the database. It also allows to open an individual travel with its information shown in an object page and the associated bookings and room reservations listed as well. From there you can e.g. navigate to the object page of an individual booking to see its data and associated booking supplements in detail.
 
 The app will support transactional functionality (CRUD operations) using draft capabilities along with search and filtering. 
 
@@ -18,7 +18,7 @@ The following image should give you a high-level overview, which types of develo
 
 ## Mockups
 [^ Top of page](#)  
-The following mock-ups should already provide a rough overview how our app should look like in the end. 
+The following mock-ups should already provide a rough overview of how our app should look like in the end. 
 The starting screen (List Report) should list all travels and provide some functionality to search and filter for instances as well as creating and deleting travels and the functionality to accept or reject a travel. 
 
 ![List Report](images/image1_2.png)
@@ -91,11 +91,11 @@ We will use the following database tables for the instances travel, booking, boo
 |                      | currency_code            |
 |                      | local_last_changed_at    |
 
-As you can see in the diagram below, those tables also have associations to other instances in our scenario like Agency, Customer, Flight or Hotel. For our own Virtual Data Model we’ll concentrate on the DB tables for the instances which are marked in green, though. Those are basically representing the transactional data. The remaining master data will be mostly reused by accessing existing CDS views for sake of simplicity to enrich our app with external master data. 
+As you can see in the diagram below, those tables also have associations to other instances in our scenario like Agency, Customer, Flight or Hotel. For our own Virtual Data Model we’ll concentrate on the DB tables for the instances which are marked in green, though. Those are basically representing the transactional data. The remaining master data will be mostly reused by accessing existing CDS views for the sake of simplicity to enrich our app with external master data. 
 
 ![alt](images/image1_5.png)
 
-With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful Application Programming Model were introduced. The app created within this hands-on will be based on the scenario managed/draft. In comparision with the unmanaged scenario, where the developer would have to implement the basic CUD (create, update, delete) operations, in the managed scenario those operations will be provided out of the box by the RAP framework. Draft-enabled business objects persist the state of the transactional buffer after every transaction on a designated draft database table. This allows the end user to stop and continue work processes at any point in time, even with inconsistent data. For more detailed information about the draft concept, see [Draft](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.001/en-US/a81081f76c904b878443bcdaf7a4eb10.html).
+With SAP S/4HANA 2020 additional supported scenarios within the ABAP RESTful Application Programming Model were introduced. The app created within this hands-on will be based on the scenario managed/draft. In comparison with the unmanaged scenario, where the developer would have to implement the basic CUD (create, update, delete) operations, in the managed scenario those operations will be provided out of the box by the RAP framework. Draft-enabled business objects persist the state of the transactional buffer after every transaction on a designated draft database table. This allows the end user to stop and continue work processes at any point in time, even with inconsistent data. For more detailed information about the draft concept, see [Draft](https://help.sap.com/viewer/fc4c71aa50014fd1b43721701471913d/202009.001/en-US/a81081f76c904b878443bcdaf7a4eb10.html).
 
 ## Next step
 [^ Top of page](#)  

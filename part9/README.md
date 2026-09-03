@@ -73,7 +73,7 @@ You will find 3 generated XML entries with this pattern:
   
 In this example, 0 is the key and Item1 is the text as they are assigned the corresponding properties.  
 The double quotes (") are just needed for proper XML syntax.  
-Change the texts of the the 3 items within the ComboBox to 3 non-suspicious web pages.  
+Change the text of each of the three items within the ComboBox to a non-suspicious web page.
 Example:  
 
 | Item key | Item text                                                                           |
@@ -128,7 +128,7 @@ While there is a default behaviour generated, it contains an error as of now.
 Find the generated controller "ListReportExt.controller.js" in webapp/ext/controller.  
 Within this file, the function "onExtensionButtonPressed" exists, which we will now change.  
 
-Replace the functions content (everything within the curly braces {}) with:  
+Replace the function's content (everything within the curly braces `{}`) with:
 ```js
 const sExternalPage = this.getView().byId("customFilter").getValue();
 window.open(sExternalPage);
@@ -276,8 +276,8 @@ A selected context can access the data of the corresponding line using the getPr
   
 To concatenate the values of the resulting array, the reduce method can be used:    
 [Array.reduce](https://www.w3schools.com/jsref/jsref_reduce.asp)  
-This method takes a function as first and an initial value as second parameter.  
-The function to be given as first parameter can be declared an passed as follows.  
+This method takes a function as the first parameter and an initial value as the second parameter.  
+The function to be passed as the first parameter can be declared as follows.  
 ```js
 const fnReduction = function(sValue, oContext) {
     let sCurrentValue = // insert your code to determine the Agency name out of the context oContext here

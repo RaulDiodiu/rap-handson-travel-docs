@@ -10,7 +10,7 @@
 
 ## Introduction
 [^ Top of page](#)  
-In this chapter we will introduce some basic authorizations to our scenario. Not every user might be allowed to view or do everything in a production environment. Therefore, we'll restrict the shown data based on the `DistanceUnit`. We need an autorization object, authorization field and data element for this and will use the Data Control Language to restrict the data for the CDS Views.
+In this chapter we will introduce some basic authorizations to our scenario. Not every user might be allowed to view or do everything in a production environment. Therefore, we'll restrict the shown data based on the `DistanceUnit`. We need an authorization object, authorization field and data element for this and will use the Data Control Language to restrict the data for the CDS Views.
 
 ### Creating the Data Element
 [^ Top of page](#)  

@@ -47,7 +47,7 @@ Next, we have to install the local development environment. For this, SAP switch
 
 Go to [Eclipse 2023-12](https://www.eclipse.org/downloads/packages/release/2023-12/r/eclipse-ide-java-developers) and download the version fitting your operating system.  
 
->**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.dmg or .zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyways, you can choose your preferred option yourself.
+>**Note** There are two different options: The orange button on the right offers a **guided installer**. At the top (under *Download Links*) you can choose to download an **archive** (.dmg or .zip) which simply has to be unpacked on your computer. The latter might be the easier option based on your liking and includes the ready-to-use Eclipse app. Anyway, you can choose your preferred option yourself.
 
 **IMPORTANT FOR MAC USERS:**  
 We'll have to change some settings **directly after installing Eclipse and before running it** as otherwise you won't be able to start Eclipse. The app will self-modify itself during the first startup. This will lead to Eclipse not starting again as the built-in [macOS Gatekeeper XProtect](https://support.apple.com/guide/security/protecting-against-malware-sec469d47bd8/web) prevents starting Eclipse after its self-modification (this is considered as security threat). Therefore, we have to define an [exception](https://stackoverflow.com/questions/70262544/eclipse-quit-unexpectedly-on-macos) in the Terminal. But first, make sure that you have moved Eclipse.app to the directory `Macintosh HD/Applications`! Afterwards, please open the Terminal and execute the command `cd /` to change to the root directory. Next, please execute `xattr -r -d com.apple.quarantine /Applications/Eclipse.app`. Don't expect an answer from the Terminal, you sadly won't get any. Nonetheless, you're now safe to start Eclipse (from `Macintosh HD/Applications`).
@@ -71,7 +71,7 @@ After the installation Eclipse has to be restarted. Now you can access the abapG
 [^ Top of page](#)  
 Now we will add the previously created ABAP Trial instance as ABAP Project in Eclipse. If you have already opened the ABAP perspective before you are already good to go: Click on *Create an ABAP cloud project* in the *Project Explorer* on the left.
 
-Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *default_key.json* which you've downloaded to your computer previously. Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verfiy the connection. When asked use *EN* as logon language and click *Finish*.
+Here you have to select the option using a *Service Key* and continue with *Next >*. Click *Import...* on the next screen and select the service key file *default_key.json* which you've downloaded to your computer previously. Click *Next >* and then *Open Logon Page in Browser*. Here you might have to log into your new SAP Account again to verify the connection. When asked use *EN* as logon language and click *Finish*.
 
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
@@ -123,7 +123,7 @@ Once the BAS has opened, you'll have to *Create Dev Space*: Select the name *Fio
 Click on *Terminal* > *New Terminal...* in the toolbar and type `cf login --sso` into the opened editor. Paste the API endpoint `https://api.cf.us10.hana.ondemand.com` and confirm via Enter.
 
 You'll get a link in order to retrieve a temporary passcode for logging in - open this URL from the BAS Terminal via `Ctrl + Click`. You might have to select the *Default Identity Provider* in the browser window and will get a passcode afterwards. Copy this passcode, paste it back into the BAS Terminal and click `Enter`.  
-You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyways! You should get an *OK* message in the Terminal and are finally good to go.
+You won't see that the passcode was pasted, the input field will remain empty. Just be confident of yourself and press `Enter` anyway! You should get an *OK* message in the Terminal and are finally good to go.
 
 Basically, everything is ready now - congratulations!  
 **We're looking forward to see you** on March 20th **:)**

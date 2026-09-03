@@ -25,8 +25,8 @@ Define the following fields:
 | parent_uuid           | Data Element         | SYSUUID_X16             | no     | yes      |                                                                  |
 | roomrsv_id            | Data Element         | ZRAPH_##_ROOM_RSV_ID    | no     | no       |                                                                  |
 | hotel_id              | Data Element         | ZRAPH_##_HOTEL_ID       | no     | yes      |                                                                  |
-| bgein_date            | Data Element         | /DMO/BEGIN_DATE         | no     | yes      |                                                                  |
-| end_Date              | Data Element         | /DMO/END_DATE           | no     | yes      |                                                                  |
+| begin_date            | Data Element         | /DMO/BEGIN_DATE         | no     | yes      |                                                                  |
+| end_date              | Data Element         | /DMO/END_DATE           | no     | yes      |                                                                  |
 | room_type             | Data Element         | ZRAPH_##_ROOM_TYPE      | no     | yes      |                                                                  |
 | roomrsv_price         | Data Element         | ZRAPH_##_ROOM_RSV_PRICE | no     | yes      | @Semantics.amount.currencyCode: 'ZRAPH_##_ROOMRSV.CURRENCY_CODE' |
 | currency_code         | Data Element         | /DMO/CURRENCY_CODE      | no     | yes      |                                                                  |
