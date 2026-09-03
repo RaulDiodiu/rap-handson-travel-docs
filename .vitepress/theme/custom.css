@@ -1,0 +1,111 @@
+/* Rapunzel (Tangled)-inspired palette: royal purple, golden blonde, pink, green */
+:root {
+  --vp-c-brand-1: #7c3aed;
+  --vp-c-brand-2: #9d5ce0;
+  --vp-c-brand-3: #b78bf0;
+  --vp-c-brand-soft: #f3e8ff;
+
+  --rz-gold: #f2b705;
+  --rz-pink: #ff8fab;
+  --rz-green: #3fae5c;
+}
+
+.dark {
+  --vp-c-brand-1: #b78bf0;
+  --vp-c-brand-2: #9d5ce0;
+  --vp-c-brand-3: #7c3aed;
+  --vp-c-brand-soft: rgba(124, 58, 237, 0.16);
+}
+
+/* Home hero: purple -> gold gradient, evoking Rapunzel's gown and hair */
+.VPHero .name {
+  background: linear-gradient(120deg, #7c3aed 30%, var(--rz-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.VPButton.brand {
+  background-color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+
+.VPButton.brand:hover {
+  background-color: var(--rz-pink);
+  border-color: var(--rz-pink);
+}
+
+.VPButton.alt {
+  border-color: var(--rz-gold);
+  color: var(--rz-gold);
+}
+
+.VPButton.alt:hover {
+  background-color: var(--rz-gold);
+  color: #2b1a4a;
+}
+
+/* Feature card accent border, like tower-window frames */
+.VPFeature {
+  border-top: 3px solid var(--rz-gold) !important;
+}
+
+/* Differentiate the two primary home cards: green for Installation (readiness),
+   gold for Complete Training (the main journey) */
+.VPFeatures .item:nth-child(1) .VPFeature {
+  border-top-color: var(--rz-green) !important;
+}
+.VPFeatures .item:nth-child(2) .VPFeature {
+  border-top-color: var(--rz-gold) !important;
+}
+
+/* Secondary "Jump to a Part" chapter grid on the home page */
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 24px 0 48px;
+}
+
+.chapter-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background-color: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-top: 3px solid var(--vp-c-brand-1);
+  text-decoration: none !important;
+  transition: border-color 0.2s;
+}
+
+.chapter-card:hover {
+  border-color: var(--rz-pink);
+  border-top-color: var(--rz-pink);
+}
+
+.chapter-card strong {
+  color: var(--vp-c-text-1);
+  font-size: 15px;
+}
+
+.chapter-card span {
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+}
+
+/* Content keeps its original manual "Table of Contents" (Previous/Current/Next links +
+   anchor list) so the markdown still reads fine on GitHub. VitePress already provides
+   its own right-side outline and bottom prev/next footer, so we hide the redundant
+   manual block here to avoid showing navigation twice. */
+.vp-doc h2#table-of-contents,
+.vp-doc h2#table-of-contents + ul {
+  display: none;
+}
+
+/* NOTE: VitePress's own default theme already sets font-weight: 700 for ALL level-0
+   sidebar entries (both group headers and flat single-page links), via
+   `.VPSidebarItem.level-0 .text`. No override should be needed here - if Part 1/2/8/9
+   still look lighter, it's likely a stale browser/dev-server cache, not a CSS gap. */
+

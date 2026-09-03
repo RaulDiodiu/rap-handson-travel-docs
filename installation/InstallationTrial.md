@@ -76,15 +76,15 @@ Here you have to select the option using a *Service Key* and continue with *Next
 #### Creating a development package
 You've successfully connected your development IDE with the ABAP Environment in the Business Technology Platform. Next, we will create a package and associated transport request. This package will be used to store all your development objects which we'll create during this course. To do so, right click on your new ABAP Project and select *New* > *ABAP Package*.
 
-![alt](files/image0_1.png)  
+![alt](files/Package_0.png)  
 
 On the *Next >* wizard page, assign the Name `ZRAPH_##_TRAVEL` where the `##` has to be replaced with your personal *initials*. This ensures that everybody has his own package and we don't interfere with each others - we'll use the `##` throughout the course! The superpackage will stay ZLOCAL and you can check the box to save this as favorite package for easier access.
 
-![alt](files/image0_2.png)
+![alt](files/Package_1.png)
 
 Continue with *Next >* and select the radio button *Create a new request* where you should provide some meaningful *Request Description* and can complete the wizard by pressing *Finish*. This transport request is required as you would normally e.g. transport such packaged changes from a development to a test system. In our case this won't happen but is necessary nontheless.
 
-![alt](files/image0_3.png)
+![alt](files/Package_3.png)
 
 With this, you've completed the fourth preparation step.
 
