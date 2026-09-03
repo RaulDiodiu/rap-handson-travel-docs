@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: 'RAP Hands-On: Travel',
   description: 'ABAP RESTful Application Programming Model (RAP) Hands-On Training by msg group',
-  base: '/rap-handson-travel-docs/',
+  base: '/',
   srcExclude: ['BACKUP/**', '.ui-samples/**', '**/node_modules/**'],
   ignoreDeadLinks: true,
   vite: {
