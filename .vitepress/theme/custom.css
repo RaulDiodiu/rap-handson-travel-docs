@@ -25,6 +25,38 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Home hero background: soft purple/gold gradient with a "floating lantern" dot field,
+   evoking the film's lantern-release scene, using only the existing palette (no image file) */
+.VPHome .VPHero.has-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.VPHome .VPHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(242, 183, 5, 0.42) 0, transparent 3%),
+    radial-gradient(circle at 28% 55%, rgba(255, 143, 171, 0.36) 0, transparent 2.5%),
+    radial-gradient(circle at 45% 15%, rgba(242, 183, 5, 0.36) 0, transparent 2%),
+    radial-gradient(circle at 62% 48%, rgba(63, 174, 92, 0.3) 0, transparent 2.5%),
+    radial-gradient(circle at 78% 22%, rgba(255, 143, 171, 0.36) 0, transparent 3%),
+    radial-gradient(circle at 90% 60%, rgba(242, 183, 5, 0.34) 0, transparent 2%),
+    linear-gradient(160deg, var(--vp-c-brand-soft) 0%, transparent 55%);
+  animation: rz-lanterns-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes rz-lanterns-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -24px;
+  }
+}
+
 .VPButton.brand {
   background-color: var(--vp-c-brand-1);
   border-color: var(--vp-c-brand-1);
