@@ -1,4 +1,67 @@
 import { defineConfig } from 'vitepress'
+import { existsSync, readFileSync, mkdirSync, readdirSync, statSync, copyFileSync } from 'node:fs'
+import { dirname, join, normalize, relative } from 'node:path'
+
+// Any folder with one of these names is served/copied as-is, wherever it appears in the repo.
+const assetDirNames = new Set(['solutions', 'sources'])
+const excludedDirNames = new Set(['node_modules', '.git', '.vitepress', 'BACKUP'])
+
+const mimeTypes: Record<string, string> = {
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml',
+  '.json': 'application/json',
+  '.js': 'text/javascript'
+}
+
+function collectFiles(dir: string, results: string[]): void {
+  for (const entry of readdirSync(dir)) {
+    const fullPath = join(dir, entry)
+    if (statSync(fullPath).isDirectory()) collectFiles(fullPath, results)
+    else results.push(fullPath)
+  }
+}
+
+function findAssetFiles(root: string, dir = root, results: string[] = []): string[] {
+  for (const entry of readdirSync(dir)) {
+    if (excludedDirNames.has(entry)) continue
+    const fullPath = join(dir, entry)
+    if (!statSync(fullPath).isDirectory()) continue
+
+    if (assetDirNames.has(entry)) collectFiles(fullPath, results)
+    else findAssetFiles(root, fullPath, results)
+  }
+  return results
+}
+
+function staticAssetFilesPlugin() {
+  return {
+    name: 'serve-training-solutions-and-sources',
+    configureServer(server: { middlewares: { use: (handler: (request: any, response: any, next: () => void) => void) => void } }) {
+      server.middlewares.use((request, response, next) => {
+        const requestPath = decodeURIComponent((request.url ?? '').split('?')[0])
+        const relativePath = normalize(requestPath).replace(/^\\+|^\/+/, '')
+        const segments = relativePath.split(/[\\/]/)
+
+        const isAssetPath = segments.some((segment, index) => assetDirNames.has(segment) && index < segments.length - 1)
+        if (!isAssetPath || segments.some(segment => excludedDirNames.has(segment))) {
+          next()
+          return
+        }
+
+        const filePath = join(process.cwd(), relativePath)
+        if (relative(process.cwd(), filePath).startsWith('..') || !existsSync(filePath) || statSync(filePath).isDirectory()) {
+          next()
+          return
+        }
+
+        const extension = filePath.slice(filePath.lastIndexOf('.'))
+        response.statusCode = 200
+        response.setHeader('Content-Type', mimeTypes[extension] ?? 'application/octet-stream')
+        response.end(readFileSync(filePath))
+      })
+    }
+  }
+}
 
 export default defineConfig({
   title: 'RAP Hands-On: Travel',
@@ -7,7 +70,15 @@ export default defineConfig({
   srcExclude: ['BACKUP/**', '.ui-samples/**', '**/node_modules/**'],
   ignoreDeadLinks: true,
   vite: {
+    plugins: [staticAssetFilesPlugin()],
     assetsInclude: ['**/*.PNG', '**/*.JPG', '**/*.JPEG']
+  },
+  buildEnd(siteConfig) {
+    for (const filePath of findAssetFiles(process.cwd())) {
+      const outputPath = join(siteConfig.outDir, relative(process.cwd(), filePath))
+      mkdirSync(dirname(outputPath), { recursive: true })
+      copyFileSync(filePath, outputPath)
+    }
   },
 
   themeConfig: {
