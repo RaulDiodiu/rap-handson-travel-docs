@@ -85,7 +85,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Installation', link: '/installation/Installation' },
-      { text: 'Start Training', link: '/part1/README' }
+      { text: 'Start Training', link: '/README' }
     ],
 
     sidebar: {
@@ -101,6 +101,7 @@ export default defineConfig({
         }
       ],
       '/': [
+        { text: 'Training Overview', link: '/README' },
         { text: 'Part 1 — Introduction', link: '/part1/README' },
         { text: 'Part 2 — Database Tables', link: '/part2/README' },
         {

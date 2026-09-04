@@ -12,9 +12,9 @@ features:
     details: Set up SAP S/4HANA, Eclipse/ADT, and Business Application Studio before you start.
     link: /installation/Installation
   - icon: 🚀
-    title: Complete Training
+    title: Start Training
     details: The full RAP Travel journey, Parts 1 through 10. A short version is offered where available (Part 6).
-    link: /part1/README
+    link: /README
 ---
 
 ## Jump to a Part
