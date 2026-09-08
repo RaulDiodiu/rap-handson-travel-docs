@@ -40,7 +40,7 @@ function staticAssetFilesPlugin() {
       server.middlewares.use((request, response, next) => {
         const requestPath = decodeURIComponent((request.url ?? '').split('?')[0])
         const relativePath = normalize(requestPath).replace(/^\\+|^\/+/, '')
-        const segments = relativePath.split(/[\\/]/)
+        const segments = relativePath.split(/[\\\/]/)
 
         const isAssetPath = segments.some((segment, index) => assetDirNames.has(segment) && index < segments.length - 1)
         if (!isAssetPath || segments.some(segment => excludedDirNames.has(segment))) {
@@ -66,7 +66,7 @@ function staticAssetFilesPlugin() {
 export default defineConfig({
   title: 'RAP Hands-On: Travel',
   description: 'ABAP RESTful Application Programming Model (RAP) Hands-On Training by msg group',
-  base: '/',
+  base: '/rap-handson-travel-docs/',
   srcExclude: ['BACKUP/**', '.ui-samples/**', '**/node_modules/**'],
   ignoreDeadLinks: true,
   vite: {
